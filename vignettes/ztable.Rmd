@@ -1,0 +1,182 @@
+---
+title: "Package ztable"
+author: "Keon-Woong Moon"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ztable}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+# Introduction
+
+I like the "xtable"" package very much. But when I use a large font or "flushright" latex environment, there is a caption size discrepancy and misposition of caption.
+
+![xtable.png](figures/xtable.png)
+
+That's why I developed ztable package.
+
+![ztable.png](figures/ztable.png)
+
+Package "ztable" consist of one function: ztable. It's main function is creating zebra zebra striping tables(tables with alternating row colors) in both Latex and html formats easily from mainly data.frame or an R object such as matrix, lm, aov, anova, glm and coxph objects. It is fully customizable and you can get similar tables in both latex and html format without changing source. The default output is Latex format, but you can get html format by adding just one sentence.
+
+```{r, eval=FALSE}
+options(ztable.type="html")
+```
+
+It's usage is somewhat similar to xtable, but very simple.
+
+## data.frame
+
+### Basic Use
+
+It's use is very simple. Just use 'ztable()' function. You can get the zebra sripig table by default.(default value zebra=1; striping on odd rows).
+
+```{r,results="asis",message=FALSE}
+require(ztable)
+options(ztable.type="html")
+options(ztable.colnames.bold=TRUE)
+ztable(head(mtcars),caption="Table 1. Basic Use")
+```
+
+### Tailoring zebra striping
+
+You can get non-zebra table by change parameter zebra=NULL or change zebra striping on even rows by zebra=2. 
+
+```{r,results='asis'}
+ztable(head(mtcars),zebra=NULL,size=3,
+       caption="Table 2. Non-zebra Table with small size")
+```
+        
+### Customize the caption and the font size 
+
+You can change the position of table by using parameter position. You can use "r" for right position, "l" for left position and "c" for center position(default). You can change the color of zebra striping by change the parameter zebra.color. You can also change the size of font from 1 to 10(default is 5). You can change the caption.placement("top" or "bottom") and caption.position("c" for center / "r" for right/ "l" for left).  
+    
+```{r,results='asis'}
+ztable(head(mtcars[c(1:7)]),zebra=2,zebra.color="lightcyan",size=7,
+       caption="Table 3. Left-sided caption at botom with large font",
+       caption.placement="bottom",caption.position="l") 
+```
+       
+## aov  object
+
+'ztable()' can be used for 'aov' object. When used for 'aov' object, the function call is added as footer to the table. The parameter 'show.footer' can be used whether or not include footer in the table. Dafault value is TRUE.
+
+```{r,results="asis"}
+out <- aov(mpg ~ ., data=mtcars)
+ztable(out)
+```
+
+## Linear model : 'lm' object
+
+'ztable()' can be used for 'lm' object. When used for 'lm' object, the function call is added as footer to the table, too. 
+
+
+```{r,results='asis'}
+fit <- lm(mpg ~ cyl + disp + wt + drat + am, data=mtcars)
+ztable(fit)
+```
+
+## Analysis of Variance Table : 'anova' object
+
+'ztable()' can be used for 'anova' object to show the anova table. When used for 'anova' object, headings of anova are added as headings to the table. The parameter 'show.footer' can be used whether or not include footer in the table. Dafault value is TRUE.
+
+```{r,results='asis'}
+a=anova(fit)
+ztable(a)
+```
+
+This is examples of another 'anova' object. The models in this anova tables showed as table headings. You can decide whether or not include the headings in the tableby using parameter 'show.heading'(default: TRUE). 
+
+```{r,results='asis'}
+fit2 <- lm(mpg ~ cyl+wt, data=mtcars)
+b=anova(fit2,fit)
+ztable(b)
+ztable(b,show.heading=FALSE)
+```
+
+## Generalized linear model ; 'glm' object
+
+'ztable()' can be used for 'glm'(generalized linear model) object. In this time, 'ztable()' shows the **odds ratio(OR) and 95% confidence interval** as well as atandard R output.
+
+```{r,results='asis',warning=FALSE}
+require(survival)
+data(colon)
+attach(colon)
+out <- glm(status ~ rx+obstruct+adhere+nodes+extent, data=colon, family=binomial)
+ztable(out)
+```
+
+Again, 'ztable()' also shows the anova table of this model.
+
+```{r,results='asis'}
+ztable(anova(out))
+```
+
+## More 'aov' object
+
+
+```{r,results='asis'}
+op <- options(contrasts = c("contr.helmert", "contr.poly"))
+npk.aov <- aov(yield ~ block + N*P*K, npk) 
+ztable(npk.aov,zebra=1)
+```
+
+## More 'lm' object
+
+```{r,results='asis'}
+ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+weight <- c(ctl, trt)
+lm.D9 <- lm(weight ~ group)
+ztable(lm.D9)
+ztable(anova(lm.D9))
+```
+
+
+## More 'glm' object
+
+```{r,results='asis'}
+counts <- c(18,17,15,20,10,20,25,13,12)
+outcome <- gl(3,1,9)
+treatment <- gl(3,3)
+d.AD <- data.frame(treatment, outcome, counts)
+glm.D93 <- glm(counts ~ outcome + treatment, family = poisson())
+ztable(glm.D93)
+```
+
+## Principal Components Analysis : 'prcomp' object
+
+'ztable()' can be used in principal components analysis. Followings are examples of ztable() of 'prcomp' object.
+
+
+```{r,results='asis',message=FALSE}
+data(USArrests)
+pr1 <- prcomp(USArrests) 
+ztable(pr1)
+ztable(summary(pr1))
+```
+
+## Survival Analysis : 'coxph' object
+
+'ztable()' can be used in principal components analysis. When used for Cox proportional hazard model, 'ztable()' showed the hazard ratio and 95% confidence interval ready for publication to medical journal.
+
+
+```{r,results='asis',message=FALSE}
+colon$TS = Surv(time,status==1) 
+out=coxph(TS~rx+obstruct+adhere+differ+extent+surg+node4,data=colon)
+ztable(out)
+```
+
+
+### Customize the zebra striping colors
+
+If you wanted to use several colors for zebra striping, you can set the parameter 'zebra' to zero(e.g. zebra=0) and set the 'zebra.color' parameter with vector of your favorite colors. Your favorite colors are used to zebra striping. For your convienience, ten colors are predifned for this purpose. The predefined colors are: c("peach","peach-orange","peachpuff","peach-yellow","pear","pearl","peridot","periwinkle","pastelred","pastelgray"). 
+
+```{r,results='asis',message=FALSE}
+ztable(head(mtcars,15),zebra=0) 
+```
+
+The color names used for this purpose are predefined in the data 'zcolors' included in 'ztable' package. Please type '?zcolors' in R console for help file or just type 'zcolors'. You can see 749 color names defined in data 'zcolors'. 

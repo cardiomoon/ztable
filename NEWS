@@ -1,0 +1,7 @@
+ztable 0.1.0
+==============
+(15-Dec-2014)
+
+* new function "ztable" which creates zebra striping tables(tables with alternating row colors) in both Latex and html formats easily from mainly data.frame or an R object such as matrix, lm, aov, anova, glm and coxph objects.
+
+* new data "zcolors" added

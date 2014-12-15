@@ -1,0 +1,472 @@
+#' Exporting a R object to an object of class "ztable"
+#'
+#' Exporting a R object to an object of class "ztable"
+#' @param x An R object, mainly data.frame
+#' @param ... arguments to be passed to \code{\link{ztable_sub}}
+ztable=function(x,...)  UseMethod("ztable")
+
+
+#'@describeIn ztable
+#'
+ztable.default=function(x,...){
+    z=ztable_sub(x,...)
+    z
+}
+
+#' Exporting "data.frame" to an object of class "ztable"
+#'
+#' Exporting "data.frame" to an object of class "ztable"
+#'@param x A data.frame
+#'@param size An integer from 1 to 10 indicating font size= c("tiny","scriptsize",
+#'       "footnotesize","small","normalsize","large","Large","LARGE","huge","Huge")
+#'       respectively. Defaulting is 5(= "normalsize").
+#'@param include.rownames A logical value whether or not include rownames in the table
+#'       Default value is TRUE.
+#'@param placement The table will have placement given by placement where placement
+#'       must be NULL or contain only elements of {"h","t","b","p","!","H"}.
+#'       Default value is "!hbtp".
+#'@param position The table will be have placed at the center of the paper
+#'        if position is "center" or "c", and at the left side of the paper
+#'        if it equals "left" or "l", and at the right side of the paper
+#'        if it equals "right" or "r". The position is translated to specificed
+#'        latex environments such as "flushright" or "flushleft" or "center"
+#'        (provided as a character vector) will enclose the tabular environment.
+#'        Default value is "center".
+#'@param show.heading A logical value whether or not include headings in the table.
+#'        Default value is TRUE.
+#'@param show.footer A logical value whether or not include headings in the table.
+#'        Default value is TRUE.
+#'@param caption A character
+#'@param caption.placement The caption will be have placed at the top of the table
+#'        if caption.placement is "top" and at the bottom of the table
+#'        if it equals "bottom". Default value is "top".
+#'@param caption.position The caption will be have placed at the center of the table
+#'        if caption.position is "center" or "c", and at the left side of the table
+#'        if it equals "left" or "l", and at the right side of the table
+#'        if it equals "right" or "r". Default value is "center".
+#'@param caption.bold whether or not use bold font for caption
+#'@param align Character vector : nchar equal to the number of columns of the
+#'       resulting table indicating the alignment of the corresponding columns.
+#'@param digits Numeric vector of length equal to one (in which case it will be
+#'       replicated as necessary) or to the number of columns of the resulting table
+#'@param display Character vector of length equal to the number of columns of the
+#'       resulting table indicating the format for the corresponding columns.
+#'       Since the row names are printed in the first column, the length of display
+#'       is one greater than ncol(x) if x is a data.frame. These values are passed
+#'       to the formatC function. Use "d" (for integers), "f", "e", "E", "g", "G",
+#'       "fg" (for reals), or "s" (for strings). "f" gives numbers in the usual
+#'       xxx.xxx format; "e" and "E" give n.ddde+nn or n.dddE+nn (scientific format);
+#'       "g" and "G" put x[i] into scientific format only if it saves space to do so.
+#'       "fg" uses fixed format as "f", but digits as number of significant digits.
+#'       Note that this can lead to quite long result strings. Default value is NULL.
+#'       the class of x.
+#'@param sidewaystable Logical value whether or not set the tabular environment=
+#'       "sidewaystable". Requires Latex "rotating" package in preamble.
+#'       Default value is FALSE.
+#'@param longtable Logical value whether or not set the tabular environment=
+#'       "longtable". Requires Latex "longtable" package in preamble.
+#'       Default value is FALSE.
+#'@param wraptable Logical value whether or not set the tabular environment=
+#'       "wraptable". Requires Latex "wrapfig" package in preamble.
+#'       Default value is FALSE.
+#'@param wraptablewidth A integer indicate wraptable width in centimeter. Default=12.
+#'@param label Character vector of length 1 containing the LaTeX label or HTML anchor.
+#'       Set to NULL to suppress the label. Default value is NULL.
+#'@param hline.after A vector of numbers between -1 and "nrow(x)", inclusive,
+#'       indicating the rows after which a horizontal line should appear.
+#'       If NULL is used no lines are produced. Default value is c(-1,0,nrow(x))
+#'       which means draw a line before and after the columns names and at the
+#'       end of the table. Repeated values are allowed.
+#'@param booktabs Logical value. If TRUE, the toprule, midrule and bottomrule tags
+#'       from the LaTex "booktabs" package are used rather than hline for the
+#'       horizontal line tags. Requires Latex "booktabs" package in preamble.
+#'       Default value is TRUE.
+#'@param prefix.rows A numeric vector contains the position of rows on which
+#'       extra Latex commands should be added as a prefix.
+#'@param commands A character vector of the length 1 or same length of the nrow of
+#'       data.frame which contains the command that should be added as a prefix at
+#'       the specified rows. Default value is NULL, i.e. do not add commands.
+#'@param top.command A character vector of the length 1 which contains the command
+#'       that should be added as a prefix at the colnames row.
+#'@param zebra Null or a integer of 1 or 2. The arguments zebra and zebra.color are
+#'       used to make a Zebra striping table(table with alternating background colors)
+#'       easly. A value of 1 sets background color of all odd rows with specified with
+#'       zebra.color. A value of 2 sets all even rows. when zebra is 1 or 2,
+#'       the parameters of prefix.rows and commands ignored. Default is NULL.
+#'@param zebra.color A color name or a numeric value indicating pre-defined color.
+#'       When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zerba.color
+#'       is set to "platinum". Numeric values between 1 to 13 is converted to
+#'       predefined color names. The predefined color names are c("peach","peach-orange",
+#'       "peachpuff","peach-yellow","pear","pearl","peridot","periwinkle","pastelred",
+#'       "pastelgray"). Default is NULL.
+#'@param colnames.bold whether or not use bold font for column names, DEfault value is FALSE
+#'@param include.colnames Logical. If TRUE the column names is printed. Default value is TRUE.
+#'@examples
+#' require(ztable)
+#' x=head(iris)
+#' ztable(x)
+#' ztable(x,size=3,caption="Table 1. mylatex Test")
+#' ztable(x,size=7,caption="Table 1. mylatex Test",caption.position="l")
+#' ztable(x,size=7,caption="Table 1. mylatex Test",caption.placement="bottom",
+#'       caption.position="l")
+#' fit=lm(mpg~.,data=mtcars)
+#' ztable(fit)
+#' data(USArrests)
+#' pr1 <- prcomp(USArrests)
+#' ztable(pr1)
+#' ztable(summary(pr1))
+#' require(survival)
+#' data(colon)
+#' attach(colon)
+#' out <- glm(status ~ rx+obstruct+adhere+nodes+extent, data=colon, family=binomial)
+#' ztable(out)
+#' colon$TS = Surv(time,status==1)
+#' out1=coxph(TS~rx+obstruct+adhere+differ+extent+surg+node4,data=colon)
+#' ztable(out1)
+ztable_sub=function(x,
+                    size=5, # normal size, range 1-10
+                    include.rownames=getOption("ztable.include.rownames",TRUE),
+                    placement="!hbtp",position="c",
+                    show.heading=getOption("ztable.show.heading",TRUE),
+                    show.footer=getOption("ztable.show.footer",TRUE),
+                    caption=NULL,
+                    caption.placement=getOption("ztable.caption.placement","top"),
+                    caption.position=getOption("ztable.caption.position","c"),
+                    caption.bold=getOption("ztable.caption.bold",FALSE),
+                    align=NULL,digits=NULL,display=NULL,
+                    sidewaystable=FALSE,longtable=FALSE,
+                    wraptable=FALSE,wraptablewidth=12,
+                    label=NULL,hline.after=NULL,
+                    booktabs=getOption("ztable.booktabs",TRUE),
+                    prefix.rows=NULL,commands=NULL,top.command=NULL,
+                    zebra=getOption("ztable.zebra",1),
+                    zebra.color=getOption("ztable.zebra.color",NULL),
+                    colnames.bold=getOption("ztable.colnames.bold",FALSE),
+                    include.colnames=getOption("ztable.include.colnames",TRUE)){
+
+    ncount=ncol(x)
+    nrow=nrow(x)
+    cn=colnames(x)
+    if(identical(caption.placement,"bottom") | identical(caption.placement,"b"))
+        caption.placement="bottom"
+    else caption.placement="top"
+    if(identical(caption.position,"left")|identical(caption.position,"l"))
+        caption.position="l"
+    else if(identical(caption.position,"right")|identical(caption.position,"r"))
+        caption.position="r"
+    else caption.position="c"
+
+    if(identical(position,"left")|identical(position,"l"))
+        position="flushleft"
+    else if(identical(position,"right")|identical(position,"r"))
+        position="flushright"
+    else position="center"
+
+    addrow=ifelse(include.rownames,1,0)
+    logicals <- sapply(x, is.logical)
+
+    x[logicals] <- lapply(x[logicals], as.character)
+
+    characters <- sapply(x, is.character)
+    factors <- sapply(x, is.factor)
+    ints <- sapply(x, is.integer)
+
+    if(is.null(align)){
+        y <- c("r", c("r","l")[(characters | factors) + 1])
+        if(include.rownames) for(i in 1:length(y)) align=paste(align,y[i],sep="")
+        else for(i in 2:length(y)) align=paste(align,y[i],sep="")
+    }
+    if(is.null(digits)) digits=c(0,rep(2,ncol(x)))
+    if(length(digits)==1) digits=rep(digits,ncount+1)
+    if (is.null(display)) {
+        display <- rep("f", ncol(x))
+        display[ints] <- "d"
+        display[characters | factors] <- "s"
+        display <- c("s", display)
+    }
+    if(!is.null(zebra)) {
+        if(zebra==0){
+            prefix.rows=1:nrow(x)
+            if(is.null(zebra.color)) zebra.color=1:10
+        } else if(zebra==1) {
+            prefix.rows=seq(1,nrow(x),by=2)
+            if(is.null(zebra.color)) zebra.color=2 #peach-orange
+        } else {
+            zebra=2
+            prefix.rows=seq(2,nrow(x),by=2)
+            if(is.null(zebra.color)) zebra.color=2 #peach-orange
+        }
+        mycolor=c("peach","peach-orange","peachpuff","peach-yellow","pear",
+                  "pearl","peridot","periwinkle","pastelred","pastelgray")
+        if(zebra!=0) {
+            zebra.color[1]=validColor(zebra.color[1],mycolor)
+            zebra.color=rep(zebra.color[1],nrow)
+        }
+        else {     # zebra==0; all rows
+            result=c()
+            for(i in 1:length(zebra.color)){
+                result=c(result,validColor(zebra.color[i],mycolor))
+            }
+            zebra.color=result
+            if(length(zebra.color)<nrow)
+                zebra.color=rep(zebra.color,1+(nrow/length(zebra.color)))
+        }
+    }
+    if(!is.null(prefix.rows) & (length(commands)==1))
+        commands=rep(commands,nrow)
+    if((0 %in% prefix.rows) & is.null(top.command) &(length(commands)>0))
+        top.command=commands[1]
+    if(!is.numeric(size)) size=5
+    else if(size<0 | size>10) size=5
+
+    result=list(x=x,size=size,include.rownames=include.rownames,
+                placement=placement,position=position,
+                show.heading=show.heading,show.footer=show.footer,
+                caption=caption,caption.placement=caption.placement,
+                caption.position=caption.position,
+                caption.bold=caption.bold,
+                align=align,digits=digits,display=display,
+                sidewaystable=sidewaystable,longtable=longtable,
+                wraptable=wraptable,wraptablewidth=wraptablewidth,
+                label=label,hline.after=hline.after,booktabs=booktabs,
+                prefix.rows=prefix.rows,commands=commands,
+                top.command=top.command,
+                zebra=zebra,zebra.color=zebra.color,
+                include.colnames=include.colnames,
+                colnames.bold=colnames.bold
+    )
+    class(result) <-c("ztable")
+    result
+}
+
+
+#' Print an object of class "ztable"
+#'
+#' @param x An object of class "ztable"
+#' @param ... further argument passed to other function
+print.ztable=function(x,...){
+    print_ztable(x,...)
+}
+
+#' Print an object of class "ztable"
+#'
+#' @param z An object of class "ztable"
+#' @param type Type of table to produce. Possible values for type are "latex" or
+#'        "html". Default value is "latex".
+print_ztable=function(z,type=getOption("ztable.type","latex")){
+    #cat("type=",type,"\n")
+    if(type=="latex") ztable2latex(z)
+    else ztable2html(z)
+}
+
+
+#' Print an object of class "ztable" to Latex table
+#'
+#' @param z An object of class "ztable"
+ztable2latex=function(z){
+    ncount=ncol(z$x)
+    nrow=nrow(z$x)
+    cn=colnames(z$x)
+    addrow=ifelse(z$include.rownames,1,0)
+    Fontsize=c("tiny","scriptsize","footnotesize","small","normalsize",
+           "large","Large","LARGE","huge","Huge")
+    sort=ifelse(z$sidewaystable,"sidewaystable","table")
+    sort=ifelse(z$wraptable,"wraptable","table")
+    headingsize=ifelse(z$size>3,z$size-2,1)
+    define_colors(z$zebra.color)
+    align=alignCheck(z$align,ncount,addrow)
+    if(z$longtable){
+        cat(paste("\\begin{",Fontsize[z$size],"}\n",sep=""))
+        cat(paste("\\begin{longtable}{",align,"}\n",sep=""))
+    } else {
+        if(z$wraptable) {
+            if(z$position=="flushright") wrapposition<-"r"
+            else wrapposition<-"l"
+            cat(paste("\\begin{wraptable}{",wrapposition,"}[10pt]{",
+                      z$wraptablewidth,"cm}\n",sep=""))
+
+        } else{
+            cat(paste("\\begin{",sort,"}[",z$placement,"]\n",sep=""))
+            cat(paste("\\begin{",z$position,"}\n",sep=""))
+        }
+        cat(paste("\\begin{",Fontsize[z$size],"}\n",sep=""))
+        cat(paste("\\begin{tabular}{",align,"}\n",sep=""))
+    }
+    if(!is.null(z$caption) & z$caption.placement=="top"){
+        if(z$caption.bold) cat(paste("\\multicolumn{",ncount+addrow,"}{",
+                  z$caption.position,"}{\\textbf{",z$caption,"}}\\\\ \n",sep=""))
+        else cat(paste("\\multicolumn{",ncount+addrow,"}{",
+                       z$caption.position,"}{",z$caption,"}\\\\ \n",sep=""))
+    }
+    if((z$show.heading==TRUE) & (!is.null(attr(z$x,"heading")))) {
+        head=attr(z$x,"heading")
+        for(i in 1:length(head)) {
+            if(nchar(head[i])<1) next
+            cat(paste("\\multicolumn{",ncount+addrow,"}{l}{\\",Fontsize[headingsize],
+                      "{",head[i],"}}\\\\ \n",sep=""))
+        }
+    }
+    if(is.null(z$hline.after)) cat(ifelse(z$booktabs,"\\toprule[1.2pt]\n","\\hline\n"))
+    else if(-1 %in% z$hline.after) cat(ifelse(z$booktabs,"\\toprule[1.2pt]\n","\\hline\n"))
+    if(z$colnames.bold) {
+        if(z$include.rownames) firstrow=paste("&","\\textbf{",cn[1],"}",sep="")
+        else firstrow=paste("\\textbf{",cn[1],"}",sep="")
+        if(ncount>1) {
+            for(i in 2:ncount) {
+                boldcn=paste("\\textbf{",cn[i],"}",sep="")
+                firstrow=paste(firstrow,boldcn,sep=" & ")
+            }
+        }
+    } else {
+        if(z$include.rownames) firstrow=paste("&",cn[1],sep="")
+        else firstrow=cn[1]
+        if(ncount>1) {
+            for(i in 2:ncount) firstrow=paste(firstrow,cn[i],sep=" & ")
+
+        }
+    }
+    if((0 %in% z$prefix.rows) & !is.null(z$top.command)) cat(z$top.command)
+    if(z$include.colnames) {
+        cat(paste(firstrow,"\\\\ \n",sep=""))
+        if(is.null(z$hline.after)) cat(ifelse(z$booktabs,"\\midrule\n","\\hline\n"))
+        else if(0 %in% z$hline.after) cat(ifelse(z$booktabs,"\\midrule\n","\\hline\n"))
+    }
+    # convert factor into charactor
+    i=sapply(z$x,is.factor)
+    z$x[i]=lapply(z$x[i],as.character)
+
+
+    for(i in 1:nrow){
+        if(i %in% z$prefix.rows) {
+            if(is.numeric(z$zebra))
+                cat(paste("\\rowcolor{",z$zebra.color[i],"}",sep=""))
+            else if(!is.null(z$commands[i])) cat(z$commands[i])
+        }
+        temp=c()
+        if(z$include.rownames) temp=rownames(z$x)[i]
+        for(j in 1:ncount) {
+            if(z$display[j+1]=="s"){
+                if(is.null(temp)) temp=z$x[i,j]
+                else temp=paste(temp,z$x[i,j],sep=" & ")
+            }
+            else{
+                if(is.na(z$x[i,j])) {
+                    if(is.null(temp)) temp=" "
+                    else temp=paste(temp," ",sep=" & ")
+                } else{
+                    if(is.null(temp)) temp=formatC(z$x[i,j],digits=z$digits[j+1],
+                                               format=z$display[j+1])
+                    else temp=paste(temp,formatC(z$x[i,j],digits=z$digits[j+1],
+                                             format=z$display[j+1]),sep=" & ")
+                }
+            }
+        }
+        cat(paste(temp,"\\\\ \n",sep=""))
+        if(i %in% z$hline.after)
+            cat(ifelse(z$booktabs,ifelse(i==nrow,"\\bottomrule[1.2pt]\n","\\midrule"),"\\hline\n"))
+    }
+    if(is.null(z$hline.after)) cat(ifelse(z$booktabs,"\\bottomrule[1.2pt]\n","\\hline\n"))
+
+    footer=attr(z$x,"footer")
+    if(!is.null(footer) & (z$show.footer)){
+        cat(paste("\\multicolumn{",ncount+addrow,"}{l}{\\",Fontsize[headingsize],
+                  "{",footer,"}}\\\\ \n",sep=""))
+    }
+
+    if(!is.null(z$caption) & z$caption.placement=="bottom"){
+        if(z$caption.bold) cat(paste("\\multicolumn{",ncount+addrow,"}{",
+                                     z$caption.position,"}{\\textbf{",z$caption,"}}\\\\ \n",sep=""))
+        else cat(paste("\\multicolumn{",ncount+addrow,"}{",
+                       z$caption.position,"}{",z$caption,"}\\\\ \n",sep=""))
+    }
+
+    if(z$longtable) {
+        if(!is.null(z$label)) cat(paste("\\label{",z$label,"}\n",sep=""))
+        cat("\\end{longtable}\n")
+        cat(paste("\\end{",Fontsize[z$size],"}\n",sep=""))
+    } else {
+        cat("\\end{tabular}\n")
+        cat(paste("\\end{",Fontsize[z$size],"}\n",sep=""))
+        if(!is.null(z$label)) cat(paste("\\label{",z$label,"}\n",sep=""))
+        if(!z$wraptable) cat(paste("\\end{",z$position,"}\n",sep=""))
+        cat(paste("\\end{",sort,"}\n",sep=""))
+    }
+}
+
+
+#' Find valid color name
+#'
+#' @param a An integer or a character
+#' @param mycolor predefined color names
+#' @return a valid Latex color name
+validColor=function(a,mycolor){
+    if(is.numeric(a)) {
+        if(a>0 && a <11)
+            a=mycolor[a]
+        else a="peach"
+    } else {
+        if(!is.character(a)) a="peach"
+        else{
+            result=grep(paste("^",a,sep=""),ztable::zcolors$name,ignore.case=TRUE)
+            if(length(result)>0) a=ztable::zcolors$name[result[1]]
+            else a="peach"
+        }
+    }
+    a
+}
+
+#' Define colors
+#'
+#' Define colors of mycolors
+#' @param mycolors chracters vectors of color names
+define_colors=function(mycolors) {
+    if(is.null(mycolors)) return
+    for(i in 1:length(mycolors)) {
+        number=grep(paste("^",mycolors[i],sep=""),ztable::zcolors$name)
+        if(length(number)<1) next
+        else{
+            definition=ztable::zcolors[number[1],3]
+            cat(definition)
+        }
+    }
+}
+
+#' Delete first components of align
+#'
+#' @param align A character for define the align of column in Latex format
+align2nd=function(align){
+    if(substr(align,1,1)=="|") {
+        result=substr(align,2,nchar(align))
+        result=align2nd(result)
+    } else result=substr(align,2,nchar(align))
+    result
+}
+
+#' Count the number of align
+#'
+#' @param align A character for define the align of column in Latex format
+alignCount=function(align){
+    result=unlist(strsplit(align,"|",fixed=TRUE))
+    temp=c()
+    for(i in 1:length(result)) temp=paste(temp,result[i],sep="")
+    nchar(temp)
+}
+
+
+#' Check the validity of align
+#'
+#' @param align A character for define the align of column in Latex format
+#' @param ncount An integer equals of ncol function
+#' @param addrow An integer
+alignCheck=function(align,ncount,addrow){
+    count=alignCount(align)
+    #cat("align=",align,"count=",count,"\n")
+    while(count != (ncount+addrow)){
+       if(count< (ncount+addrow)) align=paste(align,"c",sep="")
+       else if(count > (ncount+addrow)) align=align2nd(align)
+       count=alignCount(align)
+       #cat("align=",align,"count=",count,"\n")
+    }
+    result=align
+    result
+}
