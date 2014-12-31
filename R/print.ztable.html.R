@@ -16,7 +16,7 @@ myhtmlHead=function(){
         td {
              border-top: 0px solid white;
              border-bottom: 0px solid white;
-             padding: 2px 2px; }
+             padding: 2px 2px 10px 10px; }
       </style>")
     cat("</head>")
 }
@@ -109,7 +109,6 @@ ztable2html=function(z){
         }
     }
     vlines=align2lines(z$align)
-    cat(vlines)
     if(z$include.colnames) {
         cat("<tr>\n")
         if(z$include.rownames) cat(paste("<th style=\"border-left: ",vlines[1],

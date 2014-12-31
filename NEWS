@@ -1,7 +1,18 @@
+ztable 0.1.1
+=============
+(19-Dec-2014)
+
+* new function "parallelTables" which places two or more ztables or figures side by side in LaTeX or HTML format.
+
+* bug fixed
+
+* "ztable" supports longtable, sidewaystable, wraptable and rotating table
+   (turn and rotate).
+
 ztable 0.1.0
 ==============
 (15-Dec-2014)
 
-* new function "ztable" which creates zebra striping tables(tables with alternating row colors) in both Latex and html formats easily from mainly data.frame or an R object such as matrix, lm, aov, anova, glm and coxph objects.
+* new function "ztable" which creates zebra striping tables(tables with alternating row colors) in both LaTeX and html formats easily from mainly data.frame or an R object such as matrix, lm, aov, anova, glm and coxph objects.
 
 * new data "zcolors" added

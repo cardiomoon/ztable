@@ -3,7 +3,7 @@
 \alias{print_ztable}
 \title{Print an object of class "ztable"}
 \usage{
-print_ztable(z, type = getOption("ztable.type", "latex"))
+print_ztable(z, type = NULL)
 }
 \arguments{
 \item{z}{An object of class "ztable"}

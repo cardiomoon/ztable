@@ -2,14 +2,25 @@
 #'
 #' Exporting a R object to an object of class "ztable"
 #' @param x An R object, mainly data.frame
+#'@param digits Numeric vector of length equal to one (in which case it will be
+#'       replicated as necessary) or to the number of columns of the resulting table
 #' @param ... arguments to be passed to \code{\link{ztable_sub}}
-ztable=function(x,...)  UseMethod("ztable")
+ztable=function(x,digits=NULL,...)  UseMethod("ztable")
 
 
 #'@describeIn ztable
 #'
-ztable.default=function(x,...){
-    z=ztable_sub(x,...)
+ztable.default=function(x,digits=NULL,...){
+  cat(paste("\n Sorry, Currently function ztable() cannot handle",
+      " the object of class ",class(x),"!\n",sep=""))
+  invisible()
+}
+
+#'@describeIn ztable
+#'
+ztable.data.frame=function(x,digits=NULL,...){
+    z=ztable_sub(x,digits=digits,...)
+    class(z) <-c("ztable")
     z
 }
 
@@ -20,6 +31,9 @@ ztable.default=function(x,...){
 #'@param size An integer from 1 to 10 indicating font size= c("tiny","scriptsize",
 #'       "footnotesize","small","normalsize","large","Large","LARGE","huge","Huge")
 #'       respectively. Defaulting is 5(= "normalsize").
+#'@param color A character indicating color of ztable
+#'@param type character indicating formats of ztable, either "html" or "latex".
+#'       Default value is "latex"
 #'@param include.rownames A logical value whether or not include rownames in the table
 #'       Default value is TRUE.
 #'@param placement The table will have placement given by placement where placement
@@ -69,7 +83,21 @@ ztable.default=function(x,...){
 #'@param wraptable Logical value whether or not set the tabular environment=
 #'       "wraptable". Requires Latex "wrapfig" package in preamble.
 #'       Default value is FALSE.
+#'@param rotate Logical value whether or not set the tabular environment=
+#'       "rotate". No special arrangement is made to find space for the resut.
+#'       Requires Latex "rotating" package in preamble.
+#'       If TRUE, requires the rotate angle(counterclockwise).
+#'       Default value is FALSE.
+#'@param turn Logical value whether or not set the tabular environment=
+#'       "turn". In this environment, Latex leaves space for the rotated table.
+#'       Requires Latex "rotating" package in preamble.
+#'       If TRUE, requires the rotate angle.
+#'       Default value is FALSE.
+#'@param angle An integer indicate the angle to rotate(degree); range -180 to 180.
+#'       Default value is 0.
 #'@param wraptablewidth A integer indicate wraptable width in centimeter. Default=12.
+#'@param tabular Logical value whether or not set the tabular environment.
+#'       If TRUE, no tabular environment is set. Default value is FALSE.
 #'@param label Character vector of length 1 containing the LaTeX label or HTML anchor.
 #'       Set to NULL to suppress the label. Default value is NULL.
 #'@param hline.after A vector of numbers between -1 and "nrow(x)", inclusive,
@@ -125,6 +153,8 @@ ztable.default=function(x,...){
 #' ztable(out1)
 ztable_sub=function(x,
                     size=5, # normal size, range 1-10
+                    color=getOption("ztable.color","black"),
+                    type=getOption("ztable.type","latex"),
                     include.rownames=getOption("ztable.include.rownames",TRUE),
                     placement="!hbtp",position="c",
                     show.heading=getOption("ztable.show.heading",TRUE),
@@ -134,12 +164,17 @@ ztable_sub=function(x,
                     caption.position=getOption("ztable.caption.position","c"),
                     caption.bold=getOption("ztable.caption.bold",FALSE),
                     align=NULL,digits=NULL,display=NULL,
-                    sidewaystable=FALSE,longtable=FALSE,
+                    sidewaystable=FALSE,
+                    longtable=FALSE,
+                    rotate=FALSE,
+                    turn=FALSE,
+                    angle=0,
                     wraptable=FALSE,wraptablewidth=12,
+                    tabular=FALSE,
                     label=NULL,hline.after=NULL,
                     booktabs=getOption("ztable.booktabs",TRUE),
                     prefix.rows=NULL,commands=NULL,top.command=NULL,
-                    zebra=getOption("ztable.zebra",1),
+                    zebra=getOption("ztable.zebra",NULL),
                     zebra.color=getOption("ztable.zebra.color",NULL),
                     colnames.bold=getOption("ztable.colnames.bold",FALSE),
                     include.colnames=getOption("ztable.include.colnames",TRUE)){
@@ -219,19 +254,38 @@ ztable_sub=function(x,
     if(!is.numeric(size)) size=5
     else if(size<0 | size>10) size=5
 
-    result=list(x=x,size=size,include.rownames=include.rownames,
-                placement=placement,position=position,
-                show.heading=show.heading,show.footer=show.footer,
-                caption=caption,caption.placement=caption.placement,
+    result=list(x=x,
+                size=size,
+                color=color,
+                type=type,
+                include.rownames=include.rownames,
+                placement=placement,
+                position=position,
+                show.heading=show.heading,
+                show.footer=show.footer,
+                caption=caption,
+                caption.placement=caption.placement,
                 caption.position=caption.position,
                 caption.bold=caption.bold,
-                align=align,digits=digits,display=display,
-                sidewaystable=sidewaystable,longtable=longtable,
-                wraptable=wraptable,wraptablewidth=wraptablewidth,
-                label=label,hline.after=hline.after,booktabs=booktabs,
-                prefix.rows=prefix.rows,commands=commands,
+                align=align,
+                digits=digits,
+                display=display,
+                sidewaystable=sidewaystable,
+                longtable=longtable,
+                wraptable=wraptable,
+                wraptablewidth=wraptablewidth,
+                tabular=tabular,
+                rotate=rotate,
+                turn=turn,
+                angle=angle,
+                label=label,
+                hline.after=hline.after,
+                booktabs=booktabs,
+                prefix.rows=prefix.rows,
+                commands=commands,
                 top.command=top.command,
-                zebra=zebra,zebra.color=zebra.color,
+                zebra=zebra,
+                zebra.color=zebra.color,
                 include.colnames=include.colnames,
                 colnames.bold=colnames.bold
     )
@@ -245,7 +299,7 @@ ztable_sub=function(x,
 #' @param x An object of class "ztable"
 #' @param ... further argument passed to other function
 print.ztable=function(x,...){
-    print_ztable(x,...)
+    print_ztable(z=x,...)
 }
 
 #' Print an object of class "ztable"
@@ -253,9 +307,12 @@ print.ztable=function(x,...){
 #' @param z An object of class "ztable"
 #' @param type Type of table to produce. Possible values for type are "latex" or
 #'        "html". Default value is "latex".
-print_ztable=function(z,type=getOption("ztable.type","latex")){
-    #cat("type=",type,"\n")
-    if(type=="latex") ztable2latex(z)
+print_ztable=function(z,type=NULL){
+    if(is.null(type)) {
+        if(z$type=="latex") ztable2latex(z)
+        else ztable2html(z)
+    }
+    else if(type=="latex") ztable2latex(z)
     else ztable2html(z)
 }
 
@@ -270,14 +327,22 @@ ztable2latex=function(z){
     addrow=ifelse(z$include.rownames,1,0)
     Fontsize=c("tiny","scriptsize","footnotesize","small","normalsize",
            "large","Large","LARGE","huge","Huge")
-    sort=ifelse(z$sidewaystable,"sidewaystable","table")
-    sort=ifelse(z$wraptable,"wraptable","table")
+
+
+    if(z$tabular) sort="tabular"
+    else if(z$sidewaystable) sort="sidewaystable"
+    else if(z$wraptable) sort="wraptable"
+    else if(z$rotate) sort="rotate"
+    else if(z$turn) sort="turn"
+    else sort="table"
     headingsize=ifelse(z$size>3,z$size-2,1)
     define_colors(z$zebra.color)
     align=alignCheck(z$align,ncount,addrow)
     if(z$longtable){
+        cat(paste("\\color{",z$color,"}\n",sep=""))
         cat(paste("\\begin{",Fontsize[z$size],"}\n",sep=""))
         cat(paste("\\begin{longtable}{",align,"}\n",sep=""))
+
     } else {
         if(z$wraptable) {
             if(z$position=="flushright") wrapposition<-"r"
@@ -285,11 +350,14 @@ ztable2latex=function(z){
             cat(paste("\\begin{wraptable}{",wrapposition,"}[10pt]{",
                       z$wraptablewidth,"cm}\n",sep=""))
 
-        } else{
+        } else if((sort=="rotate") | (sort=="turn")){
+            cat(paste("\\begin{",sort,"}{",z$angle,"}\n",sep=""))
+        } else if(sort!="tabular"){      # sidewaystable or table
             cat(paste("\\begin{",sort,"}[",z$placement,"]\n",sep=""))
             cat(paste("\\begin{",z$position,"}\n",sep=""))
         }
         cat(paste("\\begin{",Fontsize[z$size],"}\n",sep=""))
+        cat(paste("\\color{",z$color,"}\n",sep=""))
         cat(paste("\\begin{tabular}{",align,"}\n",sep=""))
     }
     if(!is.null(z$caption) & z$caption.placement=="top"){
@@ -388,9 +456,13 @@ ztable2latex=function(z){
         cat("\\end{tabular}\n")
         cat(paste("\\end{",Fontsize[z$size],"}\n",sep=""))
         if(!is.null(z$label)) cat(paste("\\label{",z$label,"}\n",sep=""))
-        if(!z$wraptable) cat(paste("\\end{",z$position,"}\n",sep=""))
-        cat(paste("\\end{",sort,"}\n",sep=""))
+        if(sort!="tabular") {
+            if((sort=="table") | (sort=="sidewaystable"))
+               cat(paste("\\end{",z$position,"}\n",sep=""))
+            cat(paste("\\end{",sort,"}\n",sep=""))
+        }
     }
+    cat("\\color{black}\n")
 }
 
 
@@ -421,12 +493,13 @@ validColor=function(a,mycolor){
 #' @param mycolors chracters vectors of color names
 define_colors=function(mycolors) {
     if(is.null(mycolors)) return
-    for(i in 1:length(mycolors)) {
-        number=grep(paste("^",mycolors[i],sep=""),ztable::zcolors$name)
+    uniquecolors=unique(mycolors)
+    for(i in 1:length(uniquecolors)) {
+        number=grep(paste("^",uniquecolors[i],sep=""),ztable::zcolors$name)
         if(length(number)<1) next
         else{
             definition=ztable::zcolors[number[1],3]
-            cat(definition)
+            cat(definition,"\n")
         }
     }
 }

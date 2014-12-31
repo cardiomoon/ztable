@@ -3,7 +3,7 @@
 \alias{ztable_sub}
 \title{Exporting "data.frame" to an object of class "ztable"}
 \usage{
-ztable_sub(x, size = 5,
+ztable_sub(x, size = 5, type = getOption("ztable.type", "latex"),
   include.rownames = getOption("ztable.include.rownames", TRUE),
   placement = "!hbtp", position = "c",
   show.heading = getOption("ztable.show.heading", TRUE),
@@ -12,11 +12,12 @@ ztable_sub(x, size = 5,
   caption.position = getOption("ztable.caption.position", "c"),
   caption.bold = getOption("ztable.caption.bold", FALSE), align = NULL,
   digits = NULL, display = NULL, sidewaystable = FALSE,
-  longtable = FALSE, wraptable = FALSE, wraptablewidth = 12,
-  label = NULL, hline.after = NULL,
-  booktabs = getOption("ztable.booktabs", TRUE), prefix.rows = NULL,
-  commands = NULL, top.command = NULL, zebra = getOption("ztable.zebra",
-  1), zebra.color = getOption("ztable.zebra.color", NULL),
+  longtable = FALSE, rotate = FALSE, turn = FALSE, angle = 0,
+  wraptable = FALSE, wraptablewidth = 12, tabular = FALSE, label = NULL,
+  hline.after = NULL, booktabs = getOption("ztable.booktabs", TRUE),
+  prefix.rows = NULL, commands = NULL, top.command = NULL,
+  zebra = getOption("ztable.zebra", 1),
+  zebra.color = getOption("ztable.zebra.color", NULL),
   colnames.bold = getOption("ztable.colnames.bold", FALSE),
   include.colnames = getOption("ztable.include.colnames", TRUE))
 }
@@ -26,6 +27,9 @@ ztable_sub(x, size = 5,
 \item{size}{An integer from 1 to 10 indicating font size= c("tiny","scriptsize",
 "footnotesize","small","normalsize","large","Large","LARGE","huge","Huge")
 respectively. Defaulting is 5(= "normalsize").}
+
+\item{type}{character indicating formats of ztable, either "html" or "latex".
+Default value is "latex"}
 
 \item{include.rownames}{A logical value whether or not include rownames in the table
 Default value is TRUE.}
@@ -87,11 +91,29 @@ Default value is FALSE.}
 "longtable". Requires Latex "longtable" package in preamble.
 Default value is FALSE.}
 
+\item{rotate}{Logical value whether or not set the tabular environment=
+"rotate". No special arrangement is made to find space for the resut.
+Requires Latex "rotating" package in preamble.
+If TRUE, requires the rotate angle(counterclockwise).
+Default value is FALSE.}
+
+\item{turn}{Logical value whether or not set the tabular environment=
+"turn". In this environment, Latex leaves space for the rotated table.
+Requires Latex "rotating" package in preamble.
+If TRUE, requires the rotate angle.
+Default value is FALSE.}
+
+\item{angle}{An integer indicate the angle to rotate(degree); range -180 to 180.
+Default value is 0.}
+
 \item{wraptable}{Logical value whether or not set the tabular environment=
 "wraptable". Requires Latex "wrapfig" package in preamble.
 Default value is FALSE.}
 
 \item{wraptablewidth}{A integer indicate wraptable width in centimeter. Default=12.}
+
+\item{tabular}{Logical value whether or not set the tabular environment.
+If TRUE, no tabular environment is set. Default value is FALSE.}
 
 \item{label}{Character vector of length 1 containing the LaTeX label or HTML anchor.
 Set to NULL to suppress the label. Default value is NULL.}

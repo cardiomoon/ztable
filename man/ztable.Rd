@@ -4,6 +4,7 @@
 \alias{ztable.anova}
 \alias{ztable.aov}
 \alias{ztable.coxph}
+\alias{ztable.data.frame}
 \alias{ztable.default}
 \alias{ztable.glm}
 \alias{ztable.lm}
@@ -12,28 +13,33 @@
 \alias{ztable.summary.prcomp}
 \title{Exporting a R object to an object of class "ztable"}
 \usage{
-ztable(x, ...)
+ztable(x, digits = NULL, ...)
 
-\method{ztable}{default}(x, ...)
+\method{ztable}{default}(x, digits = NULL, ...)
 
-\method{ztable}{matrix}(x, ...)
+\method{ztable}{data.frame}(x, digits = NULL, ...)
 
-\method{ztable}{lm}(x, ...)
+\method{ztable}{matrix}(x, digits = NULL, ...)
 
-\method{ztable}{aov}(x, ...)
+\method{ztable}{lm}(x, digits = NULL, ...)
 
-\method{ztable}{anova}(x, ...)
+\method{ztable}{aov}(x, digits = NULL, ...)
 
-\method{ztable}{glm}(x, ...)
+\method{ztable}{anova}(x, digits = NULL, ...)
 
-\method{ztable}{coxph}(x, ...)
+\method{ztable}{glm}(x, digits = NULL, ...)
 
-\method{ztable}{prcomp}(x, ...)
+\method{ztable}{coxph}(x, digits = NULL, ...)
 
-\method{ztable}{summary.prcomp}(x, ...)
+\method{ztable}{prcomp}(x, digits = NULL, ...)
+
+\method{ztable}{summary.prcomp}(x, digits = NULL, ...)
 }
 \arguments{
 \item{x}{An R object, mainly data.frame}
+
+\item{digits}{Numeric vector of length equal to one (in which case it will be
+replicated as necessary) or to the number of columns of the resulting table}
 
 \item{...}{arguments to be passed to \code{\link{ztable_sub}}}
 }
@@ -43,6 +49,8 @@ Exporting a R object to an object of class "ztable"
 \section{Methods (by class)}{
 \itemize{
 \item \code{default}: 
+
+\item \code{data.frame}: 
 
 \item \code{matrix}: 
 

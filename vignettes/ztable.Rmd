@@ -36,8 +36,10 @@ It's use is very simple. Just use 'ztable()' function. You can get the zebra sri
 ```{r,results="asis",message=FALSE}
 require(ztable)
 options(ztable.type="html")
+options(ztable.zebra=1)
+options(ztable.zebra.color="platinum")
 options(ztable.colnames.bold=TRUE)
-ztable(head(mtcars),caption="Table 1. Basic Use")
+ztable(head(mtcars))
 ```
 
 ### Tailoring zebra striping
@@ -46,7 +48,7 @@ You can get non-zebra table by change parameter zebra=NULL or change zebra strip
 
 ```{r,results='asis'}
 ztable(head(mtcars),zebra=NULL,size=3,
-       caption="Table 2. Non-zebra Table with small size")
+       caption="Table 1. Non-zebra Table with small size")
 ```
         
 ### Customize the caption and the font size 
@@ -55,7 +57,7 @@ You can change the position of table by using parameter position. You can use "r
     
 ```{r,results='asis'}
 ztable(head(mtcars[c(1:7)]),zebra=2,zebra.color="lightcyan",size=7,
-       caption="Table 3. Left-sided caption at botom with large font",
+       caption="Table 2. Left-sided caption at botom with large font",
        caption.placement="bottom",caption.position="l") 
 ```
        
@@ -132,7 +134,7 @@ group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
 weight <- c(ctl, trt)
 lm.D9 <- lm(weight ~ group)
 ztable(lm.D9)
-ztable(anova(lm.D9))
+ztable(anova(lm.D9),align="|c|rrrr|r|")
 ```
 
 
@@ -171,12 +173,26 @@ ztable(out)
 ```
 
 
-### Customize the zebra striping colors
+## Customize the zebra striping colors
 
-If you wanted to use several colors for zebra striping, you can set the parameter 'zebra' to zero(e.g. zebra=0) and set the 'zebra.color' parameter with vector of your favorite colors. Your favorite colors are used to zebra striping. For your convienience, ten colors are predifned for this purpose. The predefined colors are: c("peach","peach-orange","peachpuff","peach-yellow","pear","pearl","peridot","periwinkle","pastelred","pastelgray"). 
+If you wanted to use several colors for zebra striping, you can set the parameter 'zebra' to zero(e.g. zebra=0) and set the 'zebra.color' parameter with vector of your favorite colors. Your favorite colors are used to zebra striping. For your convienience, ten colors are predifned for this purpose. The predefined colors are: 
+c("peach","peach-orange","peachpuff","peach-yellow","pear","pearl","peridot","periwinkle","pastelred", "pastelgray"). 
 
 ```{r,results='asis',message=FALSE}
-ztable(head(mtcars,15),zebra=0) 
+ztable(head(mtcars,15),zebra=0,zebra.color=NULL) 
 ```
 
 The color names used for this purpose are predefined in the data 'zcolors' included in 'ztable' package. Please type '?zcolors' in R console for help file or just type 'zcolors'. You can see 749 color names defined in data 'zcolors'. 
+
+
+## Place two or more ztables or figures side by side
+
+If you wanted to place two or more ztables or figures side by side, you can use function **parallelTables()**. Function **parallelTables()** takes three parameters. The first parameter width is a numeric vector specifies the width to which the tables or figures should be scaled. The second parameter is a list of ztable or names of valid figure. The 3rd parameter 'type' is the type of table to produce. Possible values for type are "latex" or "html". Default value is "latex". See the examples.
+
+```{r,results='asis'}
+z=ztable(head(mtcars[1:3]),tabular=TRUE,zebra.color="peach-orange")
+z1=ztable(head(iris[1:3]),tabular=TRUE,zebra=2)
+
+parallelTables(width=c(0.5,0.5),list(z,z1),type="html")
+parallelTables(width=c(0.5,0.5),list(z,"figures/ztable3.png"),type="html")
+```

@@ -1,6 +1,6 @@
 #'@describeIn ztable
 #'
-ztable.matrix=function(x,...){
+ztable.matrix=function(x,digits=NULL,...){
     result=data.frame(x,stringsAsFactors=FALSE)
     colnames(result)=colnames(x)
     out=ztable(result,...)
@@ -9,20 +9,22 @@ ztable.matrix=function(x,...){
 
 #'@describeIn ztable
 #'
-ztable.lm=function(x,...){
+ztable.lm=function(x,digits=NULL,...){
     result=data.frame(summary(x)$coeff)
     colnames(result)=c("Estimate","Std. Error","t value","Pr(>|t|)")
     h=deparse(x$call)
     h=gsub("~","$\\sim$",h,fixed=TRUE)
     h=paste("Call: ",h,sep="")
     attr(result,"footer")=h
-    out=ztable_sub(result,digits=c(1,4,4,2,4),...)
+    if (is.null(digits)) mydigits=c(1,4,4,2,4)
+    else mydigits=digits
+    out=ztable_sub(result,digits=mydigits,...)
     out
 }
 
 #'@describeIn ztable
 #'
-ztable.aov=function(x,...){
+ztable.aov=function(x,digits=NULL,...){
     result=summary(x)[[1]]
     if(!is.null(x$call)){
         h=deparse(x$call)
@@ -30,18 +32,23 @@ ztable.aov=function(x,...){
         h=paste("Call: ",h,sep="")
         attr(result,"footer")=h
     }
-    out=ztable_sub(result,digits=c(1,0,2,2,2,4),...)
+    if (is.null(digits)) mydigits=c(1,0,2,2,2,4)
+    else mydigits=digits
+    out=ztable_sub(result,digits=mydigits,...)
     out
 }
 
 #'@describeIn ztable
 #'
-ztable.anova=function(x,...){
+ztable.anova=function(x,digits=NULL,...){
     result=data.frame(x)
     colnames(result)=colnames(x)
-    if(ncol(x)==4) digits=c(1,0,2,0,2)
-    else if (ncol(x)==5) digits=c(1,0,2,2,2,4)
-    else digits=c(1,1,2,1,2,2,4)
+    if(is.null(digits)) {
+        if(ncol(x)==4) mydigits=c(1,0,2,0,2)
+        else if (ncol(x)==5) mydigits=c(1,0,2,2,2,4)
+        else mydigits=c(1,1,2,1,2,2,4)
+    }
+    else mydigits=digits
     #attr(result,"heading")=attr(x,"heading")
     h=c()
     if(!is.null(attr(x,"heading"))) {
@@ -58,13 +65,13 @@ ztable.anova=function(x,...){
         h=paste("Call: ",h,sep="")
         attr(result,"footer")=h
     }
-    out=ztable_sub(result,digits=digits,...)
+    out=ztable_sub(result,digits=mydigits,...)
     out
 }
 
 #'@describeIn ztable
 #'
-ztable.glm=function(x,...){
+ztable.glm=function(x,digits=NULL,...){
     a=summary(x)$coeff
     b=data.frame(a)
     colnames(b)=colnames(a)
@@ -83,13 +90,16 @@ ztable.glm=function(x,...){
     else if(length(h)==2) h=paste("Call: ",h[1],h[2],sep="")
     h=gsub("~","$\\sim$",h,fixed=TRUE)
     attr(out,"footer")=h
-    out=ztable_sub(out,digits=c(1,4,4,2,4,2,2,2),...)
+
+    if (is.null(digits)) mydigits=c(1,4,4,2,4,2,2,2)
+    else mydigits=digits
+    out=ztable_sub(out,digits=mydigits,...)
     out
 }
 
 #'@describeIn ztable
 #'
-ztable.coxph=function(x,...){
+ztable.coxph=function(x,digits=NULL,...){
     a=summary(x)$coeff
     b=summary(x)$conf.int
     result=cbind(b[,c(1,3,4)],a[,c(3,4,5)])
@@ -100,13 +110,15 @@ ztable.coxph=function(x,...){
     h=gsub("~","$\\sim$",h,fixed=TRUE)
     attr(result,"footer")=h
     colnames(result)=c("HR","lcl", "ucl", "se(coef)","z","Pr(>|z|)")
-    out=ztable_sub(result,digits=c(0,3,3,3,3,3,4),...)
+    if (is.null(digits)) mydigits=c(0,3,3,3,3,3,4)
+    else mydigits=digits
+    out=ztable_sub(result,digits=mydigits,...)
     out
 }
 
 #'@describeIn ztable
 #'
-ztable.prcomp=function(x,...){
+ztable.prcomp=function(x,digits=NULL,...){
     result=data.frame(x$rotation)
     colnames(result)=colnames(x$rotation)
     attr(result,"heading") <- "Rotation:"
@@ -116,13 +128,15 @@ ztable.prcomp=function(x,...){
         h=paste("Call: ",h,sep="")
         attr(result,"footer")=h
     }
-    out=ztable_sub(result,digits=c(1,4,4,4,4),...)
+    if (is.null(digits)) mydigits=c(1,4,4,4,4)
+    else mydigits=digits
+    out=ztable_sub(result,digits=mydigits,...)
     out
 }
 
 #'@describeIn ztable
 #'
-ztable.summary.prcomp=function(x,...){
+ztable.summary.prcomp=function(x,digits=NULL,...){
     result=data.frame(x$importance)
     colnames(result)=colnames(x$importance)
     attr(result,"heading") <- "Importance of components:"
@@ -132,7 +146,9 @@ ztable.summary.prcomp=function(x,...){
         h=paste("Call: ",h,sep="")
         attr(result,"footer")=h
     }
-    out=ztable_sub(result,digits=c(1,4,4,4,4),...)
+    if (is.null(digits)) mydigits=c(1,4,4,4,4)
+    else mydigits=digits
+    out=ztable_sub(result,digits=mydigits,...)
     out
 }
 
