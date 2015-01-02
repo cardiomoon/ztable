@@ -86,6 +86,7 @@ ztable(fit)
 
 ```{r,results='asis'}
 a=anova(fit)
+str(a)
 ztable(a)
 ```
 
@@ -94,6 +95,7 @@ This is examples of another 'anova' object. The models in this anova tables show
 ```{r,results='asis'}
 fit2 <- lm(mpg ~ cyl+wt, data=mtcars)
 b=anova(fit2,fit)
+str(b)
 ztable(b)
 ztable(b,show.heading=FALSE)
 ```
@@ -195,4 +197,78 @@ z1=ztable(head(iris[1:3]),tabular=TRUE,zebra=2)
 
 parallelTables(width=c(0.5,0.5),list(z,z1),type="html")
 parallelTables(width=c(0.5,0.5),list(z,"figures/ztable3.png"),type="html")
+```
+
+
+## Vertical striping
+
+If you wanted to vertical striping table, you can get it by set the parameter zebra.type 2. You can change the ztables parameters when printing. 
+```{r,results='asis'}
+z1=ztable(head(iris),zebra=2)
+z1
+print(z1,zebra.type=2)
+print(z1,zebra=1,zebra.type=2,zebra.colnames=TRUE)
+```
+
+## More tailoring zebra striping
+
+You can update parameters of ztable with 'update_ztable' function.
+```{r,results='asis'}
+options(ztable.zebra.color=NULL)
+(z1=ztable(head(iris),zebra=0,zebra.type=2))
+```
+
+You can change the background color of colnames rows by setting zebra.colnames=TRUE.
+
+```{r,results='asis'}
+update_ztable(z1,colnames.bold=TRUE,zebra.colnames=TRUE)
+```
+
+You can customize the striping when printing.
+```{r,results='asis'}
+print(z1,zebra.color=c(rep("white",5),"peach"),zebra.colnames=TRUE)
+```
+
+## Horizontal and vertical striping
+You can use both horizontal and vertical striping or change the backgroung of any cell by setting the parameter 'zebra.type=3' with the parameter zebra.list. 
+Parameter 'zebra.list' sets the cells specified with cells[y,x] with "color". The y and x are integer indicating rows and columns. NA value of y or x indicating all columns or rows. Plaese note that the row count start from the column names row, and the coulumn count start from the row names column.
+
+```{r,results='asis'}
+zlist=list(y=c(3,NA,3,6),x=c(NA,4,4,6),color=c("platinum","peach","darkchampagne","scarlet"))
+z1=update_ztable(z1,zebra.list=zlist,zebra.type=3)
+print(z1)
+```
+
+## Change the background color of all cells
+
+You can change the background color of all cells by setting the zebra.type=0.
+```{r,results='asis'}
+ztable(head(iris),zebra=0,zebra.type=0)
+ztable(head(iris),zebra=0,zebra.type=0,zebra.color=zcolors$name,zebra.colnames=TRUE)
+```
+
+## Diagonal striping
+
+You can make diagonal striping with use of zebra.color greater/lesser than column length by 1.
+
+```{r,results='asis'}
+ztable(head(iris),zebra=0,zebra.type=0,zebra.color=1:7,zebra.colnames=TRUE)
+ztable(head(mtcars[,1:9]),zebra=0,zebra.type=0,zebra.color=1:9,zebra.colnames=TRUE)
+```
+
+## Two hundereds background colors
+
+This is demonstration of 200 background colors. All 749 colors are available in package ztable. Please type ?zcolors. 
+```{r,results='asis'}
+mycolor=rep("white",6)
+for(i in 1:40){
+    mycolor=c(mycolor,"white",zcolors$name[((i-1)*5+1):((i-1)*5+5)])
+}
+a=c(zcolors$name[1:5])
+for(i in 2:40){
+    a=rbind(a,zcolors$name[((i-1)*5+1):((i-1)*5+5)])
+}
+a=data.frame(a,stringsAsFactors=FALSE,row.names=NULL)
+ztable(a,zebra=0,zebra.type=0,zebra.color=mycolor,include.rownames=FALSE,
+       include.colnames=FALSE,longtable=TRUE)
 ```

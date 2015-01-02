@@ -1,3 +1,15 @@
+ztable 0.1.2
+============
+(2-JAN-2015)
+
+* new function "update_ztable" which update the parameters of ztable.
+
+* ztable parameters can be changed with "print.ztable" function.
+
+* bug fixed
+
+* "ztable" support horizontal,vertical,diagonal striping and combind horizontal and vertical striping
+
 ztable 0.1.1
 =============
 (19-Dec-2014)

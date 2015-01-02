@@ -1,6 +1,5 @@
 #' Print my html style
 myhtmlHead=function(){
-    cat("<html>")
     cat("<head>")
     cat("<style>
         table {
@@ -10,7 +9,6 @@ myhtmlHead=function(){
         th {
 	          border-top: 1px solid black;
               border-bottom: 1px solid black;
-              background-color: white;
               padding: 4px 4px;
 	        }
         td {
@@ -112,13 +110,16 @@ ztable2html=function(z){
     if(z$include.colnames) {
         cat("<tr>\n")
         if(z$include.rownames) cat(paste("<th style=\"border-left: ",vlines[1],
-                                  "px solid black;\">","","</th>",sep=""))
+                                  "px solid black;",
+                                  "background-color: ",name2rgb(z$cellcolor[1,1]),";",
+                                  "\">","","</th>",sep=""))
         if(z$colnames.bold)
              for(i in 1:ncol(z$x)) {
                  cat(paste("<th style=\"font-weight: bold; border-left: ",
                            vlines[i+1],"px solid black;",sep=""))
                  if((i==ncol(z$x)) & (length(vlines)>ncol(z$x)))
                      cat(paste("border-right:",vlines[i+1],"px solid black;",sep=""))
+                 cat(paste("background-color: ",name2rgb(z$cellcolor[1,i+1]),";",sep=""))
                  cat(paste("\">",colnames(z$x)[i],"</th>",sep=""))
              }
         else
@@ -127,6 +128,7 @@ ztable2html=function(z){
                            vlines[i+1],"px solid black;",sep=""))
                  if((i==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
                      cat(paste("border-right:",vlines[i+2],"px solid black;",sep=""))
+                 cat(paste("background-color: ",name2rgb(z$cellcolor[1,i+1]),";",sep=""))
                  cat(paste("\">",colnames(z$x)[i],"</th>",sep=""))
              }
         cat("</tr>\n")
@@ -134,19 +136,22 @@ ztable2html=function(z){
     colpos=align2html(z$align)
     for(i in 1:nrow(z$x)){
         bcolor="white"
-        if(i %in% z$prefix.rows) {
-            if(is.numeric(z$zebra)) bcolor=z$zebra.color[i]
-        }
-        cat("<tr style=\"background-color:",name2rgb(bcolor),"\">")
+        #if(i %in% z$prefix.rows)
+        #    if(is.numeric(z$zebra)) bcolor=z$zebra.color[i]
+        #        cat("<tr style=\"background-color:",name2rgb(bcolor),"\">")
+        cat("<tr>\n")
         if(z$include.rownames) cat(paste("<td style=\"border-left: ",vlines[1],
-                                         "px solid black;\">",rownames(z$x)[i],"</td>",sep=""))
+                                         "px solid black; background-color: ",
+                                         name2rgb(z$cellcolor[i+1,1]),"; \">",
+                                         rownames(z$x)[i],"</td>",sep=""))
         for(j in 1:ncount) {
             if(z$display[j+1]=="s"){
                 cat(paste("<td align=\"",colpos[j+1],"\" style=\"border-left: ",
                           vlines[j+1],"px solid black;",sep=""))
                 if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
                     cat(paste("border-right:",vlines[j+2],"px solid black;",sep=""))
-                cat(paste("\">",z$x[i,j],"</td>",sep=""))
+                cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,j+1]),"; \">",sep=""))
+                cat(paste(z$x[i,j],"</td>",sep=""))
             }
             else{
                 if(is.na(z$x[i,j])) {
@@ -154,6 +159,7 @@ ztable2html=function(z){
                               "px solid black;",sep=""))
                     if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
                         cat(paste("border-right:",vlines[j+2],"px solid black;",sep=""))
+                    cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,j+1]),";",sep=""))
                     cat(paste("\">","","</td>",sep=""))
                 } else{
                     temp=formatC(z$x[i,j],digits=z$digits[j+1],format=z$display[j+1])
@@ -161,6 +167,7 @@ ztable2html=function(z){
                               ,vlines[j+1],"px solid black;",sep=""))
                     if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
                         cat(paste("border-right:",vlines[j+2],"px solid black;",sep=""))
+                    cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,j+1]),";",sep=""))
                     cat(paste("\">",temp,"</td>",sep=""))
 
                 }
@@ -177,7 +184,6 @@ ztable2html=function(z){
               "pt ;border-top: 1px solid black;\">",footer,"</td>\n",sep=""))
     cat("</tr>\n")
     cat("</table>\n")
-    cat("</html>\n")
 }
 
 

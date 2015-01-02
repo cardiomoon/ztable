@@ -3,7 +3,8 @@
 \alias{ztable_sub}
 \title{Exporting "data.frame" to an object of class "ztable"}
 \usage{
-ztable_sub(x, size = 5, type = getOption("ztable.type", "latex"),
+ztable_sub(x, size = 5, color = getOption("ztable.color", "black"),
+  type = getOption("ztable.type", "latex"),
   include.rownames = getOption("ztable.include.rownames", TRUE),
   placement = "!hbtp", position = "c",
   show.heading = getOption("ztable.show.heading", TRUE),
@@ -16,10 +17,13 @@ ztable_sub(x, size = 5, type = getOption("ztable.type", "latex"),
   wraptable = FALSE, wraptablewidth = 12, tabular = FALSE, label = NULL,
   hline.after = NULL, booktabs = getOption("ztable.booktabs", TRUE),
   prefix.rows = NULL, commands = NULL, top.command = NULL,
-  zebra = getOption("ztable.zebra", 1),
+  zebra = getOption("ztable.zebra", NULL),
   zebra.color = getOption("ztable.zebra.color", NULL),
-  colnames.bold = getOption("ztable.colnames.bold", FALSE),
-  include.colnames = getOption("ztable.include.colnames", TRUE))
+  zebra.type = getOption("ztable.zebra.type", 1),
+  zebra.colnames = getOption("ztable.zebra.colnames", FALSE),
+  zebra.rownames = getOption("ztable.zebra.rownames", TRUE),
+  zebra.list = NULL, colnames.bold = getOption("ztable.colnames.bold",
+  FALSE), include.colnames = getOption("ztable.include.colnames", TRUE))
 }
 \arguments{
 \item{x}{A data.frame}
@@ -27,6 +31,8 @@ ztable_sub(x, size = 5, type = getOption("ztable.type", "latex"),
 \item{size}{An integer from 1 to 10 indicating font size= c("tiny","scriptsize",
 "footnotesize","small","normalsize","large","Large","LARGE","huge","Huge")
 respectively. Defaulting is 5(= "normalsize").}
+
+\item{color}{A character indicating color of ztable}
 
 \item{type}{character indicating formats of ztable, either "html" or "latex".
 Default value is "latex"}
@@ -139,11 +145,13 @@ the specified rows. Default value is NULL, i.e. do not add commands.}
 \item{top.command}{A character vector of the length 1 which contains the command
 that should be added as a prefix at the colnames row.}
 
-\item{zebra}{Null or a integer of 1 or 2. The arguments zebra and zebra.color are
+\item{zebra}{Null or an integer of 0 or 1 or 2. The arguments zebra and zebra.color are
 used to make a Zebra striping table(table with alternating background colors)
-easly. A value of 1 sets background color of all odd rows with specified with
-zebra.color. A value of 2 sets all even rows. when zebra is 1 or 2,
-the parameters of prefix.rows and commands ignored. Default is NULL.}
+easly. A value of 1 sets background color of all odd rows/columns with specified with
+zebra.color. A value of 2 sets all even rows/columns. A value of 0 sets
+background colors of all rows/columns with colors specified with zebra.color.
+When zebra is 1 or 2, the parameters of prefix.rows and commands ignored.
+Default is NULL.}
 
 \item{zebra.color}{A color name or a numeric value indicating pre-defined color.
 When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zerba.color
@@ -152,7 +160,23 @@ predefined color names. The predefined color names are c("peach","peach-orange",
 "peachpuff","peach-yellow","pear","pearl","peridot","periwinkle","pastelred",
 "pastelgray"). Default is NULL.}
 
-\item{colnames.bold}{whether or not use bold font for column names, DEfault value is FALSE}
+\item{zebra.type}{An integer of 0 or 1 or 2 or 3. A value of 1 sets background colors by row.
+A value of 2 sets background colors by column. A value of 0 sets background colors of all cells.
+A value of 3 sets background colors of cells specified with zebra.list.
+Default value is 1.}
+
+\item{zebra.colnames}{whether or not use background colors in column names row,
+Default value is FALSE}
+
+\item{zebra.rownames}{whether or not use background colors in row names column,
+Default value is TRUE}
+
+\item{zebra.list}{A list consists of y,x,color. zebra.list is used only when zebra.type=3.
+zebra.list sets the cells specified with rows of vector "y" and columns of vector "x" with "color".
+The y and x are integer vactor indicating rows and columns. NA value of y or x indicating all columns or rows.
+The color is an character vector consists of names of color.}
+
+\item{colnames.bold}{whether or not use bold font for column names, Default value is FALSE}
 
 \item{include.colnames}{Logical. If TRUE the column names is printed. Default value is TRUE.}
 }

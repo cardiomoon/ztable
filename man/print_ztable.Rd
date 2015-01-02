@@ -3,13 +3,10 @@
 \alias{print_ztable}
 \title{Print an object of class "ztable"}
 \usage{
-print_ztable(z, type = NULL)
+print_ztable(z)
 }
 \arguments{
 \item{z}{An object of class "ztable"}
-
-\item{type}{Type of table to produce. Possible values for type are "latex" or
-"html". Default value is "latex".}
 }
 \description{
 Print an object of class "ztable"
