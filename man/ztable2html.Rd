@@ -3,10 +3,12 @@
 \alias{ztable2html}
 \title{Print an object of class "ztable" to html table}
 \usage{
-ztable2html(z)
+ztable2html(z, xdata)
 }
 \arguments{
 \item{z}{An object of class "ztable"}
+
+\item{xdata}{A formatted data.frame}
 }
 \description{
 Print an object of class "ztable" to html table

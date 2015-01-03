@@ -4,7 +4,7 @@
 \title{Exporting "data.frame" to an object of class "ztable"}
 \usage{
 ztable_sub(x, size = 5, color = getOption("ztable.color", "black"),
-  type = getOption("ztable.type", "latex"),
+  tablewidth = 0.3, type = getOption("ztable.type", "latex"),
   include.rownames = getOption("ztable.include.rownames", TRUE),
   placement = "!hbtp", position = "c",
   show.heading = getOption("ztable.show.heading", TRUE),
@@ -33,6 +33,10 @@ ztable_sub(x, size = 5, color = getOption("ztable.color", "black"),
 respectively. Defaulting is 5(= "normalsize").}
 
 \item{color}{A character indicating color of ztable}
+
+\item{tablewidth}{A numeric value indicating desired table width as a ratio to linewidth.
+This value is only useful when caption is longer than table length.
+Default value is 0.3.}
 
 \item{type}{character indicating formats of ztable, either "html" or "latex".
 Default value is "latex"}

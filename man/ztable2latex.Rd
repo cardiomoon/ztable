@@ -3,10 +3,12 @@
 \alias{ztable2latex}
 \title{Print an object of class "ztable" to Latex table}
 \usage{
-ztable2latex(z)
+ztable2latex(z, xdata)
 }
 \arguments{
 \item{z}{An object of class "ztable"}
+
+\item{xdata}{A formatted data.frame}
 }
 \description{
 Print an object of class "ztable" to Latex table

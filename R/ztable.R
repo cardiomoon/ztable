@@ -32,6 +32,9 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'       "footnotesize","small","normalsize","large","Large","LARGE","huge","Huge")
 #'       respectively. Defaulting is 5(= "normalsize").
 #'@param color A character indicating color of ztable
+#'@param tablewidth A numeric value indicating desired table width as a ratio to linewidth.
+#'       This value is only useful when caption is longer than table length.
+#'       Default value is 0.3.
 #'@param type character indicating formats of ztable, either "html" or "latex".
 #'       Default value is "latex"
 #'@param include.rownames A logical value whether or not include rownames in the table
@@ -168,6 +171,7 @@ ztable.data.frame=function(x,digits=NULL,...){
 ztable_sub=function(x,
                     size=5, # normal size, range 1-10
                     color=getOption("ztable.color","black"),
+                    tablewidth=0.3,
                     type=getOption("ztable.type","latex"),
                     include.rownames=getOption("ztable.include.rownames",TRUE),
                     placement="!hbtp",position="c",
@@ -278,6 +282,7 @@ ztable_sub=function(x,
                 cellcolor=cellcolor,
                 size=size,
                 color=color,
+                tablewidth=tablewidth,
                 type=type,
                 include.rownames=include.rownames,
                 placement=placement,
@@ -404,7 +409,7 @@ make.cell.color=function(x,zebra,zebra.color,zebra.type,zebra.list,
                     for(j in 1:ncol(cellcolor)) cellcolor[i,j]=color[1]
             }
             else if(zebra.type==2){
-                select=seq(2,nrow(cellcolor),by=2)
+                select=seq(2,ncol(cellcolor),by=2)
                 for(i in 1:nrow(cellcolor))
                     for(j in select)
                         cellcolor[i,j]=color[1]
@@ -454,15 +459,6 @@ repColor=function(x,color){
     x
 }
 
-#' Print an object of class "ztable"
-#'
-#' @param x An object of class "ztable"
-#' @param ... further argument passed to other function
-print.ztable=function(x,...){
-    z=update_ztable(z=x,...)
-    print_ztable(z)
-}
-
 #'Update ztable before print
 #'
 #'Update options of ztable before print
@@ -471,6 +467,8 @@ print.ztable=function(x,...){
 #'       "footnotesize","small","normalsize","large","Large","LARGE","huge","Huge")
 #'       respectively.
 #'@param color A character indicating color of ztable
+#'@param tablewidth A numeric indicating desired table width as a ratio to linewidth.
+#'       Default value is 0.3.
 #'@param type character indicating formats of ztable, either "html" or "latex".
 #'@param include.rownames A logical value whether or not include rownames in the table
 #'@param placement The table will have placement given by placement where placement
@@ -568,6 +566,7 @@ print.ztable=function(x,...){
 update_ztable=function(z,
                        size=NULL, # normal size, range 1-10
                        color=NULL,
+                       tablewidth=NULL,
                        type=NULL,
                        include.rownames=NULL,
                        placement=NULL,position=NULL,
@@ -599,6 +598,7 @@ update_ztable=function(z,
 
      if(!is.null(size)) z$size=size
      if(!is.null(color)) z$color=color
+     if(!is.null(tablewidth)) z$tablewidth=tablewidth
      if(!is.null(type)) z$type=type
      if(!is.null(include.rownames)) z$include.rownames=include.rownames
      if(!is.null(placement)) z$placement=placement
@@ -610,7 +610,11 @@ update_ztable=function(z,
      if(!is.null(caption.position)) z$caption.position=caption.position
      if(!is.null(caption.bold)) z$caption.bold=caption.bold
      if(!is.null(align)) z$align=align
-     if(!is.null(digits)) z$digits=digits
+     if(!is.null(digits)) {
+         if(is.null(digits)) digits=c(0,rep(2,ncol(z$x)))
+         if(length(digits)==1) digits=rep(digits,ncol(z$x)+1)
+         z$digits=digits
+     }
      if(!is.null(display)) z$display=display
      if(!is.null(sidewaystable)) z$sidewaystable=sidewaystable
      if(!is.null(longtable)) z$longtable=longtable
@@ -642,20 +646,80 @@ update_ztable=function(z,
      z
 }
 
+#' Print an object of class "ztable"
+#'
+#' @param x An object of class "ztable"
+#' @param ... further argument passed to other function
+print.ztable=function(x,...){
+    z=update_ztable(z=x,...)
+    print_ztable(z)
+}
+
 
 #' Print an object of class "ztable"
 #'
 #' @param z An object of class "ztable"
 print_ztable=function(z){
-    if(z$type=="latex") ztable2latex(z)
-    else ztable2html(z)
+    xdata=data2table(z)
+    if(z$type=="latex") ztable2latex(z,xdata)
+    else ztable2html(z,xdata)
 }
 
+#' Convert data to formatted data for table
+#'
+#' @param z An object of class "ztable"
+tableLength=function(z){
+    xdata=data2table(z)
+    a=apply(xdata,2,function(x) max(nchar(x)))
+    if(z$include.colnames){
+        b=nchar(colnames(xdata))
+        l=c()
+        for(i in 1:ncol(xdata)){
+            l=c(l,max(a[i],b[i]))
+        }
+        length=sum(l)
+    }
+    else length=sum(a)
+    result=length+ncol(xdata)-1
+    if(z$include.rownames) result=result+max(nchar(rownames(xdata)))+1
+    result
+}
+
+#' Convert data to formatted data for table
+#'
+#' @param z An object of class "ztable"
+data2table=function(z){
+    data<-z$x
+    ncount=ncol(data)
+    nrow=nrow(data)
+
+    select=sapply(data,is.factor)
+    data[select]=lapply(data[select],as.character)
+
+    for(i in 1:nrow){
+        for(j in 1:ncount) {
+            if(z$display[j+1]=="s"){
+                temp<-z$x[i,j]
+            }
+            else{
+                if(is.na(z$x[i,j])) {
+                    temp<-""
+                } else{
+                    temp<-formatC(z$x[i,j],digits=z$digits[j+1],
+                                 format=z$display[j+1])
+                }
+                data[i,j]<-temp
+            }
+        }
+    }
+    data
+}
 
 #' Print an object of class "ztable" to Latex table
 #'
 #' @param z An object of class "ztable"
-ztable2latex=function(z){
+#' @param xdata A formatted data.frame
+ztable2latex=function(z,xdata){
     ncount=ncol(z$x)
     nrow=nrow(z$x)
     cn=colnames(z$x)
@@ -671,7 +735,7 @@ ztable2latex=function(z){
     else if(z$turn) sort="turn"
     else sort="table"
     headingsize=ifelse(z$size>3,z$size-2,1)
-    define_colors(z$zebra.color)
+    define_colors(z$cellcolor)
     align=alignCheck(z$align,ncount,addrow)
     if(z$longtable){
         cat(paste("\\color{",z$color,"}\n",sep=""))
@@ -696,10 +760,17 @@ ztable2latex=function(z){
         cat(paste("\\begin{tabular}{",align,"}\n",sep=""))
     }
     if(!is.null(z$caption) & z$caption.placement=="top"){
+        tlength=tableLength(z)
+        if(nchar(z$caption)>tlength){
+            tablewidth=max(z$tablewidth,tlength/85)
+            mycaption=paste("\\begin{minipage}[c]{",tablewidth,"\\linewidth}",
+                            z$caption,"\\end{minipage}",sep="")
+        }
+        else mycaption=z$caption
         if(z$caption.bold) cat(paste("\\multicolumn{",ncount+addrow,"}{",
-                  z$caption.position,"}{\\textbf{",z$caption,"}}\\\\ \n",sep=""))
+                  z$caption.position,"}{\\textbf{",mycaption,"}}\\\\ \n",sep=""))
         else cat(paste("\\multicolumn{",ncount+addrow,"}{",
-                       z$caption.position,"}{",z$caption,"}\\\\ \n",sep=""))
+                       z$caption.position,"}{",mycaption,"}\\\\ \n",sep=""))
     }
     if((z$show.heading==TRUE) & (!is.null(attr(z$x,"heading")))) {
         head=attr(z$x,"heading")
@@ -736,10 +807,6 @@ ztable2latex=function(z){
         if(is.null(z$hline.after)) cat(ifelse(z$booktabs,"\\midrule\n","\\hline\n"))
         else if(0 %in% z$hline.after) cat(ifelse(z$booktabs,"\\midrule\n","\\hline\n"))
     }
-    # convert factor into charactor
-    i=sapply(z$x,is.factor)
-    z$x[i]=lapply(z$x[i],as.character)
-
 
     for(i in 1:nrow){
         if(i %in% z$prefix.rows) {
@@ -751,27 +818,11 @@ ztable2latex=function(z){
         if(z$include.rownames) temp=paste("\\cellcolor{",z$cellcolor[i+1,1],"}",
                                           rownames(z$x)[i],sep="")
         for(j in 1:ncount) {
-            if(z$display[j+1]=="s"){
-                if(is.null(temp)) temp=paste("\\cellcolor{",z$cellcolor[i+1,j+1],"}",
-                                             z$x[i,j],sep="")
-                else temp=paste(temp," & ","\\cellcolor{",z$cellcolor[i+1,j+1],"}",
-                                z$x[i,j],sep="")
-            }
-            else{
-                if(is.na(z$x[i,j])) {
-                    if(is.null(temp)) temp=paste("\\cellcolor{",z$cellcolor[i+1,j+1],"}",
-                                                 " ",sep="")
-                    else temp=paste("\\cellcolor{",z$cellcolor[i+1,j+1],"}",
-                                    temp," & ",sep="")
-                } else{
-                    if(is.null(temp)) temp=paste("\\cellcolor{",z$cellcolor[i+1,j+1],"}",
-                                                 formatC(z$x[i,j],digits=z$digits[j+1],
-                                                         format=z$display[j+1]),sep="")
-                    else temp=paste(temp," & ","\\cellcolor{",z$cellcolor[i+1,j+1],"}",
-                                    formatC(z$x[i,j],digits=z$digits[j+1],
-                                             format=z$display[j+1]),sep="")
-                }
-            }
+            if(is.null(temp)) temp=paste("\\cellcolor{",z$cellcolor[i+1,j+1],"}",
+                                         xdata[i,j],sep="")
+            else temp=paste(temp," & ","\\cellcolor{",z$cellcolor[i+1,j+1],"}",
+                            xdata[i,j],sep="")
+
         }
         cat(paste(temp,"\\\\ \n",sep=""))
         if(i %in% z$hline.after)
@@ -786,10 +837,17 @@ ztable2latex=function(z){
     }
 
     if(!is.null(z$caption) & z$caption.placement=="bottom"){
+        tlength=tableLength(z)
+        if(nchar(z$caption)>tlength){
+            tablewidth=max(z$tablewidth,tlength/85)
+            mycaption=paste("\\begin{minipage}{c}{",tablewidth,"\\linewidth}",
+                            z$caption,"\\end{minipage}",sep="")
+        }
+        else mycaption=z$caption
         if(z$caption.bold) cat(paste("\\multicolumn{",ncount+addrow,"}{",
-                                     z$caption.position,"}{\\textbf{",z$caption,"}}\\\\ \n",sep=""))
+                                     z$caption.position,"}{\\textbf{",mycaption,"}}\\\\ \n",sep=""))
         else cat(paste("\\multicolumn{",ncount+addrow,"}{",
-                       z$caption.position,"}{",z$caption,"}\\\\ \n",sep=""))
+                       z$caption.position,"}{",mycaption,"}\\\\ \n",sep=""))
     }
 
     if(z$longtable) {
@@ -837,7 +895,7 @@ validColor=function(a,mycolor){
 #' @param mycolors chracters vectors of color names
 define_colors=function(mycolors) {
     if(is.null(mycolors)) return
-    uniquecolors=unique(mycolors)
+    uniquecolors=unique(as.vector(unique(mycolors)))
     for(i in 1:length(uniquecolors)) {
         number=grep(paste("^",uniquecolors[i],sep=""),ztable::zcolors$name)
         if(length(number)<1) next

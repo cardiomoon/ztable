@@ -75,7 +75,8 @@ align2lines=function(align){
 #' Print an object of class "ztable" to html table
 #'
 #' @param z An object of class "ztable"
-ztable2html=function(z){
+#' @param xdata A formatted data.frame
+ztable2html=function(z,xdata){
     ncount=ncol(z$x)
     addrow=ifelse(z$include.rownames,1,0)
      # caption position
@@ -145,34 +146,12 @@ ztable2html=function(z){
                                          name2rgb(z$cellcolor[i+1,1]),"; \">",
                                          rownames(z$x)[i],"</td>",sep=""))
         for(j in 1:ncount) {
-            if(z$display[j+1]=="s"){
-                cat(paste("<td align=\"",colpos[j+1],"\" style=\"border-left: ",
-                          vlines[j+1],"px solid black;",sep=""))
-                if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
-                    cat(paste("border-right:",vlines[j+2],"px solid black;",sep=""))
-                cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,j+1]),"; \">",sep=""))
-                cat(paste(z$x[i,j],"</td>",sep=""))
-            }
-            else{
-                if(is.na(z$x[i,j])) {
-                    cat(paste("<td style=\"border-left: ",vlines[j+1],
-                              "px solid black;",sep=""))
-                    if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
-                        cat(paste("border-right:",vlines[j+2],"px solid black;",sep=""))
-                    cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,j+1]),";",sep=""))
-                    cat(paste("\">","","</td>",sep=""))
-                } else{
-                    temp=formatC(z$x[i,j],digits=z$digits[j+1],format=z$display[j+1])
-                    cat(paste("<td align=\"",colpos[j+1],"\" style=\"border-left: "
-                              ,vlines[j+1],"px solid black;",sep=""))
-                    if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
-                        cat(paste("border-right:",vlines[j+2],"px solid black;",sep=""))
-                    cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,j+1]),";",sep=""))
-                    cat(paste("\">",temp,"</td>",sep=""))
-
-                }
-
-            }
+            cat(paste("<td align=\"",colpos[j+1],"\" style=\"border-left: ",
+                      vlines[j+1],"px solid black;",sep=""))
+            if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
+                cat(paste("border-right:",vlines[j+2],"px solid black;",sep=""))
+            cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,j+1]),"; \">",sep=""))
+            cat(paste(xdata[i,j],"</td>",sep=""))
         }
         cat("</tr>\n")
     }

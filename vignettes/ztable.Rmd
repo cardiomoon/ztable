@@ -231,7 +231,7 @@ print(z1,zebra.color=c(rep("white",5),"peach"),zebra.colnames=TRUE)
 
 ## Horizontal and vertical striping
 You can use both horizontal and vertical striping or change the backgroung of any cell by setting the parameter 'zebra.type=3' with the parameter zebra.list. 
-Parameter 'zebra.list' sets the cells specified with cells[y,x] with "color". The y and x are integer indicating rows and columns. NA value of y or x indicating all columns or rows. Plaese note that the row count start from the column names row, and the coulumn count start from the row names column.
+Parameter 'zebra.list' sets the cells specified with cells[y,x] with "color". The y and x are integer indicating rows and columns. NA value of y or x indicating all columns or rows. Plaese note that the row count start from the column names row, and the column count start from the row names column.
 
 ```{r,results='asis'}
 zlist=list(y=c(3,NA,3,6),x=c(NA,4,4,6),color=c("platinum","peach","darkchampagne","scarlet"))

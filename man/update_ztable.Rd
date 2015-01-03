@@ -3,14 +3,14 @@
 \alias{update_ztable}
 \title{Update ztable before print}
 \usage{
-update_ztable(z, size = NULL, color = NULL, type = NULL,
-  include.rownames = NULL, placement = NULL, position = NULL,
-  show.heading = NULL, show.footer = NULL, caption = NULL,
-  caption.placement = NULL, caption.position = NULL, caption.bold = NULL,
-  align = NULL, digits = NULL, display = NULL, sidewaystable = NULL,
-  longtable = NULL, rotate = NULL, turn = NULL, angle = NULL,
-  wraptable = NULL, wraptablewidth = NULL, tabular = NULL, label = NULL,
-  hline.after = NULL, booktabs = NULL, prefix.rows = NULL,
+update_ztable(z, size = NULL, color = NULL, tablewidth = NULL,
+  type = NULL, include.rownames = NULL, placement = NULL,
+  position = NULL, show.heading = NULL, show.footer = NULL,
+  caption = NULL, caption.placement = NULL, caption.position = NULL,
+  caption.bold = NULL, align = NULL, digits = NULL, display = NULL,
+  sidewaystable = NULL, longtable = NULL, rotate = NULL, turn = NULL,
+  angle = NULL, wraptable = NULL, wraptablewidth = NULL, tabular = NULL,
+  label = NULL, hline.after = NULL, booktabs = NULL, prefix.rows = NULL,
   commands = NULL, top.command = NULL, zebra = NULL, zebra.color = NULL,
   zebra.type = NULL, zebra.list = NULL, zebra.colnames = NULL,
   zebra.rownames = NULL, colnames.bold = NULL, include.colnames = NULL)
@@ -23,6 +23,9 @@ update_ztable(z, size = NULL, color = NULL, type = NULL,
 respectively.}
 
 \item{color}{A character indicating color of ztable}
+
+\item{tablewidth}{A numeric indicating desired table width as a ratio to linewidth.
+Default value is 0.3.}
 
 \item{type}{character indicating formats of ztable, either "html" or "latex".}
 
