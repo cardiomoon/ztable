@@ -1,5 +1,6 @@
-"ztable" now support horizontal, vertical and diagonal striping.  
-A new function was added.
+"ztable" now support row groups, column groups and rstudio::viewer
+
+Several new functions were added.
 
 ## Test environments
 * local OS X install, R 3.1.2

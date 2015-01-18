@@ -1,3 +1,24 @@
+ztable 0.1.3
+============
+(18-JAN-2015)
+
+* new function "addColColor" which add the background color(s) of column(s) of ztable
+
+* new function "addRowColor" which add the background color(s) of row(s) of ztable
+
+* new function "addCellColor" which add the background color(s) of cell(s) of ztable
+
+* new function "addrgroup" which add the row groups to ztable
+
+* new function "addcgroup" which add the column groups to ztable
+
+* new function "ztable2viewer" which shows the ztable of html format via rstudio::viewer()
+
+* "ztable" support row groups and column groups
+
+* "ztable" support LaTex, HTML and rstudio::viewer output
+
+
 ztable 0.1.2
 ============
 (2-JAN-2015)

@@ -13,7 +13,9 @@ update_ztable(z, size = NULL, color = NULL, tablewidth = NULL,
   label = NULL, hline.after = NULL, booktabs = NULL, prefix.rows = NULL,
   commands = NULL, top.command = NULL, zebra = NULL, zebra.color = NULL,
   zebra.type = NULL, zebra.list = NULL, zebra.colnames = NULL,
-  zebra.rownames = NULL, colnames.bold = NULL, include.colnames = NULL)
+  zebra.rownames = NULL, colnames.bold = NULL, include.colnames = NULL,
+  cgroup = NULL, n.cgroup = NULL, rgroup = NULL, n.rgroup = NULL,
+  cspan.rgroup = NULL)
 }
 \arguments{
 \item{z}{An object of class "ztable"}
@@ -155,6 +157,19 @@ Default value is TRUE}
 \item{colnames.bold}{whether or not use bold font for column names.}
 
 \item{include.colnames}{Logical. If TRUE the column names is printed.}
+
+\item{cgroup}{A character vector or matrix indicating names of column group. Default value is NULL}
+
+\item{n.cgroup}{A integer vector or matrix indicating the numbers of columns included in each cgroup
+Dafault value is NULL}
+
+\item{rgroup}{A character vector indicating names of row group. Default value is NULL}
+
+\item{n.rgroup}{A integer vector indicating the numbers of rows included in each rgroup
+Dafault value is NULL}
+
+\item{cspan.rgroup}{The number of columns that an rgroup should span. It spans by default all
+columns but you may want to limit this if you have column colors that you want to retain.}
 }
 \description{
 Update options of ztable before print

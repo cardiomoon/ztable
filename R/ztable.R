@@ -7,7 +7,6 @@
 #' @param ... arguments to be passed to \code{\link{ztable_sub}}
 ztable=function(x,digits=NULL,...)  UseMethod("ztable")
 
-
 #'@describeIn ztable
 #'
 ztable.default=function(x,digits=NULL,...){
@@ -119,12 +118,14 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'       the specified rows. Default value is NULL, i.e. do not add commands.
 #'@param top.command A character vector of the length 1 which contains the command
 #'       that should be added as a prefix at the colnames row.
-#'@param zebra Null or an integer of 0 or 1 or 2. The arguments zebra and zebra.color are
+#'@param zebra Null or an integer of 0 or 1 or 2 or 3. The arguments zebra and zebra.color are
 #'       used to make a Zebra striping table(table with alternating background colors)
 #'       easly. A value of 1 sets background color of all odd rows/columns with specified with
 #'       zebra.color. A value of 2 sets all even rows/columns. A value of 0 sets
 #'       background colors of all rows/columns with colors specified with zebra.color.
 #'       When zebra is 1 or 2, the parameters of prefix.rows and commands ignored.
+#'       When zebra=3, the background colors can be defined by addRowColor, addColColor
+#'       and addCellColor functions.
 #'       Default is NULL.
 #'@param zebra.color A color name or a numeric value indicating pre-defined color.
 #'       When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zerba.color
@@ -146,6 +147,14 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'       The color is an character vector consists of names of color.
 #'@param colnames.bold whether or not use bold font for column names, Default value is FALSE
 #'@param include.colnames Logical. If TRUE the column names is printed. Default value is TRUE.
+#'@param cgroup A character vector or matrix indicating names of column group. Default value is NULL
+#'@param n.cgroup A integer vector or matrix indicating the numbers of columns included in each cgroup
+#'       Dafault value is NULL
+#'@param rgroup A character vector indicating names of row group. Default value is NULL
+#'@param n.rgroup A integer vector indicating the numbers of rows included in each rgroup
+#'       Dafault value is NULL
+#'@param cspan.rgroup The number of columns that an rgroup should span. It spans by default all
+#'       columns but you may want to limit this if you have column colors that you want to retain.
 #'@examples
 #' require(ztable)
 #' x=head(iris)
@@ -201,7 +210,9 @@ ztable_sub=function(x,
                     zebra.rownames=getOption("ztable.zebra.rownames",TRUE),
                     zebra.list=NULL,
                     colnames.bold=getOption("ztable.colnames.bold",FALSE),
-                    include.colnames=getOption("ztable.include.colnames",TRUE)){
+                    include.colnames=getOption("ztable.include.colnames",TRUE),
+                    cgroup=NULL,n.cgroup=NULL,
+                    rgroup=NULL,n.rgroup=NULL,cspan.rgroup=NULL){
 
     ncount=ncol(x)
     nrow=nrow(x)
@@ -319,7 +330,12 @@ ztable_sub=function(x,
                 zebra.colnames=zebra.colnames,
                 zebra.rownames=zebra.rownames,
                 include.colnames=include.colnames,
-                colnames.bold=colnames.bold
+                colnames.bold=colnames.bold,
+                cgroup=cgroup,
+                n.cgroup=n.cgroup,
+                rgroup=rgroup,
+                n.rgroup=n.rgroup,
+                cspan.rgroup=cspan.rgroup
     )
     class(result) <-c("ztable")
     result
@@ -565,6 +581,14 @@ repColor=function(x,color){
 #'       Default value is TRUE
 #'@param colnames.bold whether or not use bold font for column names.
 #'@param include.colnames Logical. If TRUE the column names is printed.
+#'@param cgroup A character vector or matrix indicating names of column group. Default value is NULL
+#'@param n.cgroup A integer vector or matrix indicating the numbers of columns included in each cgroup
+#'       Dafault value is NULL
+#'@param rgroup A character vector indicating names of row group. Default value is NULL
+#'@param n.rgroup A integer vector indicating the numbers of rows included in each rgroup
+#'       Dafault value is NULL
+#'@param cspan.rgroup The number of columns that an rgroup should span. It spans by default all
+#'       columns but you may want to limit this if you have column colors that you want to retain.
 update_ztable=function(z,
                        size=NULL, # normal size, range 1-10
                        color=NULL,
@@ -596,7 +620,12 @@ update_ztable=function(z,
                        zebra.colnames=NULL,
                        zebra.rownames=NULL,
                        colnames.bold=NULL,
-                       include.colnames=NULL){
+                       include.colnames=NULL,
+                       cgroup=NULL,
+                       n.cgroup=NULL,
+                       rgroup=NULL,
+                       n.rgroup=NULL,
+                       cspan.rgroup=NULL){
 
      if(!is.null(size)) z$size=size
      if(!is.null(color)) z$color=color
@@ -640,11 +669,17 @@ update_ztable=function(z,
      if(!is.null(zebra.rownames)) z$zebra.rownames=zebra.rownames
      if(!is.null(colnames.bold)) z$colnames.bold=colnames.bold
      if(!is.null(include.colnames)) z$include.colnames=include.colnames
-     z$cellcolor=make.cell.color(x=z$x,zebra=z$zebra,zebra.color=z$zebra.color,
+     if(!is.null(cgroup)) z$cgroup=cgroup
+     if(!is.null(n.cgroup)) z$n.cgroup=n.cgroup
+     if(!is.null(rgroup)) z$rgroup=rgroup
+     if(!is.null(n.rgroup)) z$n.rgroup=n.rgroup
+     if(!is.null(cspan.rgroup)) z$cspan.rgroup=cspan.rgroup
+     if(!is.null(z$zebra)) { if(z$zebra!=3) z$cellcolor=make.cell.color(x=z$x,zebra=z$zebra,zebra.color=z$zebra.color,
                                  zebra.type=z$zebra.type,
                                  zebra.list=z$zebra.list,
                                  zebra.colnames=z$zebra.colnames,
                                  zebra.rownames=z$zebra.rownames)
+     }
      z
 }
 
@@ -664,6 +699,7 @@ print.ztable=function(x,...){
 print_ztable=function(z){
     xdata=data2table(z)
     if(z$type=="latex") ztable2latex(z,xdata)
+    else if(z$type=="viewer") ztable2viewer(z)
     else ztable2html(z,xdata)
 }
 
@@ -717,6 +753,21 @@ data2table=function(z){
     data
 }
 
+#' Convert long caption to minipage
+#'
+#' @param z An object of ztable
+#' @param caption A character vector to convert
+caption2minipage=function(z,caption){
+    tlength=tableLength(z)
+    if(nchar(caption)>tlength){
+        tablewidth=max(z$tablewidth,tlength/85)
+        mycaption=paste("\\begin{minipage}[c]{",tablewidth,"\\linewidth}",
+                    caption,"\\end{minipage}",sep="")
+    }
+    else mycaption=caption
+    mycaption
+}
+
 #' Print an object of class "ztable" to Latex table
 #'
 #' @param z An object of class "ztable"
@@ -726,6 +777,21 @@ ztable2latex=function(z,xdata){
     nrow=nrow(z$x)
     cn=colnames(z$x)
     addrow=ifelse(z$include.rownames,1,0)
+
+    NewAlign=getNewAlign(z)
+    totalCol=totalCol(z)
+    colCount=colGroupCount(z)
+
+    rgroupcount=0
+    printrgroup=1
+    if(!is.null(z$n.rgroup)){
+        if(length(z$n.rgroup)>1) {
+           for(i in 2:length(z$n.rgroup)) {
+               printrgroup=c(printrgroup,printrgroup[length(printrgroup)]+z$n.rgroup[i-1])
+           }
+        }
+        rgroupcount=1
+    }
     Fontsize=c("tiny","scriptsize","footnotesize","small","normalsize",
            "large","Large","LARGE","huge","Huge")
 
@@ -738,11 +804,12 @@ ztable2latex=function(z,xdata){
     else sort="table"
     headingsize=ifelse(z$size>3,z$size-2,1)
     define_colors(z$cellcolor)
+    if(!is.null(z$cgroupcolor)) define_colors(z$cgroupcolor)
     align=alignCheck(z$align,ncount,addrow)
     if(z$longtable){
         cat(paste("\\color{",z$color,"}\n",sep=""))
         cat(paste("\\begin{",Fontsize[z$size],"}\n",sep=""))
-        cat(paste("\\begin{longtable}{",align,"}\n",sep=""))
+        cat(paste("\\begin{longtable}{",NewAlign,"}\n",sep=""))
 
     } else {
         if(z$wraptable) {
@@ -759,50 +826,51 @@ ztable2latex=function(z,xdata){
         }
         cat(paste("\\begin{",Fontsize[z$size],"}\n",sep=""))
         cat(paste("\\color{",z$color,"}\n",sep=""))
-        cat(paste("\\begin{tabular}{",align,"}\n",sep=""))
+        cat(paste("\\begin{tabular}{",NewAlign,"}\n",sep=""))
     }
     if(!is.null(z$caption) & z$caption.placement=="top"){
-        tlength=tableLength(z)
-        if(nchar(z$caption)>tlength){
-            tablewidth=max(z$tablewidth,tlength/85)
-            mycaption=paste("\\begin{minipage}[c]{",tablewidth,"\\linewidth}",
-                            z$caption,"\\end{minipage}",sep="")
-        }
-        else mycaption=z$caption
-        if(z$caption.bold) cat(paste("\\multicolumn{",ncount+addrow,"}{",
-                  z$caption.position,"}{\\textbf{",mycaption,"}}\\\\ \n",sep=""))
-        else cat(paste("\\multicolumn{",ncount+addrow,"}{",
-                       z$caption.position,"}{",mycaption,"}\\\\ \n",sep=""))
+        mycaption=caption2minipage(z,z$caption)
+        cat(paste("\\multicolumn{",totalCol,"}{",
+                  z$caption.position,"}{",sep=""))
+        if(z$caption.bold) cat(paste("\\textbf{",mycaption,"}",sep=""))
+        else cat(mycaption)
+        cat("}\\\\ \n")
     }
     if((z$show.heading==TRUE) & (!is.null(attr(z$x,"heading")))) {
         head=attr(z$x,"heading")
         for(i in 1:length(head)) {
             if(nchar(head[i])<1) next
-            cat(paste("\\multicolumn{",ncount+addrow,"}{l}{\\",Fontsize[headingsize],
+            cat(paste("\\multicolumn{",totalCol,"}{l}{\\",Fontsize[headingsize],
                       "{",head[i],"}}\\\\ \n",sep=""))
         }
     }
     if(is.null(z$hline.after)) cat(ifelse(z$booktabs,"\\toprule[1.2pt]\n","\\hline\n"))
     else if(-1 %in% z$hline.after) cat(ifelse(z$booktabs,"\\toprule[1.2pt]\n","\\hline\n"))
-    if(z$colnames.bold) {
-        if(z$include.rownames) firstrow=paste("\\cellcolor{",z$cellcolor[1,1],"}","&","\\textbf{","\\cellcolor{",z$cellcolor[1,2],"}",cn[1],"}",sep="")
-        else firstrow=paste("\\cellcolor{",z$cellcolor[1,2],"}","\\textbf{",cn[1],"}",sep="")
+    if(!is.null(z$cgroup)) printLatexHead(z)
+        if(z$colnames.bold) firstcn=paste("\\textbf{",cn[1],"}",sep="")
+        else firstcn=cn[1]
+        if(z$cellcolor[1,2]!="white") firstcn=paste("\\cellcolor{",z$cellcolor[1,2],"}",firstcn,sep="")
+        if(z$include.rownames) firstrow=paste("\\cellcolor{",z$cellcolor[1,1],"}","&",
+                                              firstcn,sep="")
+        else firstrow=firstcn
         if(ncount>1) {
             for(i in 2:ncount) {
-                boldcn=paste("\\cellcolor{",z$cellcolor[1,i+1],"}","\\textbf{",cn[i],"}",sep="")
-                firstrow=paste(firstrow,boldcn,sep=" & ")
+                firstrow=paste(firstrow,"&",sep="")
+                if(z$cellcolor[1,i+1]!="white")
+                    firstrow=paste(firstrow,"\\cellcolor{",z$cellcolor[1,i+1],"}",sep="")
+                if(z$colnames.bold) boldcn=paste("\\textbf{",cn[i],"}",sep="")
+                else boldcn=cn[i]
+                firstrow=paste(firstrow,boldcn,sep="")
+                if(!is.null(colCount)){
+                    if(i %in% colCount[-length(colCount)]) {
+                        if(z$cellcolor[1,i+1]!="white")
+                            firstrow=paste(firstrow,"&\\cellcolor{",z$cellcolor[1,i+1],"}",sep="")
+                        else firstrow=paste(firstrow,"&",sep="")
+                    }
+                }
             }
         }
-    } else {
-        if(z$include.rownames) firstrow=paste("\\cellcolor{",z$cellcolor[1,1],"}","&",
-                                              "\\cellcolor{",z$cellcolor[1,2],"}",cn[1],sep="")
-        else firstrow=paste("\\cellcolor{",z$cellcolor[1,2],"}",cn[1],sep="")
-        if(ncount>1) {
-            for(i in 2:ncount) firstrow=paste(firstrow," & ",
-                                              "\\cellcolor{",z$cellcolor[1,i+1],"}",cn[i],sep="")
 
-        }
-    }
     if((0 %in% z$prefix.rows) & !is.null(z$top.command)) cat(z$top.command)
     if(z$include.colnames) {
         cat(paste(firstrow,"\\\\ \n",sep=""))
@@ -811,19 +879,82 @@ ztable2latex=function(z,xdata){
     }
 
     for(i in 1:nrow){
+        if(rgroupcount>0) {
+            if(i %in% printrgroup) {
+                if(is.null(z$cspan.rgroup)){
+                    temp=paste("\\multicolumn{",totalCol,"}{l}{",sep="")
+                    if(z$colcolor[1]!="white")
+                        temp=paste(temp,"\\cellcolor{",z$colcolor[1],"}",sep="")
+                    temp=paste(temp,"\\textbf{",z$rgroup[rgroupcount],"}}",sep="")
+                }
+                else {
+                    if(z$cspan.rgroup==1) {
+                        if(z$colcolor[1]!="white")
+                            temp=paste("\\cellcolor{",z$colcolor[1],"}",sep="")
+                        else temp=""
+                        temp=paste(temp,"\\textbf{",z$rgroup[rgroupcount],"}",sep="")
+                        for(j in 1:(ncount+addrow-1)){
+                            if(z$colcolor[j+1]!="white")
+                                temp1=paste("\\cellcolor{",z$colcolor[j+1],"}",sep="")
+                            else temp1=""
+                            temp=paste(temp,temp1,sep="&")
+                            if(!is.null(colCount)){
+                                if(j %in% colCount[-length(colCount)]) {
+                                    if(z$colcolor[j+1]!="white")
+                                        temp=paste(temp,"&\\cellcolor{",z$colcolor[j+1],"}",sep="")
+                                    else temp=paste(temp,"&",sep="")
+                                }
+                            }
+                        }
+                    } else {
+                        if(z$cspan.rgroup<1 | z$cspan.rgroup>(ncount+addrow))
+                            z$cspan.rgroup=ncount+addrow
+                        temp=paste("\\multicolumn{",z$cspan.rgroup,"}{l}{\\textbf{",
+                                   z$rgroup[rgroupcount],"}}",sep="")
+                        if(z$cspan.rgroup<(ncount+addrow)) {
+                            for(j in 1:(ncount+addrow-z$cspan.rgroup)) {
+                                if(z$colcolor[z$cspan.rgroup+j]!="white")
+                                    temp=paste(temp,"&\\cellcolor{",z$colcolor[z$cspan.rgroup+j],"}",sep="")
+                                else temp=paste(temp,"",sep="&")
+                                if(!is.null(colCount)){
+                                    if(j %in% colCount[-length(colCount)]) {
+                                        if(z$colcolor[z$cspan.rgroup+j]!="white")
+                                            temp=paste(temp,"&\\cellcolor{",z$colcolor[z$cspan.rgroup+j],"}",sep="")
+                                        else temp=paste(temp,"&",sep="")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                cat(paste(temp,"\\\\ \n",sep=""))
+                rgroupcount=rgroupcount+1
+            }
+        }
         if(i %in% z$prefix.rows) {
             #if(is.numeric(z$zebra))
             #   cat(paste("\\rowcolor{",z$zebra.color[i],"}",sep=""))
             if(!is.null(z$commands[i])) cat(z$commands[i])
         }
         temp=c()
-        if(z$include.rownames) temp=paste("\\cellcolor{",z$cellcolor[i+1,1],"}",
+        if(z$include.rownames) {
+            if(z$cellcolor[i+1,1]=="white") temp=rownames(z$x)[i]
+            else temp=paste("\\cellcolor{",z$cellcolor[i+1,1],"}",
                                           rownames(z$x)[i],sep="")
+        }
         for(j in 1:ncount) {
-            if(is.null(temp)) temp=paste("\\cellcolor{",z$cellcolor[i+1,j+1],"}",
-                                         xdata[i,j],sep="")
-            else temp=paste(temp," & ","\\cellcolor{",z$cellcolor[i+1,j+1],"}",
-                            xdata[i,j],sep="")
+            if(z$cellcolor[i+1,j+1]=="white") temp1=xdata[i,j]
+            else temp1=paste("\\cellcolor{",z$cellcolor[i+1,j+1],"}",
+                             xdata[i,j],sep="")
+            if(is.null(temp)) temp=temp1
+            else temp=paste(temp,"&",temp1,sep="")
+            if(!is.null(colCount)){
+                if(j %in% colCount[-length(colCount)]) {
+                    if(z$cellcolor[i+1,j+1]=="white") temp=paste(temp,"&",sep="")
+                    else temp=paste(temp,"&\\cellcolor{",z$cellcolor[i+1,j+1],"}",sep="")
+
+                }
+            }
 
         }
         cat(paste(temp,"\\\\ \n",sep=""))
@@ -834,21 +965,15 @@ ztable2latex=function(z,xdata){
 
     footer=attr(z$x,"footer")
     if(!is.null(footer) & (z$show.footer)){
-        cat(paste("\\multicolumn{",ncount+addrow,"}{l}{\\",Fontsize[headingsize],
-                  "{",footer,"}}\\\\ \n",sep=""))
+        myfooter=caption2minipage(z,footer)
+        cat(paste("\\multicolumn{",totalCol,"}{l}{\\",Fontsize[headingsize],
+                  "{",myfooter,"}}\\\\ \n",sep=""))
     }
-
     if(!is.null(z$caption) & z$caption.placement=="bottom"){
-        tlength=tableLength(z)
-        if(nchar(z$caption)>tlength){
-            tablewidth=max(z$tablewidth,tlength/85)
-            mycaption=paste("\\begin{minipage}{c}{",tablewidth,"\\linewidth}",
-                            z$caption,"\\end{minipage}",sep="")
-        }
-        else mycaption=z$caption
-        if(z$caption.bold) cat(paste("\\multicolumn{",ncount+addrow,"}{",
+        mycaption=caption2minipage(z,z$caption)
+        if(z$caption.bold) cat(paste("\\multicolumn{",totalCol,"}{",
                                      z$caption.position,"}{\\textbf{",mycaption,"}}\\\\ \n",sep=""))
-        else cat(paste("\\multicolumn{",ncount+addrow,"}{",
+        else cat(paste("\\multicolumn{",totalCol,"}{",
                        z$caption.position,"}{",mycaption,"}\\\\ \n",sep=""))
     }
 
@@ -881,12 +1006,21 @@ validColor=function(a,mycolor){
             a=mycolor[a]
         else a="peach"
     } else {
-        if(!is.character(a)) a="peach"
-        else{
-            result=grep(paste("^",a,sep=""),ztable::zcolors$name,ignore.case=TRUE)
-            if(length(result)>0) a=ztable::zcolors$name[result[1]]
-            else a="peach"
-        }
+        a=validColor2(a)
+    }
+    a
+}
+
+#' Find valid color name
+#'
+#' @param a An integer or a character
+#' @return a valid Latex color name
+validColor2=function(a){
+    if(!is.character(a)) a="peach"
+    else{
+        result=grep(paste("^",a,sep=""),ztable::zcolors$name,ignore.case=TRUE)
+        if(length(result)>0) a=ztable::zcolors$name[result[1]]
+        else a="peach"
     }
     a
 }
@@ -899,6 +1033,7 @@ define_colors=function(mycolors) {
     if(is.null(mycolors)) return
     uniquecolors=unique(as.vector(unique(mycolors)))
     for(i in 1:length(uniquecolors)) {
+        if(uniquecolors[i]=="white") next
         number=grep(paste("^",uniquecolors[i],sep=""),ztable::zcolors$name)
         if(length(number)<1) next
         else{

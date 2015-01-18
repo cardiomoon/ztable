@@ -23,7 +23,9 @@ ztable_sub(x, size = 5, color = getOption("ztable.color", "black"),
   zebra.colnames = getOption("ztable.zebra.colnames", FALSE),
   zebra.rownames = getOption("ztable.zebra.rownames", TRUE),
   zebra.list = NULL, colnames.bold = getOption("ztable.colnames.bold",
-  FALSE), include.colnames = getOption("ztable.include.colnames", TRUE))
+  FALSE), include.colnames = getOption("ztable.include.colnames", TRUE),
+  cgroup = NULL, n.cgroup = NULL, rgroup = NULL, n.rgroup = NULL,
+  cspan.rgroup = NULL)
 }
 \arguments{
 \item{x}{A data.frame}
@@ -149,12 +151,14 @@ the specified rows. Default value is NULL, i.e. do not add commands.}
 \item{top.command}{A character vector of the length 1 which contains the command
 that should be added as a prefix at the colnames row.}
 
-\item{zebra}{Null or an integer of 0 or 1 or 2. The arguments zebra and zebra.color are
+\item{zebra}{Null or an integer of 0 or 1 or 2 or 3. The arguments zebra and zebra.color are
 used to make a Zebra striping table(table with alternating background colors)
 easly. A value of 1 sets background color of all odd rows/columns with specified with
 zebra.color. A value of 2 sets all even rows/columns. A value of 0 sets
 background colors of all rows/columns with colors specified with zebra.color.
 When zebra is 1 or 2, the parameters of prefix.rows and commands ignored.
+When zebra=3, the background colors can be defined by addRowColor, addColColor
+and addCellColor functions.
 Default is NULL.}
 
 \item{zebra.color}{A color name or a numeric value indicating pre-defined color.
@@ -183,6 +187,19 @@ The color is an character vector consists of names of color.}
 \item{colnames.bold}{whether or not use bold font for column names, Default value is FALSE}
 
 \item{include.colnames}{Logical. If TRUE the column names is printed. Default value is TRUE.}
+
+\item{cgroup}{A character vector or matrix indicating names of column group. Default value is NULL}
+
+\item{n.cgroup}{A integer vector or matrix indicating the numbers of columns included in each cgroup
+Dafault value is NULL}
+
+\item{rgroup}{A character vector indicating names of row group. Default value is NULL}
+
+\item{n.rgroup}{A integer vector indicating the numbers of rows included in each rgroup
+Dafault value is NULL}
+
+\item{cspan.rgroup}{The number of columns that an rgroup should span. It spans by default all
+columns but you may want to limit this if you have column colors that you want to retain.}
 }
 \description{
 Exporting "data.frame" to an object of class "ztable"
