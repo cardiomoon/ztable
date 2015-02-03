@@ -11,15 +11,125 @@ vignette: >
 
 # Introduction
 
-I like the "xtable"" package very much. But when I use a large font or "flushright" latex environment, there is a caption size discrepancy and misposition of caption.
+## Table Show
 
-![xtable.png](figures/xtable.png)
+Package "ztable" make everything possible about table. Basically, An object of "ztable" made from a data.frame. The default output format of ztable is RStudio::viewer or web-browser format(type="viewer"). So if you want to use ztable in a "html" format, you should change the parameter ztable.type to "html". If you want to use ztable in latex format, you should change the parameter ztable.type to "latex". 
 
-That's why I developed ztable package.
+```{r,results='asis'}
+require(ztable)
+options(ztable.type="html")
+z=ztable(head(iris))
+z
+```
+You can change the position of data in each cell by adjusting the parameter "align".
 
-![ztable.png](figures/ztable.png)
+```{r,results='asis'}
+z=ztable(head(iris),align="cccccc")
+z
+```
 
-Package "ztable" consist of one function: ztable. It's main function is creating zebra zebra striping tables(tables with alternating row colors) in both Latex and html formats easily from mainly data.frame or an R object such as matrix, lm, aov, anova, glm and coxph objects. It is fully customizable and you can get similar tables in both latex and html format without changing source. The default output is Latex format, but you can get html format by adding just one sentence.
+You can add column groups to ztable using addcgroup function. The n.cgroup means how much columns included in each row group. 
+
+```{r,results='asis'}
+cgroup=c("Sepal","Petal","Species")
+n.cgroup=c(2,2,1)
+z=addcgroup(z,cgroup=cgroup,n.cgroup=n.cgroup)
+z
+```
+
+
+You can add row groups to ztable using addrgroup function. The n.rgroup means how much rows included in each row group. The cspan.rgroup means how much columns occupied by row group name.
+
+```{r,results='asis'}
+rgroup=c("OneToThree","Four","FiveToSix")
+n.rgroup=c(3,1,2)
+
+z=addrgroup(z,rgroup=rgroup,n.rgroup=n.rgroup,cspan.rgroup=1)
+z
+```
+
+You can add another colname(subcolname), the N count for example.  The length of subcolnames should be same with column count of data.frame. You can use "NA" and the column name spans 2 rows. 
+
+```{r,results='asis'}
+ncount=c(123,120,123,124)
+sub=paste("(N=",ncount,")",sep="")
+z=addSubColNames(z,c(sub,NA))
+z
+```
+
+You can merge cells by spanRow or spanCol function.
+
+```{r,results='asis'}
+z=spanRow(z,col=2,from=4,to=7,"orange")
+z=spanRow(z,col=3,from=5,to=7,"platinum")
+z=spanRow(z,col=4,from=6,to=7,"cyan")
+z=spanRow(z,col=5,from=5,to=7,"yellow")
+z=spanRow(z,col=6,from=3,to=5,"yellow")
+z
+
+z=spanCol(z,row=2,from=3,to=4,"yellow")
+z=spanCol(z,row=3,from=4,to=5,"lightblue")
+z
+```
+
+You can add or adjust vertical lines of table by vlines function
+
+```{r,results='asis'}
+vlines(z,type="all")       # type=1 gets same result
+vlines(z,type="group")     # type=2 gets same result
+vlines(z,type="nongroup") # type=3 gets same result
+z=vlines(z,type="none")      # type=0 gets same result
+z
+z=vlines(z,add=c(1,2,5))
+z
+```
+
+Please note that if you add vertical lines between groups, the space between groups(empty columns) disappeared and vice versa.
+
+
+## Merge two tables
+
+You can bind two or more data.frame by cbind function. 
+
+```{r,results='asis'}
+t1=head(iris,10)[,c(1,3,5)]
+t2=tail(iris,10)[,c(1,3,5)]
+t=cbind(t1,t2)
+z=ztable(t,caption="Table 1. Top 10 and Last 10 Data from iris",align="ccccccc")
+```
+
+And then, you can add column groups, row groups, add row colors, add column colors, add cell colors, and merge cells
+
+```{r,results='asis'}
+cgroup=c("Top 10","Last 10")
+n.cgroup=c(3,3)
+z=addcgroup(z,cgroup=cgroup,n.cgroup=n.cgroup)
+z 
+rgroup=c("Top 1-3","Top 4-6"," Top 7-10")
+n.rgroup=c(3,3,4)
+z=addrgroup(z,rgroup=rgroup,n.rgroup=n.rgroup,cspan.rgroup=1)
+z
+z=addRowColor(z,c(5,10),"pink")
+z=addColColor(z,4,"amber")
+z=addCellColor(z,rows=c(5,10),cols=4,"orange")
+z
+z=spanCol(z,row=2,from=2,to=3,color="lightcyan")
+z=spanRow(z,col=7,from=7,to=8,color="cyan")
+z
+```
+
+And you can adjust vertical lines, too.
+
+```{r,results='asis'}
+vlines(z,type=0)
+vlines(z,type=1)
+vlines(z,type=2)
+vlines(z,type=3)
+```
+
+# Basic Use
+
+Package "ztable" consist of one function: ztable. It's main function is creating zebra zebra striping tables(tables with alternating row colors) in both Latex and html formats easily from mainly data.frame or an R object such as matrix, lm, aov, anova, glm and coxph objects. It is fully customizable and you can get similar tables in both latex and html format without changing source. The default output is Rstudio::viewer, but you can get html format by adding just one sentence.
 
 ```{r, eval=FALSE}
 options(ztable.type="html")
@@ -31,7 +141,7 @@ It's usage is somewhat similar to xtable, but very simple.
 
 ### Basic Use
 
-It's use is very simple. Just use 'ztable()' function. You can get the zebra sripig table by default.(default value zebra=1; striping on odd rows).
+It's use is very simple. Just use 'ztable()' function. You can get the zebra stripig table by set the parameter zebra=1 (default value is NULL)
 
 ```{r,results="asis",message=FALSE}
 require(ztable)
@@ -187,19 +297,6 @@ ztable(head(mtcars,15),zebra=0,zebra.color=NULL)
 The color names used for this purpose are predefined in the data 'zcolors' included in 'ztable' package. Please type '?zcolors' in R console for help file or just type 'zcolors'. You can see 749 color names defined in data 'zcolors'. 
 
 
-## Place two or more ztables or figures side by side
-
-If you wanted to place two or more ztables or figures side by side, you can use function **parallelTables()**. Function **parallelTables()** takes three parameters. The first parameter width is a numeric vector specifies the width to which the tables or figures should be scaled. The second parameter is a list of ztable or names of valid figure. The 3rd parameter 'type' is the type of table to produce. Possible values for type are "latex" or "html". Default value is "latex". See the examples.
-
-```{r,results='asis'}
-z=ztable(head(mtcars[1:3]),tabular=TRUE,zebra.color="peach-orange")
-z1=ztable(head(iris[1:3]),tabular=TRUE,zebra=2)
-
-parallelTables(width=c(0.5,0.5),list(z,z1),type="html")
-parallelTables(width=c(0.5,0.5),list(z,"figures/ztable3.png"),type="html")
-```
-
-
 ## Vertical striping
 
 If you wanted to vertical striping table, you can get it by set the parameter zebra.type 2. You can change the ztables parameters when printing. 
@@ -247,81 +344,34 @@ ztable(head(iris),zebra=0,zebra.type=0,zebra.color=1:7,zebra.colnames=TRUE)
 ztable(head(mtcars[,1:9]),zebra=0,zebra.type=0,zebra.color=1:9,zebra.colnames=TRUE)
 ```
 
-## Two hundred background colors
+## All background colors
 
-This is demonstration of 200 background colors. All 749 colors are available in package ztable. Please type ?zcolors. 
+This is demonstration of All background colors. All 749 colors are available in package ztable. Please type ?zcolors. 
 ```{r,results='asis'}
 mycolor=rep("white",6)
-for(i in 1:40){
+for(i in 1:149){
     mycolor=c(mycolor,"white",zcolors$name[((i-1)*5+1):((i-1)*5+5)])
 }
+mycolor=c(mycolor,"white",zcolors$name[c(746:749,1)])
 a=c(zcolors$name[1:5])
-for(i in 2:40){
+for(i in 2:149){
     a=rbind(a,zcolors$name[((i-1)*5+1):((i-1)*5+5)])
 }
+a=rbind(a,zcolors$name[c(746:749,1)])
 a=data.frame(a,stringsAsFactors=FALSE,row.names=NULL)
 ztable(a,zebra=0,zebra.type=0,zebra.color=mycolor,include.rownames=FALSE,
        include.colnames=FALSE,longtable=TRUE)
 ```
 
+## Place two or more ztables or figures side by side
 
-# Add row colors, column colors and cell colors
-
-```{r,results='asis'}
-options(ztable.zebra=NULL)
-z=ztable(head(mtcars))
-z
-z=addRowColor(z,c(4,7),color="pink")
-z=addColColor(z,7,color="amber")
-z=addCellColor(z,cols=7,rows=c(4,7),color="orange")
-z
-```
-
-# Add row groups
+If you wanted to place two or more ztables or figures side by side, you can use function **parallelTables()**. Function **parallelTables()** takes three parameters. The first parameter width is a numeric vector specifies the width to which the tables or figures should be scaled. The second parameter is a list of ztable or names of valid figure. The 3rd parameter 'type' is the type of table to produce. Possible values for type are "latex" or "html". Default value is "latex". See the examples.
 
 ```{r,results='asis'}
-rgroup=c("Group A","Group B")
-n.rgroup=c(4,2)
-z=addrgroup(z,rgroup=rgroup,n.rgroup=n.rgroup)
-z
-z=addrgroup(z,rgroup=rgroup,n.rgroup=n.rgroup,cspan.rgroup=1)
-z=addColColor(z,7,color="amber")
-z
-```
+z=ztable(head(mtcars[1:3]),tabular=TRUE,zebra.color="peach-orange")
+z1=ztable(head(iris[1:3]),tabular=TRUE,zebra=2)
 
-# Add column groups
-
-```{r,results='asis'}
-z=ztable(head(mtcars),digits=0)
-z=addColColor(z,10,color="platinum")
-cgroup=c("Group A","Group B","Group C")
-n.cgroup=c(3,4,4)
-cgroupcolor=c("white","white","white","platinum")
-z=addcgroup(z,cgroup=cgroup,n.cgroup=n.cgroup,cgroupcolor=cgroupcolor)
-z
-```
-
-# Add complex column groups
-
-```{r,results='asis'}
-z=ztable(head(iris))
-cgroup=c("Total",NA,NA)
-cgroup1=c("Group","Species",NA)
-cgroup2=c("SEPAL","PETAL","Species")
-cgroup=rbind(cgroup,cgroup1,cgroup2)
-n.cgroup=matrix(c(5,NA,NA,4,1,NA,2,2,1),byrow=TRUE,nrow=3)
-z=addcgroup(z,cgroup=cgroup,n.cgroup=n.cgroup)
-z
-```
-
-# Add complex column groups and row groups with column groups color
-```{r,results='asis'}
-cgroupcolor=matrix(c("white","white","white","white","white","platinum","white","white",
-                     "white","cyan","platinum","white"),byrow=TRUE,nrow=3)
-z=addcgroup(z,cgroup=cgroup,n.cgroup=n.cgroup,cgroupcolor=cgroupcolor)
-z=addrgroup(z,rgroup=c("1to4","5to6"),n.rgroup=c(4,2),cspan.rgroup=1)
-z=addColColor(z,3,"cyan")
-z=addColColor(z,5,"platinum")
-z
+parallelTables(width=c(0.5,0.5),list(z,z1),type="html")
+parallelTables(width=c(0.5,0.5),list(z,"figures/ztable3.png"),type="html")
 ```
 

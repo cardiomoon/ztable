@@ -1,4 +1,4 @@
-"ztable" now support row groups, column groups and rstudio::viewer
+"ztable" now support merging cells with spanCol and spanRow function
 
 Several new functions were added.
 
