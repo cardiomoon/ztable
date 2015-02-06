@@ -1,3 +1,5 @@
+I registered S3 methods in NAMESPACE
+
 "ztable" now support merging cells with spanCol and spanRow function
 
 Several new functions were added.

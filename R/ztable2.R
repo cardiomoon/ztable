@@ -128,6 +128,10 @@ addcgroup=function(z,cgroup,n.cgroup,cgroupcolor=NULL){
 #'       Dafault value is NULL
 #'@param cspan.rgroup An integer indicating the column span of rgroup
 addrgroup=function(z,rgroup,n.rgroup,cspan.rgroup=NULL){
+    if(is.null(rgroup)) return(z)
+    for(i in 1:length(rgroup)) {
+        if(is.na(rgroup[i])) rgroup[i]=""
+    }
     z$rgroup=rgroup
     z$n.rgroup=n.rgroup
     z$cspan.rgroup=cspan.rgroup
@@ -205,7 +209,7 @@ printLatexHead=function(z){
 
     for(i in 1:nrow(z$cgroup)){
             colSum=0
-            linecount=0
+            linecount=1
             if(z$include.rownames) {
                 firstrow=cat(paste("\\cellcolor{",z$cgroupcolor[i,1],"} &",sep=""))
                 colSum=1
@@ -214,8 +218,8 @@ printLatexHead=function(z){
             for(j in 1:ncol(z$cgroup)) {
                 if(is.na(z$cgroup[i,j])) break
                 mcalign="c"
-                #if(vlines[mccount+1]>0)
-                #    for(k in 1:vlines[mccount+1]) mcalign=paste("|",mcalign,sep="")
+                if((j==1) & (addrow==0) & (vlines[linecount+1]>0))
+                    for(k in 1:vlines[linecount+1]) mcalign=paste("|",mcalign,sep="")
                 end=colSum+cGroupSpan[i,j]+1
                 linecount=linecount+z$n.cgroup[i,j]
                 if(vlines[linecount+1]>0)
@@ -237,7 +241,8 @@ printLatexHead=function(z){
             start=1
             for(j in 1:ncol(z$cgroup)) {
                 if(is.na(z$cgroup[i,j])) break
-                cat(paste("\\cline{",colSum,"-",colSum+cGroupSpan[i,j]-1,"}",sep=""))
+                if(z$cgroup[i,j]!="")
+                    cat(paste("\\cline{",colSum,"-",colSum+cGroupSpan[i,j]-1,"}",sep=""))
                 colSum=colSum+cGroupSpan[i,j]
                 start=start+z$n.cgroup[i,j]
                 if(j < ncol(z$cgroup)) if(vlines[start+1]==0) colSum=colSum+1

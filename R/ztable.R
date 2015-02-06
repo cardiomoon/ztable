@@ -703,6 +703,25 @@ print_ztable=function(z){
     else ztable2html(z,xdata)
 }
 
+#'Subfunction used in ztable2latex
+#'
+#' @param string a character vector
+tr=function(string) {
+    string=gsub("%","\\%",string,fixed=TRUE)
+    string=gsub(" -","\\hspace{0.5cm}",string,fixed=TRUE)
+    string
+}
+
+
+#'Subfunction used in ztable2html
+#'
+#' @param string a character vector
+tr2=function(string) {
+    string=gsub(" -","&nbsp;&nbsp;&nbsp;",string,fixed=TRUE)
+    string
+}
+
+
 #' Convert data to formatted data for table
 #'
 #' @param z An object of class "ztable"
@@ -733,11 +752,14 @@ data2table=function(z){
 
     select=sapply(data,is.factor)
     data[select]=lapply(data[select],as.character)
+    #data
 
     for(i in 1:nrow){
         for(j in 1:ncount) {
             if(z$display[j+1]=="s"){
-                temp<-z$x[i,j]
+                temp=data[i,j]
+                if(z$type=="latex") temp<-tr(temp)
+                if(z$type=="html") temp<-tr2(temp)
             }
             else{
                 if(is.na(z$x[i,j])) {
@@ -746,8 +768,9 @@ data2table=function(z){
                     temp<-formatC(z$x[i,j],digits=z$digits[j+1],
                                  format=z$display[j+1])
                 }
-                data[i,j]<-temp
+
             }
+            data[i,j]<-temp
         }
     }
     data
@@ -779,6 +802,7 @@ ztable2latex=function(z,xdata){
     addrow=ifelse(z$include.rownames,1,0)
 
     NewAlign=getNewAlign(z)
+    #NewAlign=z$align
     totalCol=totalCol(z)
     colCount=colGroupCount(z)
 
@@ -851,8 +875,13 @@ ztable2latex=function(z,xdata){
     if(!is.null(z$cgroup)) printLatexHead(z)
     subcolnames=ifelse(is.null(z$subcolnames),0,1)
 
-        if(z$colnames.bold) firstcn=paste("\\textbf{",cn[1],"}",sep="")
+        if(subcolnames) {
+            if(is.na(z$subcolnames[1])) firstcn=paste("\\multirow{2}{*}{}",sep="")
+            else firstcn=cn[1]
+        }
         else firstcn=cn[1]
+        if(z$colnames.bold) firstcn=paste("\\textbf{",firstcn,"}",sep="")
+
         if(z$cellcolor[1,2]!="white") firstcn=paste("\\cellcolor{",z$cellcolor[1,2],"}",firstcn,sep="")
         if(z$include.rownames) {
 
@@ -869,9 +898,15 @@ ztable2latex=function(z,xdata){
 
         }
         else firstrow=firstcn
+
         if(ncount>1) {
             for(i in 2:ncount) {
                 firstrow=paste(firstrow,"&",sep="")
+                if((i==2)&(!is.null(colCount))){
+                    if(1 %in% colCount[-length(colCount)]) {
+                        if(vlines[1+2]==0) firstrow=paste(firstrow,"&",sep="")
+                    }
+                }
                 if(z$cellcolor[1,i+1]!="white")
                     firstrow=paste(firstrow,"\\cellcolor{",z$cellcolor[1,i+1],"}",sep="")
                 if(z$colnames.bold) boldcn=paste("\\textbf{",cn[i],"}",sep="")
@@ -886,8 +921,8 @@ ztable2latex=function(z,xdata){
                 }
                 if((subcolnames==1)) {
                     if(is.na(z$subcolnames[i])){
-                        boldcn=paste("\\multirow{2}{*}{",boldcn,"}",sep="")
-
+                       # boldcn=paste("\\multirow{2}{*}{",boldcn,"}",sep="")
+                        boldcn=""
                     }
                 }
                 firstrow=paste(firstrow,boldcn,sep="")
@@ -912,19 +947,31 @@ ztable2latex=function(z,xdata){
                 if(z$cellcolor[1,1]!="white")
                     cat(paste("\\cellcolor{",z$cellcolor[1,1],"} &",sep=""))
                 else cat("&")
+
             }
             for(i in 1:length(z$subcolnames)){
-                if(is.na(z$subcolnames[i])) next
+                if(is.na(z$subcolnames[i])) {
+                    temp=paste("\\multirow{-2}{*}{",colnames(z$x)[i],"}",sep="")
+                    if(!is.null(z$colcolor)){
+                        if(z$cellcolor[1,i+1]!="white")
+                            temp=paste("\\cellcolor{",z$cellcolor[1,i+1],"}",temp,sep="")
+                    }
+                    cat(temp)
+                    if(i!=length(z$subcolnames)) cat("&")
+                    if(i %in% colCount[-length(colCount)]) {
+                        if(vlines[i+2]==0){
+                            if((z$cellcolor[1,i+1]!="white") & (z$cellcolor[1,i+1]==z$cellcolor[1,i+2]))
+                                cat(paste("\\cellcolor{",z$cellcolor[1,i+1],"}&",sep=""))
+                            else cat("&")
+                        }
+                    }
+                    next
+                }
                 if(z$colnames.bold) boldcn=paste("\\textbf{",z$subcolnames[i],"}",sep="")
                 else boldcn=z$subcolnames[i]
-                #mcalign="c"
-                #if(vlines[i+1]>0) for(j in 1:vlines[i+1]) mcalign=paste("|",mcalign,sep="")
-                #if(i==(ncount+addrow-1)){
-                #    if(vlines[i+2]>0) for(j in 1:vlines[i+2]) mcalign=paste(mcalign,"|",sep="")
-                #}
-                #boldcn=paste("\\multicolumn{1}{",mcalign,"}{",boldcn,"}",sep="")
+
                 if(z$cellcolor[1,i+1]!="white")
-                    cat(paste("\\cellcolor{",z$cellcolor[1,i+1],boldcn,"} &",sep=""))
+                    cat(paste("\\cellcolor{",z$cellcolor[1,i+1],"}",boldcn,"&",sep=""))
                 else cat(paste(boldcn,"&",sep=""))
                 if(i %in% colCount[-length(colCount)]) {
                     if(vlines[i+2]==0){
@@ -942,7 +989,19 @@ ztable2latex=function(z,xdata){
 
     for(i in 1:nrow){
         printcline=0
-        if(rgroupcount>0) printRowGroup(z,i)
+        if(rgroupcount>0) {
+            if(i %in% printrgroup) {
+                for(k in 1:length(printrgroup)){
+                    if(i == printrgroup[k]){
+                        if(is.na(z$rgroup[k])) break
+                        if(z$rgroup[k]=="") break
+                        printRowGroup(z,i)
+                        break
+                    }
+                }
+
+            }
+        }
         if(i %in% z$prefix.rows) {
             #if(is.numeric(z$zebra))
             #   cat(paste("\\rowcolor{",z$zebra.color[i],"}",sep=""))
@@ -1105,7 +1164,6 @@ printRowGroup=function(z,i){
 
     vlines=align2lines(z$align)
 
-    rgroupcount=0
     printrgroup=1
     if(!is.null(z$n.rgroup)){
         if(length(z$n.rgroup)>1) {
@@ -1113,9 +1171,18 @@ printRowGroup=function(z,i){
                 printrgroup=c(printrgroup,printrgroup[length(printrgroup)]+z$n.rgroup[j-1])
             }
         }
-        rgroupcount=1
     }
-printcline=0
+    printrgroup
+    printcline=0
+    rgroupcount=0
+
+    for(k in 1:length(printrgroup)){
+        if(i == printrgroup[k]){
+            rgroupcount=k
+            break
+        }
+    }
+
 if(i %in% printrgroup) {
     if(is.null(z$cspan.rgroup)){
         if(i>1) cat(paste("\\cline{1-",totalCol,"}\n",sep=""))

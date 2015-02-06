@@ -46,6 +46,7 @@ n.rgroup=c(3,1,2)
 
 z=addrgroup(z,rgroup=rgroup,n.rgroup=n.rgroup,cspan.rgroup=1)
 z
+print(z,type="latex")
 ```
 
 You can add another colname(subcolname), the N count for example.  The length of subcolnames should be same with column count of data.frame. You can use "NA" and the column name spans 2 rows. 
@@ -76,8 +77,6 @@ You can add or adjust vertical lines of table by vlines function
 
 ```{r,results='asis'}
 vlines(z,type="all")       # type=1 gets same result
-vlines(z,type="group")     # type=2 gets same result
-vlines(z,type="nongroup") # type=3 gets same result
 z=vlines(z,type="none")      # type=0 gets same result
 z
 z=vlines(z,add=c(1,2,5))
@@ -96,6 +95,7 @@ t1=head(iris,10)[,c(1,3,5)]
 t2=tail(iris,10)[,c(1,3,5)]
 t=cbind(t1,t2)
 z=ztable(t,caption="Table 1. Top 10 and Last 10 Data from iris",align="ccccccc")
+z
 ```
 
 And then, you can add column groups, row groups, add row colors, add column colors, add cell colors, and merge cells
@@ -121,10 +121,8 @@ z
 And you can adjust vertical lines, too.
 
 ```{r,results='asis'}
-vlines(z,type=0)
-vlines(z,type=1)
-vlines(z,type=2)
-vlines(z,type=3)
+vlines(z,type=0)  # No vertical lines
+vlines(z,type=1)  # Vertical lines for all column
 ```
 
 # Basic Use
@@ -374,4 +372,40 @@ z1=ztable(head(iris[1:3]),tabular=TRUE,zebra=2)
 parallelTables(width=c(0.5,0.5),list(z,z1),type="html")
 parallelTables(width=c(0.5,0.5),list(z,"figures/ztable3.png"),type="html")
 ```
+
+## mytable object from "moonBook" package
+
+'ztable()' can be used for 'mytable' object made by "mytable" function from "moonBook" package. 
+
+```{r,results='asis'}
+require(moonBook)
+res=mytable(Dx~.,data=acs)
+options(ztable.zebra=NULL)
+z=ztable(res)
+z
+vlines(z,type="all")
+
+```
+
+## cbind.mytable object
+
+'ztable()' can be used for 'cbind.mytable' object made by "mytable" function from "moonBook" package. 
+
+```{r,results='asis'}
+res1=mytable(sex+DM~.,data=acs)
+z=ztable(res1)
+z
+vlines(z,type="all")
+```
+
+You can use all ztable related function in this table.
+
+```{r,results='asis'}
+z=addRowColor(z,c(13,16),"platinum")
+z=addColColor(z,c(5,8),"pink")
+z=addCellColor(z,rows=16,cols=c(5,8),color="orange")
+z=addCellColor(z,rows=13,cols=5,color="orange")
+z
+```
+
 

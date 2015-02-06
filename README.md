@@ -1,7 +1,7 @@
 ---
 title: "Package ztable"
 author: "Keon-Woong Moon"
-date: "2015-02-03"
+date: "2015-02-05"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ztable}
@@ -27,17 +27,17 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
-<th <th align="right" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
-<th <th align="right" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
-<th <th align="right" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
-<th <th align="left" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; ">1</td>
@@ -103,10 +103,10 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
 <th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
@@ -182,15 +182,15 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Sepal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Sepal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Petal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Petal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 1 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Species</td>
 </tr>
@@ -285,15 +285,15 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Sepal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Sepal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Petal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Petal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 1 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Species</td>
 </tr>
@@ -416,15 +416,15 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Sepal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Sepal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Petal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Petal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 1 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Species</td>
 </tr>
@@ -558,15 +558,15 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Sepal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Sepal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Petal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Petal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 1 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Species</td>
 </tr>
@@ -679,15 +679,15 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Sepal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Sepal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Petal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Petal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 1 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Species</td>
 </tr>
@@ -798,14 +798,14 @@ vlines(z,type="all")       # type=1 gets same result
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td style="border-top: 2px solid gray; border-left: 1px solid black;"> </td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:1px solid black;">Sepal</td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:1px solid black;">Petal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;">Sepal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;">Petal</td>
 <td colspan=" 1 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:1px solid black;">Species</td>
 </tr>
 <tr>
@@ -884,215 +884,6 @@ vlines(z,type="all")       # type=1 gets same result
 </table>
 
 ```r
-vlines(z,type="group")     # type=2 gets same result
-```
-
-<head><style>
-        table {
-              text-align: right;}
-        th {
-              padding: 2px 2px 5px 5px;
-	        }
-        td {
-             padding: 2px 2px 5px 5px; }
-      </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
-<td style="border-top: 2px solid gray; border-left: 1px solid black;"> </td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:1px solid black;">Sepal</td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:1px solid black;">Petal</td>
-<td colspan=" 1 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:1px solid black;">Species</td>
-</tr>
-<tr>
-<th style="border-left: 1px solid black;background-color: #FFFFFF;">&nbsp;</th>
-<th <th align="center" style="font-weight: normal;border-left: 1px solid black;">Sepal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 0px solid black;">Sepal.Width</th>
-<th <th align="center" style="font-weight: normal;border-left: 1px solid black;">Petal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 0px solid black;">Petal.Width</th>
-<th <th rowspan="2" align="center" style="font-weight: normal;border-left: 1px solid black;border-right:1px solid black;border-bottom: 1px solid gray;">Species</th>
-</tr>
-<tr>
-<th style="border-left: 1px solid black;border-bottom: 1px solid gray;background-color: #FFFFFF;">&nbsp;</th>
-<th align="center" style="font-weight: normal;border-left: 1px solid black;border-bottom: 1px solid gray;">(N=123)</th>
-<th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=120)</th>
-<th align="center" style="font-weight: normal;border-left: 1px solid black;border-bottom: 1px solid gray;">(N=123)</th>
-<th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=124)</th>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 1px solid black; ">OneToThree</td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; border-right:1px solid black;"></td>
- </tr>
-<tr>
-<td  style="border-left: 1px solid black; ">1</td>
-<td align="center" style="border-left: 1px solid black;">5.10</td>
-<td colspan="2" align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFFF00;">3.50</td>
-<td align="center" style="border-left: 0px solid black;">0.20</td>
-<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">setosa</td>
-</tr>
-<tr>
-<td  style="border-left: 1px solid black; ">2</td>
-<td align="center" style="border-left: 1px solid black;">4.90</td>
-<td align="center" style="border-left: 0px solid black;">3.00</td>
-<td colspan="2" align="center" style="border-left: 1px solid black;border-right:1px solid black;background-color: #ADD8E6;">1.40</td>
-<td rowspan=" 4 " align="center" style="border-left: 1px solid black;border-right:1px solid black;background-color: #FFFF00;">setosa</td>
-</tr>
-<tr>
-<td  style="border-left: 1px solid black; ">3</td>
-<td rowspan=" 6 " align="center" style="border-left: 1px solid black;background-color: #FF7F00;">4.70</td>
-<td align="center" style="border-left: 0px solid black;">3.20</td>
-<td align="center" style="border-left: 1px solid black;">1.30</td>
-<td align="center" style="border-left: 0px solid black;">0.20</td>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 1px solid black; ">Four</td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 0px solid black; "></td>
- </tr>
-<tr>
-<td  style="border-left: 1px solid black; ">4</td>
-<td rowspan=" 4 " align="center" style="border-left: 0px solid black;background-color: #E5E4E2;">3.10</td>
-<td align="center" style="border-left: 1px solid black;">1.50</td>
-<td rowspan=" 4 " align="center" style="border-left: 0px solid black;background-color: #FFFF00;">0.20</td>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 1px solid black; ">FiveToSix</td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 1px solid black; border-right:1px solid black;"></td>
- </tr>
-<tr>
-<td  style="border-left: 1px solid black; ">5</td>
-<td rowspan=" 2 " align="center" style="border-left: 1px solid black;background-color: #00FFFF;">1.40</td>
-<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">setosa</td>
-</tr>
-<tr>
-<td  style="border-left: 1px solid black; ">6</td>
-<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">setosa</td>
-</tr>
-<tr>
-<td colspan="6" align="left" style="font-size:9pt ;border-top: 1px solid black;"></td>
-</tr>
-</table>
-
-```r
-vlines(z,type="nongroup") # type=3 gets same result
-```
-
-<head><style>
-        table {
-              text-align: right;}
-        th {
-              padding: 2px 2px 5px 5px;
-	        }
-        td {
-             padding: 2px 2px 5px 5px; }
-      </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
-<td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Sepal</td>
-<td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Petal</td>
-<td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
-<td colspan=" 1 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Species</td>
-</tr>
-<tr>
-<th style="border-left: 0px solid black;background-color: #FFFFFF;">&nbsp;</th>
-<th <th align="center" style="font-weight: normal;border-left: 0px solid black;">Sepal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 1px solid black;">Sepal.Width</th>
-<th style="">&nbsp;</th>
-<th <th align="center" style="font-weight: normal;border-left: 0px solid black;">Petal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 1px solid black;">Petal.Width</th>
-<th style="">&nbsp;</th>
-<th <th rowspan="2" align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;">Species</th>
-</tr>
-<tr>
-<th style="border-left: 0px solid black;border-bottom: 1px solid gray;background-color: #FFFFFF;">&nbsp;</th>
-<th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=123)</th>
-<th align="center" style="font-weight: normal;border-left: 1px solid black;border-bottom: 1px solid gray;">(N=120)</th>
-<th style="border-bottom: 1px solid gray;">&nbsp;</th>
-<th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=123)</th>
-<th align="center" style="font-weight: normal;border-left: 1px solid black;border-bottom: 1px solid gray;">(N=124)</th>
-<th style="border-bottom: 1px solid gray;">&nbsp;</th>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 0px solid black; ">OneToThree</td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; "></td>
-<td></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; "></td>
-<td></td>
-<td style="border-left: 0px solid black; border-right:0px solid black;"></td>
- </tr>
-<tr>
-<td  style="border-left: 0px solid black; ">1</td>
-<td align="center" style="border-left: 0px solid black;">5.10</td>
-<td colspan="3" align="center" style="border-left: 1px solid black;border-right:1px solid black;background-color: #FFFF00;">3.50</td>
-<td align="center" style="border-left: 1px solid black;">0.20</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">setosa</td>
-</tr>
-<tr>
-<td  style="border-left: 0px solid black; ">2</td>
-<td align="center" style="border-left: 0px solid black;">4.90</td>
-<td align="center" style="border-left: 1px solid black;">3.00</td>
-<td></td>
-<td colspan="2" align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #ADD8E6;">1.40</td>
-<td></td>
-<td rowspan=" 4 " align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFFF00;">setosa</td>
-</tr>
-<tr>
-<td  style="border-left: 0px solid black; ">3</td>
-<td rowspan=" 6 " align="center" style="border-left: 0px solid black;background-color: #FF7F00;">4.70</td>
-<td align="center" style="border-left: 1px solid black;">3.20</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;">1.30</td>
-<td align="center" style="border-left: 1px solid black;">0.20</td>
-<td></td>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 0px solid black; ">Four</td>
-<td style="border-left: 1px solid black; "></td>
-<td></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; "></td>
-<td></td>
- </tr>
-<tr>
-<td  style="border-left: 0px solid black; ">4</td>
-<td rowspan=" 4 " align="center" style="border-left: 1px solid black;background-color: #E5E4E2;">3.10</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;">1.50</td>
-<td rowspan=" 4 " align="center" style="border-left: 1px solid black;background-color: #FFFF00;">0.20</td>
-<td style="background-color:  #FFFF00 "></td>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 0px solid black; ">FiveToSix</td>
-<td></td>
-<td style="border-left: 0px solid black; "></td>
-<td></td>
-<td style="border-left: 0px solid black; border-right:0px solid black;"></td>
- </tr>
-<tr>
-<td  style="border-left: 0px solid black; ">5</td>
-<td></td>
-<td rowspan=" 2 " align="center" style="border-left: 0px solid black;background-color: #00FFFF;">1.40</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">setosa</td>
-</tr>
-<tr>
-<td  style="border-left: 0px solid black; ">6</td>
-<td></td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">setosa</td>
-</tr>
-<tr>
-<td colspan="8" align="left" style="font-size:9pt ;border-top: 1px solid black;"></td>
-</tr>
-</table>
-
-```r
 z=vlines(z,type="none")      # type=0 gets same result
 z
 ```
@@ -1101,15 +892,15 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Sepal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Sepal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Petal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Petal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 1 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Species</td>
 </tr>
@@ -1218,15 +1009,15 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td style="border-top: 2px solid gray; border-left: 1px solid black;"> </td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:0px solid black;">Sepal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;">Sepal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
-<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Petal</td>
+<td colspan=" 2 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Petal</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 1 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Species</td>
 </tr>
@@ -1355,13 +1146,13 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;">Table 1. Top 10 and Last 10 Data from iris</caption><tr>
 <td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Top 10</td>
+<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Top 10</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Last 10</td>
 </tr>
@@ -1491,13 +1282,13 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;">Table 1. Top 10 and Last 10 Data from iris</caption><tr>
 <td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Top 10</td>
+<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Top 10</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Last 10</td>
 </tr>
@@ -1657,13 +1448,13 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;">Table 1. Top 10 and Last 10 Data from iris</caption><tr>
 <td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Top 10</td>
+<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Top 10</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Last 10</td>
 </tr>
@@ -1822,13 +1613,13 @@ z
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;">Table 1. Top 10 and Last 10 Data from iris</caption><tr>
 <td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Top 10</td>
+<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Top 10</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Last 10</td>
 </tr>
@@ -1978,20 +1769,20 @@ And you can adjust vertical lines, too.
 
 
 ```r
-vlines(z,type=0)
+vlines(z,type=0)  # No vertical lines
 ```
 
 <head><style>
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;">Table 1. Top 10 and Last 10 Data from iris</caption><tr>
 <td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Top 10</td>
+<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Top 10</td>
 <td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
 <td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Last 10</td>
 </tr>
@@ -2138,20 +1929,20 @@ vlines(z,type=0)
 </table>
 
 ```r
-vlines(z,type=1)
+vlines(z,type=1)  # Vertical lines for all column
 ```
 
 <head><style>
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;">Table 1. Top 10 and Last 10 Data from iris</caption><tr>
 <td style="border-top: 2px solid gray; border-left: 1px solid black;"> </td>
-<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:1px solid black;">Top 10</td>
+<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;">Top 10</td>
 <td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:1px solid black;">Last 10</td>
 </tr>
 <tr>
@@ -2282,311 +2073,6 @@ vlines(z,type=1)
 </tr>
 </table>
 
-```r
-vlines(z,type=2)
-```
-
-<head><style>
-        table {
-              text-align: right;}
-        th {
-              padding: 2px 2px 5px 5px;
-	        }
-        td {
-             padding: 2px 2px 5px 5px; }
-      </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;">Table 1. Top 10 and Last 10 Data from iris</caption><tr>
-<td style="border-top: 2px solid gray; border-left: 1px solid black;"> </td>
-<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:1px solid black;">Top 10</td>
-<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:1px solid black;">Last 10</td>
-</tr>
-<tr>
-<th style="border-left: 1px solid black;background-color: #FFFFFF;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="center" style="font-weight: normal;border-left: 1px solid black;border-bottom: 1px solid gray;">Sepal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;">Petal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;background-color: #FFBF00;">Species</th>
-<th <th align="center" style="font-weight: normal;border-left: 1px solid black;border-bottom: 1px solid gray;">Sepal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;">Petal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:1px solid black;border-bottom: 1px solid gray;">Species</th>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 1px solid black; ">Top 1-3</td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 0px solid black; background-color:#FFBF00 "></td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 0px solid black; border-right:1px solid black;"></td>
- </tr>
-<tr>
-<td  style="border-left: 1px solid black; ">1</td>
-<td colspan="2" align="center" style="border-left: 1px solid black;border-right:0px solid black;background-color: #E0FFFF;">5.10</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFBF00;">setosa</td>
-<td align="center" style="border-left: 1px solid black;">6.70</td>
-<td align="center" style="border-left: 0px solid black;">5.60</td>
-<td align="center" style="border-left: 0px solid black;border-right:1px solid black;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 1px solid black; ">2</td>
-<td align="center" style="border-left: 1px solid black;">4.90</td>
-<td align="center" style="border-left: 0px solid black;">1.40</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFBF00;">setosa</td>
-<td align="center" style="border-left: 1px solid black;">6.90</td>
-<td align="center" style="border-left: 0px solid black;">5.10</td>
-<td align="center" style="border-left: 0px solid black;border-right:1px solid black;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 1px solid black; ">3</td>
-<td align="center" style="border-left: 1px solid black;">4.70</td>
-<td align="center" style="border-left: 0px solid black;">1.30</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFBF00;">setosa</td>
-<td align="center" style="border-left: 1px solid black;">5.80</td>
-<td align="center" style="border-left: 0px solid black;">5.10</td>
-<td align="center" style="border-left: 0px solid black;border-right:1px solid black;">virginica</td>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 1px solid black; ">Top 4-6</td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 0px solid black; background-color:#FFBF00 "></td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 0px solid black; border-right:1px solid black;"></td>
- </tr>
-<tr>
-<td  style="border-left: 1px solid black; background-color: #FFC0CB; ">4</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFC0CB;">4.60</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">1.50</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FF7F00;">setosa</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFC0CB;">6.80</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">5.90</td>
-<td align="center" style="border-left: 0px solid black;border-right:1px solid black;background-color: #FFC0CB;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 1px solid black; ">5</td>
-<td align="center" style="border-left: 1px solid black;">5.00</td>
-<td align="center" style="border-left: 0px solid black;">1.40</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFBF00;">setosa</td>
-<td align="center" style="border-left: 1px solid black;">6.70</td>
-<td align="center" style="border-left: 0px solid black;">5.70</td>
-<td align="center" style="border-left: 0px solid black;border-right:1px solid black;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 1px solid black; ">6</td>
-<td align="center" style="border-left: 1px solid black;">5.40</td>
-<td align="center" style="border-left: 0px solid black;">1.70</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFBF00;">setosa</td>
-<td align="center" style="border-left: 1px solid black;">6.70</td>
-<td align="center" style="border-left: 0px solid black;">5.20</td>
-<td rowspan=" 3 " align="center" style="border-left: 0px solid black;border-right:1px solid black;background-color: #00FFFF;">virginica</td>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 1px solid black; "> Top 7-10</td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 0px solid black; background-color:#FFBF00 "></td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 0px solid black; "></td>
- </tr>
-<tr>
-<td  style="border-left: 1px solid black; ">7</td>
-<td align="center" style="border-left: 1px solid black;">4.60</td>
-<td align="center" style="border-left: 0px solid black;">1.40</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFBF00;">setosa</td>
-<td align="center" style="border-left: 1px solid black;">6.30</td>
-<td align="center" style="border-left: 0px solid black;">5.00</td>
-</tr>
-<tr>
-<td  style="border-left: 1px solid black; ">8</td>
-<td align="center" style="border-left: 1px solid black;">5.00</td>
-<td align="center" style="border-left: 0px solid black;">1.50</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFBF00;">setosa</td>
-<td align="center" style="border-left: 1px solid black;">6.50</td>
-<td align="center" style="border-left: 0px solid black;">5.20</td>
-<td align="center" style="border-left: 0px solid black;border-right:1px solid black;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 1px solid black; background-color: #FFC0CB; ">9</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFC0CB;">4.40</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">1.40</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FF7F00;">setosa</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFC0CB;">6.20</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">5.40</td>
-<td align="center" style="border-left: 0px solid black;border-right:1px solid black;background-color: #FFC0CB;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 1px solid black; ">10</td>
-<td align="center" style="border-left: 1px solid black;">4.90</td>
-<td align="center" style="border-left: 0px solid black;">1.50</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFBF00;">setosa</td>
-<td align="center" style="border-left: 1px solid black;">5.90</td>
-<td align="center" style="border-left: 0px solid black;">5.10</td>
-<td align="center" style="border-left: 0px solid black;border-right:1px solid black;">virginica</td>
-</tr>
-<tr>
-<td colspan="7" align="left" style="font-size:9pt ;border-top: 1px solid black;"></td>
-</tr>
-</table>
-
-```r
-vlines(z,type=3)
-```
-
-<head><style>
-        table {
-              text-align: right;}
-        th {
-              padding: 2px 2px 5px 5px;
-	        }
-        td {
-             padding: 2px 2px 5px 5px; }
-      </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;">Table 1. Top 10 and Last 10 Data from iris</caption><tr>
-<td style="border-top: 2px solid gray; border-left: 0px solid black;"> </td>
-<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Top 10</td>
-<td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
-<td colspan=" 3 " align="center" style="font-weight: normal;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Last 10</td>
-</tr>
-<tr>
-<th style="border-left: 0px solid black;background-color: #FFFFFF;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;">Sepal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 1px solid black;border-bottom: 1px solid gray;">Petal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 1px solid black;border-bottom: 1px solid gray;background-color: #FFBF00;">Species</th>
-<th style="border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;">Sepal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 1px solid black;border-bottom: 1px solid gray;">Petal.Length</th>
-<th <th align="center" style="font-weight: normal;border-left: 1px solid black;border-right:0px solid black;border-bottom: 1px solid gray;">Species</th>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 0px solid black; ">Top 1-3</td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 1px solid black; background-color:#FFBF00 "></td>
-<td></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 1px solid black; border-right:0px solid black;"></td>
- </tr>
-<tr>
-<td  style="border-left: 0px solid black; ">1</td>
-<td colspan="2" align="center" style="border-left: 0px solid black;border-right:1px solid black;background-color: #E0FFFF;">5.10</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFBF00;">setosa</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;">6.70</td>
-<td align="center" style="border-left: 1px solid black;">5.60</td>
-<td align="center" style="border-left: 1px solid black;border-right:0px solid black;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 0px solid black; ">2</td>
-<td align="center" style="border-left: 0px solid black;">4.90</td>
-<td align="center" style="border-left: 1px solid black;">1.40</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFBF00;">setosa</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;">6.90</td>
-<td align="center" style="border-left: 1px solid black;">5.10</td>
-<td align="center" style="border-left: 1px solid black;border-right:0px solid black;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 0px solid black; ">3</td>
-<td align="center" style="border-left: 0px solid black;">4.70</td>
-<td align="center" style="border-left: 1px solid black;">1.30</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFBF00;">setosa</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;">5.80</td>
-<td align="center" style="border-left: 1px solid black;">5.10</td>
-<td align="center" style="border-left: 1px solid black;border-right:0px solid black;">virginica</td>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 0px solid black; ">Top 4-6</td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 1px solid black; background-color:#FFBF00 "></td>
-<td></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 1px solid black; border-right:0px solid black;"></td>
- </tr>
-<tr>
-<td  style="border-left: 0px solid black; background-color: #FFC0CB; ">4</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">4.60</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFC0CB;">1.50</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FF7F00;">setosa</td>
-<td style="background-color:  #FFC0CB "></td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">6.80</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFC0CB;">5.90</td>
-<td align="center" style="border-left: 1px solid black;border-right:0px solid black;background-color: #FFC0CB;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 0px solid black; ">5</td>
-<td align="center" style="border-left: 0px solid black;">5.00</td>
-<td align="center" style="border-left: 1px solid black;">1.40</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFBF00;">setosa</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;">6.70</td>
-<td align="center" style="border-left: 1px solid black;">5.70</td>
-<td align="center" style="border-left: 1px solid black;border-right:0px solid black;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 0px solid black; ">6</td>
-<td align="center" style="border-left: 0px solid black;">5.40</td>
-<td align="center" style="border-left: 1px solid black;">1.70</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFBF00;">setosa</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;">6.70</td>
-<td align="center" style="border-left: 1px solid black;">5.20</td>
-<td rowspan=" 3 " align="center" style="border-left: 1px solid black;border-right:0px solid black;background-color: #00FFFF;">virginica</td>
-</tr>
-<tr>
-<td align="left" style="font-weight: bold; border-left: 0px solid black; "> Top 7-10</td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; "></td>
-<td style="border-left: 1px solid black; background-color:#FFBF00 "></td>
-<td></td>
-<td style="border-left: 0px solid black; "></td>
-<td style="border-left: 1px solid black; "></td>
- </tr>
-<tr>
-<td  style="border-left: 0px solid black; ">7</td>
-<td align="center" style="border-left: 0px solid black;">4.60</td>
-<td align="center" style="border-left: 1px solid black;">1.40</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFBF00;">setosa</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;">6.30</td>
-<td align="center" style="border-left: 1px solid black;">5.00</td>
-</tr>
-<tr>
-<td  style="border-left: 0px solid black; ">8</td>
-<td align="center" style="border-left: 0px solid black;">5.00</td>
-<td align="center" style="border-left: 1px solid black;">1.50</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFBF00;">setosa</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;">6.50</td>
-<td align="center" style="border-left: 1px solid black;">5.20</td>
-<td align="center" style="border-left: 1px solid black;border-right:0px solid black;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 0px solid black; background-color: #FFC0CB; ">9</td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">4.40</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFC0CB;">1.40</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FF7F00;">setosa</td>
-<td style="background-color:  #FFC0CB "></td>
-<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">6.20</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFC0CB;">5.40</td>
-<td align="center" style="border-left: 1px solid black;border-right:0px solid black;background-color: #FFC0CB;">virginica</td>
-</tr>
-<tr>
-<td  style="border-left: 0px solid black; ">10</td>
-<td align="center" style="border-left: 0px solid black;">4.90</td>
-<td align="center" style="border-left: 1px solid black;">1.50</td>
-<td align="center" style="border-left: 1px solid black;background-color: #FFBF00;">setosa</td>
-<td></td>
-<td align="center" style="border-left: 0px solid black;">5.90</td>
-<td align="center" style="border-left: 1px solid black;">5.10</td>
-<td align="center" style="border-left: 1px solid black;border-right:0px solid black;">virginica</td>
-</tr>
-<tr>
-<td colspan="8" align="left" style="font-size:9pt ;border-top: 1px solid black;"></td>
-</tr>
-</table>
-
 # Basic Use
 
 Package "ztable" consist of one function: ztable. It's main function is creating zebra zebra striping tables(tables with alternating row colors) in both Latex and html formats easily from mainly data.frame or an R object such as matrix, lm, aov, anova, glm and coxph objects. It is fully customizable and you can get similar tables in both latex and html format without changing source. The default output is Rstudio::viewer, but you can get html format by adding just one sentence.
@@ -2618,23 +2104,23 @@ ztable(head(mtcars))
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">hp</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">drat</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">wt</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">qsec</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">vs</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">am</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">gear</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">carb</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">hp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">drat</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">wt</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">qsec</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">vs</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">am</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">gear</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">carb</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">Mazda RX4</td>
@@ -2739,23 +2225,23 @@ ztable(head(mtcars),zebra=NULL,size=3,
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:9pt;"><caption style="text-align:center;">Table 1. Non-zebra Table with small size</caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">hp</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">drat</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">wt</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">qsec</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">vs</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">am</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">gear</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">carb</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">hp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">drat</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">wt</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">qsec</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">vs</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">am</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">gear</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">carb</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; ">Mazda RX4</td>
@@ -2861,19 +2347,19 @@ ztable(head(mtcars[c(1:7)]),zebra=2,zebra.color="lightcyan",size=7,
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:bottom; font-size:15pt;"><caption style="text-align:left;">Table 2. Left-sided caption at botom with large font</caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">hp</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">drat</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">wt</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">qsec</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">hp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">drat</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">wt</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">qsec</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; ">Mazda RX4</td>
@@ -2954,17 +2440,17 @@ ztable(out)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum Sq</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Mean Sq</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F value</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum Sq</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Mean Sq</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F value</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">cyl        </td>
@@ -3074,16 +2560,16 @@ ztable(fit)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Estimate</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Std. Error</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">t value</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>|t|)</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Estimate</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Std. Error</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">t value</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>|t|)</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">(Intercept)</td>
@@ -3158,10 +2644,10 @@ ztable(a)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td colspan="6"  align="left" style="font-size:9pt; padding: 0px 0px;">Analysis of Variance Table</td>
 </tr>
@@ -3170,11 +2656,11 @@ ztable(a)
 </tr>
 <tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum Sq</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Mean Sq</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F value</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum Sq</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Mean Sq</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F value</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">cyl</td>
@@ -3255,10 +2741,10 @@ ztable(b)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td colspan="7"  align="left" style="font-size:9pt; padding: 0px 0px;">Analysis of Variance Table</td>
 </tr>
@@ -3270,12 +2756,12 @@ ztable(b)
 </tr>
 <tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Res.Df</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">RSS</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum of Sq</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Res.Df</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">RSS</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum of Sq</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">1</td>
@@ -3308,18 +2794,18 @@ ztable(b,show.heading=FALSE)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Res.Df</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">RSS</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum of Sq</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Res.Df</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">RSS</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum of Sq</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">1</td>
@@ -3369,19 +2855,19 @@ ztable(out)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Estimate</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Std. Error</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">z value</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>|z|)</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">OR</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">lcl</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">ucl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Estimate</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Std. Error</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">z value</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>|z|)</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">OR</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">lcl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">ucl</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">(Intercept)</td>
@@ -3469,10 +2955,10 @@ ztable(anova(out))
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td colspan="5"  align="left" style="font-size:9pt; padding: 0px 0px;">Analysis of Deviance Table</td>
 </tr>
@@ -3487,10 +2973,10 @@ ztable(anova(out))
 </tr>
 <tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Deviance</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Resid. Df</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Resid. Dev</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Deviance</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Resid. Df</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Resid. Dev</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">NULL</td>
@@ -3553,17 +3039,17 @@ ztable(npk.aov,zebra=1)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum Sq</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Mean Sq</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F value</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum Sq</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Mean Sq</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F value</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">block      </td>
@@ -3650,16 +3136,16 @@ ztable(lm.D9)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Estimate</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Std. Error</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">t value</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>|t|)</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Estimate</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Std. Error</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">t value</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>|t|)</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">(Intercept)</td>
@@ -3688,10 +3174,10 @@ ztable(anova(lm.D9),align="|c|rrrr|r|")
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td colspan="6"  align="left" style="font-size:9pt; padding: 0px 0px;">Analysis of Variance Table</td>
 </tr>
@@ -3700,11 +3186,11 @@ ztable(anova(lm.D9),align="|c|rrrr|r|")
 </tr>
 <tr>
 <th style="border-left: 1px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 1px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum Sq</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Mean Sq</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F value</th>
-<th <th align="right" style="font-weight: bold;border-left: 1px solid black;border-right:1px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
+<th <th align="center" style="font-weight: bold;border-left: 1px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Df</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sum Sq</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Mean Sq</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">F value</th>
+<th <th align="center" style="font-weight: bold;border-left: 1px solid black;border-right:1px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>F)</th>
 </tr>
 <tr>
 <td  style="border-left: 1px solid black; background-color: #E5E4E2; ">group</td>
@@ -3744,19 +3230,19 @@ ztable(glm.D93)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Estimate</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Std. Error</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">z value</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>|z|)</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">OR</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">lcl</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">ucl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Estimate</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Std. Error</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">z value</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>|z|)</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">OR</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">lcl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">ucl</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">(Intercept)</td>
@@ -3829,19 +3315,19 @@ ztable(pr1)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td colspan="5"  align="left" style="font-size:9pt; padding: 0px 0px;">Rotation:</td>
 </tr>
 <tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC1</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC2</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC3</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC4</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC1</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC2</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC3</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC4</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">Murder</td>
@@ -3884,19 +3370,19 @@ ztable(summary(pr1))
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td colspan="5"  align="left" style="font-size:9pt; padding: 0px 0px;">Importance of components:</td>
 </tr>
 <tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC1</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC2</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC3</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC4</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC1</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC2</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC3</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">PC4</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">Standard deviation</td>
@@ -3940,18 +3426,18 @@ ztable(out)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">HR</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">lcl</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">ucl</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">se(coef)</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">z</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>|z|)</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">HR</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">lcl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">ucl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">se(coef)</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">z</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Pr(>|z|)</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">rx1</td>
@@ -4045,23 +3531,23 @@ ztable(head(mtcars,15),zebra=0,zebra.color=NULL)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">hp</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">drat</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">wt</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">qsec</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">vs</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">am</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">gear</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">carb</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">hp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">drat</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">wt</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">qsec</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">vs</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">am</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">gear</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">carb</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #FFCC99; ">Mazda RX4</td>
@@ -4294,17 +3780,17 @@ z1
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
-<th <th align="left" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; ">1</td>
@@ -4367,17 +3853,17 @@ print(z1,zebra.type=2)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
-<th <th align="left" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; ">1</td>
@@ -4440,17 +3926,17 @@ print(z1,zebra=1,zebra.type=2,zebra.colnames=TRUE)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #E5E4E2;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #E5E4E2;">Sepal.Width</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #E5E4E2;">Petal.Width</th>
-<th <th align="left" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #E5E4E2;">Sepal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #E5E4E2;">Petal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E5E4E2; ">1</td>
@@ -4518,17 +4004,17 @@ options(ztable.zebra.color=NULL)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
-<th <th align="left" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #FFE5B4; ">1</td>
@@ -4594,17 +4080,17 @@ update_ztable(z1,colnames.bold=TRUE,zebra.colnames=TRUE)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFE5B4;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFCC99;">Sepal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFDAB9;">Sepal.Width</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FADFAD;">Petal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #D1E231;">Petal.Width</th>
-<th <th align="left" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #F0EAD6;">Species</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFCC99;">Sepal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFDAB9;">Sepal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FADFAD;">Petal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #D1E231;">Petal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #F0EAD6;">Species</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #FFE5B4; ">1</td>
@@ -4669,17 +4155,17 @@ print(z1,zebra.color=c(rep("white",5),"peach"),zebra.colnames=TRUE)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
-<th <th align="left" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFE5B4;">Species</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFE5B4;">Species</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; ">1</td>
@@ -4747,17 +4233,17 @@ ztable(head(iris),zebra=0,zebra.type=0)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
-<th <th align="left" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Species</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E6E200; ">1</td>
@@ -4820,17 +4306,17 @@ ztable(head(iris),zebra=0,zebra.type=0,zebra.color=zcolors$name,zebra.colnames=T
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #5D8AA8;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #F0F8FF;">Sepal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #E32636;">Sepal.Width</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #EFDECD;">Petal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #E52B50;">Petal.Width</th>
-<th <th align="left" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFBF00;">Species</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #F0F8FF;">Sepal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #E32636;">Sepal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #EFDECD;">Petal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #E52B50;">Petal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFBF00;">Species</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #FF7E00; ">1</td>
@@ -4898,17 +4384,17 @@ ztable(head(iris),zebra=0,zebra.type=0,zebra.color=1:7,zebra.colnames=TRUE)
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFE5B4;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFCC99;">Sepal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFDAB9;">Sepal.Width</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FADFAD;">Petal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #D1E231;">Petal.Width</th>
-<th <th align="left" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #F0EAD6;">Species</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFCC99;">Sepal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFDAB9;">Sepal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FADFAD;">Petal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #D1E231;">Petal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #F0EAD6;">Species</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #E6E200; ">1</td>
@@ -4971,21 +4457,21 @@ ztable(head(mtcars[,1:9]),zebra=0,zebra.type=0,zebra.color=1:9,zebra.colnames=TR
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFE5B4;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFCC99;">mpg</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFDAB9;">cyl</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FADFAD;">disp</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #D1E231;">hp</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #F0EAD6;">drat</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #E6E200;">wt</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #CCCCFF;">qsec</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FF6961;">vs</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFE5B4;">am</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFCC99;">mpg</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFDAB9;">cyl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FADFAD;">disp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #D1E231;">hp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #F0EAD6;">drat</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #E6E200;">wt</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #CCCCFF;">qsec</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FF6961;">vs</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #FFE5B4;">am</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #FFCC99; ">Mazda RX4</td>
@@ -5088,10 +4574,10 @@ ztable(a,zebra=0,zebra.type=0,zebra.color=mycolor,include.rownames=FALSE,
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <td align="left" style="border-left: 0px solid black;border-top: 2px solid gray;background-color: #5D8AA8;">airforceblue</td>
 <td align="left" style="border-left: 0px solid black;border-top: 2px solid gray;background-color: #F0F8FF;">aliceblue</td>
@@ -6169,15 +5655,15 @@ parallelTables(width=c(0.5,0.5),list(z,z1),type="html")
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #FFCC99; ">Mazda RX4</td>
@@ -6224,15 +5710,15 @@ parallelTables(width=c(0.5,0.5),list(z,z1),type="html")
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Length</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Sepal.Width</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">Petal.Length</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; ">1</td>
@@ -6292,15 +5778,15 @@ parallelTables(width=c(0.5,0.5),list(z,"vignettes/figures/ztable3.png"),type="ht
         table {
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
 <th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">&nbsp;</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
-<th <th align="right" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">mpg</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">cyl</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">disp</th>
 </tr>
 <tr>
 <td  style="border-left: 0px solid black; background-color: #FFCC99; ">Mazda RX4</td>
@@ -6346,4 +5832,1490 @@ parallelTables(width=c(0.5,0.5),list(z,"vignettes/figures/ztable3.png"),type="ht
 <td><img src="vignettes/figures/ztable3.png"></td>
 </tr>
 </table>
+
+## mytable object from "moonBook" package
+
+'ztable()' can be used for 'mytable' object made by "mytable" function from "moonBook" package. 
+
+
+```r
+require(moonBook)
+res=mytable(sex~.,data=acs)
+options(ztable.zebra=NULL)
+z=ztable(res)
+z
+```
+
+<head><style>
+        table {
+              text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+	        }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-top: 2px solid gray;"></th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-top: 2px solid gray;">Female</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;border-top: 2px solid gray;">Male</th>
+<th <th rowspan="2" align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">p</th>
+</tr>
+<tr>
+<th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;"></th>
+<th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=287)</th>
+<th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=570)</th>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">age                </td>
+<td align="center" style="border-left: 0px solid black;">68.7 ± 10.7</td>
+<td align="center" style="border-left: 0px solid black;">60.6 ± 11.2</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.000</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">cardiogenicShock   </td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.136</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - No             </td>
+<td align="center" style="border-left: 0px solid black;">275 (95.8%)</td>
+<td align="center" style="border-left: 0px solid black;">530 (93.0%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Yes            </td>
+<td align="center" style="border-left: 0px solid black;">12 ( 4.2%)</td>
+<td align="center" style="border-left: 0px solid black;">40 ( 7.0%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">entry              </td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.035</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Femoral        </td>
+<td align="center" style="border-left: 0px solid black;">119 (41.5%)</td>
+<td align="center" style="border-left: 0px solid black;">193 (33.9%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Radial         </td>
+<td align="center" style="border-left: 0px solid black;">168 (58.5%)</td>
+<td align="center" style="border-left: 0px solid black;">377 (66.1%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">Dx                 </td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.012</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - NSTEMI         </td>
+<td align="center" style="border-left: 0px solid black;">50 (17.4%)</td>
+<td align="center" style="border-left: 0px solid black;">103 (18.1%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - STEMI          </td>
+<td align="center" style="border-left: 0px solid black;">84 (29.3%)</td>
+<td align="center" style="border-left: 0px solid black;">220 (38.6%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Unstable Angina</td>
+<td align="center" style="border-left: 0px solid black;">153 (53.3%)</td>
+<td align="center" style="border-left: 0px solid black;">247 (43.3%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">EF                 </td>
+<td align="center" style="border-left: 0px solid black;">56.3 ± 10.1</td>
+<td align="center" style="border-left: 0px solid black;">55.6 ±  9.4</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.387</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">height             </td>
+<td align="center" style="border-left: 0px solid black;">153.8 ±  6.2</td>
+<td align="center" style="border-left: 0px solid black;">167.9 ±  6.1</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.000</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">weight             </td>
+<td align="center" style="border-left: 0px solid black;">57.2 ±  9.3</td>
+<td align="center" style="border-left: 0px solid black;">68.7 ± 10.3</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.000</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">BMI                </td>
+<td align="center" style="border-left: 0px solid black;">24.2 ±  3.6</td>
+<td align="center" style="border-left: 0px solid black;">24.3 ±  3.2</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.611</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">obesity            </td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.580</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - No             </td>
+<td align="center" style="border-left: 0px solid black;">194 (67.6%)</td>
+<td align="center" style="border-left: 0px solid black;">373 (65.4%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Yes            </td>
+<td align="center" style="border-left: 0px solid black;">93 (32.4%)</td>
+<td align="center" style="border-left: 0px solid black;">197 (34.6%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">TC                 </td>
+<td align="center" style="border-left: 0px solid black;">188.9 ± 51.1</td>
+<td align="center" style="border-left: 0px solid black;">183.3 ± 45.9</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.124</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">LDLC               </td>
+<td align="center" style="border-left: 0px solid black;">117.8 ± 41.2</td>
+<td align="center" style="border-left: 0px solid black;">116.0 ± 41.1</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.561</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">HDLC               </td>
+<td align="center" style="border-left: 0px solid black;">39.0 ± 11.5</td>
+<td align="center" style="border-left: 0px solid black;">37.8 ± 10.9</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.145</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">TG                 </td>
+<td align="center" style="border-left: 0px solid black;">119.9 ± 76.2</td>
+<td align="center" style="border-left: 0px solid black;">127.9 ± 97.3</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.195</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">DM                 </td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.077</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - No             </td>
+<td align="center" style="border-left: 0px solid black;">173 (60.3%)</td>
+<td align="center" style="border-left: 0px solid black;">380 (66.7%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Yes            </td>
+<td align="center" style="border-left: 0px solid black;">114 (39.7%)</td>
+<td align="center" style="border-left: 0px solid black;">190 (33.3%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">HBP                </td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.000</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - No             </td>
+<td align="center" style="border-left: 0px solid black;">83 (28.9%)</td>
+<td align="center" style="border-left: 0px solid black;">273 (47.9%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Yes            </td>
+<td align="center" style="border-left: 0px solid black;">204 (71.1%)</td>
+<td align="center" style="border-left: 0px solid black;">297 (52.1%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">smoking            </td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.000</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Ex-smoker      </td>
+<td align="center" style="border-left: 0px solid black;">49 (17.1%)</td>
+<td align="center" style="border-left: 0px solid black;">155 (27.2%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Never          </td>
+<td align="center" style="border-left: 0px solid black;">209 (72.8%)</td>
+<td align="center" style="border-left: 0px solid black;">123 (21.6%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Smoker         </td>
+<td align="center" style="border-left: 0px solid black;">29 (10.1%)</td>
+<td align="center" style="border-left: 0px solid black;">292 (51.2%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td colspan="4" align="left" style="font-size:9pt ;border-top: 1px solid black;"></td>
+</tr>
+</table>
+
+```r
+vlines(z,type="all")
+```
+
+<head><style>
+        table {
+              text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+	        }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;"></caption><tr>
+<th <th align="center" style="font-weight: bold;border-left: 1px solid black;border-top: 2px solid gray;"></th>
+<th <th align="center" style="font-weight: bold;border-left: 1px solid black;border-top: 2px solid gray;">Female</th>
+<th <th align="center" style="font-weight: bold;border-left: 1px solid black;border-top: 2px solid gray;">Male</th>
+<th <th rowspan="2" align="center" style="font-weight: bold;border-left: 1px solid black;border-right:1px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">p</th>
+</tr>
+<tr>
+<th align="center" style="font-weight: bold;border-left: 1px solid black;border-bottom: 1px solid gray;"></th>
+<th align="center" style="font-weight: bold;border-left: 1px solid black;border-bottom: 1px solid gray;">(N=287)</th>
+<th align="center" style="font-weight: bold;border-left: 1px solid black;border-bottom: 1px solid gray;">(N=570)</th>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">age                </td>
+<td align="center" style="border-left: 1px solid black;">68.7 ± 10.7</td>
+<td align="center" style="border-left: 1px solid black;">60.6 ± 11.2</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.000</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">cardiogenicShock   </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.136</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - No             </td>
+<td align="center" style="border-left: 1px solid black;">275 (95.8%)</td>
+<td align="center" style="border-left: 1px solid black;">530 (93.0%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Yes            </td>
+<td align="center" style="border-left: 1px solid black;">12 ( 4.2%)</td>
+<td align="center" style="border-left: 1px solid black;">40 ( 7.0%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">entry              </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.035</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Femoral        </td>
+<td align="center" style="border-left: 1px solid black;">119 (41.5%)</td>
+<td align="center" style="border-left: 1px solid black;">193 (33.9%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Radial         </td>
+<td align="center" style="border-left: 1px solid black;">168 (58.5%)</td>
+<td align="center" style="border-left: 1px solid black;">377 (66.1%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">Dx                 </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.012</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - NSTEMI         </td>
+<td align="center" style="border-left: 1px solid black;">50 (17.4%)</td>
+<td align="center" style="border-left: 1px solid black;">103 (18.1%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - STEMI          </td>
+<td align="center" style="border-left: 1px solid black;">84 (29.3%)</td>
+<td align="center" style="border-left: 1px solid black;">220 (38.6%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Unstable Angina</td>
+<td align="center" style="border-left: 1px solid black;">153 (53.3%)</td>
+<td align="center" style="border-left: 1px solid black;">247 (43.3%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">EF                 </td>
+<td align="center" style="border-left: 1px solid black;">56.3 ± 10.1</td>
+<td align="center" style="border-left: 1px solid black;">55.6 ±  9.4</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.387</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">height             </td>
+<td align="center" style="border-left: 1px solid black;">153.8 ±  6.2</td>
+<td align="center" style="border-left: 1px solid black;">167.9 ±  6.1</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.000</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">weight             </td>
+<td align="center" style="border-left: 1px solid black;">57.2 ±  9.3</td>
+<td align="center" style="border-left: 1px solid black;">68.7 ± 10.3</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.000</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">BMI                </td>
+<td align="center" style="border-left: 1px solid black;">24.2 ±  3.6</td>
+<td align="center" style="border-left: 1px solid black;">24.3 ±  3.2</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.611</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">obesity            </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.580</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - No             </td>
+<td align="center" style="border-left: 1px solid black;">194 (67.6%)</td>
+<td align="center" style="border-left: 1px solid black;">373 (65.4%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Yes            </td>
+<td align="center" style="border-left: 1px solid black;">93 (32.4%)</td>
+<td align="center" style="border-left: 1px solid black;">197 (34.6%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">TC                 </td>
+<td align="center" style="border-left: 1px solid black;">188.9 ± 51.1</td>
+<td align="center" style="border-left: 1px solid black;">183.3 ± 45.9</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.124</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">LDLC               </td>
+<td align="center" style="border-left: 1px solid black;">117.8 ± 41.2</td>
+<td align="center" style="border-left: 1px solid black;">116.0 ± 41.1</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.561</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">HDLC               </td>
+<td align="center" style="border-left: 1px solid black;">39.0 ± 11.5</td>
+<td align="center" style="border-left: 1px solid black;">37.8 ± 10.9</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.145</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">TG                 </td>
+<td align="center" style="border-left: 1px solid black;">119.9 ± 76.2</td>
+<td align="center" style="border-left: 1px solid black;">127.9 ± 97.3</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.195</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">DM                 </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.077</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - No             </td>
+<td align="center" style="border-left: 1px solid black;">173 (60.3%)</td>
+<td align="center" style="border-left: 1px solid black;">380 (66.7%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Yes            </td>
+<td align="center" style="border-left: 1px solid black;">114 (39.7%)</td>
+<td align="center" style="border-left: 1px solid black;">190 (33.3%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">HBP                </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.000</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - No             </td>
+<td align="center" style="border-left: 1px solid black;">83 (28.9%)</td>
+<td align="center" style="border-left: 1px solid black;">273 (47.9%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Yes            </td>
+<td align="center" style="border-left: 1px solid black;">204 (71.1%)</td>
+<td align="center" style="border-left: 1px solid black;">297 (52.1%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">smoking            </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.000</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Ex-smoker      </td>
+<td align="center" style="border-left: 1px solid black;">49 (17.1%)</td>
+<td align="center" style="border-left: 1px solid black;">155 (27.2%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Never          </td>
+<td align="center" style="border-left: 1px solid black;">209 (72.8%)</td>
+<td align="center" style="border-left: 1px solid black;">123 (21.6%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Smoker         </td>
+<td align="center" style="border-left: 1px solid black;">29 (10.1%)</td>
+<td align="center" style="border-left: 1px solid black;">292 (51.2%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td colspan="4" align="left" style="font-size:9pt ;border-top: 1px solid black;"></td>
+</tr>
+</table>
+
+## cbind.mytable object
+
+'ztable()' can be used for 'cbind.mytable' object made by "mytable" function from "moonBook" package. 
+
+
+```r
+res1=mytable(sex+DM~.,data=acs)
+z=ztable(res1)
+z
+```
+
+<head><style>
+        table {
+              text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+	        }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;">Descriptive Statistics Stratified by 'SEX' and 'DM'</caption><tr>
+<td colspan=" 1 " align="center" style="font-weight: bold;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">SEX</td>
+<td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
+<td colspan=" 3 " align="center" style="font-weight: bold;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Male</td>
+<td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
+<td colspan=" 3 " align="center" style="font-weight: bold;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Female</td>
+</tr>
+<tr>
+<th <th rowspan="2" align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">DM</th>
+<th style="">&nbsp;</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;">No</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;">Yes</th>
+<th <th rowspan="2" align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">p</th>
+<th style="">&nbsp;</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;">No</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;">Yes</th>
+<th <th rowspan="2" align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;">p</th>
+</tr>
+<tr>
+<th style="border-bottom: 1px solid gray;">&nbsp;</th>
+<th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=380)</th>
+<th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=190)</th>
+<th style="border-bottom: 1px solid gray;">&nbsp;</th>
+<th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=173)</th>
+<th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=114)</th>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">age                </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">60.9 ± 11.5</td>
+<td align="center" style="border-left: 0px solid black;">60.1 ± 10.6</td>
+<td align="center" style="border-left: 0px solid black;">0.472</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">69.3 ± 11.4</td>
+<td align="center" style="border-left: 0px solid black;">67.8 ±  9.7</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.257</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">cardiogenicShock   </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;">0.685</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.296</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - No             </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">355 (93.4%)</td>
+<td align="center" style="border-left: 0px solid black;">175 (92.1%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">168 (97.1%)</td>
+<td align="center" style="border-left: 0px solid black;">107 (93.9%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Yes            </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">25 ( 6.6%)</td>
+<td align="center" style="border-left: 0px solid black;">15 ( 7.9%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">5 ( 2.9%)</td>
+<td align="center" style="border-left: 0px solid black;">7 ( 6.1%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">entry              </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;">0.552</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.665</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Femoral        </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">125 (32.9%)</td>
+<td align="center" style="border-left: 0px solid black;">68 (35.8%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">74 (42.8%)</td>
+<td align="center" style="border-left: 0px solid black;">45 (39.5%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Radial         </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">255 (67.1%)</td>
+<td align="center" style="border-left: 0px solid black;">122 (64.2%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">99 (57.2%)</td>
+<td align="center" style="border-left: 0px solid black;">69 (60.5%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">Dx                 </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;">0.219</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.240</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - NSTEMI         </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">71 (18.7%)</td>
+<td align="center" style="border-left: 0px solid black;">32 (16.8%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">25 (14.5%)</td>
+<td align="center" style="border-left: 0px solid black;">25 (21.9%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - STEMI          </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">154 (40.5%)</td>
+<td align="center" style="border-left: 0px solid black;">66 (34.7%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">54 (31.2%)</td>
+<td align="center" style="border-left: 0px solid black;">30 (26.3%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Unstable Angina</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">155 (40.8%)</td>
+<td align="center" style="border-left: 0px solid black;">92 (48.4%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">94 (54.3%)</td>
+<td align="center" style="border-left: 0px solid black;">59 (51.8%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">EF                 </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">56.5 ±  8.3</td>
+<td align="center" style="border-left: 0px solid black;">53.9 ± 11.0</td>
+<td align="center" style="border-left: 0px solid black;">0.007</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">56.0 ± 10.1</td>
+<td align="center" style="border-left: 0px solid black;">56.6 ± 10.0</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.655</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">height             </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">168.1 ±  5.8</td>
+<td align="center" style="border-left: 0px solid black;">167.5 ±  6.7</td>
+<td align="center" style="border-left: 0px solid black;">0.386</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">153.9 ±  6.5</td>
+<td align="center" style="border-left: 0px solid black;">153.6 ±  5.8</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.707</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">weight             </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">68.1 ± 10.4</td>
+<td align="center" style="border-left: 0px solid black;">69.8 ± 10.2</td>
+<td align="center" style="border-left: 0px solid black;">0.070</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">56.5 ±  8.7</td>
+<td align="center" style="border-left: 0px solid black;">58.4 ± 10.0</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.106</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">BMI                </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">24.0 ±  3.1</td>
+<td align="center" style="border-left: 0px solid black;">24.9 ±  3.5</td>
+<td align="center" style="border-left: 0px solid black;">0.005</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">23.8 ±  3.2</td>
+<td align="center" style="border-left: 0px solid black;">24.8 ±  4.0</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.046</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">obesity            </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;">0.027</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.359</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - No             </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">261 (68.7%)</td>
+<td align="center" style="border-left: 0px solid black;">112 (58.9%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">121 (69.9%)</td>
+<td align="center" style="border-left: 0px solid black;">73 (64.0%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Yes            </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">119 (31.3%)</td>
+<td align="center" style="border-left: 0px solid black;">78 (41.1%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">52 (30.1%)</td>
+<td align="center" style="border-left: 0px solid black;">41 (36.0%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">TC                 </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">184.1 ± 46.7</td>
+<td align="center" style="border-left: 0px solid black;">181.8 ± 44.5</td>
+<td align="center" style="border-left: 0px solid black;">0.572</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">186.0 ± 43.1</td>
+<td align="center" style="border-left: 0px solid black;">193.3 ± 60.8</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.274</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">LDLC               </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">117.9 ± 41.8</td>
+<td align="center" style="border-left: 0px solid black;">112.1 ± 39.4</td>
+<td align="center" style="border-left: 0px solid black;">0.115</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">116.3 ± 35.2</td>
+<td align="center" style="border-left: 0px solid black;">119.8 ± 48.6</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.519</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">HDLC               </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">38.4 ± 11.4</td>
+<td align="center" style="border-left: 0px solid black;">36.8 ±  9.6</td>
+<td align="center" style="border-left: 0px solid black;">0.083</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">39.2 ± 10.9</td>
+<td align="center" style="border-left: 0px solid black;">38.8 ± 12.2</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.821</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">TG                 </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">115.2 ± 72.2</td>
+<td align="center" style="border-left: 0px solid black;">153.4 ± 130.7</td>
+<td align="center" style="border-left: 0px solid black;">0.000</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">114.2 ± 82.4</td>
+<td align="center" style="border-left: 0px solid black;">128.4 ± 65.5</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.112</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">HBP                </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;">0.000</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.356</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - No             </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">205 (53.9%)</td>
+<td align="center" style="border-left: 0px solid black;">68 (35.8%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">54 (31.2%)</td>
+<td align="center" style="border-left: 0px solid black;">29 (25.4%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Yes            </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">175 (46.1%)</td>
+<td align="center" style="border-left: 0px solid black;">122 (64.2%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">119 (68.8%)</td>
+<td align="center" style="border-left: 0px solid black;">85 (74.6%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">smoking            </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;">0.386</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">0.093</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Ex-smoker      </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">101 (26.6%)</td>
+<td align="center" style="border-left: 0px solid black;">54 (28.4%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">34 (19.7%)</td>
+<td align="center" style="border-left: 0px solid black;">15 (13.2%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Never          </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">77 (20.3%)</td>
+<td align="center" style="border-left: 0px solid black;">46 (24.2%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">118 (68.2%)</td>
+<td align="center" style="border-left: 0px solid black;">91 (79.8%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Smoker         </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">202 (53.2%)</td>
+<td align="center" style="border-left: 0px solid black;">90 (47.4%)</td>
+<td align="center" style="border-left: 0px solid black;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">21 (12.1%)</td>
+<td align="center" style="border-left: 0px solid black;">8 ( 7.0%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;">     </td>
+</tr>
+<tr>
+<td colspan="9" align="left" style="font-size:9pt ;border-top: 1px solid black;"></td>
+</tr>
+</table>
+
+```r
+vlines(z,type="all")
+```
+
+<head><style>
+        table {
+              text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+	        }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;">Descriptive Statistics Stratified by 'SEX' and 'DM'</caption><tr>
+<td colspan=" 1 " align="center" style="font-weight: bold;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;">SEX</td>
+<td colspan=" 3 " align="center" style="font-weight: bold;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;">Male</td>
+<td colspan=" 3 " align="center" style="font-weight: bold;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 1px solid black;border-right:1px solid black;">Female</td>
+</tr>
+<tr>
+<th <th rowspan="2" align="center" style="font-weight: bold;border-left: 1px solid black;border-bottom: 1px solid gray;">DM</th>
+<th <th align="center" style="font-weight: bold;border-left: 1px solid black;">No</th>
+<th <th align="center" style="font-weight: bold;border-left: 1px solid black;">Yes</th>
+<th <th rowspan="2" align="center" style="font-weight: bold;border-left: 1px solid black;border-bottom: 1px solid gray;">p</th>
+<th <th align="center" style="font-weight: bold;border-left: 1px solid black;">No</th>
+<th <th align="center" style="font-weight: bold;border-left: 1px solid black;">Yes</th>
+<th <th rowspan="2" align="center" style="font-weight: bold;border-left: 1px solid black;border-right:1px solid black;border-bottom: 1px solid gray;">p</th>
+</tr>
+<tr>
+<th align="center" style="font-weight: bold;border-left: 1px solid black;border-bottom: 1px solid gray;">(N=380)</th>
+<th align="center" style="font-weight: bold;border-left: 1px solid black;border-bottom: 1px solid gray;">(N=190)</th>
+<th align="center" style="font-weight: bold;border-left: 1px solid black;border-bottom: 1px solid gray;">(N=173)</th>
+<th align="center" style="font-weight: bold;border-left: 1px solid black;border-bottom: 1px solid gray;">(N=114)</th>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">age                </td>
+<td align="center" style="border-left: 1px solid black;">60.9 ± 11.5</td>
+<td align="center" style="border-left: 1px solid black;">60.1 ± 10.6</td>
+<td align="center" style="border-left: 1px solid black;">0.472</td>
+<td align="center" style="border-left: 1px solid black;">69.3 ± 11.4</td>
+<td align="center" style="border-left: 1px solid black;">67.8 ±  9.7</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.257</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">cardiogenicShock   </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;">0.685</td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.296</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - No             </td>
+<td align="center" style="border-left: 1px solid black;">355 (93.4%)</td>
+<td align="center" style="border-left: 1px solid black;">175 (92.1%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">168 (97.1%)</td>
+<td align="center" style="border-left: 1px solid black;">107 (93.9%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Yes            </td>
+<td align="center" style="border-left: 1px solid black;">25 ( 6.6%)</td>
+<td align="center" style="border-left: 1px solid black;">15 ( 7.9%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">5 ( 2.9%)</td>
+<td align="center" style="border-left: 1px solid black;">7 ( 6.1%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">entry              </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;">0.552</td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.665</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Femoral        </td>
+<td align="center" style="border-left: 1px solid black;">125 (32.9%)</td>
+<td align="center" style="border-left: 1px solid black;">68 (35.8%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">74 (42.8%)</td>
+<td align="center" style="border-left: 1px solid black;">45 (39.5%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Radial         </td>
+<td align="center" style="border-left: 1px solid black;">255 (67.1%)</td>
+<td align="center" style="border-left: 1px solid black;">122 (64.2%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">99 (57.2%)</td>
+<td align="center" style="border-left: 1px solid black;">69 (60.5%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">Dx                 </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;">0.219</td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.240</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - NSTEMI         </td>
+<td align="center" style="border-left: 1px solid black;">71 (18.7%)</td>
+<td align="center" style="border-left: 1px solid black;">32 (16.8%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">25 (14.5%)</td>
+<td align="center" style="border-left: 1px solid black;">25 (21.9%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - STEMI          </td>
+<td align="center" style="border-left: 1px solid black;">154 (40.5%)</td>
+<td align="center" style="border-left: 1px solid black;">66 (34.7%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">54 (31.2%)</td>
+<td align="center" style="border-left: 1px solid black;">30 (26.3%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Unstable Angina</td>
+<td align="center" style="border-left: 1px solid black;">155 (40.8%)</td>
+<td align="center" style="border-left: 1px solid black;">92 (48.4%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">94 (54.3%)</td>
+<td align="center" style="border-left: 1px solid black;">59 (51.8%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">EF                 </td>
+<td align="center" style="border-left: 1px solid black;">56.5 ±  8.3</td>
+<td align="center" style="border-left: 1px solid black;">53.9 ± 11.0</td>
+<td align="center" style="border-left: 1px solid black;">0.007</td>
+<td align="center" style="border-left: 1px solid black;">56.0 ± 10.1</td>
+<td align="center" style="border-left: 1px solid black;">56.6 ± 10.0</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.655</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">height             </td>
+<td align="center" style="border-left: 1px solid black;">168.1 ±  5.8</td>
+<td align="center" style="border-left: 1px solid black;">167.5 ±  6.7</td>
+<td align="center" style="border-left: 1px solid black;">0.386</td>
+<td align="center" style="border-left: 1px solid black;">153.9 ±  6.5</td>
+<td align="center" style="border-left: 1px solid black;">153.6 ±  5.8</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.707</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">weight             </td>
+<td align="center" style="border-left: 1px solid black;">68.1 ± 10.4</td>
+<td align="center" style="border-left: 1px solid black;">69.8 ± 10.2</td>
+<td align="center" style="border-left: 1px solid black;">0.070</td>
+<td align="center" style="border-left: 1px solid black;">56.5 ±  8.7</td>
+<td align="center" style="border-left: 1px solid black;">58.4 ± 10.0</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.106</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">BMI                </td>
+<td align="center" style="border-left: 1px solid black;">24.0 ±  3.1</td>
+<td align="center" style="border-left: 1px solid black;">24.9 ±  3.5</td>
+<td align="center" style="border-left: 1px solid black;">0.005</td>
+<td align="center" style="border-left: 1px solid black;">23.8 ±  3.2</td>
+<td align="center" style="border-left: 1px solid black;">24.8 ±  4.0</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.046</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">obesity            </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;">0.027</td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.359</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - No             </td>
+<td align="center" style="border-left: 1px solid black;">261 (68.7%)</td>
+<td align="center" style="border-left: 1px solid black;">112 (58.9%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">121 (69.9%)</td>
+<td align="center" style="border-left: 1px solid black;">73 (64.0%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Yes            </td>
+<td align="center" style="border-left: 1px solid black;">119 (31.3%)</td>
+<td align="center" style="border-left: 1px solid black;">78 (41.1%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">52 (30.1%)</td>
+<td align="center" style="border-left: 1px solid black;">41 (36.0%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">TC                 </td>
+<td align="center" style="border-left: 1px solid black;">184.1 ± 46.7</td>
+<td align="center" style="border-left: 1px solid black;">181.8 ± 44.5</td>
+<td align="center" style="border-left: 1px solid black;">0.572</td>
+<td align="center" style="border-left: 1px solid black;">186.0 ± 43.1</td>
+<td align="center" style="border-left: 1px solid black;">193.3 ± 60.8</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.274</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">LDLC               </td>
+<td align="center" style="border-left: 1px solid black;">117.9 ± 41.8</td>
+<td align="center" style="border-left: 1px solid black;">112.1 ± 39.4</td>
+<td align="center" style="border-left: 1px solid black;">0.115</td>
+<td align="center" style="border-left: 1px solid black;">116.3 ± 35.2</td>
+<td align="center" style="border-left: 1px solid black;">119.8 ± 48.6</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.519</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">HDLC               </td>
+<td align="center" style="border-left: 1px solid black;">38.4 ± 11.4</td>
+<td align="center" style="border-left: 1px solid black;">36.8 ±  9.6</td>
+<td align="center" style="border-left: 1px solid black;">0.083</td>
+<td align="center" style="border-left: 1px solid black;">39.2 ± 10.9</td>
+<td align="center" style="border-left: 1px solid black;">38.8 ± 12.2</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.821</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">TG                 </td>
+<td align="center" style="border-left: 1px solid black;">115.2 ± 72.2</td>
+<td align="center" style="border-left: 1px solid black;">153.4 ± 130.7</td>
+<td align="center" style="border-left: 1px solid black;">0.000</td>
+<td align="center" style="border-left: 1px solid black;">114.2 ± 82.4</td>
+<td align="center" style="border-left: 1px solid black;">128.4 ± 65.5</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.112</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">HBP                </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;">0.000</td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.356</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - No             </td>
+<td align="center" style="border-left: 1px solid black;">205 (53.9%)</td>
+<td align="center" style="border-left: 1px solid black;">68 (35.8%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">54 (31.2%)</td>
+<td align="center" style="border-left: 1px solid black;">29 (25.4%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Yes            </td>
+<td align="center" style="border-left: 1px solid black;">175 (46.1%)</td>
+<td align="center" style="border-left: 1px solid black;">122 (64.2%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">119 (68.8%)</td>
+<td align="center" style="border-left: 1px solid black;">85 (74.6%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">smoking            </td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;">0.386</td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;"></td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">0.093</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Ex-smoker      </td>
+<td align="center" style="border-left: 1px solid black;">101 (26.6%)</td>
+<td align="center" style="border-left: 1px solid black;">54 (28.4%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">34 (19.7%)</td>
+<td align="center" style="border-left: 1px solid black;">15 (13.2%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Never          </td>
+<td align="center" style="border-left: 1px solid black;">77 (20.3%)</td>
+<td align="center" style="border-left: 1px solid black;">46 (24.2%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">118 (68.2%)</td>
+<td align="center" style="border-left: 1px solid black;">91 (79.8%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 1px solid black;">  - Smoker         </td>
+<td align="center" style="border-left: 1px solid black;">202 (53.2%)</td>
+<td align="center" style="border-left: 1px solid black;">90 (47.4%)</td>
+<td align="center" style="border-left: 1px solid black;">     </td>
+<td align="center" style="border-left: 1px solid black;">21 (12.1%)</td>
+<td align="center" style="border-left: 1px solid black;">8 ( 7.0%)</td>
+<td align="center" style="border-left: 1px solid black;border-right:1px solid black;">     </td>
+</tr>
+<tr>
+<td colspan="7" align="left" style="font-size:9pt ;border-top: 1px solid black;"></td>
+</tr>
+</table>
+
+You can use all ztable related function in this table.
+
+
+```r
+z=addRowColor(z,c(13,16),"platinum")
+z=addColColor(z,c(5,8),"pink")
+z=addCellColor(z,rows=16,cols=c(5,8),color="orange")
+z=addCellColor(z,rows=13,cols=5,color="orange")
+z
+```
+
+<head><style>
+        table {
+              text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+	        }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style></head><table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;"><caption style="text-align:center;">Descriptive Statistics Stratified by 'SEX' and 'DM'</caption><tr>
+<td colspan=" 1 " align="center" style="font-weight: bold;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">SEX</td>
+<td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
+<td colspan=" 3 " align="center" style="font-weight: bold;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;">Male</td>
+<td style="border-top: 2px solid gray;border-bottom: hidden">&nbsp;</td>
+<td colspan=" 3 " align="center" style="font-weight: bold;border-top: 2px solid gray;border-bottom: 1px solid gray; border-left: 0px solid black;border-right:0px solid black;">Female</td>
+</tr>
+<tr>
+<th <th rowspan="2" align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">DM</th>
+<th style="">&nbsp;</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;">No</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;">Yes</th>
+<th <th rowspan="2" align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;background-color: #FFC0CB;">p</th>
+<th style="">&nbsp;</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;">No</th>
+<th <th align="center" style="font-weight: bold;border-left: 0px solid black;">Yes</th>
+<th <th rowspan="2" align="center" style="font-weight: bold;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;background-color: #FFC0CB;">p</th>
+</tr>
+<tr>
+<th style="border-bottom: 1px solid gray;">&nbsp;</th>
+<th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=380)</th>
+<th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=190)</th>
+<th style="border-bottom: 1px solid gray;">&nbsp;</th>
+<th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=173)</th>
+<th align="center" style="font-weight: bold;border-left: 0px solid black;border-bottom: 1px solid gray;">(N=114)</th>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">age                </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">60.9 ± 11.5</td>
+<td align="center" style="border-left: 0px solid black;">60.1 ± 10.6</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.472</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">69.3 ± 11.4</td>
+<td align="center" style="border-left: 0px solid black;">67.8 ±  9.7</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.257</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">cardiogenicShock   </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.685</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.296</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - No             </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">355 (93.4%)</td>
+<td align="center" style="border-left: 0px solid black;">175 (92.1%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">168 (97.1%)</td>
+<td align="center" style="border-left: 0px solid black;">107 (93.9%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Yes            </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">25 ( 6.6%)</td>
+<td align="center" style="border-left: 0px solid black;">15 ( 7.9%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">5 ( 2.9%)</td>
+<td align="center" style="border-left: 0px solid black;">7 ( 6.1%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">entry              </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.552</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.665</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Femoral        </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">125 (32.9%)</td>
+<td align="center" style="border-left: 0px solid black;">68 (35.8%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">74 (42.8%)</td>
+<td align="center" style="border-left: 0px solid black;">45 (39.5%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Radial         </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">255 (67.1%)</td>
+<td align="center" style="border-left: 0px solid black;">122 (64.2%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">99 (57.2%)</td>
+<td align="center" style="border-left: 0px solid black;">69 (60.5%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">Dx                 </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.219</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.240</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - NSTEMI         </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">71 (18.7%)</td>
+<td align="center" style="border-left: 0px solid black;">32 (16.8%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">25 (14.5%)</td>
+<td align="center" style="border-left: 0px solid black;">25 (21.9%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - STEMI          </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">154 (40.5%)</td>
+<td align="center" style="border-left: 0px solid black;">66 (34.7%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">54 (31.2%)</td>
+<td align="center" style="border-left: 0px solid black;">30 (26.3%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Unstable Angina</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">155 (40.8%)</td>
+<td align="center" style="border-left: 0px solid black;">92 (48.4%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">94 (54.3%)</td>
+<td align="center" style="border-left: 0px solid black;">59 (51.8%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;background-color: #E5E4E2;">EF                 </td>
+<td style="background-color:  #E5E4E2 "></td>
+<td align="center" style="border-left: 0px solid black;background-color: #E5E4E2;">56.5 ±  8.3</td>
+<td align="center" style="border-left: 0px solid black;background-color: #E5E4E2;">53.9 ± 11.0</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FF7F00;">0.007</td>
+<td style="background-color:  #E5E4E2 "></td>
+<td align="center" style="border-left: 0px solid black;background-color: #E5E4E2;">56.0 ± 10.1</td>
+<td align="center" style="border-left: 0px solid black;background-color: #E5E4E2;">56.6 ± 10.0</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.655</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">height             </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">168.1 ±  5.8</td>
+<td align="center" style="border-left: 0px solid black;">167.5 ±  6.7</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.386</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">153.9 ±  6.5</td>
+<td align="center" style="border-left: 0px solid black;">153.6 ±  5.8</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.707</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">weight             </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">68.1 ± 10.4</td>
+<td align="center" style="border-left: 0px solid black;">69.8 ± 10.2</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.070</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">56.5 ±  8.7</td>
+<td align="center" style="border-left: 0px solid black;">58.4 ± 10.0</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.106</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;background-color: #E5E4E2;">BMI                </td>
+<td style="background-color:  #E5E4E2 "></td>
+<td align="center" style="border-left: 0px solid black;background-color: #E5E4E2;">24.0 ±  3.1</td>
+<td align="center" style="border-left: 0px solid black;background-color: #E5E4E2;">24.9 ±  3.5</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FF7F00;">0.005</td>
+<td style="background-color:  #E5E4E2 "></td>
+<td align="center" style="border-left: 0px solid black;background-color: #E5E4E2;">23.8 ±  3.2</td>
+<td align="center" style="border-left: 0px solid black;background-color: #E5E4E2;">24.8 ±  4.0</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FF7F00;">0.046</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">obesity            </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.027</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.359</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - No             </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">261 (68.7%)</td>
+<td align="center" style="border-left: 0px solid black;">112 (58.9%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">121 (69.9%)</td>
+<td align="center" style="border-left: 0px solid black;">73 (64.0%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Yes            </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">119 (31.3%)</td>
+<td align="center" style="border-left: 0px solid black;">78 (41.1%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">52 (30.1%)</td>
+<td align="center" style="border-left: 0px solid black;">41 (36.0%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">TC                 </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">184.1 ± 46.7</td>
+<td align="center" style="border-left: 0px solid black;">181.8 ± 44.5</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.572</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">186.0 ± 43.1</td>
+<td align="center" style="border-left: 0px solid black;">193.3 ± 60.8</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.274</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">LDLC               </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">117.9 ± 41.8</td>
+<td align="center" style="border-left: 0px solid black;">112.1 ± 39.4</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.115</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">116.3 ± 35.2</td>
+<td align="center" style="border-left: 0px solid black;">119.8 ± 48.6</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.519</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">HDLC               </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">38.4 ± 11.4</td>
+<td align="center" style="border-left: 0px solid black;">36.8 ±  9.6</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.083</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">39.2 ± 10.9</td>
+<td align="center" style="border-left: 0px solid black;">38.8 ± 12.2</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.821</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">TG                 </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">115.2 ± 72.2</td>
+<td align="center" style="border-left: 0px solid black;">153.4 ± 130.7</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.000</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">114.2 ± 82.4</td>
+<td align="center" style="border-left: 0px solid black;">128.4 ± 65.5</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.112</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">HBP                </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.000</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.356</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - No             </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">205 (53.9%)</td>
+<td align="center" style="border-left: 0px solid black;">68 (35.8%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">54 (31.2%)</td>
+<td align="center" style="border-left: 0px solid black;">29 (25.4%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Yes            </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">175 (46.1%)</td>
+<td align="center" style="border-left: 0px solid black;">122 (64.2%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">119 (68.8%)</td>
+<td align="center" style="border-left: 0px solid black;">85 (74.6%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">smoking            </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">0.386</td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;"></td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">0.093</td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Ex-smoker      </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">101 (26.6%)</td>
+<td align="center" style="border-left: 0px solid black;">54 (28.4%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">34 (19.7%)</td>
+<td align="center" style="border-left: 0px solid black;">15 (13.2%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Never          </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">77 (20.3%)</td>
+<td align="center" style="border-left: 0px solid black;">46 (24.2%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">118 (68.2%)</td>
+<td align="center" style="border-left: 0px solid black;">91 (79.8%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td align="left" style="border-left: 0px solid black;">  - Smoker         </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">202 (53.2%)</td>
+<td align="center" style="border-left: 0px solid black;">90 (47.4%)</td>
+<td align="center" style="border-left: 0px solid black;background-color: #FFC0CB;">     </td>
+<td></td>
+<td align="center" style="border-left: 0px solid black;">21 (12.1%)</td>
+<td align="center" style="border-left: 0px solid black;">8 ( 7.0%)</td>
+<td align="center" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFC0CB;">     </td>
+</tr>
+<tr>
+<td colspan="9" align="left" style="font-size:9pt ;border-top: 1px solid black;"></td>
+</tr>
+</table>
+
 

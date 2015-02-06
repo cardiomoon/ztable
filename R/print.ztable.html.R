@@ -96,7 +96,7 @@ vlines=function(z,type=NULL,add=NULL,del=NULL){
 
     if(is.null(type) & is.null(add) & is.null(del)) {
         cat("\nvlines : add or delete vertical lines to a ztable\n
-Usage: type must be one of these or NULL: 0-3 or \"none\",\"all\",\"group\",\"nongroup\"\n
+Usage: type must be one of these or NULL: 0-1 or \"none\",\"all\"\n
        add and del: An integer vector indicating position to add or delete vertical line(s)\n")
 
         return(z)
@@ -104,6 +104,8 @@ Usage: type must be one of these or NULL: 0-3 or \"none\",\"all\",\"group\",\"no
     align=extractAlign(z$align)
     vlines=align2lines(z$align)
     colcount=colGroupCount(z)
+    addrow=ifelse(z$include.rownames,1,0)
+    #align=alignCheck(align,ncol(z$x),addrow)
     count=nchar(align)
 
     if(!is.null(type)) {
@@ -111,28 +113,12 @@ Usage: type must be one of these or NULL: 0-3 or \"none\",\"all\",\"group\",\"no
         if(!is.numeric(type)) {
             if(toupper(type) == "NONE") vltype=0
             else if(toupper(type) == "ALL") vltype=1
-            else if(toupper(type) == "GROUP") vltype=2
-            else if(toupper(type) == "NONGROUP") vltype=3
+            else return(z)
         }
-        if((type>=0) & (type<=3)) vltype=type
-        if(is.null(colcount)) {
-            if(vltype==0) vlines=rep(0,count+1)
-            else if(vltype==2) vlines=c(1,1,rep(0,count-2),1)
-            else if(vltype==3) vlines=c(0,0,rep(1,count-2),0)
-            else vlines=rep(1,count+1) #vltype=1
-        } else {
-            colcount=colcount+1
-            colcount=c(1,colcount)
-            vlines=rep(0,count)
-            if(vltype==0) vlines=rep(0,count+1)
-            else if(vltype==2) {
-                vlines[colcount]=1
-                vlines=c(1,vlines)
-            } else if(vltype==3) {
-                vlines[-colcount]=1
-                vlines=c(0,vlines)
-            } else vlines=rep(1,count+1)
-        }
+        if((type>=0) & (type<=1)) vltype=type
+        if(vltype==0) vlines=rep(0,count+1)
+        else vlines=rep(1,count+1) #vltype=1
+
     }
     if(!is.null(add)){
         if(is.numeric(add)){
@@ -213,12 +199,15 @@ getNewAlign=function(z){
     addrow=ifelse(z$include.rownames,1,0)
     colCount=colGroupCount(z)
     result=c()
-    start=1
+    start=2-addrow
+    # Add column group align "c" if lines
     for(i in 1:length(colCount)){
         #cat("start=",start,"stop=",colCount[i]+addrow,",")
-        if(!is.null(result)) if(lines[start]==0) result=paste(result,"c",sep="")
-        result=paste(result,substr(exAlign,start=start,stop=(colCount[i]+addrow)),sep="")
-        start=colCount[i]+addrow+1
+        result=paste(result,substr(exAlign,start=start,stop=(colCount[i]+1)),sep="")
+        #cat("i=",i,",start=",start,"stop=",(colCount[i]+1),",result=",result)
+        start=colCount[i]+2
+        #cat(",line[start]=",start,"\n")
+        if(lines[start]==0) result=paste(result,"c",sep="")
         #cat("result=",result,"\n")
     }
     result
@@ -235,7 +224,8 @@ getNewAlign=function(z){
     temp=c()
     for(i in 1:length(newlines)){
         if(newlines[i]>0) for(j in 1:newlines[i]) temp=paste(temp,"|",sep="")
-        if(i<=nchar(result)) temp=paste(temp,substr(result,start=i,stop=i),sep="")
+        if(i>nchar(result)) break
+        temp=paste(temp,substr(result,start=i,stop=i),sep="")
     }
     #temp=paste(temp,"c",sep="")
     temp
@@ -247,12 +237,13 @@ myhtmlStyle=function(){
     cat("<head>")
     cat("<style>
         table {
+              font-family: serif;
               text-align: right;}
         th {
-              padding: 2px 2px 5px 5px;
+              padding: 1px 1px 5px 5px;
 	        }
         td {
-             padding: 2px 2px 5px 5px; }
+             padding: 1px 1px 5px 5px; }
       </style>")
     cat("</head>")
 }
@@ -273,30 +264,42 @@ printHTMLHead=function(z){
 
     for(i in 1:nrow(z$cgroup)){
         cat("<tr>\n")
-        colSum=0
         if(z$include.rownames) {
             cat("<td style=\"")
-            if(i==1) cat("border-top: 2px solid gray;")
+            if(i==1) cat("border-top: 2px solid gray; border-bottom: hidden;")
             cat(paste(" border-left: ",vlines[1],"px solid black;",sep=""))
             if(z$cgroupcolor[i,1]!="white")
                 cat(paste("background-color: ",name2rgb(z$cgroupcolor[i,1]),sep=""))
             cat("\"> </td>\n")
-            colSum=1
         }
+        colSum=1
         for(j in 1:ncol(z$cgroup)) {
-            if(is.na(z$cgroup[i,j])) break
-            cat("<td colspan=\"",cGroupSpan[i,j],"\" align=\"center\" ")
-            if(z$colnames.bold) cat("style=\"font-weight: bold;")
-            else cat("style=\"font-weight: normal;")
-            if(i==1) cat("border-top: 2px solid gray;")
-            cat("border-bottom: 1px solid gray;")
-            cat(paste(" border-left: ",vlines[colSum+1],"px solid black;",sep=""))
-            colSum=colSum+cGroupSpan[i,j]
-            #if(colSum==ncol(z$x)+1)
+            if(is.na(z$cgroup[i,j])) {
+                cat("<td colspan=\"",cGroupSpan[i,j],"\" align=\"center\" ")
+                cat("style=\"")
+                if(i==1) cat("border-top: 2px solid gray;")
+                #cat("border-bottom: 1px solid gray;")
+                cat(paste(" border-left: ",vlines[colSum+1],"px solid black;",sep=""))
+                colSum=colSum+cGroupSpan[i,j]
+                #if(colSum==ncol(z$x)+1)
                 cat(paste("border-right:",vlines[colSum+1],"px solid black;",sep=""))
-            if(z$cgroupcolor[i,j+1]!="white")
-                cat(paste("background-color: ",name2rgb(z$cgroupcolor[i,j+1]),";",sep=""))
-            cat(paste("\">",z$cgroup[i,j],"</td>\n",sep=""))
+                if(z$cgroupcolor[i,j+1]!="white")
+                    cat(paste("background-color: ",name2rgb(z$cgroupcolor[i,j+1]),";",sep=""))
+                cat(paste("\"></td>\n",sep=""))
+            } else {
+                cat("<td colspan=\"",cGroupSpan[i,j],"\" align=\"center\" ")
+                if(z$colnames.bold) cat("style=\"font-weight: bold;")
+                else cat("style=\"font-weight: normal;")
+                if(i==1) cat("border-top: 2px solid gray;")
+                if(z$cgroup[i,j]!="") cat(" border-bottom: 1px solid gray;")
+                cat(paste(" border-left: ",vlines[colSum+1],"px solid black;",sep=""))
+                colSum=colSum+cGroupSpan[i,j]
+                if(colSum==ncol(z$x)+1)
+                cat(paste("border-right:",vlines[colSum+1],"px solid black;",sep=""))
+                if(z$cgroupcolor[i,j+1]!="white")
+                    cat(paste("background-color: ",name2rgb(z$cgroupcolor[i,j+1]),";",sep=""))
+                cat(paste("\">",z$cgroup[i,j],"</td>\n",sep=""))
+            }
             #if((j < ncol(z$cgroup)) & ((colSum+j-1)<totalCol)) {
             if(j < ncol(z$cgroup)) {
                 result=colSum+1
@@ -398,6 +401,7 @@ ztable2html=function(z,xdata){
                                   "background-color: ",name2rgb(z$cellcolor[1,1]),";",sep=""))
             if(printtop) cat("border-top: 2px solid gray;")
             if(subcolnames==0) cat("border-bottom: 1px solid gray;")
+            else cat("border-bottom: hidden;")
             cat(paste("\">&nbsp;</th>\n",sep=""))
         }
         colpos=align2html(z$align)
@@ -421,7 +425,7 @@ ztable2html=function(z,xdata){
                          drawbottom=1
                      }
                  }
-                 cat(paste("align=\"",colpos[i+1],"\" ",sep=""))
+                 cat(paste("align=\"center\" ",sep=""))
                  if(z$colnames.bold) cat("style=\"font-weight: bold;")
                  else cat("style=\"font-weight: normal;")
                  cat(paste("border-left: ",vlines[i+1],"px solid black;",sep=""))
@@ -429,6 +433,7 @@ ztable2html=function(z,xdata){
                      cat(paste("border-right:",vlines[i+2],"px solid black;",sep=""))
                  if((subcolnames==0) | (subcolnames+drawbottom==2))
                      cat("border-bottom: 1px solid gray;")
+                 else cat("border-bottom: hidden;")
                  if(printtop) cat("border-top: 2px solid gray;")
                  if(z$cellcolor[1,i+1]!="white")
                      cat(paste("background-color: ",name2rgb(z$cellcolor[1,i+1]),";",sep=""))
@@ -436,8 +441,8 @@ ztable2html=function(z,xdata){
                  if(i %in% colCount[-length(colCount)]) {
                      if(vlines[i+2]==0){
                         if(subcolnames==0) cat("<th style=\"border-bottom: 1px solid gray;")
-                        else cat("<th style=\"")
-                        if(printtop) cat("border-top: 2px solid gray;")
+                        else cat("<th style=\"border-bottom: hidden;")
+                        if(printtop) cat("border-top: 2px solid gray; ")
                         if((z$cellcolor[1,i+1]!="white") & (z$cellcolor[1,i+1]==z$cellcolor[1,i+2]))
                             cat("background-color: ",name2rgb(z$cellcolor[1,i+1]),";")
                         cat("\">&nbsp;</th>\n")
@@ -449,12 +454,25 @@ ztable2html=function(z,xdata){
         printtop=0
         if(subcolnames){
             cat("<tr>\n")
-            cat(paste("<th style=\"border-left: ",vlines[1],
+            if(addrow) {
+                cat(paste("<th style=\"border-left: ",vlines[1],
                           "px solid black;","border-bottom: 1px solid gray;",
                           "background-color: ",name2rgb(z$cellcolor[1,1]),";",sep=""))
-            cat(paste("\">&nbsp;</th>\n",sep=""))
+                cat(paste("\">&nbsp;</th>\n",sep=""))
+            }
             for(i in 1:length(z$subcolnames)){
-                if(is.na(z$subcolnames[i])) next
+                if(is.na(z$subcolnames[i])) {
+                    if(vlines[i+2]==0){
+                        if(i!=length(z$subcolnames)){
+                            cat("<th style=\"border-bottom: 1px solid gray;")
+                            #if(printtop) cat("border-top: 2px solid gray;")
+                            if((z$cellcolor[1,i+1]!="white") & (z$cellcolor[1,i+1]==z$cellcolor[1,i+2]))
+                                cat("background-color: ",name2rgb(z$cellcolor[1,i+1]),";")
+                            cat("\">&nbsp;</th>\n")
+                        }
+                    }
+                    next
+                }
                 cat("<th align=\"center\" ")
                 if(z$colnames.bold) cat("style=\"font-weight: bold;")
                 else cat("style=\"font-weight: normal;")
@@ -468,7 +486,7 @@ ztable2html=function(z,xdata){
                 if(i %in% colCount[-length(colCount)]) {
                     if(vlines[i+2]==0){
                         cat("<th style=\"border-bottom: 1px solid gray;")
-                        if(printtop) cat("border-top: 2px solid gray;")
+                        #if(printtop) cat("border-top: 2px solid gray;")
                         if((z$cellcolor[1,i+1]!="white") & (z$cellcolor[1,i+1]==z$cellcolor[1,i+2]))
                             cat("background-color: ",name2rgb(z$cellcolor[1,i+1]),";")
                         cat("\">&nbsp;</th>\n")
@@ -479,10 +497,12 @@ ztable2html=function(z,xdata){
         }
     }
     colpos=align2html(z$align)
+    rgroupprinted=0
     for(i in 1:nrow(z$x)){
         if(rgroupcount>0) {
 
             if(i %in% printrgroup) {
+                rgroupprinted=1
                 if(is.null(z$cspan.rgroup)){
                     temp=paste("<tr>\n<td colspan=\"",totalCol,
                                "\"  align=\"left\""," style=\"font-weight: bold;",sep="")
@@ -501,10 +521,12 @@ ztable2html=function(z,xdata){
                             temp=paste(temp,"background-color:",name2rgb(z$colcolor[1]),";",sep="")
                         temp=paste(temp," border-left: ",vlines[1],"px solid black; ",sep="")
                         #temp=paste(temp,"border-bottom: 1px solid black;",sep="")
+                        if(i!=1) temp=paste(temp,"border-top: hidden; ",sep="")
                         temp=paste(temp,"\">",z$rgroup[rgroupcount],"</td>\n",sep="")
                         for(j in 1:(ncount+addrow-1)){
                             temp1=paste("<td style=\"border-left: ",
                                         vlines[j+1],"px solid black; ",sep="")
+                            if(i!=1) temp1=paste(temp1,"border-top: hidden; ",sep="")
                             if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
                                 temp1=paste(temp1,"border-right:",vlines[j+2],"px solid black;",sep="")
                             if(!is.null(z$colcolor)) {
@@ -524,7 +546,11 @@ ztable2html=function(z,xdata){
                                         #           name2rgb(z$cellcolor[i+1,j+1]),"\"></td>\n",
                                         #           sep="")
                                         #else temp=paste(temp,"<td></td>\n",sep="")
-                                        temp=paste(temp,"<td></td>\n",sep="")
+
+                                        if(i!=1) temp=paste(temp,"<td style=\"border-top: hidden;\"",sep="")
+                                        else temp=paste(temp,"<td",sep="")
+                                        temp=paste(temp,"></td>\n",sep="")
+
                                     }
                                 }
                             }
@@ -550,6 +576,7 @@ ztable2html=function(z,xdata){
                                     temp1=paste(temp1,"border-right:",vlines[j+2],"px solid black;",sep="")
                                 #temp1=paste(temp1,"border-bottom: 1px solid black;",sep="")
                                 #temp1=paste(temp1,"border-top: 1px solid black;",sep="")
+                                if(i!=1) temp1=paste(temp1,"border-top: hidden; ",sep="")
                                 if(!is.null(z$colcolor)) {
                                     if(z$colcolor[j+1]!="white")
                                         temp1=paste(temp1,"background-color:",
@@ -567,7 +594,9 @@ ztable2html=function(z,xdata){
                                             #           name2rgb(z$cellcolor[i+1,j+1]),"\"></td>\n",
                                             #           sep="")
                                             #else temp=paste(temp,"<td></td>\n",sep="")
-                                            temp=paste(temp,"<td></td>\n",sep="")
+                                            if(i!=1) temp=paste(temp,"<td style=\"border-top: hidden;\"",sep="")
+                                            else temp=paste(temp,"<td",sep="")
+                                            cat("></td>\n")
                                         }
                                     }
                                 }
@@ -596,6 +625,7 @@ ztable2html=function(z,xdata){
             if(result!=0){
                 cat(paste(" style=\"border-left: ",vlines[1],"px solid black; ",sep=""))
                 if(i==1 & printtop) cat("border-top: 2px solid gray;")
+                else if(i!=1 | rgroupprinted) cat("border-top: hidden;")
                 if(z$cellcolor[i+1,1]!="white")
                     cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,1]),"; ",sep=""))
                 cat(paste("\">",rownames(z$x)[i],"</td>\n",sep=""))
@@ -619,6 +649,8 @@ ztable2html=function(z,xdata){
                     if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
                         cat(paste("border-right:",vlines[j+2],"px solid black;",sep=""))
                     if(i==1 & printtop) cat("border-top: 2px solid gray;")
+                    else if(i!=1 | rgroupprinted) cat("border-top: hidden;")
+
                     if(z$cellcolor[i+1,j+1]!="white")
                         cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,j+1]),";",sep=""))
                     cat("\">")
@@ -634,8 +666,11 @@ ztable2html=function(z,xdata){
                             if((z$cellcolor[i+1,j+1]!="white")&(z$cellcolor[i+1,j+1]==z$cellcolor[i+1,j+2]))
                                 backcolor=z$cellcolor[i+1,j+1]
                         }
-                        if(is.null(backcolor)) cat("<td></td>\n")
-                        else cat("<td style=\"background-color: ",name2rgb(backcolor),"\"></td>\n")
+                        cat("<td style=\"")
+                        if(i==1 & printtop) cat("border-top: 2px solid gray;")
+                        else if(i!=1 | rgroupprinted) cat("border-top: hidden;")
+                        if(!is.null(backcolor)) cat(" background-color: ",name2rgb(backcolor),";")
+                        cat("\"></td>\n")
 
                     }
                 }
@@ -648,12 +683,20 @@ ztable2html=function(z,xdata){
                     #if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
                     cat(paste("border-right:",vlines[j+width+1],"px solid black;",sep=""))
                     if(i==1 & printtop) cat("border-top: 2px solid gray;")
+                    else if(i!=1 | rgroupprinted) cat("border-top: hidden;")
                     if(z$cellcolor[i+1,j+1]!="white")
                         cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,j+1]),";",sep=""))
                     cat("\">")
                     cat(paste(xdata[i,j],"</td>\n",sep=""))
                     if(isGroupCol(j,result,colCount)) {
-                        if(vlines[j+width+1]==0) cat("<td></td>\n")
+                        if(vlines[j+width+1]==0) {
+
+                            cat("<td style=\"")
+                            if(i==1 & printtop) cat("border-top: 2px solid gray;")
+                            else if(i!=1 | rgroupprinted) cat("border-top: hidden;")
+                            if(!is.null(backcolor)) cat(" background-color: ",name2rgb(backcolor),";")
+                            cat("\"></td>\n")
+                        }
                     }
                 }
             }
@@ -666,7 +709,7 @@ ztable2html=function(z,xdata){
     cat("<tr>\n")
     cat(paste("<td colspan=\"",totalCol,
               "\" align=\"left\" style=\"font-size:",as.integer(headingsize),
-              "pt ;border-top: 1px solid black;\">",footer,"</td>\n",sep=""))
+              "pt ;border-top: 1px solid black; border-bottom: hidden;\">",footer,"</td>\n",sep=""))
     cat("</tr>\n")
     cat("</table>\n")
 }
