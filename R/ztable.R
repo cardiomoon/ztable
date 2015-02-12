@@ -718,6 +718,7 @@ tr=function(string) {
 #' @param string a character vector
 tr2=function(string) {
     string=gsub(" -","&nbsp;&nbsp;&nbsp;",string,fixed=TRUE)
+    string=gsub("     ","",string,fixed=TRUE)
     string
 }
 
@@ -865,9 +866,10 @@ ztable2latex=function(z,xdata){
     if((z$show.heading==TRUE) & (!is.null(attr(z$x,"heading")))) {
         head=attr(z$x,"heading")
         for(i in 1:length(head)) {
+            h1=gsub("~","$\\sim$",head[i],fixed=TRUE)
             if(nchar(head[i])<1) next
             cat(paste("\\multicolumn{",totalCol,"}{l}{\\",Fontsize[headingsize],
-                      "{",head[i],"}}\\\\ \n",sep=""))
+                      "{",h1,"}}\\\\ \n",sep=""))
         }
     }
     if(is.null(z$hline.after)) cat(ifelse(z$booktabs,"\\toprule[1.2pt]\n","\\hline\n"))
@@ -1118,6 +1120,7 @@ ztable2latex=function(z,xdata){
     footer=attr(z$x,"footer")
     if(!is.null(footer) & (z$show.footer)){
         myfooter=caption2minipage(z,footer)
+        myfooter=gsub("~","$\\sim$",myfooter,fixed=TRUE)
         cat(paste("\\multicolumn{",totalCol,"}{l}{\\",Fontsize[headingsize],
                   "{",myfooter,"}}\\\\ \n",sep=""))
     }

@@ -13,7 +13,7 @@ ztable.lm=function(x,digits=NULL,...){
     result=data.frame(summary(x)$coeff)
     colnames(result)=c("Estimate","Std. Error","t value","Pr(>|t|)")
     h=deparse(x$call)
-    h=gsub("~","$\\sim$",h,fixed=TRUE)
+    #h=gsub("~","$\\sim$",h,fixed=TRUE)
     h=paste("Call: ",h,sep="")
     attr(result,"footer")=h
     if (is.null(digits)) mydigits=c(1,4,4,2,4)
@@ -24,11 +24,44 @@ ztable.lm=function(x,digits=NULL,...){
 
 #'@describeIn ztable
 #'
+ztable.fitdistr=function(x,digits=NULL,...){
+    if(is.null(digits)) mydigits=3
+    else mydigits=digits
+
+    result=rbind(x$estimate,x$sd)
+    rownames(result)=c("estimate","sd")
+    result=data.frame(result)
+
+    string=paste("N=",x$n,", The log-likelihood=",round(x$loglik,2),sep="")
+    attr(result,"footer")=string
+    out=ztable_sub(result,digits=mydigits)
+    out
+}
+
+#'@describeIn ztable
+#'
+ztable.nls=function(x,digits=NULL,...){
+    result=data.frame(summary(x)$coeff)
+    colnames(result)=c("Estimate","Std. Error","t value","Pr(>|t|)")
+
+    s=deparse(formula(x))
+    h1=paste("  model: ", s,"\n",sep="")
+    h2=paste("  data: ", deparse(x$data),"\n", sep = "")
+    h=c("Nonlinear regression model\n",h1,h2)
+    attr(result,"heading")=h
+    if (is.null(digits)) mydigits=c(1,4,4,2,4)
+    else mydigits=digits
+    out=ztable_sub(result,digits=mydigits,...)
+    out
+}
+
+
+#'@describeIn ztable
+#'
 ztable.aov=function(x,digits=NULL,...){
     result=summary(x)[[1]]
     if(!is.null(x$call)){
         h=deparse(x$call)
-        h=gsub("~","$\\sim$",h,fixed=TRUE)
         h=paste("Call: ",h,sep="")
         attr(result,"footer")=h
     }
@@ -57,11 +90,9 @@ ztable.anova=function(x,digits=NULL,...){
             h=c(h,unlist(strsplit(heading[i],"\n")))
         }
     }
-    h=gsub("~","$\\sim$",h,fixed=TRUE)
     attr(result,"heading")=h
     if(!is.null(x$call)){
         h=deparse(x$call)
-        h=gsub("~","$\\sim$",h,fixed=TRUE)
         h=paste("Call: ",h,sep="")
         attr(result,"footer")=h
     }
@@ -88,7 +119,6 @@ ztable.glm=function(x,digits=NULL,...){
     h=deparse(x$call)
     if(length(h)==1) h=paste("Call: ",h,sep="")
     else if(length(h)==2) h=paste("Call: ",h[1],h[2],sep="")
-    h=gsub("~","$\\sim$",h,fixed=TRUE)
     attr(out,"footer")=h
 
     if (is.null(digits)) mydigits=c(1,4,4,2,4,2,2,2)
@@ -107,7 +137,7 @@ ztable.coxph=function(x,digits=NULL,...){
     h=deparse(x$call)
     if(length(h)==1) h=paste("Call: ",h,sep="")
     else if(length(h)==2) h=paste("Call: ",h[1],h[2],sep="")
-    h=gsub("~","$\\sim$",h,fixed=TRUE)
+
     attr(result,"footer")=h
     colnames(result)=c("HR","lcl", "ucl", "se(coef)","z","Pr(>|z|)")
     if (is.null(digits)) mydigits=c(0,3,3,3,3,3,4)
@@ -124,7 +154,6 @@ ztable.prcomp=function(x,digits=NULL,...){
     attr(result,"heading") <- "Rotation:"
     if(!is.null(x$call)){
         h=deparse(x$call)
-        h=gsub("~","$\\sim$",h,fixed=TRUE)
         h=paste("Call: ",h,sep="")
         attr(result,"footer")=h
     }
@@ -142,7 +171,6 @@ ztable.summary.prcomp=function(x,digits=NULL,...){
     attr(result,"heading") <- "Importance of components:"
     if(!is.null(x$call)){
         h=deparse(x$call)
-        h=gsub("~","$\\sim$",h,fixed=TRUE)
         h=paste("Call: ",h,sep="")
         attr(result,"footer")=h
     }

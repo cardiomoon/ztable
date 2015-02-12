@@ -1,11 +1,11 @@
 Package: ztable
 Title: Zebra-Striped Tables in LaTeX and HTML Formats
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: person("Keon-Woong","Moon", email="cardiomoon@gmail.com",
     role=c("aut", "cre"))
 Description: Makes zebra-striped tables (tables with alternating row colors)
     in LaTeX and HTML formats easily from a data.frame, matrix, lm, aov, anova,
-    glm, coxph, mytable and cbind.mytable objects.
+    glm, coxph, nls, fitdistr, mytable and cbind.mytable objects.
 Depends:
     R (>= 3.1.2)
 License: GPL-2

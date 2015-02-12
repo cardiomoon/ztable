@@ -194,7 +194,6 @@ ztable(fit)
 
 ```{r,results='asis'}
 a=anova(fit)
-str(a)
 ztable(a)
 ```
 
@@ -203,7 +202,6 @@ This is examples of another 'anova' object. The models in this anova tables show
 ```{r,results='asis'}
 fit2 <- lm(mpg ~ cyl+wt, data=mtcars)
 b=anova(fit2,fit)
-str(b)
 ztable(b)
 ztable(b,show.heading=FALSE)
 ```
@@ -273,13 +271,45 @@ ztable(summary(pr1))
 
 ## Survival Analysis : 'coxph' object
 
-'ztable()' can be used in principal components analysis. When used for Cox proportional hazard model, 'ztable()' showed the hazard ratio and 95% confidence interval ready for publication to medical journal.
+'ztable()' can be used in survival analysis. When used for Cox proportional hazard model, 'ztable()' showed the hazard ratio and 95% confidence interval ready for publication to medical journal.
 
 
 ```{r,results='asis',message=FALSE}
 colon$TS = Surv(time,status==1) 
 out=coxph(TS~rx+obstruct+adhere+differ+extent+surg+node4,data=colon)
 ztable(out)
+```
+
+## Nonlinear Least Squares: 'nls' obbject
+
+'ztable()' can be used to determine the nonlinear (weighted) least-squares estimates of the parameters of a nonlinear model. Followings are examples of ztable() of 'nls' object.
+
+```{r,comment=NA}
+require(graphics)
+
+DNase1 <- subset(DNase, Run == 1)
+
+## using a selfStart model
+fm1DNase1 <- nls(density ~ SSlogis(log(conc), Asym, xmid, scal),DNase1)
+summary(fm1DNase1)
+```
+```{r,results='asis',message=FALSE}
+ztable(fm1DNase1)
+```
+
+
+## Maximum-likelihood Fitting of Univariate Distributions
+
+'ztable()' can be used in maximum-likelihood fitting of univariate distributions. Followings are examples of ztable() of 'fitdistr' object.
+```{r,results='asis'}
+require(MASS)
+set.seed(123)
+x <- rgamma(100, shape = 5, rate = 0.1)
+a=fitdistr(x, "gamma")
+ztable(a)
+x3 <- rweibull(100, shape = 4, scale = 100)
+b=fitdistr(x3, "weibull")
+ztable(b)
 ```
 
 
