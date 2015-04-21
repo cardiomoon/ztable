@@ -867,6 +867,7 @@ ztable2latex=function(z,xdata){
         head=attr(z$x,"heading")
         for(i in 1:length(head)) {
             h1=gsub("~","$\\sim$",head[i],fixed=TRUE)
+            h1=gsub("^","\^{}", h1, fixed=TRUE)
             if(nchar(head[i])<1) next
             cat(paste("\\multicolumn{",totalCol,"}{l}{\\",Fontsize[headingsize],
                       "{",h1,"}}\\\\ \n",sep=""))
