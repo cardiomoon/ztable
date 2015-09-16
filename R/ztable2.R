@@ -485,3 +485,31 @@ addSubColNames=function(z,subcolnames){
     z
 }
 
+#' Add row color or cellcolor for rows or cells of p-value less than sigp in a ztable
+#'
+#'@param z An object of ztable
+#'@param sigp A p-value
+#'@param sigcolor A character indicating color
+addSigColor=function(z,sigp=0.05,sigcolor="lightcyan"){
+
+    if("ztable.mytable" %in% class(z))  {
+        if(is.null(z$cgroup)){
+            below05=which(as.numeric(z$x[[ncol(z$x)]])<sigp)+1
+            if(length(below05)>0)
+                z1=addRowColor(z,rows=below05,color=sigcolor)
+        } else{
+            count=ncol(z$cgroup)-1
+            colpergroup=(ncol(z$x)-1)/count
+            for(i in 2:(count+1)){
+                pcol=1+colpergroup*(i-1)
+                below05=which(as.numeric(z$x[[pcol]])<sigp)+1
+                if(length(below05)>0) for(j in 1:length(below05))
+                    z1=addCellColor(z,rows=below05[j],
+                                   cols=(pcol+1-(colpergroup-1)):(pcol+1),color=sigcolor)
+
+            }
+        }
+    }
+    else z1=z
+    z1
+}

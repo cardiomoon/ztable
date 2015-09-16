@@ -1,3 +1,13 @@
+ztable 0.1.6
+============
+(16-Sep-2015)
+
+* new function added "addSigColor" which add color to row or cells with p-value
+  less than sigp of ztable which is made from class "mytable"
+
+* "ztable" is compatible with magrittr
+
+
 ztable 0.1.5
 ============
 (14-Feb-2015)

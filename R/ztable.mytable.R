@@ -23,5 +23,6 @@ ztable.mytable=function(x,digits=NULL,...){
     z=addSubColNames(z,sub)
     z$include.rownames=FALSE
     z=vlines(z,type=0)
+    class(z)=c("ztable","ztable.mytable")
     z
 }

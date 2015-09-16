@@ -439,4 +439,32 @@ z=addCellColor(z,rows=13,cols=5,color="orange")
 z
 ```
 
+You can use pipe from package "magrittr"
 
+```{r,results='asis'}
+require(magrittr)
+
+res1=mytable(sex+DM~.,data=acs)
+z=ztable(res1)
+z %>%
+   addRowColor(c(13,16),"platinum") %>%
+   addColColor(c(5,8),"pink") %>%
+   addCellColor(rows=16,cols=c(5,8),color="orange") %>%
+   addCellColor(rows=13,cols=5,color="orange") %>%
+   print        
+```
+
+You can use addSigColor() function to colorized significant rows of ztable.mytable
+
+```{r,results='asis'}
+
+res1=mytable(sex~.,data=acs)
+res1 %>% ztable %>%
+   addSigColor %>%
+   print        
+res2=mytable(sex+DM~.,data=acs)
+res2 %>% ztable %>%
+   addSigColor(sigp=0.01,sigcolor="platinum") %>%
+   print        
+
+```
