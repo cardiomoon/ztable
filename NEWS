@@ -7,6 +7,8 @@ ztable 0.1.6
 
 * "ztable" is compatible with magrittr
 
+* Allow setting of individual digits for each table cell (similar to "xtable")
+
 
 ztable 0.1.5
 ============
