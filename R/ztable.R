@@ -1124,13 +1124,6 @@ ztable2latex=function(z,xdata){
         cat(paste("\\multicolumn{",totalCol,"}{l}{\\",Fontsize[headingsize],
                   "{",myfooter,"}}\\\\ \n",sep=""))
     }
-    if(!is.null(z$caption) & z$caption.placement=="bottom"){
-        mycaption=caption2minipage(z,z$caption)
-        if(z$caption.bold) cat(paste("\\multicolumn{",totalCol,"}{",
-                                     z$caption.position,"}{\\textbf{",mycaption,"}}\\\\ \n",sep=""))
-        else cat(paste("\\multicolumn{",totalCol,"}{",
-                       z$caption.position,"}{",mycaption,"}\\\\ \n",sep=""))
-    }
 
     if(z$longtable) {
         if(!is.null(z$label)) cat(paste("\\label{",z$label,"}\n",sep=""))
@@ -1139,6 +1132,11 @@ ztable2latex=function(z,xdata){
     } else {
         cat("\\end{tabular}\n")
         cat(paste("\\end{",Fontsize[z$size],"}\n",sep=""))
+        if(!is.null(z$caption) & z$caption.placement=="bottom"){
+            mycaption=caption2minipage(z,z$caption)
+            if(z$caption.bold) cat(paste("\\caption{\\textbf{",mycaption,"}}\\\\ \n",sep=""))
+            else cat(paste("\\caption{",mycaption,"}\n",sep=""))
+        }
         if(!is.null(z$label)) cat(paste("\\label{",z$label,"}\n",sep=""))
         if(sort!="tabular") {
             if((sort=="table") | (sort=="sidewaystable"))
