@@ -1,3 +1,9 @@
+ztable 0.1.7
+============
+(11-Nov-2017)
+
+* ztable.glm uses confint.dafault to compute confidence interval
+
 ztable 0.1.6
 ============
 (16-Sep-2015)

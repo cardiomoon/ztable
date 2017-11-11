@@ -107,7 +107,7 @@ ztable.glm=function(x,digits=NULL,...){
     b=data.frame(a)
     colnames(b)=colnames(a)
 
-    suppressMessages(d<-confint(x))
+    suppressMessages(d<-confint.default(x))
     OR=data.frame(exp(coef(x)),exp(d))
     OR=round(OR,4)
     OR=cbind(OR,round(summary(x)$coefficient[,4],4))
