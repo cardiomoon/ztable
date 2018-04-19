@@ -2,7 +2,7 @@
 % Please edit documentation in R/print.ztable.html.R
 \name{getNewAlign}
 \alias{getNewAlign}
-\title{Make a charater string indicating the alignment of components of table.}
+\title{Make a character string indicating the alignment of components of table.}
 \usage{
 getNewAlign(z)
 }
@@ -10,5 +10,5 @@ getNewAlign(z)
 \item{z}{An object of ztable}
 }
 \description{
-Make a charater string indicating the alignment of components of table.
+Make a character string indicating the alignment of components of table.
 }

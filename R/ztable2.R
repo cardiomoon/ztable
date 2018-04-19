@@ -110,7 +110,7 @@ getspanRowLength=function(z,i,j){
 #'@param z An object of ztable
 #'@param cgroup A character vector or matrix indicating names of column group. Default value is NULL
 #'@param n.cgroup A integer vector or matrix indicating the numbers of columns included in each cgroup
-#'       Dafault value is NULL
+#'       Default value is NULL
 #'@param cgroupcolor A character vector or matrix indicating the background colors of each cells.
 #'@export
 addcgroup=function(z,cgroup,n.cgroup,cgroupcolor=NULL){
@@ -130,7 +130,7 @@ addcgroup=function(z,cgroup,n.cgroup,cgroupcolor=NULL){
 #'@param z An object of ztable
 #'@param rgroup A character vector indicating names of row group. Default value is NULL
 #'@param n.rgroup A integer vector indicating the numbers of rows included in each rgroup
-#'       Dafault value is NULL
+#'       Default value is NULL
 #'@param cspan.rgroup An integer indicating the column span of rgroup
 #'@export
 addrgroup=function(z,rgroup,n.rgroup,cspan.rgroup=NULL){
@@ -335,7 +335,7 @@ spanRow=function(z,col,from,to,color=NULL){
     z
 }
 
-#' Idetify the spanCol status of a cell
+#' Identify the spanCol status of a cell
 #'
 #'@param z An object of ztable
 #'@param i An integer indicating the row of specific cell
@@ -420,13 +420,13 @@ isspanRow=function(z,i,j){
     return(NULL)
 }
 
-#'Gets the spanRaw start column
+#'Gets the spanRow start column
 #'
 #'@param z An object of ztable
 #'@param i An integer indicating the row of specific cell
 #'@param j An integer indicating the column of specific cell
 #'
-#'@return An integer indicating column where spanRaw start. This function is for latex
+#'@return An integer indicating column where spanRow start. This function is for latex
 #'        multirow
 getspanRowData=function(z,i,j){
     for(k in 1:nrow(z$spanRow)) {
@@ -484,7 +484,7 @@ isGroupCol=function(start,length,colCount){
     else return(0)
 }
 
-#' Add a adjunctive name below colummn name in a ztable
+#' Add a adjunctive name below column name in a ztable
 #'
 #'@param z An object of ztable
 #'@param subcolnames A charactor vector

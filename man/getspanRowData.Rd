@@ -2,7 +2,7 @@
 % Please edit documentation in R/ztable2.R
 \name{getspanRowData}
 \alias{getspanRowData}
-\title{Gets the spanRaw start column}
+\title{Gets the spanRow start column}
 \usage{
 getspanRowData(z, i, j)
 }
@@ -14,9 +14,9 @@ getspanRowData(z, i, j)
 \item{j}{An integer indicating the column of specific cell}
 }
 \value{
-An integer indicating column where spanRaw start. This function is for latex
+An integer indicating column where spanRow start. This function is for latex
        multirow
 }
 \description{
-Gets the spanRaw start column
+Gets the spanRow start column
 }

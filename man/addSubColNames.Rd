@@ -2,7 +2,7 @@
 % Please edit documentation in R/ztable2.R
 \name{addSubColNames}
 \alias{addSubColNames}
-\title{Add a adjunctive name below colummn name in a ztable}
+\title{Add a adjunctive name below column name in a ztable}
 \usage{
 addSubColNames(z, subcolnames)
 }
@@ -12,5 +12,5 @@ addSubColNames(z, subcolnames)
 \item{subcolnames}{A charactor vector}
 }
 \description{
-Add a adjunctive name below colummn name in a ztable
+Add a adjunctive name below column name in a ztable
 }

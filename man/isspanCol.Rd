@@ -2,7 +2,7 @@
 % Please edit documentation in R/ztable2.R
 \name{isspanCol}
 \alias{isspanCol}
-\title{Idetify the spanCol status of a cell}
+\title{Identify the spanCol status of a cell}
 \usage{
 isspanCol(z, i, j)
 }
@@ -18,5 +18,5 @@ column plus space count when spanCol starts, 0 when column spans,
        minus value when spanCol ends, NULL when no span.
 }
 \description{
-Idetify the spanCol status of a cell
+Identify the spanCol status of a cell
 }

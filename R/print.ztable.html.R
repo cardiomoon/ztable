@@ -147,7 +147,7 @@ Usage: type must be one of these or NULL: 0-1 or \"none\",\"all\"\n
 #'
 #' @param z An object of ztable
 #' @param type An integer or one of c("none","all")
-#' @param add An integer vector indicating rows where the horzontal lines added
+#' @param add An integer vector indicating rows where the horizontal lines added
 #' @param del An integer vector indicating rows where the horizontal lines deleted
 #' @export
 hlines=function(z,type=NULL,add=NULL,del=NULL){
@@ -240,7 +240,7 @@ align2lines=function(align){
     result
 }
 
-#' Make a charater string indicating the alignment of components of table.
+#' Make a character string indicating the alignment of components of table.
 #'
 #' @param z An object of ztable
 #' @export

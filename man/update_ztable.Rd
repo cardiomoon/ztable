@@ -40,7 +40,7 @@ must be NULL or contain only elements of {"h","t","b","p","!","H"}.}
 \item{position}{The table will be have placed at the center of the paper
 if position is "center" or "c", and at the left side of the paper
 if it equals "left" or "l", and at the right side of the paper
-if it equals "right" or "r". The position is translated to specificed
+if it equals "right" or "r". The position is translated to specific
 latex environments such as "flushright" or "flushleft" or "center"
 (provided as a character vector) will enclose the tabular environment.}
 
@@ -85,7 +85,7 @@ Note that this can lead to quite long result strings.}
 "longtable". Requires Latex "longtable" package in preamble.}
 
 \item{rotate}{Logical value whether or not set the tabular environment=
-"rotate". No special arrangement is made to find space for the resut.
+"rotate". No special arrangement is made to find space for the result.
 Requires Latex "rotating" package in preamble.
 If TRUE, requires the rotate angle(counterclockwise).}
 
@@ -129,12 +129,12 @@ that should be added as a prefix at the colnames row.}
 
 \item{zebra}{Null or a integer of 1 or 2. The arguments zebra and zebra.color are
 used to make a Zebra striping table(table with alternating background colors)
-easly. A value of 1 sets background color of all odd rows with specified with
+easily. A value of 1 sets background color of all odd rows with specified with
 zebra.color. A value of 2 sets all even rows. when zebra is 1 or 2,
 the parameters of prefix.rows and commands ignored.}
 
 \item{zebra.color}{A color name or a numeric value indicating pre-defined color.
-When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zerba.color
+When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zebra.color
 is set to "platinum". Numeric values between 1 to 13 is converted to
 predefined color names. The predefined color names are c("peach","peach-orange",
 "peachpuff","peach-yellow","pear","pearl","peridot","periwinkle","pastelred",
@@ -162,12 +162,12 @@ Default value is TRUE}
 \item{cgroup}{A character vector or matrix indicating names of column group. Default value is NULL}
 
 \item{n.cgroup}{A integer vector or matrix indicating the numbers of columns included in each cgroup
-Dafault value is NULL}
+Default value is NULL}
 
 \item{rgroup}{A character vector indicating names of row group. Default value is NULL}
 
 \item{n.rgroup}{A integer vector indicating the numbers of rows included in each rgroup
-Dafault value is NULL}
+Default value is NULL}
 
 \item{cspan.rgroup}{The number of columns that an rgroup should span. It spans by default all
 columns but you may want to limit this if you have column colors that you want to retain.}

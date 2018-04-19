@@ -1,8 +1,8 @@
 #' Definition of Latex Color
 #'
-#' A dataset cotaining the name of color and Hex-triplets and latex definition
+#' A dataset containing the name of color and Hex-triplets and latex definition
 #'
-#' To use this color definition, a latex package "color" shoule bd included in
+#' To use this color definition, a latex package "color" should be included in
 #' your preamble.
 #'
 #'@format  A data frame with 749 rows and 3 variables:

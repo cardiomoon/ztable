@@ -12,7 +12,7 @@ addrgroup(z, rgroup, n.rgroup, cspan.rgroup = NULL)
 \item{rgroup}{A character vector indicating names of row group. Default value is NULL}
 
 \item{n.rgroup}{A integer vector indicating the numbers of rows included in each rgroup
-Dafault value is NULL}
+Default value is NULL}
 
 \item{cspan.rgroup}{An integer indicating the column span of rgroup}
 }

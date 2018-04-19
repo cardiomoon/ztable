@@ -11,7 +11,7 @@ hlines(z, type = NULL, add = NULL, del = NULL)
 
 \item{type}{An integer or one of c("none","all")}
 
-\item{add}{An integer vector indicating rows where the horzontal lines added}
+\item{add}{An integer vector indicating rows where the horizontal lines added}
 
 \item{del}{An integer vector indicating rows where the horizontal lines deleted}
 }

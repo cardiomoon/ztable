@@ -14,10 +14,10 @@
 zcolors
 }
 \description{
-A dataset cotaining the name of color and Hex-triplets and latex definition
+A dataset containing the name of color and Hex-triplets and latex definition
 }
 \details{
-To use this color definition, a latex package "color" shoule bd included in
+To use this color definition, a latex package "color" should be included in
 your preamble.
 }
 \keyword{datasets}

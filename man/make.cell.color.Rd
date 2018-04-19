@@ -12,14 +12,14 @@ make.cell.color(x, zebra, zebra.color, zebra.type, zebra.list, zebra.colnames,
 
 \item{zebra}{Null or an integer of 0 or 1 or 2. The arguments zebra and zebra.color are
 used to make a Zebra striping table(table with alternating background colors)
-easly. A value of 1 sets background color of all odd rows/columns with specified with
+easily. A value of 1 sets background color of all odd rows/columns with specified with
 zebra.color. A value of 2 sets all even rows/columns. A value of 0 sets
 background colors of all rows/columns with colors specified with zebra.color.
 When zebra is 1 or 2, the parameters of prefix.rows and commands ignored.
 Default is NULL.}
 
 \item{zebra.color}{A color name or a numeric value indicating pre-defined color.
-When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zerba.color
+When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zebra.color
 is set to "platinum". Numeric values between 1 to 13 is converted to
 predefined color names. The predefined color names are c("peach","peach-orange",
 "peachpuff","peach-yellow","pear","pearl","peridot","periwinkle","pastelred",
@@ -32,7 +32,7 @@ Default value is 1.}
 
 \item{zebra.list}{A list consists of y,x,color. zebra.list is used only when zebra.type=3.
 zebra.list sets the cells specified with rows of vector "y" and columns of vector "x" with "color".
-The y and x are integer vactor indicating rows and columns. NA value of y or x indicating all columns or rows.
+The y and x are integer vector indicating rows and columns. NA value of y or x indicating all columns or rows.
 The color is an character vector consists of names of color.}
 
 \item{zebra.colnames}{whether or not use background colors in column names row,

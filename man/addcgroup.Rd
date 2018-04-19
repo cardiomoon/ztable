@@ -12,7 +12,7 @@ addcgroup(z, cgroup, n.cgroup, cgroupcolor = NULL)
 \item{cgroup}{A character vector or matrix indicating names of column group. Default value is NULL}
 
 \item{n.cgroup}{A integer vector or matrix indicating the numbers of columns included in each cgroup
-Dafault value is NULL}
+Default value is NULL}
 
 \item{cgroupcolor}{A character vector or matrix indicating the background colors of each cells.}
 }

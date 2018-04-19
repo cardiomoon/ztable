@@ -7,7 +7,7 @@
 define_colors(mycolors)
 }
 \arguments{
-\item{mycolors}{chracters vectors of color names}
+\item{mycolors}{characters vectors of color names}
 }
 \description{
 Define colors of mycolors

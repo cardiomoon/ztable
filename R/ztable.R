@@ -47,7 +47,7 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'@param position The table will be have placed at the center of the paper
 #'        if position is "center" or "c", and at the left side of the paper
 #'        if it equals "left" or "l", and at the right side of the paper
-#'        if it equals "right" or "r". The position is translated to specificed
+#'        if it equals "right" or "r". The position is translated to specific
 #'        latex environments such as "flushright" or "flushleft" or "center"
 #'        (provided as a character vector) will enclose the tabular environment.
 #'        Default value is "center".
@@ -89,7 +89,7 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'       "wraptable". Requires Latex "wrapfig" package in preamble.
 #'       Default value is FALSE.
 #'@param rotate Logical value whether or not set the tabular environment=
-#'       "rotate". No special arrangement is made to find space for the resut.
+#'       "rotate". No special arrangement is made to find space for the result.
 #'       Requires Latex "rotating" package in preamble.
 #'       If TRUE, requires the rotate angle(counterclockwise).
 #'       Default value is FALSE.
@@ -123,7 +123,7 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'       that should be added as a prefix at the colnames row.
 #'@param zebra Null or an integer of 0 or 1 or 2 or 3. The arguments zebra and zebra.color are
 #'       used to make a Zebra striping table(table with alternating background colors)
-#'       easly. A value of 1 sets background color of all odd rows/columns with specified with
+#'       easily. A value of 1 sets background color of all odd rows/columns with specified with
 #'       zebra.color. A value of 2 sets all even rows/columns. A value of 0 sets
 #'       background colors of all rows/columns with colors specified with zebra.color.
 #'       When zebra is 1 or 2, the parameters of prefix.rows and commands ignored.
@@ -131,7 +131,7 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'       and addCellColor functions.
 #'       Default is NULL.
 #'@param zebra.color A color name or a numeric value indicating pre-defined color.
-#'       When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zerba.color
+#'       When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zebra.color
 #'       is set to "platinum". Numeric values between 1 to 13 is converted to
 #'       predefined color names. The predefined color names are c("peach","peach-orange",
 #'       "peachpuff","peach-yellow","pear","pearl","peridot","periwinkle","pastelred",
@@ -146,16 +146,16 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'       Default value is 1.
 #'@param zebra.list A list consists of y,x,color. zebra.list is used only when zebra.type=3.
 #'       zebra.list sets the cells specified with rows of vector "y" and columns of vector "x" with "color".
-#'       The y and x are integer vactor indicating rows and columns. NA value of y or x indicating all columns or rows.
+#'       The y and x are integer vector indicating rows and columns. NA value of y or x indicating all columns or rows.
 #'       The color is an character vector consists of names of color.
 #'@param colnames.bold whether or not use bold font for column names, Default value is FALSE
 #'@param include.colnames Logical. If TRUE the column names is printed. Default value is TRUE.
 #'@param cgroup A character vector or matrix indicating names of column group. Default value is NULL
 #'@param n.cgroup A integer vector or matrix indicating the numbers of columns included in each cgroup
-#'       Dafault value is NULL
+#'       Default value is NULL
 #'@param rgroup A character vector indicating names of row group. Default value is NULL
 #'@param n.rgroup A integer vector indicating the numbers of rows included in each rgroup
-#'       Dafault value is NULL
+#'       Default value is NULL
 #'@param cspan.rgroup The number of columns that an rgroup should span. It spans by default all
 #'       columns but you may want to limit this if you have column colors that you want to retain.
 #'@examples
@@ -349,13 +349,13 @@ ztable_sub=function(x,
 #'@param x a data.frame
 #'@param zebra Null or an integer of 0 or 1 or 2. The arguments zebra and zebra.color are
 #'       used to make a Zebra striping table(table with alternating background colors)
-#'       easly. A value of 1 sets background color of all odd rows/columns with specified with
+#'       easily. A value of 1 sets background color of all odd rows/columns with specified with
 #'       zebra.color. A value of 2 sets all even rows/columns. A value of 0 sets
 #'       background colors of all rows/columns with colors specified with zebra.color.
 #'       When zebra is 1 or 2, the parameters of prefix.rows and commands ignored.
 #'       Default is NULL.
 #'@param zebra.color A color name or a numeric value indicating pre-defined color.
-#'       When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zerba.color
+#'       When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zebra.color
 #'       is set to "platinum". Numeric values between 1 to 13 is converted to
 #'       predefined color names. The predefined color names are c("peach","peach-orange",
 #'       "peachpuff","peach-yellow","pear","pearl","peridot","periwinkle","pastelred",
@@ -366,7 +366,7 @@ ztable_sub=function(x,
 #'       Default value is 1.
 #'@param zebra.list A list consists of y,x,color. zebra.list is used only when zebra.type=3.
 #'       zebra.list sets the cells specified with rows of vector "y" and columns of vector "x" with "color".
-#'       The y and x are integer vactor indicating rows and columns. NA value of y or x indicating all columns or rows.
+#'       The y and x are integer vector indicating rows and columns. NA value of y or x indicating all columns or rows.
 #'       The color is an character vector consists of names of color.
 #'@param zebra.colnames whether or not use background colors in column names row,
 #'       Default value is FALSE
@@ -497,7 +497,7 @@ repColor=function(x,color){
 #'@param position The table will be have placed at the center of the paper
 #'        if position is "center" or "c", and at the left side of the paper
 #'        if it equals "left" or "l", and at the right side of the paper
-#'        if it equals "right" or "r". The position is translated to specificed
+#'        if it equals "right" or "r". The position is translated to specific
 #'        latex environments such as "flushright" or "flushleft" or "center"
 #'        (provided as a character vector) will enclose the tabular environment.
 #'@param show.heading A logical value whether or not include headings in the table.
@@ -532,7 +532,7 @@ repColor=function(x,color){
 #'@param wraptable Logical value whether or not set the tabular environment=
 #'       "wraptable". Requires Latex "wrapfig" package in preamble.
 #'@param rotate Logical value whether or not set the tabular environment=
-#'       "rotate". No special arrangement is made to find space for the resut.
+#'       "rotate". No special arrangement is made to find space for the result.
 #'       Requires Latex "rotating" package in preamble.
 #'       If TRUE, requires the rotate angle(counterclockwise).
 #'@param turn Logical value whether or not set the tabular environment=
@@ -562,11 +562,11 @@ repColor=function(x,color){
 #'       that should be added as a prefix at the colnames row.
 #'@param zebra Null or a integer of 1 or 2. The arguments zebra and zebra.color are
 #'       used to make a Zebra striping table(table with alternating background colors)
-#'       easly. A value of 1 sets background color of all odd rows with specified with
+#'       easily. A value of 1 sets background color of all odd rows with specified with
 #'       zebra.color. A value of 2 sets all even rows. when zebra is 1 or 2,
 #'       the parameters of prefix.rows and commands ignored.
 #'@param zebra.color A color name or a numeric value indicating pre-defined color.
-#'       When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zerba.color
+#'       When parameter zebra is 0 or 1 or 2 and zebra.color is NULL, then zebra.color
 #'       is set to "platinum". Numeric values between 1 to 13 is converted to
 #'       predefined color names. The predefined color names are c("peach","peach-orange",
 #'       "peachpuff","peach-yellow","pear","pearl","peridot","periwinkle","pastelred",
@@ -586,10 +586,10 @@ repColor=function(x,color){
 #'@param include.colnames Logical. If TRUE the column names is printed.
 #'@param cgroup A character vector or matrix indicating names of column group. Default value is NULL
 #'@param n.cgroup A integer vector or matrix indicating the numbers of columns included in each cgroup
-#'       Dafault value is NULL
+#'       Default value is NULL
 #'@param rgroup A character vector indicating names of row group. Default value is NULL
 #'@param n.rgroup A integer vector indicating the numbers of rows included in each rgroup
-#'       Dafault value is NULL
+#'       Default value is NULL
 #'@param cspan.rgroup The number of columns that an rgroup should span. It spans by default all
 #'       columns but you may want to limit this if you have column colors that you want to retain.
 #'@export
@@ -1332,7 +1332,7 @@ validColor2=function(a){
 #' Define colors
 #'
 #' Define colors of mycolors
-#' @param mycolors chracters vectors of color names
+#' @param mycolors characters vectors of color names
 define_colors=function(mycolors) {
     if(is.null(mycolors)) return
     uniquecolors=unique(as.vector(unique(mycolors)))
