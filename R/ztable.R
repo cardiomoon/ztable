@@ -5,18 +5,21 @@
 #'@param digits Numeric vector of length equal to one (in which case it will be
 #'       replicated as necessary) or to the number of columns of the resulting table
 #' @param ... arguments to be passed to \code{\link{ztable_sub}}
+#' @export
 ztable=function(x,digits=NULL,...)  UseMethod("ztable")
 
-#'@describeIn ztable
-#'
+
+#'@describeIn ztable Default method of ztable
+#'@export
 ztable.default=function(x,digits=NULL,...){
   cat(paste("\n Sorry, Currently function ztable() cannot handle",
       " the object of class ",class(x),"!\n",sep=""))
   invisible()
 }
 
-#'@describeIn ztable
-#'
+
+#'@describeIn ztable  Makes a ztable for class 'data.frame'
+#'@export
 ztable.data.frame=function(x,digits=NULL,...){
     z=ztable_sub(x,digits=digits,...)
     class(z) <-c("ztable")
@@ -589,6 +592,7 @@ repColor=function(x,color){
 #'       Dafault value is NULL
 #'@param cspan.rgroup The number of columns that an rgroup should span. It spans by default all
 #'       columns but you may want to limit this if you have column colors that you want to retain.
+#'@export
 update_ztable=function(z,
                        size=NULL, # normal size, range 1-10
                        color=NULL,
@@ -687,6 +691,7 @@ update_ztable=function(z,
 #'
 #' @param x An object of class "ztable"
 #' @param ... further argument passed to other function
+#' @export
 print.ztable=function(x,...){
     z=update_ztable(z=x,...)
     print_ztable(z)

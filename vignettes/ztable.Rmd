@@ -16,7 +16,7 @@ vignette: >
 Package "ztable" make everything possible about table. Basically, An object of "ztable" made from a data.frame. The default output format of ztable is RStudio::viewer or web-browser format(type="viewer"). So if you want to use ztable in a "html" format, you should change the parameter ztable.type to "html". If you want to use ztable in latex format, you should change the parameter ztable.type to "latex". 
 
 ```{r,results='asis'}
-require(ztable)
+library(ztable)
 options(ztable.type="html")
 z=ztable(head(iris))
 z

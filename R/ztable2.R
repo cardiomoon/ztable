@@ -3,6 +3,7 @@
 #' @param z An object of ztable
 #' @param rows An integer vector indicating specific rows
 #' @param color A character vector indicating color
+#'@export
 #' @examples
 #' z=ztable(head(iris))
 #' z=addRowColor(z,c(1,3),color="platinum")
@@ -25,6 +26,7 @@ addRowColor=function(z,rows,color){
 #' @param z An object of ztable
 #' @param cols An integer vector indicating specific columns
 #' @param color A character vector indicating color
+#'@export
 #' @examples
 #' z=ztable(head(iris))
 #' z=addColColor(z,c(1,3),color="platinum")
@@ -48,6 +50,7 @@ addColColor=function(z,cols,color){
 #' @param rows An integer vector indicating specific rows
 #' @param cols An integer vector indicating specific columns
 #' @param color A character vector indicating color
+#' @export
 #' @examples
 #' z=ztable(head(iris))
 #' z=addRowColor(z,c(1,3),color="platinum")
@@ -87,6 +90,7 @@ addCellColor=function(z,rows,cols,color){
 #'@param z An object of ztable
 #'@param i An integer indicating the row of specific cell
 #'@param j An integer indicating the column of specific cell
+#'@export
 #'@return row count when spanRow starts, 0 when column spans.
 getspanRowLength=function(z,i,j){
     if(is.null(z$spanRow)) return(NULL)
@@ -108,6 +112,7 @@ getspanRowLength=function(z,i,j){
 #'@param n.cgroup A integer vector or matrix indicating the numbers of columns included in each cgroup
 #'       Dafault value is NULL
 #'@param cgroupcolor A character vector or matrix indicating the background colors of each cells.
+#'@export
 addcgroup=function(z,cgroup,n.cgroup,cgroupcolor=NULL){
     if(!is.matrix(cgroup)) cgroup=matrix(cgroup,nrow=1)
     if(!is.matrix(n.cgroup)) n.cgroup=matrix(n.cgroup,nrow=1)
@@ -127,6 +132,7 @@ addcgroup=function(z,cgroup,n.cgroup,cgroupcolor=NULL){
 #'@param n.rgroup A integer vector indicating the numbers of rows included in each rgroup
 #'       Dafault value is NULL
 #'@param cspan.rgroup An integer indicating the column span of rgroup
+#'@export
 addrgroup=function(z,rgroup,n.rgroup,cspan.rgroup=NULL){
     if(is.null(rgroup)) return(z)
     for(i in 1:length(rgroup)) {
@@ -143,6 +149,7 @@ addrgroup=function(z,rgroup,n.rgroup,cspan.rgroup=NULL){
 #'
 #' @param z An object of class ztable
 #' @return A vector indicating the position of colgroup
+#'@export
 colGroupCount=function(z){
     if(is.null(z$cgroup)) return(NULL)
     if(is.null(z$n.cgroup)) return(NULL)
@@ -163,6 +170,7 @@ colGroupCount=function(z){
 #'
 #' @param z An object of ztable
 #' @return A matrix indicating the column span occupied by each colgroup
+#' @export
 cGroupSpan=function(z){
     vlines=align2lines(z$align)
     colCount=colGroupCount(z)
@@ -277,6 +285,7 @@ totalCol=function(z){
 #' @param from An integer indicating start column of merging data cell
 #' @param to An integer indicating end column of merging data cell
 #' @param color An optional character indicating the background color of merging cell
+#' @export
 spanCol=function(z,row,from,to,color=NULL){
     if(length(row)!=1) {
         warning("Only one row is permitted")
@@ -305,6 +314,7 @@ spanCol=function(z,row,from,to,color=NULL){
 #' @param from An integer indicating start row of merging data cell
 #' @param to An integer indicating end row of merging data cell
 #' @param color An optional character indicating the background color of merging cell
+#' @export
 spanRow=function(z,col,from,to,color=NULL){
     if(length(row)!=1) {
         warning("Only one row is permitted")
@@ -478,6 +488,7 @@ isGroupCol=function(start,length,colCount){
 #'
 #'@param z An object of ztable
 #'@param subcolnames A charactor vector
+#'@export
 addSubColNames=function(z,subcolnames){
     if(length(subcolnames)!=length(z$x))
         warning("length of subconames is different from length of z$x")
@@ -490,6 +501,7 @@ addSubColNames=function(z,subcolnames){
 #'@param z An object of ztable
 #'@param sigp A p-value
 #'@param sigcolor A character indicating color
+#'@export
 addSigColor=function(z,sigp=0.05,sigcolor="lightcyan"){
 
     if("ztable.mytable" %in% class(z))  {

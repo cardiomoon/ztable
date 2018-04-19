@@ -4,6 +4,7 @@
 #'@param digits Numeric vector of length equal to one (in which case it will be
 #'       replicated as necessary) or to the number of columns of the resulting table
 #'@param ... arguments to be passed to \code{\link{ztable_sub}}
+#'@export
 #'@examples
 #'require(moonBook)
 #'res=mytable(sex+DM~.,data=acs)

@@ -92,6 +92,7 @@ extractAlign=function(align){
 #' @param type An integer or one of c("none","all")
 #' @param add An integer vector indicating columns where the width of vertical lines added
 #' @param del An integer vector indicating columns where the width of vertical lines subtracted
+#' @export
 vlines=function(z,type=NULL,add=NULL,del=NULL){
 
     if(is.null(type) & is.null(add) & is.null(del)) {
@@ -148,6 +149,7 @@ Usage: type must be one of these or NULL: 0-1 or \"none\",\"all\"\n
 #' @param type An integer or one of c("none","all")
 #' @param add An integer vector indicating rows where the horzontal lines added
 #' @param del An integer vector indicating rows where the horizontal lines deleted
+#' @export
 hlines=function(z,type=NULL,add=NULL,del=NULL){
 
     if(is.null(type) & is.null(add) & is.null(del)) {
@@ -241,6 +243,7 @@ align2lines=function(align){
 #' Make a charater string indicating the alignment of components of table.
 #'
 #' @param z An object of ztable
+#' @export
 getNewAlign=function(z){
     #cat("z$align=",z$align,"\n")
     if(is.null(z$cgroup)) return(z$align)

@@ -8,6 +8,7 @@
 #' @param listTables a list consists of object of "ztable" or valid figure name
 #' @param type Type of table to produce. Possible values for type are "latex" or
 #'        "html". Default value is "latex".
+#' @export
 #' @examples
 #' require(ztable)
 #' z=ztable(head(mtcars[1:3]),tabular=TRUE)

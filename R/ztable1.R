@@ -1,5 +1,5 @@
-#'@describeIn ztable
-#'
+#'@describeIn ztable Makes a ztable for class matrix
+#'@export
 ztable.matrix=function(x,digits=NULL,...){
     result=data.frame(x,stringsAsFactors=FALSE)
     colnames(result)=colnames(x)
@@ -7,8 +7,8 @@ ztable.matrix=function(x,digits=NULL,...){
     out
 }
 
-#'@describeIn ztable
-#'
+#'@describeIn ztable Makes a ztable for class 'lm'
+#'@export
 ztable.lm=function(x,digits=NULL,...){
     result=data.frame(summary(x)$coeff)
     colnames(result)=c("Estimate","Std. Error","t value","Pr(>|t|)")
@@ -22,8 +22,8 @@ ztable.lm=function(x,digits=NULL,...){
     out
 }
 
-#'@describeIn ztable
-#'
+#'@describeIn ztable Makes a ztable for class 'fitdistr'
+#'@export
 ztable.fitdistr=function(x,digits=NULL,...){
     if(is.null(digits)) mydigits=3
     else mydigits=digits
@@ -38,8 +38,9 @@ ztable.fitdistr=function(x,digits=NULL,...){
     out
 }
 
-#'@describeIn ztable
-#'
+#'@describeIn ztable Makes a ztable for class 'nls'
+#' @importFrom stats formula
+#'@export
 ztable.nls=function(x,digits=NULL,...){
     result=data.frame(summary(x)$coeff)
     colnames(result)=c("Estimate","Std. Error","t value","Pr(>|t|)")
@@ -56,8 +57,8 @@ ztable.nls=function(x,digits=NULL,...){
 }
 
 
-#'@describeIn ztable
-#'
+#'@describeIn ztable Makes a ztable for class 'aov'
+#'@export
 ztable.aov=function(x,digits=NULL,...){
     result=summary(x)[[1]]
     if(!is.null(x$call)){
@@ -71,8 +72,8 @@ ztable.aov=function(x,digits=NULL,...){
     out
 }
 
-#'@describeIn ztable
-#'
+#'@describeIn ztable Makes a ztable for class 'anova'
+#'@export
 ztable.anova=function(x,digits=NULL,...){
     result=data.frame(x)
     colnames(result)=colnames(x)
@@ -100,8 +101,9 @@ ztable.anova=function(x,digits=NULL,...){
     out
 }
 
-#'@describeIn ztable
-#'
+#'@describeIn ztable Makes a ztable for class 'glm'
+#'@importFrom stats confint.default coef
+#'@export
 ztable.glm=function(x,digits=NULL,...){
     a=summary(x)$coeff
     b=data.frame(a)
@@ -127,8 +129,8 @@ ztable.glm=function(x,digits=NULL,...){
     out
 }
 
-#'@describeIn ztable
-#'
+#'@describeIn ztable Makes a ztable for class 'coxph'
+#'@export
 ztable.coxph=function(x,digits=NULL,...){
     a=summary(x)$coeff
     b=summary(x)$conf.int
@@ -146,8 +148,8 @@ ztable.coxph=function(x,digits=NULL,...){
     out
 }
 
-#'@describeIn ztable
-#'
+#'@describeIn ztable Makes a ztable for class 'prcomp'
+#'@export
 ztable.prcomp=function(x,digits=NULL,...){
     result=data.frame(x$rotation)
     colnames(result)=colnames(x$rotation)
@@ -163,8 +165,8 @@ ztable.prcomp=function(x,digits=NULL,...){
     out
 }
 
-#'@describeIn ztable
-#'
+#'@describeIn ztable Makes a ztable for class 'summary.prcomp'
+#'@export
 ztable.summary.prcomp=function(x,digits=NULL,...){
     result=data.frame(x$importance)
     colnames(result)=colnames(x$importance)
