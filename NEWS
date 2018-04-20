@@ -4,6 +4,8 @@ ztable 0.1.7
 
 * ztable.glm uses confint.dafault to compute confidence interval
 
+* A shiny app "ztableDemo" added in inst folder
+
 ztable 0.1.6
 ============
 (16-Sep-2015)
