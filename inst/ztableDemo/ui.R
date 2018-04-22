@@ -2,22 +2,22 @@ library(shiny)
 
 string="This is string"
 excolors=c("platinum","pink","yellow","orange","lightcyan","white")
-# Define UI for random distribution application 
+# Define UI for random distribution application
 shinyUI(fluidPage(
-    
+
   # Application title
   titlePanel("Demonstration of ztable"),
-  
+
   # Sidebar with controls to select the independent variable
   # and options of plot to generate. Note the use of the
   # br() element to introduce extra vertical spacing
   sidebarLayout(
-      sidebarPanel( 
+      sidebarPanel(
   tabsetPanel(id="Tabset",
-                tabPanel("Data", 
+                tabPanel("Data",
                          br(),
                          radioButtons("data", "Select Data and Click the Button:",
-                                      c("iris" = 1, "mtcars" = 2, 
+                                      c("iris" = 1, "mtcars" = 2,
                                         "lm" = 3, "aov" = 4,"anova"=5 ,"another anova"=6,
                                         "glm" = 7,"another anova"=8,"prcomp"=9,
                                         "summary.prcomp"=10,"non-linear least squre"=11)),
@@ -29,16 +29,16 @@ shinyUI(fluidPage(
                                      value = 5),
                          checkboxInput("colname",label="show column names",value=TRUE),
                          checkboxInput("rowname",label="show row names",value=TRUE)
-                       
+
                 ),
-                tabPanel("Caption", 
+                tabPanel("Caption",
                          br(),
                          textInput("caption","Caption: ","Table 1. This is a demonstration of ztable"),
                          radioButtons("caption.placement", "Caption Placement: ",
                                       c("top" = "top", "bottom"="bottom")),
                          radioButtons("caption.position", "Caption Position: ",
                                       c("left" = "l", "center"="c","right"="r"))
-                         
+
                 ),
                 tabPanel("addColColor",
                          br(),
@@ -56,6 +56,12 @@ shinyUI(fluidPage(
                        selectInput('ccols','Columns',1:10,multiple=TRUE,selectize=TRUE),
                        selectInput("ccolor","Color",excolors,selectize=TRUE)
                 ),
+              tabPanel("addFrontColor",
+                       br(),
+                       selectInput('frows','Rows',1:10,multiple=TRUE,selectize=TRUE),
+                       selectInput('fcols','Columns',1:10,multiple=TRUE,selectize=TRUE),
+                       selectInput("fcolor","Color",excolors,selectize=TRUE)
+              ),
                 tabPanel("addcgroup",
                        br(),
                        textInput('cgroup','cgroup',"Group A,Group B"),
@@ -107,9 +113,9 @@ shinyUI(fluidPage(
         hr(),
         verbatimTextOutput('a_out'),
         htmlOutput("overview")
-        
+
       )
     )
   )
 )
- 
+

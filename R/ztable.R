@@ -287,6 +287,7 @@ ztable_sub=function(x,
     }
     cellcolor=make.cell.color(x,zebra,zebra.color,zebra.type,zebra.list,
                               zebra.colnames,zebra.rownames)
+    frontcolor=make.frontcolor(x,color)
     if(!is.null(prefix.rows) & (length(commands)==1))
         commands=rep(commands,nrow)
     if((0 %in% prefix.rows) & is.null(top.command) &(length(commands)>0))
@@ -296,6 +297,7 @@ ztable_sub=function(x,
 
     result=list(x=x,
                 cellcolor=cellcolor,
+                frontcolor=frontcolor,
                 size=size,
                 color=color,
                 tablewidth=tablewidth,
@@ -466,6 +468,19 @@ make.cell.color=function(x,zebra,zebra.color,zebra.type,zebra.list,
 
     }
     cellcolor
+}
+
+#' Make a data.frame named "cellcolor" from ztable call
+#'
+#'@param x A data.frame
+#'@param color A character string
+make.frontcolor=function(x,color="black"){
+    temp=rep(color,nrow(x)+1)
+    frontcolor=c()
+    for(i in 1:(ncol(x)+1)) frontcolor=cbind(frontcolor,temp)
+    colnames(frontcolor)=c(" ",colnames(x))
+    rownames(frontcolor)=c(" ",rownames(x))
+    frontcolor
 }
 
 #' Make vector x from vector color
@@ -836,6 +851,7 @@ ztable2latex=function(z,xdata){
     else sort="table"
     headingsize=ifelse(z$size>3,z$size-2,1)
     define_colors(z$cellcolor)
+    define_colors(z$frontcolor)
     if(!is.null(z$cgroupcolor)) define_colors(z$cgroupcolor)
     align=alignCheck(z$align,ncount,addrow)
     if(z$longtable){
@@ -889,6 +905,7 @@ ztable2latex=function(z,xdata){
         else firstcn=cn[1]
         if(z$colnames.bold) firstcn=paste("\\textbf{",firstcn,"}",sep="")
 
+        if(z$frontcolor[1,2]!=z$color) firstcn=paste("\\color{",z$frontcolor[1,2],"}",firstcn,sep="")
         if(z$cellcolor[1,2]!="white") firstcn=paste("\\cellcolor{",z$cellcolor[1,2],"}",firstcn,sep="")
         if(z$include.rownames) {
 
@@ -916,6 +933,8 @@ ztable2latex=function(z,xdata){
                 }
                 if(z$cellcolor[1,i+1]!="white")
                     firstrow=paste(firstrow,"\\cellcolor{",z$cellcolor[1,i+1],"}",sep="")
+                if(z$frontcolor[1,i+1]!=z$color)
+                    firstrow=paste(firstrow,"\\color{",z$frontcolor[1,i+1],"}",sep="")
                 if(z$colnames.bold) boldcn=paste("\\textbf{",cn[i],"}",sep="")
                 else boldcn=cn[i]
                 result=1
@@ -960,6 +979,8 @@ ztable2latex=function(z,xdata){
                 if(is.na(z$subcolnames[i])) {
                     temp=paste("\\multirow{-2}{*}{",colnames(z$x)[i],"}",sep="")
                     if(!is.null(z$colcolor)){
+                        if(z$frontcolor[1,i+1]!=z$color)
+                            temp=paste("\\color{",z$frontcolor[1,i+1],"}",temp,sep="")
                         if(z$cellcolor[1,i+1]!="white")
                             temp=paste("\\cellcolor{",z$cellcolor[1,i+1],"}",temp,sep="")
                     }
@@ -1016,10 +1037,15 @@ ztable2latex=function(z,xdata){
         }
         tempo=NULL
         if(z$include.rownames) {
-            if(z$cellcolor[i+1,1]=="white") tempo=rownames(z$x)[i]
-            else tempo=paste("\\cellcolor{",z$cellcolor[i+1,1],"}",
+            tempo=rownames(z$x)[i]
+            if(z$frontcolor[i+1,1]!=z$color) {
+                tempo=paste("\\color{",z$frontcolor[i+1,1],"}",
+                            tempo,sep="")
+            }
+            if(z$cellcolor[i+1,1]!="white") {
+                tempo=paste("\\cellcolor{",z$cellcolor[i+1,1],"}",
                             rownames(z$x)[i],sep="")
-
+            }
             if(!is.null(isspanCol(z,(i+1),1)))
                 tempo=paste("\\multicolumn{",isspanCol(z,i+1,1),"}{c}{",tempo,"}",sep="")
             else if(!is.null(isspanRow(z,(i+1),1))){
@@ -1031,10 +1057,13 @@ ztable2latex=function(z,xdata){
 
         for(j in 1:ncount) {
             skip=0
-            if(z$cellcolor[i+1,j+1]=="white") temp1=xdata[i,j]
-            else temp1=paste("\\cellcolor{",z$cellcolor[i+1,j+1],"}",
+            if(z$frontcolor[i+1,j+1]==z$color) temp1=xdata[i,j]
+            else temp1=paste("\\color{",z$frontcolor[i+1,j+1],"}",
                              xdata[i,j],sep="")
-
+            if(z$cellcolor[i+1,j+1]!="white") {
+                temp1=paste("\\cellcolor{",z$cellcolor[i+1,j+1],"}",
+                             temp1,sep="")
+            }
             if(is.null(isspanCol(z,(i+1),(j+1)))){
                 if(is.null(isspanRow(z,(i+1),(j+1)))){
                     result=1

@@ -287,12 +287,14 @@ getNewAlign=function(z){
 
 
 #' print html style
-myhtmlStyle=function(){
+#' @param z An object of ztable
+myhtmlStyle=function(z){
     cat("<head>")
     cat("<style>
         table {
-              font-family: serif;
-              text-align: right;}
+              font-family: serif;\n")
+    cat("color: ",z$color,";\n")
+    cat("text-align: right;}
         th {
               padding: 1px 1px 5px 5px;
 	        }
@@ -324,6 +326,8 @@ printHTMLHead=function(z){
             cat(paste(" border-left: ",vlines[1],"px solid black;",sep=""))
             if(z$cgroupcolor[i,1]!="white")
                 cat(paste("background-color: ",name2rgb(z$cgroupcolor[i,1]),sep=""))
+            if(z$frontcolor[i,1]!=z$color)
+                cat(paste("color: ",name2rgb(z$frontcolor[i,1]),";",sep=""))
             cat("\"> </td>\n")
         }
         colSum=1
@@ -339,6 +343,8 @@ printHTMLHead=function(z){
                 cat(paste("border-right:",vlines[colSum+1],"px solid black;",sep=""))
                 if(z$cgroupcolor[i,j+1]!="white")
                     cat(paste("background-color: ",name2rgb(z$cgroupcolor[i,j+1]),";",sep=""))
+                if(z$frontcolor[i,j+1]!=z$color)
+                    cat(paste("color: ",name2rgb(z$frontcolor[i,j+1]),";",sep=""))
                 cat(paste("\"></td>\n",sep=""))
             } else {
                 cat("<td colspan=\"",cGroupSpan[i,j],"\" align=\"center\" ")
@@ -353,6 +359,8 @@ printHTMLHead=function(z){
                 cat(paste("border-right:",vlines[colSum+1],"px solid black;",sep=""))
                 if(z$cgroupcolor[i,j+1]!="white")
                     cat(paste("background-color: ",name2rgb(z$cgroupcolor[i,j+1]),";",sep=""))
+                if(z$frontcolor[i,j+1]!=z$color)
+                    cat(paste("color: ",name2rgb(z$frontcolor[i,j+1]),";",sep=""))
                 cat(paste("\">",z$cgroup[i,j],"</td>\n",sep=""))
             }
             #if((j < ncol(z$cgroup)) & ((colSum+j-1)<totalCol)) {
@@ -417,7 +425,7 @@ ztable2html=function(z,xdata){
     else if(z$position=="flushright") tposition="right"
     else tposition="center"
     #cat("<table class='gmisc_table'")
-    myhtmlStyle()
+    myhtmlStyle(z)
     cat("<table ")
     cat(paste("align=\"",tposition,"\" style=\"border-collapse: collapse; caption-side:",
               z$caption.placement,"; font-size:",as.integer(fontsize),"pt;\">",sep=""))
@@ -493,6 +501,8 @@ ztable2html=function(z,xdata){
                  if(printtop) cat("border-top: 2px solid gray;")
                  if(z$cellcolor[1,i+1]!="white")
                      cat(paste("background-color: ",name2rgb(z$cellcolor[1,i+1]),";",sep=""))
+                 if(z$frontcolor[1,i+1]!=z$color)
+                     cat(paste("color: ",name2rgb(z$frontcolor[1,i+1]),";",sep=""))
                                   cat(paste("\">",colnames(z$x)[i],"</th>\n",sep=""))
                  if(i %in% colCount[-length(colCount)]) {
                      if(vlines[i+2]==0){
@@ -538,6 +548,8 @@ ztable2html=function(z,xdata){
                 cat("border-bottom: 1px solid gray;")
                 if(z$cellcolor[1,i+1]!="white")
                     cat(paste("background-color: ",name2rgb(z$cellcolor[1,i+1]),";",sep=""))
+                if(z$frontcolor[1,i+1]!=z$color)
+                    cat(paste("color: ",name2rgb(z$frontcolor[1,i+1]),";",sep=""))
                 cat(paste("\">",z$subcolnames[i],"</th>\n",sep=""))
                 if(i %in% colCount[-length(colCount)]) {
                     if(vlines[i+2]==0){
@@ -704,6 +716,8 @@ ztable2html=function(z,xdata){
                 }
                 if(z$cellcolor[i+1,1]!="white")
                     cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,1]),"; ",sep=""))
+                if(z$frontcolor[i+1,1]!=z$color)
+                    cat(paste("color: ",name2rgb(z$frontcolor[i+1,1]),"; ",sep=""))
                 cat(paste("\">",rownames(z$x)[i],"</td>\n",sep=""))
             }
 
@@ -732,6 +746,8 @@ ztable2html=function(z,xdata){
                     }
                     if(z$cellcolor[i+1,j+1]!="white")
                         cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,j+1]),";",sep=""))
+                    if(z$frontcolor[i+1,j+1]!=z$color)
+                        cat(paste("color: ",name2rgb(z$frontcolor[i+1,j+1]),";",sep=""))
                     cat("\">")
                     cat(paste(xdata[i,j],"</td>\n",sep=""))
                 }
@@ -770,6 +786,8 @@ ztable2html=function(z,xdata){
                     }
                     if(z$cellcolor[i+1,j+1]!="white")
                         cat(paste("background-color: ",name2rgb(z$cellcolor[i+1,j+1]),";",sep=""))
+                    if(z$frontcolor[i+1,j+1]!=z$color)
+                        cat(paste("color: ",name2rgb(z$frontcolor[i+1,j+1]),";",sep=""))
                     cat("\">")
                     cat(paste(xdata[i,j],"</td>\n",sep=""))
                     if(isGroupCol(j,result,colCount)) {

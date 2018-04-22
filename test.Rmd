@@ -1,0 +1,90 @@
+---
+classoption: b5paper
+geometry: margin=1in
+header-includes:
+- \usepackage{multirow}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage[table]{xcolor}
+- \usepackage{tabularx,booktabs}
+- \usepackage{boxedminipage}
+- \usepackage{graphicx}
+- \usepackage{rotating}
+- \usepackage{longtable}
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\begin{tabular}{l!{\color{green}\vrule}l}
+    \arrayrulecolor{red}\hline
+    test & test\\\arrayrulecolor{blue}\hline
+\end{tabular}
+
+\begin{table}[!hbtp]
+\begin{center}
+\begin{normalsize}
+\color{black}
+\begin{tabular}{!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}l!{\color{orange}\vrule}}
+\arrayrulecolor{orange}
+\hline
+&Sepal.Length&Sepal.Width&Petal.Length&Petal.Width&Species\\ 
+\hline
+1&5.10&3.50&1.40&0.20&setosa\\ 
+\hline
+2&4.90&3.00&1.40&0.20&setosa\\ 
+\hline
+3&4.70&3.20&1.30&0.20&setosa\\ 
+\hline
+4&4.60&3.10&1.50&0.20&setosa\\ 
+\hline
+5&5.00&3.60&1.40&0.20&setosa\\ 
+\hline
+\end{tabular}
+\end{normalsize}
+\end{center}
+\end{table}
+\color{black}
+
+\definecolor{platinum}{rgb}{0.9, 0.89, 0.89} 
+\begin{table}[!hbtp]
+\begin{center}
+\begin{normalsize}
+\color{black}
+\begin{tabular}{!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}l!{\color{orange}\vrule}}
+\arrayrulecolor{orange}
+\hline
+\cellcolor{platinum}&\cellcolor{platinum}\textbf{Sepal.Length}&\cellcolor{platinum}\textbf{Sepal.Width}&\cellcolor{platinum}\textbf{Petal.Length}&\cellcolor{platinum}\textbf{Petal.Width}&\cellcolor{platinum}\textbf{Species}\\
+\hline
+\rowcolor{red}1&5.10&3.50&1.40&0.20&setosa\\ 
+\hline
+\cellcolor{platinum}2&\cellcolor{platinum}4.90&\cellcolor{platinum}3.00&\cellcolor{platinum}1.40&\cellcolor{platinum}0.20&\cellcolor{platinum}setosa\\ 
+\hline
+3&4.70&3.20&1.30&0.20&setosa\\ 
+\hline
+\rowcolor{platinum}4&4.60&3.10&1.50&0.20&\color{red}setosa\\ 
+\hline
+5&5.00&3.60&1.40&0.20&setosa\\ 
+\hline
+\end{tabular}
+\end{normalsize}
+\end{center}
+\end{table}
+\color{black}
+
+```{r,results='asis'}
+require(ztable)
+z<-ztable(head(iris),zebra=2,zebra.color="platinum",colnames.bold=TRUE)
+z=addFrontColor(z,cols=1:6,rows=1,color="white")
+z=addFrontColor(z,cols=1:6,rows=2,color="red")
+z=addCellColor(z,cols=1:6,rows=1,color="blue")
+z$frontcolor
+print(z,type="latex")
+```
+
+

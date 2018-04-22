@@ -85,6 +85,42 @@ addCellColor=function(z,rows,cols,color){
     z
 }
 
+#' Add column colors of an object of ztable
+#'
+#' @param z An object of ztable
+#' @param rows An integer vector indicating specific rows
+#' @param cols An integer vector indicating specific columns
+#' @param color A character vector indicating color
+#' @export
+#' @examples
+#' z=ztable(head(iris))
+#' z=addFrontColor(z,cols=c(5,4),rows=5,color="red")
+#' z
+addFrontColor=function(z,rows,cols,color){
+    for(i in 1:length(color)) color[i]=validColor(color[i])
+    while(length(rows)!=length(cols)){
+        if(length(rows)<length(cols)){
+            rows=c(rows,rows)
+            if(length(rows)>length(cols)) rows=rows[1:length(cols)]
+        }
+        if(length(rows)>length(cols)){
+            cols=c(cols,cols)
+            if(length(cols)>length(rows)) cols=cols[1:length(rows)]
+        }
+    }
+    if(length(cols)>length(color)) color=rep(color,1+length(cols)/length(color))
+    for(i in 1:length(cols)) {
+        z$frontcolor[rows[i],cols[i]]=color[i]
+        result=getspanRowLength(z,rows[i],cols[i])
+        if(!is.null(result)){
+            if(result>1){
+                for(j in 1:(result-1)) z$frontcolor[(rows[i]+j),cols[i]]=color[i]
+            }
+        }
+    }
+    z
+}
+
 #' Gets spanRow length
 #'
 #'@param z An object of ztable

@@ -4,7 +4,10 @@
 \alias{myhtmlStyle}
 \title{print html style}
 \usage{
-myhtmlStyle()
+myhtmlStyle(z)
+}
+\arguments{
+\item{z}{An object of ztable}
 }
 \description{
 print html style

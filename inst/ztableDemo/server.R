@@ -9,15 +9,15 @@ vector2string=function(v){
 
 shinyServer(function(input, output,session) {
 
-    
-observe({    
+
+observe({
   myncol=mynrow=c()
-  spanRow=spanCol=c()    
+  spanRow=spanCol=c()
   data1=c()
    # Generate a ztable
- 
+
   i <- as.numeric(input$data)
-  
+
   if(i==1) data=head(iris,10)
   else if(i==2) data=head(mtcars,10)
   else if(i==3) data=lm(mpg ~ cyl + disp + wt + drat + am, data=mtcars)
@@ -40,32 +40,32 @@ observe({
   }
   else if(i==9){
       data(USArrests)
-      data <- prcomp(USArrests) 
+      data <- prcomp(USArrests)
   }
   else if(i==10){
       data(USArrests)
-      pr1 <- prcomp(USArrests) 
+      pr1 <- prcomp(USArrests)
       data=summary(pr1)
   }
   else if(i==11){
       DNase1 <- subset(DNase, Run == 1)
       data <- nls(density ~ SSlogis(log(conc), Asym, xmid, scal),DNase1)
   }
-  
+
   z<-ztable(data)
   z$spanCol=NULL
   z$spanRow=NULL
-  
+
   myncol<-ncol(z$x)
   mynrow<-nrow(z$x)
   size=as.numeric(input$size)
-  
+
   z$caption=input$caption
   z$include.colnames=input$colname
   z$include.rownames=input$rowname
-  
+
   if(input$Tabset=="Data") {
-      
+
       spanRow<-z$spanRow
       spanCol<-z$spanCol
       updateSelectInput(session,"cols",choices=(2-input$rowname):(ncol(z$x)+1))
@@ -81,7 +81,7 @@ observe({
       updateCheckboxInput(session,"addrgroup",value=FALSE)
       updateNumericInput(session,"cspan.rgroup",min=1,max=ncol(z$x),value=1,step=1)
       updateSelectInput(session,'spanColRow',choices=2:(nrow(z$x)+1),selected=3)
-      
+
       updateSliderInput(session,"spanCol",min=2,max=ncol(z$x)+1,value=c(2,2))
       updateSelectInput(session,"spanColColor",selected="yellow")
       updateSelectInput(session,'spanRowCol',choices=2:(ncol(z$x)+1),selected=ncol(z$x)+1)
@@ -89,7 +89,7 @@ observe({
                         value=c(nrow(z$x)+1,nrow(z$x)+1))
       updateSelectInput(session,"spanRowColor",selected="lightcyan")
       if(!is.null(z$cgroup)) {
-          
+
           updateTextInput(session,'cgroup',value=vector2string(z$cgroup[1,]))
           updateTextInput(session,'n.cgroup',value=vector2string(z$n.cgroup[1,]))
           updateCheckboxInput(session,"addcgroup",value=TRUE)
@@ -104,7 +104,7 @@ observe({
       updateSelectInput(session,"vldel",choices=(2-input$rowname):(ncol(z$x)+2))
       updateSelectInput(session,"hladd",choices=1:(nrow(z$x)-1))
       updateSelectInput(session,"hldel",choices=1:(nrow(z$x)-1))
-  }      
+  }
   z$caption.position=input$caption.position
   z$caption.placement=input$caption.placement
   if(!is.null(input$rows)) {
@@ -119,6 +119,11 @@ observe({
       bcol=as.integer(input$ccols)
       brow=as.integer(input$crows)
       z=addCellColor(z,cols=bcol,rows=brow,input$ccolor)
+  }
+  if((!is.null(input$fcols))&(!is.null(input$frows))) {
+      bcol=as.integer(input$fcols)
+      brow=as.integer(input$frows)
+      z=addFrontColor(z,cols=bcol,rows=brow,input$fcolor)
   }
   if(input$addcgroup) {
       mycgroup=unlist(strsplit(input$cgroup,",",fixed=TRUE))
@@ -147,20 +152,20 @@ observe({
   if(is.null(input$vldel)) mydel=NULL
   else mydel=as.integer(input$vldel)
   z=vlines(z,type=as.integer(input$vltype),add=myadd,del=mydel)
-  
+
   if(is.null(input$hladd)) myadd=NULL
   else myadd=as.integer(input$hladd)
   if(is.null(input$hldel)) mydel=NULL
   else mydel=as.integer(input$hldel)
   z=hlines(z,type=as.integer(input$hltype),add=myadd,del=mydel)
-  
-  
+
+
   output$overview <- renderPrint({
       print(z,type="html",size=size)
   })
-  
+
   output$a_out<-renderPrint({
-      
+
       i <- as.numeric(input$data)
       if(i==1) data1="head(iris,10)"
       else if(i==2) data1="head(mtcars,10)"
@@ -169,12 +174,12 @@ observe({
       else if(i==5) {
               cat("fit=lm(mpg ~ cyl + disp + wt + drat + am,data=mtcars)\n")
               data1="anova(fit)"
-      }          
+      }
       else if(i==6) {
              cat("fit1=lm(mpg ~ cyl + disp + wt + drat + am, data=mtcars)\n")
              cat("fit2=lm(mpg ~ cyl+wt, data=mtcars)\n")
              data1="anova(fit1,fit2)"
-      }         
+      }
       else if(i==7) {
           cat("counts <- c(18,17,15,20,10,20,25,13,12)\noutcome <- gl(3,1,9)\ntreatment <- gl(3,3)\n")
           cat("out=glm(counts ~ outcome + treatment, family = poisson())\n")
@@ -187,7 +192,7 @@ observe({
       }
       else if(i==9){
           cat("data(USArrests)\n")
-          data1 <- "prcomp(USArrests)" 
+          data1 <- "prcomp(USArrests)"
       }
       else if(i==10){
           cat("data(USArrests)\n")
@@ -199,12 +204,12 @@ observe({
           cat("out <- nls(density ~ SSlogis(log(conc), Asym, xmid, scal),DNase1)\n")
           data1="out"
       }
-      
+
       cat(paste("z=ztable( ",data1,", size=",as.numeric(input$size)," )\n",sep=""))
       if(input$Tabset=="Data") {
-          if(!input$colname) cat("z$include.colname=",input$colname,"\n") 
-          if(!input$rowname) cat("z$include.rowname=",input$rowname,"\n") 
-      }   
+          if(!input$colname) cat("z$include.colname=",input$colname,"\n")
+          if(!input$rowname) cat("z$include.rowname=",input$rowname,"\n")
+      }
       else if(input$Tabset=="Caption") {
           cat("z$caption=",deparse(input$caption),"\n")
           if(input$caption.placement!="top") cat("z$caption.placement=",deparse(input$caption.placement),"\n")
@@ -261,8 +266,22 @@ observe({
               cat(paste("z=addCellColor(z,rows=c(",sbrow,
                         "),cols=c(",sbcol,"),color=",deparse(input$ccolor),")\n",sep=""))
           }
-      }
-      else if(input$Tabset=="addcgroup"){
+      } else if(input$Tabset=="addFrontColor"){
+          if(!is.null(input$frows)){
+              brow=as.integer(input$frows)
+              sbrow=brow[1]
+              if(length(brow)>1){
+                  for(i in 2:length(brow)) sbrow=paste(sbrow,brow[i],sep=",")
+              }
+              bcol=as.integer(input$fcols)
+              sbcol=bcol[1]
+              if(length(bcol)>1){
+                  for(i in 2:length(bcol)) sbcol=paste(sbcol,bcol[i],sep=",")
+              }
+              cat(paste("z=addFrontColor(z,rows=c(",sbrow,
+                        "),cols=c(",sbcol,"),color=",deparse(input$fcolor),")\n",sep=""))
+          }
+      } else if(input$Tabset=="addcgroup"){
           if(input$addcgroup>0) {
                 mycgroup=unlist(strsplit(input$cgroup,",",fixed=TRUE))
                 temp=paste("'",mycgroup[1],"'",sep="")
@@ -271,15 +290,15 @@ observe({
                 }
                 cat(paste("z=addcgroup(z,cgroup=c(",temp,
                       "),n.cgroup=c(",input$n.cgroup,"))\n",sep=""))
-            
+
                     myncgroup=unlist(strsplit(input$n.cgroup,",",fixed=TRUE))
                     csum=as.integer(myncgroup)
-                    if(sum(csum) > myncol) 
+                    if(sum(csum) > myncol)
                         cat("## Sum of n.cgroup(",sum(csum),
                             ") must be qual to or lesser than column count(",myncol,")\n")
-               
-          } 
-          
+
+          }
+
       }
       else if(input$Tabset=="addrgroup"){
           if(input$addrgroup>0) {
@@ -297,19 +316,19 @@ observe({
                       temp=paste("## Sum of n.rgroup(",sum(rsum),
                           ") must be qual to or lesser than row count(",mynrow,")\n",sep="")
                       cat(temp)
-                      if(FALSE) { 
+                      if(FALSE) {
                       observe({
-                          
+
                           session$sendCustomMessage(type = 'testmessage',
                                                     message = list(text=temp,
                                                                    controller = input$n.rgroup))
-                      }) 
+                      })
                       }
-              
-              }          
-              
-          } 
-          
+
+              }
+
+          }
+
       }
       else if(input$Tabset=="vlines"){
           if(is.null(input$vladd)) sa="NULL"
@@ -352,28 +371,28 @@ observe({
                     ",add=",sa,",del=",sd,")\n",sep=""))
       }
       cat("z\n")
-      #cat("input$spanRowCol=",input$spanRowCol,"\n") 
-      #cat("input$spanRow=",input$spanRow,"\n") 
-      #cat("input$spanColRow=",input$spanColRow,"\n") 
-      #cat("input$spanCol=",input$spanCol,"\n") 
-  })  
- 
+      #cat("input$spanRowCol=",input$spanRowCol,"\n")
+      #cat("input$spanRow=",input$spanRow,"\n")
+      #cat("input$spanColRow=",input$spanColRow,"\n")
+      #cat("input$spanCol=",input$spanCol,"\n")
+  })
+
   output$downloadReport <- downloadHandler(
       filename = function() {
           paste('my-report', sep = '.', switch(
               input$format, PDF = 'pdf', HTML = 'html', Word = 'docx'
           ))
       },
-      
+
       content = function(file) {
           src <- normalizePath('report.Rmd')
-          
+
           # temporarily switch to the temp dir, in case you do not have write
           # permission to the current working directory
           owd <- setwd(tempdir())
           on.exit(setwd(owd))
           file.copy(src, 'report.Rmd')
-          
+
           library(rmarkdown)
           out <- render('report.Rmd', switch(
               input$format,
