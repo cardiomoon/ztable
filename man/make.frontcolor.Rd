@@ -4,10 +4,12 @@
 \alias{make.frontcolor}
 \title{Make a data.frame named "cellcolor" from ztable call}
 \usage{
-make.frontcolor(z)
+make.frontcolor(x, color = "black")
 }
 \arguments{
-\item{z}{An object of class "ztable"}
+\item{x}{A data.frame}
+
+\item{color}{A character string}
 }
 \description{
 Make a data.frame named "cellcolor" from ztable call

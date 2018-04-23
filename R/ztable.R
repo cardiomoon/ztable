@@ -1231,16 +1231,25 @@ if(i %in% printrgroup) {
         if(vlines[totalCol+1]>0)
             for(k in 1:vlines[totalCol+1]) mcalign=paste(mcalign,"|",sep="")
         temp=paste("\\multicolumn{",totalCol,"}{",mcalign,"}{",sep="")
-        if(z$colcolor[1]!="white")
-            temp=paste(temp,"\\cellcolor{",z$colcolor[1],"}",sep="")
+        # if(z$colcolor[1]!="white")
+        #     temp=paste(temp,"\\cellcolor{",z$colcolor[1],"}",sep="")
+        if(z$rgroupbg[rgroupcount]!="white")
+            temp=paste(temp,"\\cellcolor{",z$rgroupbg[rgroupcount],"}",sep="")
+        if(z$rgroupcolor[rgroupcount]!="black")
+            temp=paste(temp,"\\color{",z$rgroupcolor[rgroupcount],"}",sep="")
         temp=paste(temp,"\\textbf{",z$rgroup[rgroupcount],"}}",sep="")
         printcline=totalCol
     }
     else {
         if(z$cspan.rgroup==1) {
-            if(z$colcolor[1]!="white")
-                temp=paste("\\cellcolor{",z$colcolor[1],"}",sep="")
-            else temp=""
+            # if(z$colcolor[1]!="white")
+            #     temp=paste("\\cellcolor{",z$colcolor[1],"}",sep="")
+            # else temp=""
+            temp=""
+            if(z$rgroupbg[rgroupcount]!="white")
+                temp=paste(temp,"\\cellcolor{",z$rgroupbg[rgroupcount],"}",sep="")
+            if(z$rgroupcolor[rgroupcount]!="black")
+                temp=paste(temp,"\\color{",z$rgroupcolor[rgroupcount],"}",sep="")
             temp=paste(temp,"\\textbf{",z$rgroup[rgroupcount],"}",sep="")
             for(j in 1:(ncount+addrow-1)){
                 temp1=""
@@ -1284,7 +1293,8 @@ if(i %in% printrgroup) {
             if(nvlines[printcline+1]>0)
                 for(k in 1:nvlines[printcline+1]) mcalign=paste(mcalign,"|",sep="")
             temp=paste("\\multicolumn{",z$cspan.rgroup,"}{",mcalign,"}{\\textbf{",
-                       "\\cellcolor{",z$colcolor[1],"}",
+                       "\\cellcolor{",z$rgroupbg[rgroupcount],"}",
+                       "\\color{",z$rgroupcolor[rgroupcount],"}",
                        z$rgroup[rgroupcount],"}}",sep="")
             #temp=paste("\\cellcolor{",z$colcolor[1],"}",temp,sep="")
             if(z$cspan.rgroup<(ncount+addrow)) {

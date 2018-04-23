@@ -4,7 +4,7 @@
 \alias{addcgroup}
 \title{Add column groups of an object of ztable}
 \usage{
-addcgroup(z, cgroup, n.cgroup, cgroupcolor = NULL)
+addcgroup(z, cgroup, n.cgroup, cgroupcolor = NULL, top = FALSE)
 }
 \arguments{
 \item{z}{An object of ztable}

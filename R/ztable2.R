@@ -147,17 +147,49 @@ getspanRowLength=function(z,i,j){
 #'@param cgroup A character vector or matrix indicating names of column group. Default value is NULL
 #'@param n.cgroup A integer vector or matrix indicating the numbers of columns included in each cgroup
 #'       Default value is NULL
-#'@param cgroupcolor A character vector or matrix indicating the background colors of each cells.
+#'@param color A character vector indicating the font color of each cells.
+#'@param bg A character vector indicating the background color of each cells.
 #'@export
-addcgroup=function(z,cgroup,n.cgroup,cgroupcolor=NULL){
-    if(!is.matrix(cgroup)) cgroup=matrix(cgroup,nrow=1)
-    if(!is.matrix(n.cgroup)) n.cgroup=matrix(n.cgroup,nrow=1)
-    if(is.null(cgroupcolor))
-        cgroupcolor=matrix(rep("white",nrow(cgroup)*(ncol(cgroup)+1)),nrow=nrow(cgroup))
-    if(!is.matrix(cgroupcolor)) cgroupcolor=matrix(cgroupcolor,nrow=1)
-    z$cgroup=cgroup
-    z$n.cgroup=n.cgroup
-    z$cgroupcolor=cgroupcolor
+addcgroup=function(z,cgroup,n.cgroup,color="black",bg="white",top=FALSE){
+
+    if(length(color)==1){
+        color=rep(color,length(cgroup)+1)
+    }
+    if(length(bg)==1){
+        bg=rep(bg,length(cgroup)+1)
+    }
+
+    if(length(z$cgroup)==0) {
+        z$cgroup=list()
+        z$cgroup[[1]]=cgroup
+        z$cgroupcolor=list()
+        z$cgroupcolor[[1]]=color
+        z$cgroupbg=list()
+        z$cgroupbg[[1]]=bg
+        z$n.cgroup=list()
+        z$n.cgroup[[1]]=n.cgroup
+    } else{
+        if(top){
+            no=length(z$cgroup)
+            for(i in no:1){
+                z$cgroup[[no+1]]=z$cgroup[[no]]
+                z$cgroupcolor[[no+1]]=z$cgroupcolor[[no]]
+                z$cgroupbg[[no+1]]=z$cgroupbg[[no]]
+                z$n.cgroup[[no+1]]=z$n.cgroup[[no]]
+            }
+            z$cgroup[[1]]=cgroup
+            z$cgroupcolor[[1]]=color
+            z$cgroupbg[[1]]=bg
+            z$n.cgroup[[1]]=n.cgroup
+        } else{
+            no=length(z$cgroup)+1
+            z$cgroup[[no]]=cgroup
+            z$cgroupcolor[[no]]=color
+            z$cgroupbg[[no]]=bg
+            z$n.cgroup[[no]]=n.cgroup
+        }
+    }
+
     z
 }
 
@@ -168,8 +200,10 @@ addcgroup=function(z,cgroup,n.cgroup,cgroupcolor=NULL){
 #'@param n.rgroup A integer vector indicating the numbers of rows included in each rgroup
 #'       Default value is NULL
 #'@param cspan.rgroup An integer indicating the column span of rgroup
+#'@param color A character vector indicating the font color of rgroup.
+#'@param bg A character vector indicating the background color of rgroup.
 #'@export
-addrgroup=function(z,rgroup,n.rgroup,cspan.rgroup=NULL){
+addrgroup=function(z,rgroup,n.rgroup,cspan.rgroup=NULL,color="black",bg="white"){
     if(is.null(rgroup)) return(z)
     for(i in 1:length(rgroup)) {
         if(is.na(rgroup[i])) rgroup[i]=""
@@ -177,7 +211,11 @@ addrgroup=function(z,rgroup,n.rgroup,cspan.rgroup=NULL){
     z$rgroup=rgroup
     z$n.rgroup=n.rgroup
     z$cspan.rgroup=cspan.rgroup
-    if(is.null(z$colcolor)) z$colcolor=rep("white",ncol(z$cellcolor))
+    if(length(bg)==1) bg=rep(bg,length(rgroup))
+    if(length(color)==1) color=rep(color,length(rgroup))
+    z$colcolor=rep(bg,ncol(z$cellcolor))
+    z$rgroupcolor=color
+    z$rgroupbg=bg
     z
 }
 
@@ -190,11 +228,11 @@ colGroupCount=function(z){
     if(is.null(z$cgroup)) return(NULL)
     if(is.null(z$n.cgroup)) return(NULL)
     result=c()
-    for(i in 1:nrow(z$n.cgroup)){
+    for(i in 1:length(z$n.cgroup)){
         count=0
-        for(j in 1:ncol(z$n.cgroup)) {
-            if(is.na(z$n.cgroup[i,j])) break
-            count=count+z$n.cgroup[i,j]
+        for(j in 1:length(z$n.cgroup[[i]])) {
+            if(is.na(z$n.cgroup[[i]][j])) break
+            count=count+z$n.cgroup[[i]][j]
             result=c(result,count)
         }
     }
@@ -208,26 +246,27 @@ colGroupCount=function(z){
 #' @return A matrix indicating the column span occupied by each colgroup
 #' @export
 cGroupSpan=function(z){
-    vlines=align2lines(z$align)
-    colCount=colGroupCount(z)
+    (vlines=align2lines(z$align))
+    (colCount=colGroupCount(z))
 
     newCount=c()
 
     for(i in 1:length(colCount)) {
         if(vlines[colCount[i]+2]==0) newCount=c(newCount,colCount[i])
     }
+    newCount
     if(is.null(newCount)) return(z$n.cgroup)
     result=z$n.cgroup
-    for(i in 1:nrow(z$n.cgroup)){
+    for(i in 1:length(z$n.cgroup)){
         start=0
-        for(j in 1:ncol(z$n.cgroup)) {
-            if(is.na(z$n.cgroup[i,j])) break
-            end=start+z$n.cgroup[i,j]
+        for(j in 1:length(z$n.cgroup[[i]])) {
+            if(is.na(z$n.cgroup[[i]][j])) break
+            end=start+z$n.cgroup[[i]][j]
             count=0
             for(k in 1:length(newCount)){
                 if(newCount[k]>start & newCount[k]<end) count=count+1
             }
-            result[i,j]=result[i,j]+count
+            result[[i]][j]=result[[i]][j]+count
             #cat("start=",start,",end=",end,",result[",i,",",j,"]=",result[i,j],"\n")
             start=end
         }
@@ -235,10 +274,10 @@ cGroupSpan=function(z){
     result
 }
 
-
 #' Print the head of latex table if the object of ztable has a colgroup
 #'
 #' @param z An object of ztable
+#' @export
 printLatexHead=function(z){
     if(is.null(z$cgroup)) return
     if(is.null(z$n.cgroup)) return
@@ -251,30 +290,33 @@ printLatexHead=function(z){
     #vlines=align2lines(getNewAlign(z))
     #vlines
 
-    for(i in 1:nrow(z$cgroup)){
+    for(i in 1:length(z$cgroup)){
             colSum=0
             linecount=1
             if(z$include.rownames) {
-                firstrow=cat(paste("\\cellcolor{",z$cgroupcolor[i,1],"} &",sep=""))
+                firstrow=cat(paste("\\cellcolor{",z$cgroupbg[[i]][1],"} &",sep=""))
                 colSum=1
                 linecount=1
             }
-            for(j in 1:ncol(z$cgroup)) {
-                if(is.na(z$cgroup[i,j])) break
+            for(j in 1:length(z$cgroup[[i]])) {
+                if(is.na(z$cgroup[[i]][j])) break
                 mcalign="c"
                 if((j==1) & (addrow==0) & (vlines[linecount+1]>0))
                     for(k in 1:vlines[linecount+1]) mcalign=paste("|",mcalign,sep="")
-                end=colSum+cGroupSpan[i,j]+1
-                linecount=linecount+z$n.cgroup[i,j]
+                end=colSum+cGroupSpan[[i]][j]+1
+                linecount=linecount+z$n.cgroup[[i]][j]
                 if(vlines[linecount+1]>0)
                     for(k in 1:vlines[linecount+1]) mcalign=paste(mcalign,"|",sep="")
-                second=paste("\\multicolumn{",cGroupSpan[i,j],"}{",mcalign,"}{",sep="")
-                colSum=colSum+cGroupSpan[i,j]
-                if(z$cgroupcolor[i,j+1]!="white")
-                    second=paste(second,"\\cellcolor{",z$cgroupcolor[i,j+1],"}",sep="")
+                second=paste("\\multicolumn{",cGroupSpan[[i]][j],"}{",mcalign,"}{",sep="")
+                colSum=colSum+cGroupSpan[[i]][j]
+                if(z$cgroupbg[[i]][j+1]!="white")
+                    second=paste(second,"\\cellcolor{",z$cgroupbg[[i]][j+1],"}",sep="")
+                if(z$cgroupcolor[[i]][j+1]!=z$color) {
+                    second=paste(second,"\\color{",z$cgroupcolor[[i]][j+1],"}",sep="")
+                }
                 if(z$colnames.bold)
-                    second=paste(second,"\\textbf{",z$cgroup[i,j],"}}",sep="")
-                else second=paste(second,z$cgroup[i,j],"}",sep="")
+                    second=paste(second,"\\textbf{",z$cgroup[[i]][j],"}}",sep="")
+                else second=paste(second,z$cgroup[[i]][j],"}",sep="")
 
                 if(j!=1) second=paste("&",second,sep="")
                 cat(second)
@@ -283,13 +325,13 @@ printLatexHead=function(z){
             cat("\\\\ \n")
             colSum=addrow+1
             start=1
-            for(j in 1:ncol(z$cgroup)) {
-                if(is.na(z$cgroup[i,j])) break
-                if(z$cgroup[i,j]!="")
-                    cat(paste("\\cline{",colSum,"-",colSum+cGroupSpan[i,j]-1,"}",sep=""))
-                colSum=colSum+cGroupSpan[i,j]
-                start=start+z$n.cgroup[i,j]
-                if(j < ncol(z$cgroup)) if(vlines[start+1]==0) colSum=colSum+1
+            for(j in 1:length(z$cgroup[[i]])) {
+                if(is.na(z$cgroup[[i]][j])) break
+                if(z$cgroup[[i]][j]!="")
+                    cat(paste("\\cline{",colSum,"-",colSum+cGroupSpan[[i]][j]-1,"}",sep=""))
+                colSum=colSum+cGroupSpan[[i]][j]
+                start=start+z$n.cgroup[[i]][j]
+                if(j < length(z$cgroup[[i]])) if(vlines[start+1]==0) colSum=colSum+1
 
             }
             cat("\n")
@@ -505,6 +547,7 @@ getNewSpanRow=function(z){
 #' @param start An integer indicating start column position
 #' @param length An integer indicating spanCol length
 #' @param colCount An integer vector calculating from colGroupCount()
+#' @export
 isGroupCol=function(start,length,colCount){
 
     if(is.null(colCount)) return(0)
@@ -546,7 +589,7 @@ addSigColor=function(z,sigp=0.05,sigcolor="lightcyan"){
             if(length(below05)>0)
                 z1=addRowColor(z,rows=below05,color=sigcolor)
         } else{
-            count=ncol(z$cgroup)-1
+            count=length(z$cgroup)-1
             colpergroup=(ncol(z$x)-1)/count
             for(i in 2:(count+1)){
                 pcol=1+colpergroup*(i-1)
