@@ -583,13 +583,16 @@ addSigColor=function(z,sigp=0.05,sigcolor="lightcyan"){
             if(length(below05)>0)
                 z1=addRowColor(z,rows=below05,color=sigcolor)
         } else{
-            count=length(z$cgroup)-1
+            count=length(z$cgroup[[1]])-1
+            count
             colpergroup=(ncol(z$x)-1)/count
+            colpergroup
+            z1<-z
             for(i in 2:(count+1)){
                 pcol=1+colpergroup*(i-1)
                 below05=which(as.numeric(z$x[[pcol]])<sigp)+1
                 if(length(below05)>0) for(j in 1:length(below05))
-                    z1=addCellColor(z,rows=below05[j],
+                    z1=addCellColor(z1,rows=below05[j],
                                    cols=(pcol+1-(colpergroup-1)):(pcol+1),color=sigcolor)
 
             }

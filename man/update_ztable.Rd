@@ -4,14 +4,15 @@
 \alias{update_ztable}
 \title{Update ztable before print}
 \usage{
-update_ztable(z, size = NULL, color = NULL, tablewidth = NULL,
-  type = NULL, include.rownames = NULL, placement = NULL,
-  position = NULL, show.heading = NULL, show.footer = NULL,
-  caption = NULL, caption.placement = NULL, caption.position = NULL,
-  caption.bold = NULL, align = NULL, digits = NULL, display = NULL,
-  sidewaystable = NULL, longtable = NULL, rotate = NULL, turn = NULL,
-  angle = NULL, wraptable = NULL, wraptablewidth = NULL, tabular = NULL,
-  label = NULL, hline.after = NULL, booktabs = NULL, prefix.rows = NULL,
+update_ztable(z, family = NULL, size = NULL, color = NULL,
+  tablewidth = NULL, type = NULL, include.rownames = NULL,
+  placement = NULL, position = NULL, show.heading = NULL,
+  show.footer = NULL, caption = NULL, caption.placement = NULL,
+  caption.position = NULL, caption.bold = NULL, align = NULL,
+  digits = NULL, display = NULL, sidewaystable = NULL, longtable = NULL,
+  rotate = NULL, turn = NULL, angle = NULL, wraptable = NULL,
+  wraptablewidth = NULL, tabular = NULL, label = NULL,
+  hline.after = NULL, booktabs = NULL, prefix.rows = NULL,
   commands = NULL, top.command = NULL, zebra = NULL, zebra.color = NULL,
   zebra.type = NULL, zebra.list = NULL, zebra.colnames = NULL,
   zebra.rownames = NULL, colnames.bold = NULL, include.colnames = NULL,
@@ -20,6 +21,8 @@ update_ztable(z, size = NULL, color = NULL, tablewidth = NULL,
 }
 \arguments{
 \item{z}{An object of class "ztable"}
+
+\item{family}{Font family. Default value is NULL. Possible value is one of the c("serif","times").}
 
 \item{size}{An integer from 1 to 10 indicating font size= c("tiny","scriptsize",
 "footnotesize","small","normalsize","large","Large","LARGE","huge","Huge")

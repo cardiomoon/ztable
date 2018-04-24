@@ -4,8 +4,8 @@
 \alias{ztable_sub}
 \title{Exporting "data.frame" to an object of class "ztable"}
 \usage{
-ztable_sub(x, size = 5, color = getOption("ztable.color", "black"),
-  tablewidth = 0.3, type = getOption("ztable.type", "latex"),
+ztable_sub(x, family = NULL, size = 5, color = getOption("ztable.color",
+  "black"), tablewidth = 0.3, type = getOption("ztable.type", "latex"),
   include.rownames = getOption("ztable.include.rownames", TRUE),
   placement = "!hbtp", position = "c",
   show.heading = getOption("ztable.show.heading", TRUE),
@@ -30,6 +30,8 @@ ztable_sub(x, size = 5, color = getOption("ztable.color", "black"),
 }
 \arguments{
 \item{x}{A data.frame}
+
+\item{family}{Font family. Default value is NULL. Possible value is one of the c("serif","times").}
 
 \item{size}{An integer from 1 to 10 indicating font size= c("tiny","scriptsize",
 "footnotesize","small","normalsize","large","Large","LARGE","huge","Huge")

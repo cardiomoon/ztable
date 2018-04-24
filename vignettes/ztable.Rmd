@@ -28,6 +28,17 @@ z=ztable(head(iris),align="cccccc")
 z
 ```
 
+You can change backgroud color with addRowColor() and font color with addFrontColor() function.
+
+```{r,results='asis'}
+require(magrittr)
+ztable(head(iris)) %>%
+    addRowColor(rows=1,color="#C90000") %>%
+    addFrontColor(rows=1,cols=1:6,color="white") %>%
+    print
+
+```
+
 You can add column groups to ztable using addcgroup function. The n.cgroup means how much columns included in each row group. 
 
 ```{r,results='asis'}
@@ -462,9 +473,10 @@ res1=mytable(sex~.,data=acs)
 res1 %>% ztable %>%
    addSigColor %>%
    print        
-res2=mytable(sex+DM~.,data=acs)
-res2 %>% ztable %>%
-   addSigColor(sigp=0.01,sigcolor="platinum") %>%
-   print        
+res2<-mytable(sex+DM~.,data=acs)
+res2 %>% 
+    ztable %>%
+    addSigColor(sigp=0.01,sigcolor="platinum") %>%
+    print
 
 ```

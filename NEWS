@@ -1,3 +1,12 @@
+ztable 0.1.8
+============
+(24-Apr-2018)
+
+* New function added "addFrontColor" which add font color of ztable
+
+* addcgroup and addrgroup functions now are able to set font colors
+
+
 ztable 0.1.7
 ============
 (11-Nov-2017)
