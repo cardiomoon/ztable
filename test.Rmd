@@ -192,7 +192,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r,results='asis'}
 require(ztable)
-z=ztable(head(iris,1),family="serif")
+require(magrittr)
+z=ztable(head(iris),family="serif",color="blue") %>% vlines(type=1)
+z
+print(z,type="html")    
 print(z,type="latex")
 z=ztable(head(iris),family="times")
 print(z,type="latex")

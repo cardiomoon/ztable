@@ -301,13 +301,14 @@ getNewAlign=function(z){
 myhtmlStyle=function(z){
     if(is.null(z$family)) family="times"
     else if(z$family=="times") family="times"
-    else if(z$family=="serif") family="arial"
+    else if(z$family %in% c("serif","arial")) family="arial"
     else family="times"
     cat("<head>")
     cat("<style>
         table {
               font-family:",family,";\n")
     cat("color: ",z$color,";\n")
+    #cat("border: ",z$color," 1px solid;\n")
     cat("text-align: right;}
         th {
               padding: 1px 1px 5px 5px;
