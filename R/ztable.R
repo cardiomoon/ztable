@@ -1436,22 +1436,7 @@ define_colors=function(mycolors,no=1) {
     attr(mycolors,"no")=count
     mycolors
 }
-# z$cellcolor
-# z$cgroupcolor
-# str(z)
-# str(z$cgroupcolor)
-#
-# mycolors=z$cgroupcolor
-# class(mycolors)
-# mycolors
-# require(purrr)
-# lapply(mycolors,define_colors)
-# map(mycolors,define_colors,no=4)
-# str(result)
-# result
-# no=1
-# result=define_colors(mycolors)
-# result
+
 
 hex2rgbDef=function(hex="#C90000",no=1){
     r=hex2decimal(substr(hex,2,3))
@@ -1465,6 +1450,3 @@ hex2decimal=function(hex="C9"){
     round(strtoi(temp)/256,2)
 }
 
-# define_colors("red")
-# define_colors(c("#C90000","#000000"),no=5)
-# mycolors="#C90000"
