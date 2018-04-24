@@ -20,6 +20,6 @@ Add column colors of an object of ztable
 }
 \examples{
 z=ztable(head(iris))
-z=addFrontColor(z,cols=c(5,4),rows=5,color="red")
+z=addFrontColor(z,rows=2:4,cols=c(2,4,6),color=c("red","green","blue"))
 z
 }

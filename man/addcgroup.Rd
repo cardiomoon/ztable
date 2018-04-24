@@ -4,7 +4,7 @@
 \alias{addcgroup}
 \title{Add column groups of an object of ztable}
 \usage{
-addcgroup(z, cgroup, n.cgroup, cgroupcolor = NULL, top = FALSE)
+addcgroup(z, cgroup, n.cgroup, color = "black", bg = "white", top = FALSE)
 }
 \arguments{
 \item{z}{An object of ztable}
@@ -14,7 +14,11 @@ addcgroup(z, cgroup, n.cgroup, cgroupcolor = NULL, top = FALSE)
 \item{n.cgroup}{A integer vector or matrix indicating the numbers of columns included in each cgroup
 Default value is NULL}
 
-\item{cgroupcolor}{A character vector or matrix indicating the background colors of each cells.}
+\item{color}{A character vector indicating the font color of each cells.}
+
+\item{bg}{A character vector indicating the background color of each cells.}
+
+\item{top}{Logical. Whether or not cgroup be placed at top.}
 }
 \description{
 Add column groups of an object of ztable

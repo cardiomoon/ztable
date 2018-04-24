@@ -26,7 +26,10 @@ knitr::opts_chunk$set(echo = TRUE)
     test & test\\\arrayrulecolor{blue}\hline
 \end{tabular}
 
+## phv font
+
 \begin{table}[!hbtp]
+\fontfamily{phv}
 \begin{center}
 \begin{normalsize}
 \color{black}
@@ -51,8 +54,100 @@ knitr::opts_chunk$set(echo = TRUE)
 \end{table}
 \color{black}
 
+
+
+## sffamily
+
+\begin{table}[!hbtp]
+\sffamily
+\begin{center}
+\begin{normalsize}
+\color{black}
+\begin{tabular}{!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}l!{\color{orange}\vrule}}
+\arrayrulecolor{orange}
+\hline
+&Sepal.Length&Sepal.Width&Petal.Length&Petal.Width&Species\\ 
+\hline
+1&5.10&3.50&1.40&0.20&setosa\\ 
+\hline
+2&4.90&3.00&1.40&0.20&setosa\\ 
+\hline
+3&4.70&3.20&1.30&0.20&setosa\\ 
+\hline
+4&4.60&3.10&1.50&0.20&setosa\\ 
+\hline
+5&5.00&3.60&1.40&0.20&setosa\\ 
+\hline
+\end{tabular}
+\end{normalsize}
+\end{center}
+\end{table}
+\color{black}
+
+
+## rmfamily
+
+
+\begin{table}[!hbtp]
+\rmfamily
+\begin{center}
+\begin{normalsize}
+\color{black}
+\begin{tabular}{!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}l!{\color{orange}\vrule}}
+\arrayrulecolor{orange}
+\hline
+&Sepal.Length&Sepal.Width&Petal.Length&Petal.Width&Species\\ 
+\hline
+1&5.10&3.50&1.40&0.20&setosa\\ 
+\hline
+2&4.90&3.00&1.40&0.20&setosa\\ 
+\hline
+3&4.70&3.20&1.30&0.20&setosa\\ 
+\hline
+4&4.60&3.10&1.50&0.20&setosa\\ 
+\hline
+5&5.00&3.60&1.40&0.20&setosa\\ 
+\hline
+\end{tabular}
+\end{normalsize}
+\end{center}
+\end{table}
+\color{black}
+
+
+##ttfamily
+
+\begin{table}[!hbtp]
+\ttfamily
+\begin{center}
+\begin{normalsize}
+\color{black}
+\begin{tabular}{!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}r!{\color{orange}\vrule}l!{\color{orange}\vrule}}
+\arrayrulecolor{orange}
+\hline
+&Sepal.Length&Sepal.Width&Petal.Length&Petal.Width&Species\\ 
+\hline
+1&5.10&3.50&1.40&0.20&setosa\\ 
+\hline
+2&4.90&3.00&1.40&0.20&setosa\\ 
+\hline
+3&4.70&3.20&1.30&0.20&setosa\\ 
+\hline
+4&4.60&3.10&1.50&0.20&setosa\\ 
+\hline
+5&5.00&3.60&1.40&0.20&setosa\\ 
+\hline
+\end{tabular}
+\end{normalsize}
+\end{center}
+\end{table}
+\color{black}
+
+## sffamily
+
 \definecolor{platinum}{rgb}{0.9, 0.89, 0.89} 
 \begin{table}[!hbtp]
+\sffamily
 \begin{center}
 \begin{normalsize}
 \color{black}
@@ -77,20 +172,46 @@ knitr::opts_chunk$set(echo = TRUE)
 \end{table}
 \color{black}
 
+\definecolor{black}{rgb}{0.0, 0.0, 0.0} 
+\begin{table}[!hbtp]
+\sffamily
+\begin{center}
+\begin{normalsize}
+\color{black}
+\begin{tabular}{rrrrrl}
+\hline
+&Sepal.Length&Sepal.Width&Petal.Length&Petal.Width&Species\\ 
+\hline
+1&5.10&3.50&1.40&0.20&setosa\\ 
+\hline
+\end{tabular}
+\end{normalsize}
+\end{center}
+\end{table}
+\color{black}
+
 ```{r,results='asis'}
 require(ztable)
-z=ztable(head(iris),zebra=1)
+z=ztable(head(iris,1),family="serif")
+print(z,type="latex")
+z=ztable(head(iris),family="times")
+print(z,type="latex")
+z=ztable(head(iris),zebra=1,zebra.color="#C90000",family="serif")
+z=addFrontColor(z,row=c(2,4,6),cols=1:6,color="#FFFFFF")
 cgroup=c("Sepal","Petal","Species")
 n.cgroup=c(2,2,1)
-z=addcgroup(z,cgroup=cgroup,n.cgroup=n.cgroup,color="red")
-# cgroup2=c("Length","Species")
-# n.cgroup2=c(4,1)
-# z=addcgroup(z,cgroup=cgroup2,n.cgroup=n.cgroup2,top=TRUE)
+z=addcgroup(z,cgroup=cgroup,n.cgroup=n.cgroup,color="#C90000",bg="#667788")
+cgroup=c("Length","Species")
+n.cgroup=c(4,1)
+z=addcgroup(z,cgroup=cgroup,n.cgroup=n.cgroup,color="#11FF00",bg="#990088",top=TRUE)
+
 rgroup=c("OneToThree","Four","FiveToSix")
 n.rgroup=c(3,1,2)
-z=addrgroup(z,rgroup=rgroup,n.rgroup=n.rgroup,color=c("blue","red","yellow"))
+z=addrgroup(z,rgroup=rgroup,n.rgroup=n.rgroup,color="#C9C900",bg="#345698")
 print(z,type="latex")
 
+z=ztable(head(iris,1),family="fontfamily{phv}")
+z
+print(z,type="latex")
 ```
-
 

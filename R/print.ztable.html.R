@@ -3,13 +3,16 @@
 #'@param name a valid color name
 #'@return rgb value
 name2rgb=function(name){
+    if(substr(name,1,1)=="#") {
+        result=name
+    } else{
     number=grep(paste("^",name,sep=""),ztable::zcolors$name)
     if(length(number)<1) result="white"
     else{
         rgb=ztable::zcolors[number[1],2]
         result=paste("#",rgb,sep="")
     }
-
+    }
     result
 }
 
@@ -296,10 +299,14 @@ getNewAlign=function(z){
 #' @param z An object of ztable
 #' @export
 myhtmlStyle=function(z){
+    if(is.null(z$family)) family="times"
+    else if(z$family=="times") family="times"
+    else if(z$family=="serif") family="arial"
+    else family="times"
     cat("<head>")
     cat("<style>
         table {
-              font-family: serif;\n")
+              font-family:",family,";\n")
     cat("color: ",z$color,";\n")
     cat("text-align: right;}
         th {

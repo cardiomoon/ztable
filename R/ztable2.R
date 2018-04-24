@@ -94,28 +94,21 @@ addCellColor=function(z,rows,cols,color){
 #' @export
 #' @examples
 #' z=ztable(head(iris))
-#' z=addFrontColor(z,cols=c(5,4),rows=5,color="red")
+#' z=addFrontColor(z,rows=2:4,cols=c(2,4,6),color=c("red","green","blue"))
 #' z
 addFrontColor=function(z,rows,cols,color){
     for(i in 1:length(color)) color[i]=validColor(color[i])
-    while(length(rows)!=length(cols)){
-        if(length(rows)<length(cols)){
-            rows=c(rows,rows)
-            if(length(rows)>length(cols)) rows=rows[1:length(cols)]
-        }
-        if(length(rows)>length(cols)){
-            cols=c(cols,cols)
-            if(length(cols)>length(rows)) cols=cols[1:length(rows)]
-        }
-    }
     if(length(cols)>length(color)) color=rep(color,1+length(cols)/length(color))
-    for(i in 1:length(cols)) {
-        z$frontcolor[rows[i],cols[i]]=color[i]
-        result=getspanRowLength(z,rows[i],cols[i])
-        if(!is.null(result)){
-            if(result>1){
-                for(j in 1:(result-1)) z$frontcolor[(rows[i]+j),cols[i]]=color[i]
-            }
+
+    for(i in 1:length(rows)) {
+        for(j in 1:length(cols)){
+            z$frontcolor[rows[i],cols[j]]=color[j]
+            result=getspanRowLength(z,rows[i],cols[j])
+            if(!is.null(result)){
+                if(result>1){
+                    for(k in 1:(result-1)) z$frontcolor[(rows[i]+k),cols[j]]=color[j]
+                }
+             }
         }
     }
     z
@@ -149,6 +142,7 @@ getspanRowLength=function(z,i,j){
 #'       Default value is NULL
 #'@param color A character vector indicating the font color of each cells.
 #'@param bg A character vector indicating the background color of each cells.
+#'@param top Logical. Whether or not cgroup be placed at top.
 #'@export
 addcgroup=function(z,cgroup,n.cgroup,color="black",bg="white",top=FALSE){
 

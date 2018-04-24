@@ -30,6 +30,7 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'
 #' Exporting "data.frame" to an object of class "ztable"
 #'@param x A data.frame
+#'@param family Font family. Default value is NULL. Possible value is one of the c("serif","times").
 #'@param size An integer from 1 to 10 indicating font size= c("tiny","scriptsize",
 #'       "footnotesize","small","normalsize","large","Large","LARGE","huge","Huge")
 #'       respectively. Defaulting is 5(= "normalsize").
@@ -183,6 +184,7 @@ ztable.data.frame=function(x,digits=NULL,...){
 #' ztable(head(mtcars),zebra=1)
 #' ztable(head(mtcars),zebra=1,zebra.type=2)
 ztable_sub=function(x,
+                    family=NULL,
                     size=5, # normal size, range 1-10
                     color=getOption("ztable.color","black"),
                     tablewidth=0.3,
@@ -296,6 +298,7 @@ ztable_sub=function(x,
     else if(size<0 | size>10) size=5
 
     result=list(x=x,
+                family=family,
                 cellcolor=cellcolor,
                 frontcolor=frontcolor,
                 size=size,
@@ -499,6 +502,7 @@ repColor=function(x,color){
 #'
 #'Update options of ztable before print
 #'@param z An object of class "ztable"
+#'@param family Font family. Default value is NULL. Possible value is one of the c("serif","times").
 #'@param size An integer from 1 to 10 indicating font size= c("tiny","scriptsize",
 #'       "footnotesize","small","normalsize","large","Large","LARGE","huge","Huge")
 #'       respectively.
@@ -609,6 +613,7 @@ repColor=function(x,color){
 #'       columns but you may want to limit this if you have column colors that you want to retain.
 #'@export
 update_ztable=function(z,
+                       family=NULL,
                        size=NULL, # normal size, range 1-10
                        color=NULL,
                        tablewidth=NULL,
@@ -646,6 +651,7 @@ update_ztable=function(z,
                        n.rgroup=NULL,
                        cspan.rgroup=NULL){
 
+     if(!is.null(family)) z$family=family
      if(!is.null(size)) z$size=size
      if(!is.null(color)) z$color=color
      if(!is.null(tablewidth)) z$tablewidth=tablewidth
@@ -850,9 +856,28 @@ ztable2latex=function(z,xdata){
     else if(z$turn) sort="turn"
     else sort="table"
     headingsize=ifelse(z$size>3,z$size-2,1)
-    define_colors(z$cellcolor)
-    define_colors(z$frontcolor)
-    if(!is.null(z$cgroupcolor)) define_colors(z$cgroupcolor)
+    z$cellcolor=define_colors(z$cellcolor)
+    start=attr(z$cellcolor,"no")
+    z$frontcolor=define_colors(z$frontcolor,no=start)
+    start=attr(z$frontcolor,"no")
+    if(!is.null(z$cgroupcolor)) {
+        for(i in 1:length(z$cgroupcolor)){
+            z$cgroupcolor[[i]]=define_colors(z$cgroupcolor[[i]],no=start)
+            start=attr(z$cgroupcolor[[i]],"no")
+        }
+    }
+    if(!is.null(z$cgroupbg)) {
+        for(i in 1:length(z$cgroupbg)){
+            z$cgroupbg[[i]]=define_colors(z$cgroupbg[[i]],no=start)
+            start=attr(z$cgroupbg[[i]],"no")
+        }
+    }
+
+    if(!is.null(z$rgroupcolor)) z$rgroupcolor=define_colors(z$rgroupcolor,no=start)
+    start=attr(z$rgroupcolor,"no")
+    if(!is.null(z$rgroupbg)) z$rgroupbg=define_colors(z$rgroupbg,no=start)
+    start=attr(z$rgroupbg,"no")
+
     align=alignCheck(z$align,ncount,addrow)
     if(z$longtable){
         cat(paste("\\color{",z$color,"}\n",sep=""))
@@ -872,10 +897,20 @@ ztable2latex=function(z,xdata){
             cat(paste("\\begin{",sort,"}[",z$placement,"]\n",sep=""))
             cat(paste("\\begin{",z$position,"}\n",sep=""))
         }
+        if(!is.null(z$family)){
+            if(z$family=="serif") cat("\\sffamily\n")
+            else if(z$family=="times") cat("\\rmfamily\n")
+            else if(z$family=="tt") cat("\\ttfamily\n")
+            else {
+                temp=paste0("\\",z$family,"\n")
+                cat(temp)
+            }
+        }
         cat(paste("\\begin{",Fontsize[z$size],"}\n",sep=""))
         cat(paste("\\color{",z$color,"}\n",sep=""))
         cat(paste("\\begin{tabular}{",NewAlign,"}\n",sep=""))
     }
+
     if(!is.null(z$caption) & z$caption.placement=="top"){
         mycaption=caption2minipage(z,z$caption)
         cat(paste("\\multicolumn{",totalCol,"}{",
@@ -918,6 +953,7 @@ ztable2latex=function(z,xdata){
             } else first=""
             if(z$cellcolor[1,1]!="white")
                 first=paste("\\cellcolor{",z$cellcolor[1,1],first,"}",sep="")
+
             firstrow=paste(first,"&",firstcn,sep="")
 
         }
@@ -1044,7 +1080,7 @@ ztable2latex=function(z,xdata){
             }
             if(z$cellcolor[i+1,1]!="white") {
                 tempo=paste("\\cellcolor{",z$cellcolor[i+1,1],"}",
-                            rownames(z$x)[i],sep="")
+                            tempo,sep="")
             }
             if(!is.null(isspanCol(z,(i+1),1)))
                 tempo=paste("\\multicolumn{",isspanCol(z,i+1,1),"}{c}{",tempo,"}",sep="")
@@ -1360,7 +1396,9 @@ validColor=function(a,mycolor){
 #' @return a valid Latex color name
 validColor2=function(a){
     if(!is.character(a)) a="peach"
-    else{
+    else if(substr(a,1,1)=="#"){
+        a=a
+    } else {
         result=grep(paste("^",a,sep=""),ztable::zcolors$name,ignore.case=TRUE)
         if(length(result)>0) a=ztable::zcolors$name[result[1]]
         else a="peach"
@@ -1372,17 +1410,61 @@ validColor2=function(a){
 #'
 #' Define colors of mycolors
 #' @param mycolors characters vectors of color names
-define_colors=function(mycolors) {
+#' @param no An integer indicating start number
+#' @export
+define_colors=function(mycolors,no=1) {
     if(is.null(mycolors)) return
     uniquecolors=unique(as.vector(unique(mycolors)))
+    uniquecolors
+    count=no
     for(i in 1:length(uniquecolors)) {
         if(uniquecolors[i]=="white") next
+        if(substr(uniquecolors[i],1,1)=="#") {
+                definition=hex2rgbDef(uniquecolors[i],no=count)
+                cat(definition,"\n")
+                mycolors[mycolors==uniquecolors[i]]=paste0("tempcolor",count)
+                count=count+1
+        } else{
         number=grep(paste("^",uniquecolors[i],sep=""),ztable::zcolors$name)
         if(length(number)<1) next
         else{
             definition=ztable::zcolors[number[1],3]
             cat(definition,"\n")
         }
+        }
     }
+    attr(mycolors,"no")=count
+    mycolors
+}
+# z$cellcolor
+# z$cgroupcolor
+# str(z)
+# str(z$cgroupcolor)
+#
+# mycolors=z$cgroupcolor
+# class(mycolors)
+# mycolors
+# require(purrr)
+# lapply(mycolors,define_colors)
+# map(mycolors,define_colors,no=4)
+# str(result)
+# result
+# no=1
+# result=define_colors(mycolors)
+# result
+
+hex2rgbDef=function(hex="#C90000",no=1){
+    r=hex2decimal(substr(hex,2,3))
+    g=hex2decimal(substr(hex,4,5))
+    b=hex2decimal(substr(hex,6,7))
+    paste0("\\definecolor{tempcolor",no,"}{rgb}{",r,",",g,",",b,"}")
 }
 
+hex2decimal=function(hex="C9"){
+    temp=paste0("0x",hex)
+    round(strtoi(temp)/256,2)
+}
+
+# define_colors("red")
+# define_colors(c("#C90000","#000000"),no=5)
+# mycolors="#C90000"

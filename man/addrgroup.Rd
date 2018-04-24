@@ -4,7 +4,8 @@
 \alias{addrgroup}
 \title{Add row groups of an object of ztable}
 \usage{
-addrgroup(z, rgroup, n.rgroup, cspan.rgroup = NULL)
+addrgroup(z, rgroup, n.rgroup, cspan.rgroup = NULL, color = "black",
+  bg = "white")
 }
 \arguments{
 \item{z}{An object of ztable}
@@ -15,6 +16,10 @@ addrgroup(z, rgroup, n.rgroup, cspan.rgroup = NULL)
 Default value is NULL}
 
 \item{cspan.rgroup}{An integer indicating the column span of rgroup}
+
+\item{color}{A character vector indicating the font color of rgroup.}
+
+\item{bg}{A character vector indicating the background color of rgroup.}
 }
 \description{
 Add row groups of an object of ztable
