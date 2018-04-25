@@ -300,9 +300,8 @@ getNewAlign=function(z){
 #' @export
 myhtmlStyle=function(z){
     if(is.null(z$family)) family="times"
-    else if(z$family=="times") family="times"
-    else if(z$family %in% c("serif","arial")) family="arial"
-    else family="times"
+    else family=z$family
+
     cat("<head>")
     cat("<style>
         table {
