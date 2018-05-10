@@ -74,24 +74,6 @@ align2html=function(align){
     result
 }
 
-#' Extract column position information only(without vertical line specifier)
-#'
-#' @param align A character string indicating align for latex table
-#' @export
-extractAlign=function(align){
-    result=c()
-    for(i in 1:nchar(align)){
-        temp=substr(align,i,i)
-        if(temp=="|") next
-        result=c(result,temp)
-    }
-    temp=result[1]
-    if(length(result)>1)
-        for(i in 2:length(result)) {
-           temp=paste(temp,result[i],sep="")
-        }
-    temp
-}
 
 #' Add or delete vertical lines in a ztable
 #'
@@ -99,6 +81,7 @@ extractAlign=function(align){
 #' @param type An integer or one of c("none","all")
 #' @param add An integer vector indicating columns where the width of vertical lines added
 #' @param del An integer vector indicating columns where the width of vertical lines subtracted
+#' @importFrom stringr str_remove_all fixed
 #' @export
 vlines=function(z,type=NULL,add=NULL,del=NULL){
 
@@ -109,7 +92,7 @@ Usage: type must be one of these or NULL: 0-1 or \"none\",\"all\"\n
 
         return(z)
     }
-    align=extractAlign(z$align)
+    align=str_remove_all(z$align,fixed("|"))
     vlines=align2lines(z$align)
     colcount=colGroupCount(z)
     addrow=ifelse(z$include.rownames,1,0)
@@ -257,18 +240,22 @@ getNewAlign=function(z){
     #cat("z$align=",z$align,"\n")
     if(is.null(z$cgroup)) return(z$align)
     lines=align2lines(z$align)
-    exAlign=extractAlign(z$align)
+    lines
+    exAlign=str_remove_all(z$align,fixed("|"))
+    exAlign
     ncount=ncol(z$x)
     addrow=ifelse(z$include.rownames,1,0)
+    addrow
     colCount=colGroupCount(z)
+    colCount
     result=c()
-    start=2-addrow
+    start=1+addrow
     # Add column group align "c" if lines
     for(i in 1:length(colCount)){
         #cat("start=",start,"stop=",colCount[i]+addrow,",")
-        result=paste(result,substr(exAlign,start=start,stop=(colCount[i]+1)),sep="")
-        #cat("i=",i,",start=",start,"stop=",(colCount[i]+1),",result=",result)
-        start=colCount[i]+2
+        result=paste(result,substr(exAlign,start=start,stop=(colCount[i]+addrow)),sep="")
+        #cat("i=",i,",start=",start,"stop=",(colCount[i]+addrow),",result=",result)
+        start=colCount[i]+1+addrow
         #cat(",line[start]=",start,"\n")
         if(lines[start]==0) result=paste(result,"c",sep="")
         #cat("result=",result,"\n")
@@ -582,6 +569,7 @@ ztable2html=function(z,xdata){
         }
     }
     colpos=align2html(z$align)
+    addrow=ifelse(z$include.rownames,1,0)
     rgroupprinted=0
     for(i in 1:nrow(z$x)){
         if(rgroupcount>0) {
@@ -763,7 +751,7 @@ ztable2html=function(z,xdata){
                     }
                 }
                 if((result==-1)|(result>1)){
-                    cat(paste("align=\"",colpos[j+1],"\" style=\"border-left: ",
+                    cat(paste("align=\"",colpos[j+addrow],"\" style=\"border-left: ",
                               vlines[j+1],"px solid black;",sep=""))
                     if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
                         cat(paste("border-right:",vlines[j+2],"px solid black;",sep=""))
@@ -803,7 +791,7 @@ ztable2html=function(z,xdata){
                 result=isspanCol(z,(i+1),(j+1))
                 if(result>0) {
                     width=spanColWidth(z,(i+1),(j+1))
-                    cat(paste("<td colspan=\"",result,"\" align=\"",colpos[j+1],"\" style=\"border-left: ",
+                    cat(paste("<td colspan=\"",result,"\" align=\"",colpos[j+addrow],"\" style=\"border-left: ",
                               vlines[j+1],"px solid black;",sep=""))
                     #if((j==ncol(z$x)) & (length(vlines)>ncol(z$x)+1))
                     cat(paste("border-right:",vlines[j+width+1],"px solid black;",sep=""))

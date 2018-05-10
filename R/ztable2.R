@@ -244,9 +244,9 @@ cGroupSpan=function(z){
     (colCount=colGroupCount(z))
 
     newCount=c()
-
+    addrow=ifelse(z$include.rownames,1,0)
     for(i in 1:length(colCount)) {
-        if(vlines[colCount[i]+2]==0) newCount=c(newCount,colCount[i])
+        if(vlines[colCount[i]+1+addrow]==0) newCount=c(newCount,colCount[i])
     }
     newCount
     if(is.null(newCount)) return(z$n.cgroup)

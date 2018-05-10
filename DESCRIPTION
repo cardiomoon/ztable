@@ -1,6 +1,6 @@
 Package: ztable
 Title: Zebra-Striped Tables in LaTeX and HTML Formats
-Version: 0.1.8
+Version: 0.1.9
 Authors@R: person("Keon-Woong","Moon", email="cardiomoon@gmail.com",
     role=c("aut", "cre"))
 Description: Makes zebra-striped tables (tables with alternating row colors)
@@ -11,12 +11,14 @@ Depends:
 License: GPL-2
 URL: http://github.com/cardiomoon/ztable
 LazyData: true
+Imports:
+    stringr,
+    magrittr,
+    moonBook
 Suggests:
     MASS,
     survival,
     testthat,
-    knitr,
-    moonBook,
-    magrittr
+    knitr
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
