@@ -4,7 +4,7 @@
 \alias{spanRow}
 \title{Merging data cells of ztable object in rows}
 \usage{
-spanRow(z, col, from, to, color = NULL)
+spanRow(z, col, from, to, bg = NULL, color = NULL)
 }
 \arguments{
 \item{z}{An object of ztable}
@@ -15,7 +15,9 @@ spanRow(z, col, from, to, color = NULL)
 
 \item{to}{An integer indicating end row of merging data cell}
 
-\item{color}{An optional character indicating the background color of merging cell}
+\item{bg}{An optional character indicating the background color of merging cell}
+
+\item{color}{An optional character indicating the font color of merging cell}
 }
 \description{
 Merging data cells of ztable object in rows

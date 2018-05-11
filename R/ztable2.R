@@ -3,7 +3,8 @@
 #' @param z An object of ztable
 #' @param rows An integer vector indicating specific rows
 #' @param color A character vector indicating color
-#'@export
+#' @importFrom magrittr "%>%"
+#' @export
 #' @examples
 #' z=ztable(head(iris))
 #' z=addRowColor(z,c(1,3),color="platinum")
@@ -356,9 +357,10 @@ totalCol=function(z){
 #' @param row An integer indicating the row of merging data cell
 #' @param from An integer indicating start column of merging data cell
 #' @param to An integer indicating end column of merging data cell
-#' @param color An optional character indicating the background color of merging cell
+#' @param bg An optional character indicating the background color of merging cell
+#' @param color An optional character indicating the font color of merging cell
 #' @export
-spanCol=function(z,row,from,to,color=NULL){
+spanCol=function(z,row,from,to,bg=NULL,color=NULL){
     if(length(row)!=1) {
         warning("Only one row is permitted")
         return(z)
@@ -374,7 +376,8 @@ spanCol=function(z,row,from,to,color=NULL){
     if(is.null(z$spanCol)) z$spanCol=matrix(c(row,from,to),nrow=1)
     else z$spanCol=rbind(z$spanCol,c(row,from,to))
     #colnames(z$spanCol)=c("row","from","to")
-    if(!is.null(color)) z=addCellColor(z,cols=from,rows=row,color=color)
+    if(!is.null(bg)) z=addCellColor(z,cols=from,rows=row,color=bg)
+    if(!is.null(color)) z=addFrontColor(z,cols=from,rows=row,color=color)
     z
 }
 
@@ -385,9 +388,10 @@ spanCol=function(z,row,from,to,color=NULL){
 #' @param col An integer indicating the column of merging data cell
 #' @param from An integer indicating start row of merging data cell
 #' @param to An integer indicating end row of merging data cell
-#' @param color An optional character indicating the background color of merging cell
+#' @param bg An optional character indicating the background color of merging cell
+#' @param color An optional character indicating the font color of merging cell
 #' @export
-spanRow=function(z,col,from,to,color=NULL){
+spanRow=function(z,col,from,to,bg=NULL,color=NULL){
     if(length(row)!=1) {
         warning("Only one row is permitted")
         return(z)
@@ -403,7 +407,9 @@ spanRow=function(z,col,from,to,color=NULL){
     if(is.null(z$spanRow)) z$spanRow=matrix(c(col,from,to),nrow=1)
     else z$spanRow=rbind(z$spanRow,c(col,from,to))
     #colnames(z$spanRow)=c("col","from","to")
-    if(!is.null(color)) z=addCellColor(z,cols=col,rows=from,color=color)
+    #if(!is.null(color)) z=addCellColor(z,cols=col,rows=from,color=color)
+    if(!is.null(bg)) z=addCellColor(z,cols=col,rows=from,color=bg)
+    if(!is.null(color)) z=addFrontColor(z,cols=col,rows=from,color=color)
     z
 }
 

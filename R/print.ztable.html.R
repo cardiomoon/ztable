@@ -723,7 +723,8 @@ ztable2html=function(z,xdata){
                 if(result>0) cat(paste("<td rowspan=\"",result,"\"",sep=""))
 
             } else cat("<td ")
-            if(result!=0){
+            if(result>0){
+                #cat("result=",result,"\n")
                 cat(paste(" style=\"border-left: ",vlines[1],"px solid black; ",sep=""))
                 if(i==1 & printtop) cat("border-top: 2px solid gray;")
                 else if(i!=1 | rgroupprinted) cat("border-top: hidden;")

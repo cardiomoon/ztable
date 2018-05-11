@@ -4,7 +4,7 @@
 \alias{spanCol}
 \title{Merging data cells of ztable object in columns}
 \usage{
-spanCol(z, row, from, to, color = NULL)
+spanCol(z, row, from, to, bg = NULL, color = NULL)
 }
 \arguments{
 \item{z}{An object of ztable}
@@ -15,7 +15,9 @@ spanCol(z, row, from, to, color = NULL)
 
 \item{to}{An integer indicating end column of merging data cell}
 
-\item{color}{An optional character indicating the background color of merging cell}
+\item{bg}{An optional character indicating the background color of merging cell}
+
+\item{color}{An optional character indicating the font color of merging cell}
 }
 \description{
 Merging data cells of ztable object in columns
