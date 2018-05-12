@@ -570,6 +570,7 @@ ztable2html=function(z,xdata){
     }
     colpos=align2html(z$align)
     addrow=ifelse(z$include.rownames,1,0)
+    addrow
     rgroupprinted=0
     for(i in 1:nrow(z$x)){
         if(rgroupcount>0) {

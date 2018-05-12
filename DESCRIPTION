@@ -14,11 +14,15 @@ LazyData: true
 Imports:
     stringr,
     magrittr,
+    RColorBrewer,
+    flextable,
+    officer,
     moonBook
 Suggests:
     MASS,
     survival,
     testthat,
-    knitr
+    knitr,
+    rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1

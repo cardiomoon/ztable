@@ -4,12 +4,14 @@
 \alias{addRowColor}
 \title{Add row colors of an object of ztable}
 \usage{
-addRowColor(z, rows, color)
+addRowColor(z, rows, bg = NULL, color = NULL)
 }
 \arguments{
 \item{z}{An object of ztable}
 
 \item{rows}{An integer vector indicating specific rows}
+
+\item{bg}{A character vector indicating background color}
 
 \item{color}{A character vector indicating color}
 }

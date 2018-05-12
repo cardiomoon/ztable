@@ -47,6 +47,7 @@ ztable.cbind.mytable=function(x,digits=NULL,...){
     z=addcgroup(z,cgroup=cgroup,n.cgroup)
     z=vlines(z,type=0)
     class(z)=c("ztable","ztable.mytable","ztable.cbind.mytable")
+    z=trim.ztable(z)
     z
 }
 

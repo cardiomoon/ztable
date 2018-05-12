@@ -4,7 +4,7 @@
 \alias{addCellColor}
 \title{Add column colors of an object of ztable}
 \usage{
-addCellColor(z, rows, cols, color)
+addCellColor(z, rows, cols, bg = NULL, color = NULL)
 }
 \arguments{
 \item{z}{An object of ztable}
@@ -12,6 +12,8 @@ addCellColor(z, rows, cols, color)
 \item{rows}{An integer vector indicating specific rows}
 
 \item{cols}{An integer vector indicating specific columns}
+
+\item{bg}{A character vector indicating background color}
 
 \item{color}{A character vector indicating color}
 }

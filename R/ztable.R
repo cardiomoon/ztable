@@ -159,6 +159,8 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'       Default value is NULL
 #'@param cspan.rgroup The number of columns that an rgroup should span. It spans by default all
 #'       columns but you may want to limit this if you have column colors that you want to retain.
+#'@param pcol number of column displaying p value
+#'@export
 #'@examples
 #' require(ztable)
 #' x=head(iris)
@@ -217,7 +219,8 @@ ztable_sub=function(x,
                     colnames.bold=getOption("ztable.colnames.bold",FALSE),
                     include.colnames=getOption("ztable.include.colnames",TRUE),
                     cgroup=NULL,n.cgroup=NULL,
-                    rgroup=NULL,n.rgroup=NULL,cspan.rgroup=NULL){
+                    rgroup=NULL,n.rgroup=NULL,cspan.rgroup=NULL,
+                    pcol=NULL){
 
     ncount=ncol(x)
     nrow=nrow(x)
@@ -343,7 +346,8 @@ ztable_sub=function(x,
                 n.cgroup=n.cgroup,
                 rgroup=rgroup,
                 n.rgroup=n.rgroup,
-                cspan.rgroup=cspan.rgroup
+                cspan.rgroup=cspan.rgroup,
+                pcol=pcol
     )
     class(result) <-c("ztable")
     result
@@ -611,6 +615,7 @@ repColor=function(x,color){
 #'       Default value is NULL
 #'@param cspan.rgroup The number of columns that an rgroup should span. It spans by default all
 #'       columns but you may want to limit this if you have column colors that you want to retain.
+#'@param pcol number of column displaying p value
 #'@export
 update_ztable=function(z,
                        family=NULL,
@@ -649,7 +654,8 @@ update_ztable=function(z,
                        n.cgroup=NULL,
                        rgroup=NULL,
                        n.rgroup=NULL,
-                       cspan.rgroup=NULL){
+                       cspan.rgroup=NULL,
+                       pcol=NULL){
 
      if(!is.null(family)) z$family=family
      if(!is.null(size)) z$size=size
@@ -699,6 +705,7 @@ update_ztable=function(z,
      if(!is.null(rgroup)) z$rgroup=rgroup
      if(!is.null(n.rgroup)) z$n.rgroup=n.rgroup
      if(!is.null(cspan.rgroup)) z$cspan.rgroup=cspan.rgroup
+     if(!is.null(pcol)) z$pcol=pcol
      if(!is.null(z$zebra)) { if(z$zebra!=3) z$cellcolor=make.cell.color(x=z$x,zebra=z$zebra,zebra.color=z$zebra.color,
                                  zebra.type=z$zebra.type,
                                  zebra.list=z$zebra.list,
@@ -772,6 +779,7 @@ tableLength=function(z){
 #' Convert data to formatted data for table
 #'
 #' @param z An object of class "ztable"
+#' @export
 data2table=function(z){
     data<-z$x
     ncount=ncol(data)
@@ -780,7 +788,6 @@ data2table=function(z){
     select=sapply(data,is.factor)
     data[select]=lapply(data[select],as.character)
     #data
-
     for(i in 1:nrow){
         for(j in 1:ncount) {
             if(z$display[j+1]=="s"){
@@ -799,6 +806,18 @@ data2table=function(z){
             }
             data[i,j]<-temp
         }
+    }
+    pcol=z$pcol
+    pcol
+    if(!is.null(pcol)) {
+        temp=data[[pcol]]
+        temp
+        pos=which((as.numeric(temp)==0) & (temp!=""))
+        if(length(pos)>0){
+            tempvalue=temp[pos][1]
+            temp[pos]<- paste0("< ",substr(tempvalue,1,nchar(tempvalue)-1),"1")
+        }
+        data[[pcol]]=temp
     }
     data
 }

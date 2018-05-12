@@ -18,7 +18,7 @@ ztable.lm=function(x,digits=NULL,...){
     attr(result,"footer")=h
     if (is.null(digits)) mydigits=c(1,4,4,2,4)
     else mydigits=digits
-    out=ztable_sub(result,digits=mydigits,...)
+    out=ztable_sub(result,digits=mydigits,pcol=4,...)
     out
 }
 
@@ -52,7 +52,7 @@ ztable.nls=function(x,digits=NULL,...){
     attr(result,"heading")=h
     if (is.null(digits)) mydigits=c(1,4,4,2,4)
     else mydigits=digits
-    out=ztable_sub(result,digits=mydigits,...)
+    out=ztable_sub(result,digits=mydigits,pcol=4,...)
     out
 }
 
@@ -68,7 +68,7 @@ ztable.aov=function(x,digits=NULL,...){
     }
     if (is.null(digits)) mydigits=c(1,0,2,2,2,4)
     else mydigits=digits
-    out=ztable_sub(result,digits=mydigits,...)
+    out=ztable_sub(result,digits=mydigits,pcol=5,...)
     out
 }
 
@@ -97,7 +97,7 @@ ztable.anova=function(x,digits=NULL,...){
         h=paste("Call: ",h,sep="")
         attr(result,"footer")=h
     }
-    out=ztable_sub(result,digits=mydigits,...)
+    out=ztable_sub(result,digits=mydigits,pcol=ncol(x),...)
     out
 }
 
@@ -125,7 +125,7 @@ ztable.glm=function(x,digits=NULL,...){
 
     if (is.null(digits)) mydigits=c(1,4,4,2,4,2,2,2)
     else mydigits=digits
-    out=ztable_sub(out,digits=mydigits,...)
+    out=ztable_sub(out,digits=mydigits,pcol=4,...)
     out
 }
 
@@ -144,7 +144,7 @@ ztable.coxph=function(x,digits=NULL,...){
     colnames(result)=c("HR","lcl", "ucl", "se(coef)","z","Pr(>|z|)")
     if (is.null(digits)) mydigits=c(0,3,3,3,3,3,4)
     else mydigits=digits
-    out=ztable_sub(result,digits=mydigits,...)
+    out=ztable_sub(result,digits=mydigits,pcol=6,...)
     out
 }
 

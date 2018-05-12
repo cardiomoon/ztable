@@ -26,7 +26,7 @@ ztable_sub(x, family = NULL, size = 5, color = getOption("ztable.color",
   zebra.list = NULL, colnames.bold = getOption("ztable.colnames.bold",
   FALSE), include.colnames = getOption("ztable.include.colnames", TRUE),
   cgroup = NULL, n.cgroup = NULL, rgroup = NULL, n.rgroup = NULL,
-  cspan.rgroup = NULL)
+  cspan.rgroup = NULL, pcol = NULL)
 }
 \arguments{
 \item{x}{A data.frame}
@@ -203,6 +203,8 @@ Default value is NULL}
 
 \item{cspan.rgroup}{The number of columns that an rgroup should span. It spans by default all
 columns but you may want to limit this if you have column colors that you want to retain.}
+
+\item{pcol}{number of column displaying p value}
 }
 \description{
 Exporting "data.frame" to an object of class "ztable"

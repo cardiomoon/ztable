@@ -1,6 +1,12 @@
 ztable 0.1.9
 =============
-(10-May-2018)
+(13-May-2018)
+
+* New function "color2hex", "palette2colors" and "ztable2flextable" added
+
+* "addColColor", "addRowColor" and "addCellColor" function can set background color and font color
+
+* New vignette "ztable_update" added
 
 * Bug-fixed
 

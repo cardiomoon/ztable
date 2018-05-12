@@ -2,6 +2,7 @@
 #'
 #' @param z An object of ztable
 #' @param rows An integer vector indicating specific rows
+#' @param bg A character vector indicating background color
 #' @param color A character vector indicating color
 #' @importFrom magrittr "%>%"
 #' @export
@@ -9,16 +10,26 @@
 #' z=ztable(head(iris))
 #' z=addRowColor(z,c(1,3),color="platinum")
 #' z
-addRowColor=function(z,rows,color){
+addRowColor=function(z,rows,bg=NULL,color=NULL){
+    if(!is.null(bg)){
+    for(i in 1:length(bg)) bg[i]=validColor(bg[i])
+    if(length(rows)>length(bg)) bg=rep(bg,1+length(rows)/length(bg))
+    for(i in 1:length(rows))
+        for(j in 1:ncol(z$cellcolor))
+            z$cellcolor[rows[i],j]=bg[i]
+        z$zebra.type=3
+        z$zebra=3
+        if(is.null(z$rowcolor)) z$rowcolor=rep("white",nrow(z$cellcolor))
+        for(j in 1:length(rows)) z$rowcolor[rows[j]]=bg[j]
+
+    }
+    if(!is.null(color)){
     for(i in 1:length(color)) color[i]=validColor(color[i])
     if(length(rows)>length(color)) color=rep(color,1+length(rows)/length(color))
     for(i in 1:length(rows))
-        for(j in 1:ncol(z$cellcolor))
-              z$cellcolor[rows[i],j]=color[i]
-    z$zebra.type=3
-    z$zebra=3
-    if(is.null(z$rowcolor)) z$rowcolor=rep("white",nrow(z$cellcolor))
-    for(j in 1:length(rows)) z$rowcolor[rows[j]]=color[j]
+        for(j in 1:ncol(z$frontcolor))
+              z$frontcolor[rows[i],j]=color[i]
+    }
     z
 }
 
@@ -26,22 +37,32 @@ addRowColor=function(z,rows,color){
 #'
 #' @param z An object of ztable
 #' @param cols An integer vector indicating specific columns
+#' @param bg A character vector indicating background color
 #' @param color A character vector indicating color
 #'@export
 #' @examples
 #' z=ztable(head(iris))
 #' z=addColColor(z,c(1,3),color="platinum")
 #' z
-addColColor=function(z,cols,color){
-    for(i in 1:length(color)) color[i]=validColor(color[i])
-    if(length(cols)>length(color)) color=rep(color,1+length(cols)/length(color))
+addColColor=function(z,cols,bg=NULL,color=NULL){
+    if(!is.null(bg)){
+    for(i in 1:length(bg)) bg[i]=validColor(bg[i])
+    if(length(cols)>length(bg)) bg=rep(bg,1+length(cols)/length(bg))
     for(j in 1:length(cols))
         for(i in 1:nrow(z$cellcolor))
-            z$cellcolor[i,cols[j]]=color[j]
+            z$cellcolor[i,cols[j]]=bg[j]
     z$zebra.type=3
     z$zebra=3
     if(is.null(z$colcolor)) z$colcolor=rep("white",ncol(z$cellcolor))
-    for(j in 1:length(cols)) z$colcolor[cols[j]]=color[j]
+    for(j in 1:length(cols)) z$colcolor[cols[j]]=bg[j]
+    }
+    if(!is.null(color)){
+    for(i in 1:length(color)) color[i]=validColor(color[i])
+    if(length(cols)>length(color)) color=rep(color,1+length(cols)/length(color))
+    for(j in 1:length(cols))
+        for(i in 1:nrow(z$frontcolor))
+            z$frontcolor[i,cols[j]]=color[j]
+    }
     z
 }
 
@@ -50,6 +71,7 @@ addColColor=function(z,cols,color){
 #' @param z An object of ztable
 #' @param rows An integer vector indicating specific rows
 #' @param cols An integer vector indicating specific columns
+#' @param bg A character vector indicating background color
 #' @param color A character vector indicating color
 #' @export
 #' @examples
@@ -58,8 +80,8 @@ addColColor=function(z,cols,color){
 #' z=addColColor(z,2,color="syan")
 #' z=addCellColor(z,cols=c(5,4),rows=5,color="red")
 #' z
-addCellColor=function(z,rows,cols,color){
-    for(i in 1:length(color)) color[i]=validColor(color[i])
+addCellColor=function(z,rows,cols,bg=NULL,color=NULL){
+
     while(length(rows)!=length(cols)){
         if(length(rows)<length(cols)){
             rows=c(rows,rows)
@@ -70,16 +92,33 @@ addCellColor=function(z,rows,cols,color){
             if(length(cols)>length(rows)) cols=cols[1:length(rows)]
         }
     }
-    if(length(cols)>length(color)) color=rep(color,1+length(cols)/length(color))
+    if(!is.null(bg)){
+    for(i in 1:length(bg)) bg[i]=validColor(bg[i])
+    if(length(cols)>length(bg)) bg=rep(bg,1+length(cols)/length(bg))
     for(i in 1:length(cols)) {
-        z$cellcolor[rows[i],cols[i]]=color[i]
+        z$cellcolor[rows[i],cols[i]]=bg[i]
         result=getspanRowLength(z,rows[i],cols[i])
 
         if(!is.null(result)){
             if(result>1){
-                for(j in 1:(result-1)) z$cellcolor[(rows[i]+j),cols[i]]=color[i]
+                for(j in 1:(result-1)) z$cellcolor[(rows[i]+j),cols[i]]=bg[i]
             }
         }
+    }
+    }
+    if(!is.null(color)){
+    for(i in 1:length(color)) color[i]=validColor(color[i])
+    if(length(cols)>length(color)) color=rep(color,1+length(cols)/length(color))
+    for(i in 1:length(cols)) {
+        z$frontcolor[rows[i],cols[i]]=color[i]
+        result=getspanRowLength(z,rows[i],cols[i])
+
+        if(!is.null(result)){
+            if(result>1){
+                for(j in 1:(result-1)) z$frontcolor[(rows[i]+j),cols[i]]=color[i]
+            }
+        }
+    }
     }
     z$zebra.type=3
     z$zebra=3
@@ -149,9 +188,13 @@ addcgroup=function(z,cgroup,n.cgroup,color="black",bg="white",top=FALSE){
 
     if(length(color)==1){
         color=rep(color,length(cgroup)+1)
+    } else{
+        color=c("black",color)
     }
     if(length(bg)==1){
         bg=rep(bg,length(cgroup)+1)
+    } else{
+        bg=c("white",bg)
     }
 
     if(length(z$cgroup)==0) {
@@ -376,8 +419,7 @@ spanCol=function(z,row,from,to,bg=NULL,color=NULL){
     if(is.null(z$spanCol)) z$spanCol=matrix(c(row,from,to),nrow=1)
     else z$spanCol=rbind(z$spanCol,c(row,from,to))
     #colnames(z$spanCol)=c("row","from","to")
-    if(!is.null(bg)) z=addCellColor(z,cols=from,rows=row,color=bg)
-    if(!is.null(color)) z=addFrontColor(z,cols=from,rows=row,color=color)
+    z=addCellColor(z,cols=from,rows=row,bg=bg,color=color)
     z
 }
 
@@ -408,8 +450,7 @@ spanRow=function(z,col,from,to,bg=NULL,color=NULL){
     else z$spanRow=rbind(z$spanRow,c(col,from,to))
     #colnames(z$spanRow)=c("col","from","to")
     #if(!is.null(color)) z=addCellColor(z,cols=col,rows=from,color=color)
-    if(!is.null(bg)) z=addCellColor(z,cols=col,rows=from,color=bg)
-    if(!is.null(color)) z=addFrontColor(z,cols=col,rows=from,color=color)
+    z=addCellColor(z,cols=col,rows=from,bg=bg,color=color)
     z
 }
 
@@ -455,14 +496,21 @@ spanColWidth=function(z,i,j){
 #' Calculating new spanCol with spanCol plus space made by column group
 #'
 #'@param z An object of ztable
+#'@export
 getNewSpanCol=function(z){
     result=z$spanCol
     result1=result
+    result1
     if(is.null(z$cgroup)) return(result)
     if(is.null(colGroupCount(z))) return(result)
     vlines=align2lines(z$align)
-    colCount=colGroupCount(z)+1
+    vlines
+    addcol=ifelse(z$include.rownames,1,0)
+
+    #colCount=colGroupCount(z)+1
+    colCount=colGroupCount(z)+addcol
     newCount=c()
+    colCount
     for(i in 1:length(colCount)) {
         if(vlines[colCount[i]+1]==0) newCount=c(newCount,colCount[i])
     }
@@ -585,9 +633,11 @@ addSigColor=function(z,sigp=0.05,sigcolor="lightcyan"){
 
     if("ztable.mytable" %in% class(z))  {
         if(is.null(z$cgroup)){
-            below05=which(as.numeric(z$x[[ncol(z$x)]])<sigp)+1
+            temp=z$x[[ncol(z$x)]]
+            temp[temp=="< 0.001"]=0
+            below05=which(as.numeric(temp)<sigp)+1
             if(length(below05)>0)
-                z1=addRowColor(z,rows=below05,color=sigcolor)
+                z1=addRowColor(z,rows=below05,bg=sigcolor)
         } else{
             count=length(z$cgroup[[1]])-1
             count
@@ -596,10 +646,12 @@ addSigColor=function(z,sigp=0.05,sigcolor="lightcyan"){
             z1<-z
             for(i in 2:(count+1)){
                 pcol=1+colpergroup*(i-1)
-                below05=which(as.numeric(z$x[[pcol]])<sigp)+1
+                temp=z$x[[pcol]]
+                temp[temp=="< 0.001"]=0
+                below05=which(as.numeric(temp)<sigp)+1
                 if(length(below05)>0) for(j in 1:length(below05))
                     z1=addCellColor(z1,rows=below05[j],
-                                   cols=(pcol+1-(colpergroup-1)):(pcol+1),color=sigcolor)
+                                   cols=(pcol+1-(colpergroup-1)):(pcol+1),bg=sigcolor)
 
             }
         }

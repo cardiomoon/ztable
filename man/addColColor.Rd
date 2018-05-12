@@ -4,12 +4,14 @@
 \alias{addColColor}
 \title{Add column colors of an object of ztable}
 \usage{
-addColColor(z, cols, color)
+addColColor(z, cols, bg = NULL, color = NULL)
 }
 \arguments{
 \item{z}{An object of ztable}
 
 \item{cols}{An integer vector indicating specific columns}
+
+\item{bg}{A character vector indicating background color}
 
 \item{color}{A character vector indicating color}
 }

@@ -17,7 +17,7 @@ update_ztable(z, family = NULL, size = NULL, color = NULL,
   zebra.type = NULL, zebra.list = NULL, zebra.colnames = NULL,
   zebra.rownames = NULL, colnames.bold = NULL, include.colnames = NULL,
   cgroup = NULL, n.cgroup = NULL, rgroup = NULL, n.rgroup = NULL,
-  cspan.rgroup = NULL)
+  cspan.rgroup = NULL, pcol = NULL)
 }
 \arguments{
 \item{z}{An object of class "ztable"}
@@ -174,6 +174,8 @@ Default value is NULL}
 
 \item{cspan.rgroup}{The number of columns that an rgroup should span. It spans by default all
 columns but you may want to limit this if you have column colors that you want to retain.}
+
+\item{pcol}{number of column displaying p value}
 }
 \description{
 Update options of ztable before print
