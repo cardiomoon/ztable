@@ -4,15 +4,26 @@
 #' @param rows An integer vector indicating specific rows
 #' @param bg A character vector indicating background color
 #' @param color A character vector indicating color
+#' @param condition Logical expression to select rows
 #' @importFrom magrittr "%>%"
 #' @export
 #' @examples
 #' z=ztable(head(iris))
 #' z=addRowColor(z,c(1,3),color="platinum")
 #' z
-addRowColor=function(z,rows,bg=NULL,color=NULL){
+addRowColor=function(z,rows=NULL,bg=NULL,color=NULL,condition=NULL){
     if(!is.null(bg)){
     for(i in 1:length(bg)) bg[i]=validColor(bg[i])
+    selected=NULL
+    selected <- if (!missing(condition)) {
+        e <- substitute(condition)
+        r <- eval(e, z$x, parent.frame())
+        if (!is.logical(r))
+            stop("'subset' must be logical")
+        selected=which(r & !is.na(r) )+1
+    }
+    rows=c(rows,selected)
+    if(is.null(rows)) rows=1:(nrow(z$x)+1)
     if(length(rows)>length(bg)) bg=rep(bg,1+length(rows)/length(bg))
     for(i in 1:length(rows))
         for(j in 1:ncol(z$cellcolor))
@@ -44,7 +55,17 @@ addRowColor=function(z,rows,bg=NULL,color=NULL){
 #' z=ztable(head(iris))
 #' z=addColColor(z,c(1,3),color="platinum")
 #' z
-addColColor=function(z,cols,bg=NULL,color=NULL){
+addColColor=function(z,cols=NULL,bg=NULL,color=NULL){
+    cols <- if (missing(cols))
+        1:(ncol(z$x)+1)
+    else {
+        nl <- as.list(seq_along(z$x))
+        names(nl) <- names(z$x)
+        result=tryCatch(class(cols),error=function(e) "error")
+        add=0
+        if(result=="error") add=1
+        eval(substitute(cols), nl, parent.frame())+add
+    }
     if(!is.null(bg)){
     for(i in 1:length(bg)) bg[i]=validColor(bg[i])
     if(length(cols)>length(bg)) bg=rep(bg,1+length(cols)/length(bg))
@@ -73,6 +94,7 @@ addColColor=function(z,cols,bg=NULL,color=NULL){
 #' @param cols An integer vector indicating specific columns
 #' @param bg A character vector indicating background color
 #' @param color A character vector indicating color
+#' @param condition Logical expression to select rows
 #' @export
 #' @examples
 #' z=ztable(head(iris))
@@ -80,45 +102,64 @@ addColColor=function(z,cols,bg=NULL,color=NULL){
 #' z=addColColor(z,2,color="syan")
 #' z=addCellColor(z,cols=c(5,4),rows=5,color="red")
 #' z
-addCellColor=function(z,rows,cols,bg=NULL,color=NULL){
-
-    while(length(rows)!=length(cols)){
-        if(length(rows)<length(cols)){
-            rows=c(rows,rows)
-            if(length(rows)>length(cols)) rows=rows[1:length(cols)]
-        }
-        if(length(rows)>length(cols)){
-            cols=c(cols,cols)
-            if(length(cols)>length(rows)) cols=cols[1:length(rows)]
-        }
+addCellColor=function(z,rows=NULL,cols=NULL,bg=NULL,color=NULL,condition=NULL){
+    selected=NULL
+    selected <- if (!missing(condition)) {
+        e <- substitute(condition)
+        r <- eval(e, z$x, parent.frame())
+        if (!is.logical(r))
+            stop("'subset' must be logical")
+        selected=which(r & !is.na(r) )+1
     }
+    rows=c(rows,selected)
+    if(is.null(rows)) rows=1:(nrow(z$x)+1)
+    cols <- if (missing(cols))
+        1:(ncol(z$x)+1)
+    else {
+        nl <- as.list(seq_along(z$x))
+        names(nl) <- names(z$x)
+        result=tryCatch(class(cols),error=function(e) "error")
+        add=0
+        if(result=="error") add=1
+        eval(substitute(cols), nl, parent.frame())+add
+    }
+    # while(length(rows)!=length(cols)){
+    #     if(length(rows)<length(cols)){
+    #         rows=c(rows,rows)
+    #         if(length(rows)>length(cols)) rows=rows[1:length(cols)]
+    #     }
+    #     if(length(rows)>length(cols)){
+    #         cols=c(cols,cols)
+    #         if(length(cols)>length(rows)) cols=cols[1:length(rows)]
+    #     }
+    # }
     if(!is.null(bg)){
     for(i in 1:length(bg)) bg[i]=validColor(bg[i])
     if(length(cols)>length(bg)) bg=rep(bg,1+length(cols)/length(bg))
-    for(i in 1:length(cols)) {
-        z$cellcolor[rows[i],cols[i]]=bg[i]
-        result=getspanRowLength(z,rows[i],cols[i])
-
-        if(!is.null(result)){
-            if(result>1){
-                for(j in 1:(result-1)) z$cellcolor[(rows[i]+j),cols[i]]=bg[i]
-            }
+    for(i in 1:length(rows)) {
+        for(j in 1:length(cols)){
+           z$cellcolor[rows[i],cols[j]]=bg[j]
         }
     }
     }
     if(!is.null(color)){
     for(i in 1:length(color)) color[i]=validColor(color[i])
     if(length(cols)>length(color)) color=rep(color,1+length(cols)/length(color))
-    for(i in 1:length(cols)) {
-        z$frontcolor[rows[i],cols[i]]=color[i]
-        result=getspanRowLength(z,rows[i],cols[i])
-
-        if(!is.null(result)){
-            if(result>1){
-                for(j in 1:(result-1)) z$frontcolor[(rows[i]+j),cols[i]]=color[i]
-            }
+    for(i in 1:length(rows)) {
+        for(j in 1:length(cols)){
+            z$frontcolor[rows[i],cols[j]]=color[j]
         }
     }
+    # for(i in 1:length(cols)) {
+    #     z$frontcolor[rows[i],cols[i]]=color[i]
+    #     result=getspanRowLength(z,rows[i],cols[i])
+    #
+    #     if(!is.null(result)){
+    #         if(result>1){
+    #             for(j in 1:(result-1)) z$frontcolor[(rows[i]+j),cols[i]]=color[i]
+    #         }
+    #     }
+    # }
     }
     z$zebra.type=3
     z$zebra=3
@@ -629,15 +670,15 @@ addSubColNames=function(z,subcolnames){
 #'@param sigp A p-value
 #'@param sigcolor A character indicating color
 #'@export
-addSigColor=function(z,sigp=0.05,sigcolor="lightcyan"){
+addSigColor=function(z,level=0.05,bg="lightcyan",color="black"){
 
     if("ztable.mytable" %in% class(z))  {
         if(is.null(z$cgroup)){
             temp=z$x[[ncol(z$x)]]
             temp[temp=="< 0.001"]=0
-            below05=which(as.numeric(temp)<sigp)+1
+            below05=which(as.numeric(temp)<level)+1
             if(length(below05)>0)
-                z1=addRowColor(z,rows=below05,bg=sigcolor)
+                z1=addRowColor(z,rows=below05,bg=bg,color=color)
         } else{
             count=length(z$cgroup[[1]])-1
             count
@@ -648,14 +689,22 @@ addSigColor=function(z,sigp=0.05,sigcolor="lightcyan"){
                 pcol=1+colpergroup*(i-1)
                 temp=z$x[[pcol]]
                 temp[temp=="< 0.001"]=0
-                below05=which(as.numeric(temp)<sigp)+1
+                below05=which(as.numeric(temp)<level)+1
                 if(length(below05)>0) for(j in 1:length(below05))
                     z1=addCellColor(z1,rows=below05[j],
-                                   cols=(pcol+1-(colpergroup-1)):(pcol+1),bg=sigcolor)
+                                   cols=(pcol+1-(colpergroup-1)):(pcol+1),bg=bg,color=color)
 
             }
         }
+    } else {
+        if(!is.null(z$pcol)){
+            temp=z$x[[z$pcol]]
+            below05=which(as.numeric(temp)<level)+1
+            if(length(below05)>0)
+                z1=addRowColor(z,rows=below05,bg=bg,color=color)
+        } else{
+            z1=z
+        }
     }
-    else z1=z
     z1
 }

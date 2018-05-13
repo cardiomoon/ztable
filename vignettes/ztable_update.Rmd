@@ -28,7 +28,7 @@ Package "ztable" make everything possible about table. Basically, An object of "
 library(ztable)
 library(magrittr)
 options(ztable.type="html")
-z=ztable(head(iris))
+z=ztable(head(iris),caption="Table 1. Basic Table")
 z
 ```
 
@@ -37,10 +37,25 @@ z
 You can change background color and font color with bg and color arguments in addRowColor(), addColColor() and addCellColor() functions.
 
 ```{r,results='asis'}
-ztable(head(iris)) %>%
+ztable(head(iris),caption="Table 2. Table with desired background and font colors") %>%
     addRowColor(rows=1,bg="#C90000",color="white") %>%
-    addCellColor(rows=3,cols=c(4,6), bg="cyan",color="red") %>%
-    print
+    addCellColor(rows=3,cols=c(4,6), bg="cyan",color="red") 
+```
+
+## Conditional Formatting
+
+You can select rows with logical expression. You can select cols with column name.
+
+```{r,results='asis'}
+ztable(head(iris),caption="Table 3. Conditinoal Formatting: Sepal.Width >= 3.5") %>%
+    addRowColor(rows=1,bg="#C90000",color="white") %>%
+    addCellColor(condition=Sepal.Width>=3.5,cols=Sepal.Width,color="red") 
+```
+
+
+```{r,results='asis'}
+ztable(head(mtcars),caption="Table 4. Cars with mpg > 21 ") %>%
+    addCellColor(condition=mpg>21,cols=1:2,bg="cyan",color="red") 
 ```
 
 
@@ -58,11 +73,11 @@ reds
 You can use the extracted colors to your ztable.
 
 ```{r,results='asis'}
-ztable(head(iris)) %>% 
-    addColColor(cols=1:6,bg=reds)
+ztable(head(iris),caption="Table 5. Use of color palette") %>% 
+    addColColor(bg=reds)
 
-ztable(head(mtcars)) %>%
-    addRowColor(rows=1:7,bg=palette2colors("Set3"))
+ztable(head(mtcars),caption="Table 6. Use of color palette(2)") %>%
+    addRowColor(bg=palette2colors("Set3"))
 ```
 
 ## Make a flextable from a ztable
@@ -90,7 +105,7 @@ You can convert an object of class ztable to a flextable object.
 ```{r,results='asis'}
 cgroup=c("Sepal","Petal","Species")
 n.cgroup=c(2,2,1)
-z <- ztable(head(iris)) %>%
+z <- ztable(head(iris),caption="Table 9. Use of column groups") %>%
     addcgroup(cgroup=cgroup,n.cgroup=n.cgroup,color=c("red","green","blue")) %>%
     spanRow(col=4,from=2,to=3,bg="cyan") %>%
     spanCol(row=5,from=2,to=3,bg="cyan",color="blue")
@@ -101,9 +116,26 @@ ztable2flextable(z)
 
 ```{r,results='asis'}
 fit <- lm(mpg ~ cyl + disp + wt + drat + am, data=mtcars)
-z=ztable(fit)
+z=ztable(fit,caption="Table 10. Results of Multiple Regression Analysis ")
 z
-ztable2flextable(z) %>% autofit()
+ztable2flextable(z)
+```
+
+You can change the color of rows in which p value is below the desired level(default value is 0.05).
+
+```{r,results='asis'}
+z1=z %>% addSigColor
+z1
+ztable2flextable(z1) %>% autofit()
+```
+
+You can change the significant level and background and font color.
+
+```{r,results='asis'}
+z2= z %>% addSigColor(level=0.01,bg="yellow",color="red")
+z2
+ztable2flextable(z2) 
+
 ```
 
 For more options of flextable, please read the flextable vignette at https://davidgohel.github.io/flextable/index.html. 

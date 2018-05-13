@@ -108,18 +108,18 @@ roundDf=function(df,digits=2){
 #'    addRowColor(rows=1:7,palette2colors("Paired"))
 #' ztable2flextable(z)
 ztable2flextable=function(z){
-    df=z$x
+    df=data2table(z)
     addcol=0
     if(z$include.rownames) {
         df=cbind(rowname=rownames(df),df)
         addcol=1
     }
-    if(addcol){
-        digits=z$digits
-    }  else{
-        digits=z$digits[-1]
-    }
-    df<-roundDf(df,digits)
+    # if(addcol){
+    #     digits=z$digits
+    # }  else{
+    #     digits=z$digits[-1]
+    # }
+    # df<-roundDf(df,digits)
     ft=regulartable(df)
 
     if(z$include.rownames) {

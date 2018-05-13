@@ -488,7 +488,7 @@ res1 %>% ztable %>%
 res2<-mytable(sex+DM~.,data=acs)
 res2 %>% 
     ztable %>%
-    addSigColor(sigp=0.01,sigcolor="platinum") %>%
+    addSigColor(level=0.1,bg="yellow",color="red") %>%
     print
 
 ```
