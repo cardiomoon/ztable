@@ -20,6 +20,21 @@ knitr::opts_chunk$set(
 
 If you are unfamiliar to ztable, please read the ztable vignette: https://cran.r-project.org/web/packages/ztable/vignettes/ztable.html
 
+## Installation
+
+You can install R package "ztable" from CRAN. Current version is 0.1.8.
+
+```{r,eval=FALSE}
+install.packages("ztable")
+```
+
+You can install the developmental version of ztable from github. Current github version is 0.1.9.
+```{r,eval=FALSE}
+if(!require(devtools)) install.packages("devtools")
+devtools::install_github("cardiomoon/ztable")
+```
+
+
 ## Make table from a data.frame
 
 Package "ztable" make everything possible about table. Basically, An object of "ztable" made from a data.frame. The default output format of ztable is RStudio::viewer or web-browser format(type="viewer"). So if you want to use ztable in a "html" format, you should change the parameter ztable.type to "html". If you want to use ztable in latex format, you should change the parameter ztable.type to "latex". 
