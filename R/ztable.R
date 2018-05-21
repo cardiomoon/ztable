@@ -1414,6 +1414,7 @@ validColor=function(a,mycolor){
 #' @param a An integer or a character
 #' @return a valid Latex color name
 validColor2=function(a){
+
     if(!is.character(a)) a="peach"
     else if(substr(a,1,1)=="#"){
         a=a

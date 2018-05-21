@@ -4,7 +4,7 @@
 \alias{addColColor}
 \title{Add column colors of an object of ztable}
 \usage{
-addColColor(z, cols, bg = NULL, color = NULL)
+addColColor(z, cols = NULL, bg = NULL, color = NULL)
 }
 \arguments{
 \item{z}{An object of ztable}

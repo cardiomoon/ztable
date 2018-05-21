@@ -667,8 +667,9 @@ addSubColNames=function(z,subcolnames){
 #' Add row color or cellcolor for rows or cells of p-value less than sigp in a ztable
 #'
 #'@param z An object of ztable
-#'@param sigp A p-value
-#'@param sigcolor A character indicating color
+#'@param level A p-value
+#'@param bg A character indicating background color
+#'@param color A character indicating color
 #'@export
 addSigColor=function(z,level=0.05,bg="lightcyan",color="black"){
 

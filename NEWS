@@ -1,3 +1,11 @@
+ztable 0.2.0
+=============
+(22-May-2018)
+
+* New function "ztable.table","gradientColor","makeHeatmap" added
+
+* New vignette "heatmapTable" added
+
 ztable 0.1.9
 =============
 (13-May-2018)

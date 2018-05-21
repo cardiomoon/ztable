@@ -4,14 +4,16 @@
 \alias{addSigColor}
 \title{Add row color or cellcolor for rows or cells of p-value less than sigp in a ztable}
 \usage{
-addSigColor(z, sigp = 0.05, sigcolor = "lightcyan")
+addSigColor(z, level = 0.05, bg = "lightcyan", color = "black")
 }
 \arguments{
 \item{z}{An object of ztable}
 
-\item{sigp}{A p-value}
+\item{level}{A p-value}
 
-\item{sigcolor}{A character indicating color}
+\item{bg}{A character indicating background color}
+
+\item{color}{A character indicating color}
 }
 \description{
 Add row color or cellcolor for rows or cells of p-value less than sigp in a ztable
