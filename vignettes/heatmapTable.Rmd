@@ -17,6 +17,23 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Installation
+
+You can install R package "ztable" from CRAN. Current version is 0.1.8.
+
+```{r,eval=FALSE}
+install.packages("ztable")
+```
+
+To make a heatmap table, you have to install the developmental version of ztable from github. Current github version is 0.2.0.
+
+```{r,eval=FALSE}
+if(!require(devtools)) install.packages("devtools")
+devtools::install_github("cardiomoon/ztable")
+```
+
+## Introduction
+
 A heat map (or heatmap) is a graphical representation of data where the individual values contained in a matrix are represented as colors. You can summarize the the diagnosis and smoking status of 857 patients of acute coronary syndrome(acs) using table() function.  
 
 ```{r}
@@ -98,4 +115,24 @@ You can make heatmap table with data containing non-numeric columns. Only column
 ztable(head(acs[1:10])) %>% 
     makeHeatmap %>%
     print(caption="Table 7. Heatmap table with non-numeric data")
+```
+
+## Selected Columnwise Heatmap Table
+
+You can make selected columnwise heatmap table. You can select columns with `cols` argument. To make columnwise heatmap table, set the `margin` argument 2.
+
+```{r,results='asis'}
+ztable(head(mtcars)) %>% 
+    makeHeatmap(palette="YlOrRd",cols=c(1,3,4),margin=2) %>%
+    print(caption="Table 8. Columnwise heatmap table")
+```
+
+## Selected Rowwise Heatmap Table
+
+You can make selected columnwise heatmap table. You can select rows with `rows` argument. To make rowwise heatmap table, set the `margin` argument 1.
+
+```{r,results='asis'}
+ztable(t(head(mtcars))) %>%
+    makeHeatmap(palette="YlOrRd",rows=c(1,3,4),margin=1) %>%
+    print(caption="Table 9. Rowwise heatmap table")
 ```
