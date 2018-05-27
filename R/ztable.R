@@ -1398,6 +1398,7 @@ if(i %in% printrgroup) {
 #' @param a An integer or a character
 #' @param mycolor predefined color names
 #' @return a valid Latex color name
+#' @export
 validColor=function(a,mycolor){
     if(is.numeric(a)) {
         if(a>0 && a <11)
@@ -1413,15 +1414,23 @@ validColor=function(a,mycolor){
 #'
 #' @param a An integer or a character
 #' @return a valid Latex color name
+#' @importFrom grDevices colors
+#' @export
 validColor2=function(a){
 
     if(!is.character(a)) a="peach"
     else if(substr(a,1,1)=="#"){
         a=a
     } else {
-        result=grep(paste("^",a,sep=""),ztable::zcolors$name,ignore.case=TRUE)
-        if(length(result)>0) a=ztable::zcolors$name[result[1]]
-        else a="peach"
+        if(tolower(a) %in% colors()){
+            a=tolower(a)
+        } else {
+            result=grep(paste("^",a,sep=""),ztable::zcolors$name,ignore.case=TRUE)
+            if(length(result)>0) {
+                a=ztable::zcolors$name[result][which.min(nchar(ztable::zcolors$name[result]))]
+            } else a="peach"
+        }
+
     }
     a
 }

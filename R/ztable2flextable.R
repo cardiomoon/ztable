@@ -10,9 +10,15 @@
 color2hex=function(color){
     result=color
     if(!str_detect(color,"#")){
-    res=col2rgb(color)
-    x=sprintf("%02s",as.hexmode(res))
-    result=paste0("#",str_flatten(x))
+
+        temp=ztable::zcolors$rgb[ztable::zcolors$name==tolower(color)]
+        if(length(temp)==1) {
+            result<-paste0("#",temp)
+        } else{
+            res=col2rgb(color)
+            x=sprintf("%02s",as.hexmode(res))
+            result=paste0("#",str_flatten(x))
+        }
     }
     result
 }
@@ -247,5 +253,4 @@ ztable2flextable=function(z){
     ft
 
 }
-
 
