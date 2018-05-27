@@ -105,13 +105,15 @@ roundDf=function(df,digits=2){
 #' @param z An object of class ztable
 #' @return An object of class flextable
 #' @importFrom flextable regulartable delete_part bg color border align merge_at
-#' @importFrom flextable set_header_df merge_h padding
+#' @importFrom flextable set_header_df merge_h padding hline_top hline border_remove
 #' @importFrom officer fp_border
 #' @export
 #' @examples
 #' require(magrittr)
 #' z=ztable(head(mtcars)) %>%
 #'    addRowColor(rows=1:7,palette2colors("Paired"))
+#' z=ztable(head(mtcars))
+#' z
 #' ztable2flextable(z)
 ztable2flextable=function(z){
     df=data2table(z)
@@ -121,6 +123,7 @@ ztable2flextable=function(z){
         df=cbind(rowname=rownames(df),df)
         addcol=1
     }
+
     # if(addcol){
     #     digits=z$digits
     # }  else{
@@ -130,8 +133,13 @@ ztable2flextable=function(z){
     if(sum(colnames(df)=="")>0){
         colnames(df)[which(colnames(df)=="")]=rep(" ",which(colnames(df)==""))
     }
-    colnames(df)
-    ft=regulartable(df)
+
+    big_border = fp_border(color="black", width = 2)
+    std_border = fp_border(color="black", width = 1)
+    ft<-regulartable(df) %>% border_remove() %>%
+        hline_top(border=big_border,part="header") %>%
+        hline(border=std_border,part="header") %>%
+        hline(border=std_border,i=nrow(df),part="body")
 
     if(z$include.rownames) {
         ft<-ft %>% color(i=1,j=1,color="white",part="header")

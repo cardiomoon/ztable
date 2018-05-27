@@ -19,5 +19,7 @@ Convert an object of ztable into an object of flextable
 require(magrittr)
 z=ztable(head(mtcars)) \%>\%
    addRowColor(rows=1:7,palette2colors("Paired"))
+z=ztable(head(mtcars))
+z
 ztable2flextable(z)
 }
