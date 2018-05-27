@@ -109,6 +109,7 @@ roundDf=function(df,digits=2){
 #' ztable2flextable(z)
 ztable2flextable=function(z){
     df=data2table(z)
+
     addcol=0
     if(z$include.rownames) {
         df=cbind(rowname=rownames(df),df)
@@ -120,6 +121,10 @@ ztable2flextable=function(z){
     #     digits=z$digits[-1]
     # }
     # df<-roundDf(df,digits)
+    if(sum(colnames(df)=="")>0){
+        colnames(df)[which(colnames(df)=="")]=rep(" ",which(colnames(df)==""))
+    }
+    colnames(df)
     ft=regulartable(df)
 
     if(z$include.rownames) {
