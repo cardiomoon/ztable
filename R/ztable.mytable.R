@@ -83,3 +83,44 @@ trim.ztable=function(z){
   z$align=myalign
   z
 }
+
+#'Arrage total column to the left
+#'@param z An object of class ztable.mytable or ztable.cbind.mytable
+#'@examples
+#'require(moonBook)
+#'require(ztable)
+#'require(magrittr)
+#'mytable(sex~.,data=acs,show.total=TRUE) %>% ztable %>% totalLeft
+#'mytable(sex+Dx~.,data=acs,show.total=TRUE) %>% ztable %>% totalLeft
+#'@export
+totalLeft=function(z){
+
+  if("ztable.cbind.mytable" %in% class(z)){
+    if("Total" %in% colnames(z$x)){
+      no=length(z$subcolname)
+      groupno=length(z$n.cgroup[[1]])-1
+      colpergroup=z$n.cgroup[[1]][2]
+      newno=1
+      for(i in 1:groupno){
+        start=2+(i-1)*colpergroup
+        end=start+colpergroup-1
+        temp=c(end-1,setdiff(start:end,end-1))
+        newno=c(newno,temp)
+      }
+      newno
+      tempcolname=colnames(z$x)
+      z$x=z$x[newno]
+      z$subcolnames=z$subcolnames[newno]
+      colnames(z$x)=tempcolname[newno]
+    }
+  } else if("ztable.mytable" %in% class(z)){
+    if("Total" %in% colnames(z$x)){
+      no=length(z$subcolname)
+      totalno=ifelse("ptest" %in% colnames(z$x),no-8,no-1)
+      newno=c(1,totalno,setdiff(1:no,c(1,totalno)))
+      z$x=z$x[newno]
+      z$subcolnames=z$subcolnames[newno]
+    }
+  }
+  z
+}
