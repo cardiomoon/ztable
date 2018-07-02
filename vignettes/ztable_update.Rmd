@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-If you are unfamiliar to ztable, please read the ztable vignette: https://cran.r-project.org/web/packages/ztable/vignettes/ztable.html
+If you are unfamiliar to ztable, please read the ztable vignette: https://CRAN.R-project.org/package=ztable/vignettes/ztable.html
 
 ## Installation
 
