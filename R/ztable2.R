@@ -678,8 +678,11 @@ addSigColor=function(z,level=0.05,bg="lightcyan",color="black"){
             temp=z$x[[ncol(z$x)]]
             temp[temp=="< 0.001"]=0
             below05=which(as.numeric(temp)<level)+1
-            if(length(below05)>0)
+            if(length(below05)>0) {
                 z1=addRowColor(z,rows=below05,bg=bg,color=color)
+            } else{
+                z1=z
+            }
         } else{
             count=length(z$cgroup[[1]])-1
             count
@@ -701,8 +704,11 @@ addSigColor=function(z,level=0.05,bg="lightcyan",color="black"){
         if(!is.null(z$pcol)){
             temp=z$x[[z$pcol]]
             below05=which(as.numeric(temp)<level)+1
-            if(length(below05)>0)
+            if(length(below05)>0){
                 z1=addRowColor(z,rows=below05,bg=bg,color=color)
+            }  else{
+                z1<-z
+            }
         } else{
             z1=z
         }
