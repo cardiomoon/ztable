@@ -2,7 +2,7 @@
 % Please edit documentation in R/ztable.mytable.R
 \name{totalLeft}
 \alias{totalLeft}
-\title{Arrage total column to the left}
+\title{Arrange total column to the left}
 \usage{
 totalLeft(z)
 }
@@ -10,7 +10,7 @@ totalLeft(z)
 \item{z}{An object of class ztable.mytable or ztable.cbind.mytable}
 }
 \description{
-Arrage total column to the left
+Arrange total column to the left
 }
 \examples{
 require(moonBook)

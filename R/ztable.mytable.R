@@ -84,7 +84,7 @@ trim.ztable=function(z){
   z
 }
 
-#'Arrage total column to the left
+#'Arrange total column to the left
 #'@param z An object of class ztable.mytable or ztable.cbind.mytable
 #'@examples
 #'require(moonBook)
