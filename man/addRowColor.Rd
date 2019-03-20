@@ -4,7 +4,8 @@
 \alias{addRowColor}
 \title{Add row colors of an object of ztable}
 \usage{
-addRowColor(z, rows = NULL, bg = NULL, color = NULL, condition = NULL)
+addRowColor(z, rows = NULL, bg = NULL, color = NULL,
+  condition = NULL)
 }
 \arguments{
 \item{z}{An object of ztable}

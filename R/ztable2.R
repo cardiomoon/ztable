@@ -421,6 +421,7 @@ printLatexHead=function(z){
 #' Calculating total columns of ztable
 #'
 #' @param z An object of ztable
+#' @export
 totalCol=function(z){
     ncount=ncol(z$x)
     addrow=ifelse(z$include.rownames,1,0)
@@ -428,8 +429,10 @@ totalCol=function(z){
     vlines=align2lines(z$align)
     if(!is.null(z$cgroup)) {
         colCount=colGroupCount(z)
+        if(length(colCount)>1){
         for(i in 1:(length(colCount)-1)) {
             if(vlines[colCount[i]+2]==0) result=result+1
+        }
         }
     }
     result
