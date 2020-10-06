@@ -150,7 +150,7 @@ vlines(z,type=1)  # Vertical lines for all column
 
 # Basic Use
 
-Package "ztable" consist of one function: ztable. It's main function is creating zebra zebra striping tables(tables with alternating row colors) in both Latex and html formats easily from mainly data.frame or an R object such as matrix, lm, aov, anova, glm and coxph objects. It is fully customizable and you can get similar tables in both latex and html format without changing source. The default output is Rstudio::viewer, but you can get html format by adding just one sentence.
+Package "ztable" consist of one function: ztable. It's main function is creating zebra zebra striping tables(tables with alternating row colors) in both Latex and html formats easily from mainly data.frame or an R object such as matrix, lm, aov, anova, glm and coxph objects. It is fully customizable and you can get similar tables in both latex and html format without changing source. The default output is RStudio::viewer, but you can get html format by adding just one sentence.
 
 ```{r, eval=FALSE}
 options(ztable.type="html")
@@ -162,7 +162,7 @@ It's usage is somewhat similar to xtable, but very simple.
 
 ### Basic Use
 
-It's use is very simple. Just use 'ztable()' function. You can get the zebra stripig table by set the parameter zebra=1 (default value is NULL)
+It's use is very simple. Just use 'ztable()' function. You can get the zebra striping table by set the parameter zebra=1 (default value is NULL)
 
 ```{r,results="asis",message=FALSE}
 require(ztable)
@@ -194,7 +194,7 @@ ztable(head(mtcars[c(1:7)]),zebra=2,zebra.color="lightcyan",size=7,
        
 ## aov  object
 
-'ztable()' can be used for 'aov' object. When used for 'aov' object, the function call is added as footer to the table. The parameter 'show.footer' can be used whether or not include footer in the table. Dafault value is TRUE.
+'ztable()' can be used for 'aov' object. When used for 'aov' object, the function call is added as footer to the table. The parameter 'show.footer' can be used whether or not include footer in the table. Default value is TRUE.
 
 ```{r,results="asis"}
 out <- aov(mpg ~ ., data=mtcars)
@@ -220,7 +220,7 @@ a=anova(fit)
 ztable(a)
 ```
 
-This is examples of another 'anova' object. The models in this anova tables showed as table headings. You can decide whether or not include the headings in the tableby using parameter 'show.heading'(default: TRUE). 
+This is examples of another 'anova' object. The models in this anova tables showed as table headings. You can decide whether or not include the headings in the table by using parameter 'show.heading'(default: TRUE). 
 
 ```{r,results='asis'}
 fit2 <- lm(mpg ~ cyl+wt, data=mtcars)
@@ -231,7 +231,7 @@ ztable(b,show.heading=FALSE)
 
 ## Generalized linear model ; 'glm' object
 
-'ztable()' can be used for 'glm'(generalized linear model) object. In this time, 'ztable()' shows the **odds ratio(OR) and 95% confidence interval** as well as atandard R output.
+'ztable()' can be used for 'glm'(generalized linear model) object. In this time, 'ztable()' shows the **odds ratio(OR) and 95% confidence interval** as well as standard R output.
 
 ```{r,results='asis',warning=FALSE}
 require(survival)
@@ -304,7 +304,7 @@ out=coxph(TS~rx+obstruct+adhere+differ+extent+surg+node4,data=colon)
 ztable(out)
 ```
 
-## Nonlinear Least Squares: 'nls' obbject
+## Nonlinear Least Squares: 'nls' object
 
 'ztable()' can be used to determine the nonlinear (weighted) least-squares estimates of the parameters of a nonlinear model. Followings are examples of ztable() of 'nls' object.
 

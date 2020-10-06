@@ -44,7 +44,7 @@ x
 
 ## Basic Table
 
-You can make `html` or `LaTex` table easly with ztable.
+You can make `html` or `LaTex` table easily with ztable.
 ```{r,results="asis"}
 library(ztable)
 library(magrittr)
@@ -76,7 +76,7 @@ ztable(head(iris),caption="Table 3. Conditinoal Formatting: Sepal.Width >= 3.5")
 
 ##  Make a Heatmap Table
 
-You can make a heatmap table in which background colors representing the values. With makeHeatmap() function, you can make a heatmap table easily. The namakeHeatmap() function apply the "Reds" palette from RColorBrewer package.
+You can make a heatmap table in which background colors representing the values. With makeHeatmap() function, you can make a heatmap table easily. The makeHeatmap() function apply the "Reds" palette from RColorBrewer package.
 
 ```{r,results="asis"}
 z %>% makeHeatmap() %>% print(caption="Table 4. Heatmap Table")
@@ -94,7 +94,7 @@ ztable(head(mtcars)) %>%
 
 ## Heatmap Table with user-defined palette
 
-With the gradientColor() function, you makes sequential colour graient palette easily. 
+With the gradientColor() function, you makes sequential colour gradient palette easily. 
 
 ```{r,fig.width=8,out.width='100%'}
 mycolor=gradientColor(low="yellow",mid="orange",high="red",n=20,plot=TRUE)

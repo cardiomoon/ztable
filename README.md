@@ -102,7 +102,7 @@ z
 </table>
 
 
-You can see the fulll vignette here: 
+You can see the full vignette here: 
 
 1. ztable vignette: https://cran.r-project.org/web/packages/ztable/vignettes/ztable.html
 

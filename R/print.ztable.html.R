@@ -836,7 +836,7 @@ ztable2html=function(z,xdata){
     cat("</table>\n")
 }
 
-#' Print an object of ztable via rstudio::viewer
+#' Print an object of ztable via RStudio::viewer
 #'
 #' @param z An object of ztable
 ztable2viewer=function(z){

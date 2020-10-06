@@ -97,7 +97,7 @@ ztable(head(mtcars),caption="Table 6. Use of color palette(2)") %>%
 
 ## Make a flextable from a ztable
 
-You can use ztable for html nad latex output. But it is impossible to use ztable in `Microsoft Word` or `Microsoft Powerpoint` output directly. The `officer` package by David Gohel makes it possible to access and manipulate `Microsoft Word` or `Microsoft Powerpoint` document. You can insert a flextable object office documents with officer package.
+You can use ztable for html and latex output. But it is impossible to use ztable in `Microsoft Word` or `Microsoft Powerpoint` output directly. The `officer` package by David Gohel makes it possible to access and manipulate `Microsoft Word` or `Microsoft Powerpoint` document. You can insert a flextable object office documents with officer package.
 
 ```{r}
 require(officer)
