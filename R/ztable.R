@@ -1442,7 +1442,7 @@ validColor2=function(a){
 #' @param no An integer indicating start number
 #' @export
 define_colors=function(mycolors,no=1) {
-    if(is.null(mycolors)) return
+    if(is.null(mycolors)) return()
     uniquecolors=unique(as.vector(unique(mycolors)))
     uniquecolors
     count=no

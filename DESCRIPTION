@@ -9,7 +9,7 @@ Description: Makes zebra-striped tables (tables with alternating row colors)
 Depends:
     R (>= 3.1.2)
 License: GPL-2
-URL: http://github.com/cardiomoon/ztable
+URL: https://github.com/cardiomoon/ztable
 LazyData: true
 Encoding: UTF-8
 Imports:
