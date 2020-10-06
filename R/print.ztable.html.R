@@ -310,8 +310,8 @@ myhtmlStyle=function(z){
 #' @param z An object of ztable
 #' @export
 printHTMLHead=function(z){
-    if(is.null(z$cgroup)) return
-    if(is.null(z$n.cgroup)) return
+    if(is.null(z$cgroup)) return()
+    if(is.null(z$n.cgroup)) return()
     #colCount=colGroupCount(z)
     ncount=ncol(z$x)
     addrow=ifelse(z$include.rownames,1,0)

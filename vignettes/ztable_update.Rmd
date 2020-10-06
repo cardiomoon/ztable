@@ -109,7 +109,7 @@ ft
 
 You can make a 'Microsoft Word' document  with this flextable. 
 
-```{r}
+```{r,eval=FALSE}
 read_docx() %>%
     body_add_flextable(ft) %>%
     print(target = "flextable.docx")

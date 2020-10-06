@@ -4,8 +4,7 @@
 \alias{gradientColor}
 \title{Make Sequential colour gradient palette}
 \usage{
-gradientColor(high = "red", low = "white", mid = NULL, n = 20,
-  plot = FALSE)
+gradientColor(high = "red", low = "white", mid = NULL, n = 20, plot = FALSE)
 }
 \arguments{
 \item{high}{colour for high end of gradient.}

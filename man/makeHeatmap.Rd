@@ -4,8 +4,16 @@
 \alias{makeHeatmap}
 \title{Add gradient background color to ztable}
 \usage{
-makeHeatmap(z, palette = "Reds", mycolor = NULL, rows = NULL,
-  cols = NULL, changeColor = TRUE, reverse = FALSE, margin = 0)
+makeHeatmap(
+  z,
+  palette = "Reds",
+  mycolor = NULL,
+  rows = NULL,
+  cols = NULL,
+  changeColor = TRUE,
+  reverse = FALSE,
+  margin = 0
+)
 }
 \arguments{
 \item{z}{An object of class ztable}

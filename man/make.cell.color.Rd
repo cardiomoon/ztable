@@ -4,8 +4,15 @@
 \alias{make.cell.color}
 \title{Make a data.frame named "cellcolor" from ztable call}
 \usage{
-make.cell.color(x, zebra, zebra.color, zebra.type, zebra.list,
-  zebra.colnames, zebra.rownames)
+make.cell.color(
+  x,
+  zebra,
+  zebra.color,
+  zebra.type,
+  zebra.list,
+  zebra.colnames,
+  zebra.rownames
+)
 }
 \arguments{
 \item{x}{a data.frame}

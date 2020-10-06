@@ -4,8 +4,14 @@
 \alias{addrgroup}
 \title{Add row groups of an object of ztable}
 \usage{
-addrgroup(z, rgroup, n.rgroup, cspan.rgroup = NULL, color = "black",
-  bg = "white")
+addrgroup(
+  z,
+  rgroup,
+  n.rgroup,
+  cspan.rgroup = NULL,
+  color = "black",
+  bg = "white"
+)
 }
 \arguments{
 \item{z}{An object of ztable}
