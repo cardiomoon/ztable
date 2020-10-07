@@ -842,7 +842,10 @@ ztable2html=function(z,xdata){
 #' @importFrom rstudioapi viewer
 #' @importFrom utils browseURL
 ztable2viewer=function(z){
-    temp.f=tempfile(fileext=".html")
+    # temp.f=tempfile(fileext=".html")
+    tempDir <- tempfile()
+    dir.create(tempDir)
+    temp.f <- file.path(tempDir, "index.html")
     sink(temp.f)
     cat(paste("<html>",
               "<head>",
@@ -857,10 +860,11 @@ ztable2viewer=function(z){
 
     viewer <- getOption("viewer")
     if (!is.null(viewer)){
-        # (code to write some content to the file)
-        rstudioapi::viewer(temp.f)
+         rstudioapi::viewer(temp.f)
+        # rstudioapi::viewer("http://localhost:8100")
     } else{
-        if(is.character(temp.f)) utils::browseURL(temp.f)
+         if(is.character(temp.f)) utils::browseURL(temp.f)
+       # utils::browseURL("http://localhost:8100")
     }
 
 }
