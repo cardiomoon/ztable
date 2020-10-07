@@ -1,0 +1,31 @@
+---
+classoption: b5paper
+geometry: margin=1in
+header-includes:
+- \usepackage{multirow}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage[table]{xcolor}
+- \usepackage{tabularx,booktabs}
+- \usepackage{boxedminipage}
+- \usepackage{graphicx}
+- \usepackage{rotating}
+- \usepackage{longtable}
+output: html_document
+---
+
+```{r,echo=FALSE,message=FALSE,results='asis' }
+require(ztable)
+
+longt=ifelse("1" %in% input$latexOption,TRUE,FALSE)
+sidew=ifelse("2" %in% input$latexOption,TRUE,FALSE)
+
+if(input$format=="PDF") { 
+    print(z,type="latex",longtable=longt,sidewaystable=sidew)
+    
+} else {
+    print(z,type="html") 
+}    
+
+```
+

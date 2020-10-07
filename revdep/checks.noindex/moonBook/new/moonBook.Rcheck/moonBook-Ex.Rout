@@ -1,0 +1,1050 @@
+
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "moonBook"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('moonBook')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("HRplot")
+> ### * HRplot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: HRplot
+> ### Title: Draw a hazard ratio plot
+> ### Aliases: HRplot
+> 
+> ### ** Examples
+> 
+> require(survival)
+Loading required package: survival
+> attach(colon)
+> colon$TS=Surv(time,status==1)
+> out=mycph(TS~.,data=colon)
+
+ mycph : perform coxph of individual expecting variables
+
+ Call: TS ~ ., data= colon 
+
+study  was excluded : NA
+status  was excluded : infinite
+> out
+            HR  lcl  ucl     p
+id        1.00 1.00 1.00 0.317
+rxLev     0.98 0.84 1.14 0.786
+rxLev+5FU 0.64 0.55 0.76 0.000
+sex       0.97 0.85 1.10 0.610
+age       1.00 0.99 1.00 0.382
+obstruct  1.27 1.09 1.49 0.003
+perfor    1.30 0.92 1.85 0.142
+adhere    1.37 1.16 1.62 0.000
+nodes     1.09 1.08 1.10 0.000
+differ    1.36 1.19 1.55 0.000
+extent    1.78 1.53 2.07 0.000
+surg      1.28 1.11 1.47 0.001
+node4     2.47 2.17 2.83 0.000
+time      0.64 0.62 0.66 0.000
+etype     0.81 0.71 0.92 0.001
+> HRplot(out,type=1,pch=2,col=c("blue","red"))
+> HRplot(out,type=2,show.CI=TRUE,pch=2,cex=2,main="Hazard ratios of all individual variables")
+> 
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘colon’, ‘package:survival’
+
+> nameEx("ORplot")
+> ### * ORplot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ORplot
+> ### Title: Plot for odds ratios for a S3 object of glm
+> ### Aliases: ORplot
+> 
+> ### ** Examples
+> 
+> require(survival)
+Loading required package: survival
+> data(colon)
+> out1=glm(status~sex+age+rx+obstruct+node4,data=colon)
+> out2=glm(status~rx+node4,data=colon)
+> ORplot(out1,type=2,show.CI=TRUE,xlab="This is xlab",main="Main Title")
+> ORplot(out2,type=1,main="Main Title")
+> ORplot(out1,type=2,show.CI=TRUE,main="Main Title")
+> ORplot(out1,type=3,show.CI=TRUE,main="Main Title",sig.level=0.05)
+> ORplot(out1,type=3,show.CI=TRUE,main="Main Title",sig.level=0.05,
++        pch=1,cex=2,lwd=4,col=c("red","blue"))
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:survival’
+
+> nameEx("addComma")
+> ### * addComma
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: addComma
+> ### Title: Change numbers into formatted numbers
+> ### Aliases: addComma addComma.mytable addComma.mytable.df
+> ###   addComma.cbind.mytable addComma.data.frame addComma.character
+> 
+> ### ** Examples
+> 
+> require(stringr)
+Loading required package: stringr
+> require(ztable)
+Loading required package: ztable
+Welcome to package ztable ver 0.2.2
+> require(magrittr)
+Loading required package: magrittr
+> require(ggplot2)
+Loading required package: ggplot2
+> mytable(cut~.,data=diamonds) %>% addComma
+
+                                    Descriptive Statistics by 'name'                                    
+_________________________________________________________________________________________________________ 
+                Fair              Good            Very Good          Premium            Ideal         p  
+             (N= 1,610)        (N= 4,906)        (N=12,082)        (N=13,791)        (N=21,551)    
+--------------------------------------------------------------------------------------------------------- 
+ carat        1.0 ± 0.5         0.8 ± 0.5         0.8 ± 0.5         0.9 ± 0.5         0.7 ± 0.4     0.000
+ color                                                                                              0.000
+   - D       163 (10.1%)       662 (13.5%)      1,513 (12.5%)     1,603 (11.6%)     2,834 (13.2%)        
+   - E       224 (13.9%)        933 (19%)       2,400 (19.9%)     2,337 (16.9%)     3,903 (18.1%)        
+   - F       312 (19.4%)       909 (18.5%)      2,164 (17.9%)     2,331 (16.9%)     3,826 (17.8%)        
+   - G       314 (19.5%)       871 (17.8%)       2,299 (19%)      2,924 (21.2%)     4,884 (22.7%)        
+   - H       303 (18.8%)       702 (14.3%)      1,824 (15.1%)     2,360 (17.1%)     3,115 (14.5%)        
+   - I       175 (10.9%)       522 (10.6%)       1,204 (10%)      1,428 (10.4%)     2,093 (9.7%)         
+   - J       119 (7.4%)        307 (6.3%)        678 (5.6%)        808 (5.9%)        896 (4.2%)          
+ clarity                                                                                            0.000
+   - I1       210 (13%)          96 (2%)          84 (0.7%)        205 (1.5%)        146 (0.7%)          
+   - SI2     466 (28.9%)       1,081 (22%)      2,100 (17.4%)     2,949 (21.4%)     2,598 (12.1%)        
+   - SI1     408 (25.3%)      1,560 (31.8%)     3,240 (26.8%)     3,575 (25.9%)     4,282 (19.9%)        
+   - VS2     261 (16.2%)       978 (19.9%)      2,591 (21.4%)     3,357 (24.3%)     5,071 (23.5%)        
+   - VS1     170 (10.6%)       648 (13.2%)      1,775 (14.7%)     1,989 (14.4%)     3,589 (16.7%)        
+   - VVS2     69 (4.3%)        286 (5.8%)       1,235 (10.2%)      870 (6.3%)       2,606 (12.1%)        
+   - VVS1     17 (1.1%)        186 (3.8%)        789 (6.5%)        616 (4.5%)       2,047 (9.5%)         
+   - IF       9 (0.6%)          71 (1.4%)        268 (2.2%)        230 (1.7%)       1,212 (5.6%)         
+ depth       64.0 ± 3.6        62.4 ± 2.2        61.8 ± 1.4        61.3 ± 1.2        61.7 ± 0.7     0.000
+ table       59.1 ± 3.9        58.7 ± 2.9        58.0 ± 2.1        58.7 ± 1.5        56.0 ± 1.2     0.000
+ price    4,358.8 ± 3,560.4 3,928.9 ± 3,681.6 3,981.8 ± 3,935.9 4,584.3 ± 4,349.2 3,457.5 ± 3,808.4 0.000
+ x            6.2 ± 1.0         5.8 ± 1.1         5.7 ± 1.1         6.0 ± 1.2         5.5 ± 1.1     0.000
+ z            4.0 ± 0.7         3.6 ± 0.7         3.6 ± 0.7         3.6 ± 0.7         3.4 ± 0.7     0.000
+--------------------------------------------------------------------------------------------------------- 
+> x=mytable(Dx~sex,data=acs)
+> addComma(x)
+
+             Descriptive Statistics by 'Dx'             
+_________________________________________________________ 
+              NSTEMI       STEMI    Unstable Angina   p  
+              (N=153)     (N=304)       (N=400)    
+--------------------------------------------------------- 
+ sex                                                0.012
+   - Female 50 (32.7%)  84 (27.6%)    153 (38.2%)        
+   - Male   103 (67.3%) 220 (72.4%)   247 (61.8%)        
+--------------------------------------------------------- 
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:ggplot2’, ‘package:magrittr’, ‘package:ztable’,
+  ‘package:stringr’
+
+> nameEx("compress")
+> ### * compress
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: compress
+> ### Title: Compress an object of class mytable or cbind.mytable
+> ### Aliases: compress compress.mytable compress.cbind.mytable
+> ###   compress.data.frame
+> 
+> ### ** Examples
+> 
+> require(stringr)
+Loading required package: stringr
+> require(ztable)
+Loading required package: ztable
+Welcome to package ztable ver 0.2.2
+> require(magrittr)
+Loading required package: magrittr
+> mytable(acs) %>% compress
+
+         Descriptive Statistics         
+----------------------------------------- 
+                         N      Total    
+----------------------------------------- 
+ age                   857  63.3 ± 11.7 
+ sex:Male              857  570  (66.5%) 
+ cardiogenicShock:Yes  857    52  (6.1%) 
+ entry:Radial          857  545  (63.6%) 
+ Dx                    857               
+   - NSTEMI                 153  (17.9%) 
+   - STEMI                  304  (35.5%) 
+   - Unstable Angina        400  (46.7%) 
+ EF                    723   55.8 ± 9.6 
+ height                764  163.2 ± 9.1 
+ weight                766  64.8 ± 11.4 
+ BMI                   764   24.3 ± 3.3 
+ obesity:Yes           857  290  (33.8%) 
+ TC                    834 185.2 ± 47.8 
+ LDLC                  833 116.6 ± 41.1 
+ HDLC                  834  38.2 ± 11.1 
+ TG                    842 125.2 ± 90.9 
+ DM:Yes                857  304  (35.5%) 
+ HBP:Yes               857  501  (58.5%) 
+ smoking               857               
+   - Ex-smoker              204  (23.8%) 
+   - Never                  332  (38.7%) 
+   - Smoker                 321  (37.5%) 
+----------------------------------------- 
+> mytable(Dx~.,data=acs) %>% compress
+
+                   Descriptive Statistics by 'Dx'                   
+_____________________________________________________________________ 
+                         NSTEMI       STEMI     Unstable Angina   p  
+                        (N=153)      (N=304)        (N=400)    
+--------------------------------------------------------------------- 
+ age                  64.3 ± 12.3  62.1 ± 12.1    63.8 ± 11.0   0.073
+ sex:Male             103 (67.3%)  220 (72.4%)    247 (61.8%)   0.012
+ cardiogenicShock:Yes  4 ( 2.6%)    48 (15.8%)     0 ( 0.0%)    0.000
+ entry:Radial          95 (62.1%)  171 (56.2%)    279 (69.8%)   0.001
+ EF                   55.0 ±  9.3  52.4 ±  9.5    59.2 ±  8.7   0.000
+ height               163.3 ±  8.2 165.1 ±  8.2  161.7 ±  9.7   0.000
+ weight               64.3 ± 10.2  65.7 ± 11.6    64.5 ± 11.6   0.361
+ BMI                  24.1 ±  3.2  24.0 ±  3.3    24.6 ±  3.4   0.064
+ obesity:Yes           47 (30.7%)   95 (31.2%)    148 (37.0%)   0.186
+ TC                   193.7 ± 53.6 183.2 ± 43.4  183.5 ± 48.3   0.057
+ LDLC                 126.1 ± 44.7 116.7 ± 39.5  112.9 ± 40.4   0.004
+ HDLC                 38.9 ± 11.9  38.5 ± 11.0    37.8 ± 10.9   0.501
+ TG                   130.1 ± 88.5 106.5 ± 72.0  137.4 ± 101.6  0.000
+ DM:Yes                57 (37.3%)   96 (31.6%)    151 (37.8%)   0.209
+ HBP:Yes               91 (59.5%)  154 (50.7%)    256 (64.0%)   0.002
+ smoking                                                        0.000
+   - Ex-smoker         42 (27.5%)   66 (21.7%)    96 (24.0%)         
+   - Never             50 (32.7%)   97 (31.9%)    185 (46.2%)        
+   - Smoker            61 (39.9%)  141 (46.4%)    119 (29.8%)        
+--------------------------------------------------------------------- 
+> mytable(Dx~.,data=acs) %>% compress %>% ztable
+> mytable(Dx+sex~.,data=acs) %>% compress
+
+                                  Descriptive Statistics stratified by 'Dx' and 'sex'                                 
+_______________________________________________________________________________________________________________________ 
+                                    STEMI                            NSTEMI                        Unstable Angina         
+                      ------------------------------- -------------------------------- -------------------------------- 
+                         Female        Male       p      Female        Male        p      Female        Male        p  
+                         (N=84)      (N=220)            (N=50)       (N=103)           (N=153)       (N=247)        
+----------------------------------------------------------------------------------------------------------------------- 
+ age                  69.1 ± 10.4  59.4 ± 11.7  0.000 70.9 ± 11.4   61.1 ± 11.6  0.000 67.7 ± 10.7   61.4 ± 10.6  0.000
+ cardiogenicShock:Yes  11 (13.1%)   37 (16.8%)  0.535  1 ( 2.0%)     3 ( 2.9%)   1.000   0 ( 0.0%)    0 ( 0.0%)        
+ entry:Radial          39 (46.4%)  132 (60.0%)  0.045  28 (56.0%)   67 (65.0%)   0.366 101 (66.0%)   178 (72.1%)  0.243
+ EF                   52.3 ± 10.9  52.4 ±  8.9  0.970 54.8 ±  9.1   55.1 ±  9.4  0.891 59.4 ±  8.8   59.1 ±  8.7  0.798
+ height               155.7 ±  5.4 168.7 ±  6.0 0.000 154.2 ±  5.1 167.5 ±  5.7  0.000 152.6 ±  6.7 167.3 ±  6.4  0.000
+ weight               57.4 ±  9.0  68.8 ± 10.9  0.000 57.2 ± 10.3   67.5 ±  8.4  0.000 57.1 ±  9.1   69.0 ± 10.6  0.000
+ BMI                  23.6 ±  3.2  24.1 ±  3.4  0.282 24.1 ±  4.3   24.1 ±  2.6  0.967 24.5 ±  3.5   24.6 ±  3.4  0.816
+ obesity:Yes           24 (28.6%)   71 (32.3%)  0.628  15 (30.0%)   32 (31.1%)   1.000  54 (35.3%)   94 (38.1%)   0.653
+ TC                   180.7 ± 45.7 184.1 ± 42.6 0.542 196.3 ± 52.7 192.6 ± 54.3  0.697 191.1 ± 53.1 178.7 ± 44.6  0.018
+ LDLC                 111.0 ± 40.0 118.9 ± 39.1 0.128 127.7 ± 39.5 125.4 ± 47.1  0.774 118.3 ± 41.8 109.5 ± 39.2  0.035
+ HDLC                 39.5 ± 11.2  38.1 ± 10.9  0.338 40.1 ± 13.8   38.4 ± 10.9  0.414 38.5 ± 10.8   37.4 ± 10.9  0.338
+ TG                   112.3 ± 87.2 104.3 ± 65.5 0.454 112.5 ± 51.1 138.0 ± 100.2 0.042 126.3 ± 76.0 144.3 ± 114.2 0.060
+ DM:Yes                30 (35.7%)   66 (30.0%)  0.412  25 (50.0%)   32 (31.1%)   0.036  59 (38.6%)   92 (37.2%)   0.875
+ HBP:Yes               56 (66.7%)   98 (44.5%)  0.001  31 (62.0%)   60 (58.3%)   0.789 117 (76.5%)   139 (56.3%)  0.000
+ smoking                                        0.000                            0.000                            0.000
+   - Ex-smoker         13 (15.5%)   53 (24.1%)         8 (16.0%)    34 (33.0%)          28 (18.3%)   68 (27.5%)        
+   - Never             57 (67.9%)   40 (18.2%)         37 (74.0%)   13 (12.6%)         115 (75.2%)   70 (28.3%)        
+   - Smoker            14 (16.7%)  127 (57.7%)         5 (10.0%)    56 (54.4%)          10 ( 6.5%)   109 (44.1%)       
+----------------------------------------------------------------------------------------------------------------------- 
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:magrittr’, ‘package:ztable’, ‘package:stringr’
+
+> nameEx("densityplot")
+> ### * densityplot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: densityplot
+> ### Title: Make Kernel density plot
+> ### Aliases: densityplot
+> 
+> ### ** Examples
+> 
+>   require(moonBook)
+>   data(acs)
+>   densityplot(age~Dx,data=acs)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("getMapping")
+> ### * getMapping
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: getMapping
+> ### Title: extract variable name from mapping, aes
+> ### Aliases: getMapping
+> 
+> ### ** Examples
+> 
+> require(ggplot2)
+Loading required package: ggplot2
+> mapping=aes(colour=sex)
+> getMapping(mapping,"colour")
+[1] "sex"
+> getMapping(mapping,"x")
+NULL
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:ggplot2’
+
+> nameEx("mycph")
+> ### * mycph
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: mycph
+> ### Title: Perform coxph of individual expecting variables
+> ### Aliases: mycph
+> 
+> ### ** Examples
+> 
+> require(survival)
+Loading required package: survival
+> data(colon)
+> attach(colon)
+> colon$TS=Surv(time,status==1)
+> out=mycph(TS~.,data=colon)
+
+ mycph : perform coxph of individual expecting variables
+
+ Call: TS ~ ., data= colon 
+
+study  was excluded : NA
+status  was excluded : infinite
+> out
+            HR  lcl  ucl     p
+id        1.00 1.00 1.00 0.317
+rxLev     0.98 0.84 1.14 0.786
+rxLev+5FU 0.64 0.55 0.76 0.000
+sex       0.97 0.85 1.10 0.610
+age       1.00 0.99 1.00 0.382
+obstruct  1.27 1.09 1.49 0.003
+perfor    1.30 0.92 1.85 0.142
+adhere    1.37 1.16 1.62 0.000
+nodes     1.09 1.08 1.10 0.000
+differ    1.36 1.19 1.55 0.000
+extent    1.78 1.53 2.07 0.000
+surg      1.28 1.11 1.47 0.001
+node4     2.47 2.17 2.83 0.000
+time      0.64 0.62 0.66 0.000
+etype     0.81 0.71 0.92 0.001
+> HRplot(out,type=2,show.CI=TRUE,main="Hazard ratios of all individual variables")
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘colon’, ‘package:survival’
+
+> nameEx("mycsv")
+> ### * mycsv
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: mycsv
+> ### Title: Export to csv file for class "mytable" or "cbind.mytable"
+> ### Aliases: mycsv
+> 
+> ### ** Examples
+> 
+> require(moonBook)
+> res=mytable(sex~age+DM,data=acs)
+> mycsv(res,file="test.csv")
+> mycsv(summary(res),file="testsummary.csv")
+> 
+> 
+> 
+> cleanEx()
+> nameEx("mycsv.cbind.mytable")
+> ### * mycsv.cbind.mytable
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: mycsv.cbind.mytable
+> ### Title: Export to csv file for class "cbind.mytable"
+> ### Aliases: mycsv.cbind.mytable
+> 
+> ### ** Examples
+> 
+> require(moonBook)
+> res1=mytable(sex+Dx~age+DM,data=acs)
+> mycsv(res1,file="test1.csv")
+> mycsv(summary(res1),file="testsummary1.csv")
+> 
+> 
+> 
+> cleanEx()
+> nameEx("mycsv.mytable")
+> ### * mycsv.mytable
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: mycsv.mytable
+> ### Title: Export to csv file for class "mytable"
+> ### Aliases: mycsv.mytable
+> 
+> ### ** Examples
+> 
+> require(moonBook)
+> res=mytable(sex~age+DM,data=acs)
+> mycsv(res,file="test.csv")
+> mycsv(summary(res),file="testsummary.csv")
+> mycsv=function(x,row.names=FALSE) UseMethod("mycsv")
+> 
+> 
+> 
+> cleanEx()
+> nameEx("myhtml")
+> ### * myhtml
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: myhtml
+> ### Title: Export to html file for class "mytable" or "cbind.mytable" of
+> ###   "data.frame"
+> ### Aliases: myhtml myhtml.default myhtml.mytable myhtml.cbind.mytable
+> 
+> ### ** Examples
+> 
+> require(moonBook)
+> res=mytable(sex~age+Dx,data=acs)
+> myhtml(res)
+<head><style>
+        table, th, td {
+        border: 1px solid #bcbcbc;
+    } </style></head>
+<table cellpadding=10 cellspacing=5><caption>Descriptive Statistics by 'sex'</caption><tr>
+<th>sex</th><th>Female<br/>(N=287)</th><th>Male<br/>(N=570)</th><th>p</th></tr>
+<tr><td>age                </td><td>68.7 ± 10.7</td><td>60.6 ± 11.2</td><td>0.000</td></tr>
+<tr><td>Dx                 </td><td></td><td></td><td>0.012</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; NSTEMI         </td><td>50 (17.4%)</td><td>103 (18.1%)</td><td></td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; STEMI          </td><td>84 (29.3%)</td><td>220 (38.6%)</td><td></td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; Unstable Angina</td><td>153 (53.3%)</td><td>247 (43.3%)</td><td></td></tr>
+</table>
+> res1=mytable(sex+Dx~.,data=acs)
+> myhtml(res1)
+<head><style>
+        table, th, td {
+        border: 1px solid #bcbcbc;
+    } </style></head>
+<table cellpadding=5 cellspacing=5>
+<caption>Descriptive Statistics stratified by sex and Dx</caption>
+<tr>
+<th>sex</th><th colspan="4">Male</th><th colspan="4">Female</th></tr>
+<tr>
+<th>Dx</th><th>NSTEMI<br/>(N=103)</th><th>STEMI<br/>(N=220)</th><th>Unstable Angina<br/>(N=247)</th><th>p</th><th>NSTEMI<br/>(N=50)</th><th>STEMI<br/>(N=84)</th><th>Unstable Angina<br/>(N=153)</th><th>p</th></tr>
+<tr><td>age             </td><td>61.1 ± 11.6</td><td>59.4 ± 11.7</td><td>61.4 ± 10.6</td><td>0.133</td><td>70.9 ± 11.4</td><td>69.1 ± 10.4</td><td>67.7 ± 10.7</td><td>0.177</td></tr>
+<tr><td>cardiogenicShock</td><td></td><td></td><td></td><td>0.000</td><td></td><td></td><td></td><td>0.000</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; No          </td><td>100 (97.1%)</td><td>183 (83.2%)</td><td>247 (100.0%)</td><td></td><td>49 (98.0%)</td><td>73 (86.9%)</td><td>153 (100.0%)</td><td></td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; Yes         </td><td>3 ( 2.9%)</td><td>37 (16.8%)</td><td> 0 ( 0.0%)</td><td></td><td>1 ( 2.0%)</td><td>11 (13.1%)</td><td> 0 ( 0.0%)</td><td></td></tr>
+<tr><td>entry           </td><td></td><td></td><td></td><td>0.022</td><td></td><td></td><td></td><td>0.013</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; Femoral     </td><td>36 (35.0%)</td><td>88 (40.0%)</td><td>69 (27.9%)</td><td></td><td>22 (44.0%)</td><td>45 (53.6%)</td><td>52 (34.0%)</td><td></td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; Radial      </td><td>67 (65.0%)</td><td>132 (60.0%)</td><td>178 (72.1%)</td><td></td><td>28 (56.0%)</td><td>39 (46.4%)</td><td>101 (66.0%)</td><td></td></tr>
+<tr><td>EF              </td><td>55.1 ±  9.4</td><td>52.4 ±  8.9</td><td>59.1 ±  8.7</td><td>0.000</td><td>54.8 ±  9.1</td><td>52.3 ± 10.9</td><td>59.4 ±  8.8</td><td>0.000</td></tr>
+<tr><td>height          </td><td>167.5 ±  5.7</td><td>168.7 ±  6.0</td><td>167.3 ±  6.4</td><td>0.055</td><td>154.2 ±  5.1</td><td>155.7 ±  5.4</td><td>152.6 ±  6.7</td><td>0.002</td></tr>
+<tr><td>weight          </td><td>67.5 ±  8.4</td><td>68.8 ± 10.9</td><td>69.0 ± 10.6</td><td>0.479</td><td>57.2 ± 10.3</td><td>57.4 ±  9.0</td><td>57.1 ±  9.1</td><td>0.978</td></tr>
+<tr><td>BMI             </td><td>24.1 ±  2.6</td><td>24.1 ±  3.4</td><td>24.6 ±  3.4</td><td>0.205</td><td>24.1 ±  4.3</td><td>23.6 ±  3.2</td><td>24.5 ±  3.5</td><td>0.215</td></tr>
+<tr><td>obesity         </td><td></td><td></td><td></td><td>0.301</td><td></td><td></td><td></td><td>0.528</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; No          </td><td>71 (68.9%)</td><td>149 (67.7%)</td><td>153 (61.9%)</td><td></td><td>35 (70.0%)</td><td>60 (71.4%)</td><td>99 (64.7%)</td><td></td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; Yes         </td><td>32 (31.1%)</td><td>71 (32.3%)</td><td>94 (38.1%)</td><td></td><td>15 (30.0%)</td><td>24 (28.6%)</td><td>54 (35.3%)</td><td></td></tr>
+<tr><td>TC              </td><td>192.6 ± 54.3</td><td>184.1 ± 42.6</td><td>178.7 ± 44.6</td><td>0.036</td><td>196.3 ± 52.7</td><td>180.7 ± 45.7</td><td>191.1 ± 53.1</td><td>0.192</td></tr>
+<tr><td>LDLC            </td><td>125.4 ± 47.1</td><td>118.9 ± 39.1</td><td>109.5 ± 39.2</td><td>0.002</td><td>127.7 ± 39.5</td><td>111.0 ± 40.0</td><td>118.3 ± 41.8</td><td>0.088</td></tr>
+<tr><td>HDLC            </td><td>38.4 ± 10.9</td><td>38.1 ± 10.9</td><td>37.4 ± 10.9</td><td>0.655</td><td>40.1 ± 13.8</td><td>39.5 ± 11.2</td><td>38.5 ± 10.8</td><td>0.627</td></tr>
+<tr><td>TG              </td><td>138.0 ± 100.2</td><td>104.3 ± 65.5</td><td>144.3 ± 114.2</td><td>0.000</td><td>112.5 ± 51.1</td><td>112.3 ± 87.2</td><td>126.3 ± 76.0</td><td>0.316</td></tr>
+<tr><td>DM              </td><td></td><td></td><td></td><td>0.219</td><td></td><td></td><td></td><td>0.240</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; No          </td><td>71 (68.9%)</td><td>154 (70.0%)</td><td>155 (62.8%)</td><td></td><td>25 (50.0%)</td><td>54 (64.3%)</td><td>94 (61.4%)</td><td></td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; Yes         </td><td>32 (31.1%)</td><td>66 (30.0%)</td><td>92 (37.2%)</td><td></td><td>25 (50.0%)</td><td>30 (35.7%)</td><td>59 (38.6%)</td><td></td></tr>
+<tr><td>HBP             </td><td></td><td></td><td></td><td>0.016</td><td></td><td></td><td></td><td>0.084</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; No          </td><td>43 (41.7%)</td><td>122 (55.5%)</td><td>108 (43.7%)</td><td></td><td>19 (38.0%)</td><td>28 (33.3%)</td><td>36 (23.5%)</td><td></td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; Yes         </td><td>60 (58.3%)</td><td>98 (44.5%)</td><td>139 (56.3%)</td><td></td><td>31 (62.0%)</td><td>56 (66.7%)</td><td>117 (76.5%)</td><td></td></tr>
+<tr><td>smoking         </td><td></td><td></td><td></td><td>0.002</td><td></td><td></td><td></td><td>0.184</td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; Ex-smoker   </td><td>34 (33.0%)</td><td>53 (24.1%)</td><td>68 (27.5%)</td><td></td><td>8 (16.0%)</td><td>13 (15.5%)</td><td>28 (18.3%)</td><td></td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; Never       </td><td>13 (12.6%)</td><td>40 (18.2%)</td><td>70 (28.3%)</td><td></td><td>37 (74.0%)</td><td>57 (67.9%)</td><td>115 (75.2%)</td><td></td></tr>
+<tr><td> &nbsp;&nbsp;&nbsp; Smoker      </td><td>56 (54.4%)</td><td>127 (57.7%)</td><td>109 (44.1%)</td><td></td><td>5 (10.0%)</td><td>14 (16.7%)</td><td>10 ( 6.5%)</td><td></td></tr>
+</table>
+> x=head(iris)
+> myhtml(x)
+myhtml function only applicable to data.frame, mytable or cbind.mytable
+> myhtml(x,caption="Table 1. myhtml Test")
+myhtml function only applicable to data.frame, mytable or cbind.mytable
+> myhtml(x,caption="Table 1. myhtml Test",rownames=FALSE)
+myhtml function only applicable to data.frame, mytable or cbind.mytable
+> 
+> 
+> 
+> cleanEx()
+> nameEx("mylatex")
+> ### * mylatex
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: mylatex
+> ### Title: Exporting "cbind.mytable","mytable" to LaTeX format
+> ### Aliases: mylatex mylatex.default mylatex.mytable mylatex.cbind.mytable
+> 
+> ### ** Examples
+> 
+> require(moonBook)
+> out=mytable(sex~.,data=acs)
+> mylatex(out)
+\begin{table}[!hbp]
+\begin{normalsize}
+\begin{tabular}{lccc}
+\multicolumn{4}{c}{Descriptive Statistics by sex}\\ 
+\hline
+ & Female & Male & \multirow{2}{*}{p}\\ 
+ & (N=287) & (N=570) &  \\ 
+\hline
+age                 & 68.7 ± 10.7 & 60.6 ± 11.2 & 0.000\\ 
+cardiogenicShock    &  &  & 0.136\\ 
+  - No              & 275 (95.8\%) & 530 (93.0\%) & \\ 
+  - Yes             & 12 ( 4.2\%) & 40 ( 7.0\%) & \\ 
+entry               &  &  & 0.035\\ 
+  - Femoral         & 119 (41.5\%) & 193 (33.9\%) & \\ 
+  - Radial          & 168 (58.5\%) & 377 (66.1\%) & \\ 
+Dx                  &  &  & 0.012\\ 
+  - NSTEMI          & 50 (17.4\%) & 103 (18.1\%) & \\ 
+  - STEMI           & 84 (29.3\%) & 220 (38.6\%) & \\ 
+  - Unstable Angina & 153 (53.3\%) & 247 (43.3\%) & \\ 
+EF                  & 56.3 ± 10.1 & 55.6 ±  9.4 & 0.387\\ 
+height              & 153.8 ±  6.2 & 167.9 ±  6.1 & 0.000\\ 
+weight              & 57.2 ±  9.3 & 68.7 ± 10.3 & 0.000\\ 
+BMI                 & 24.2 ±  3.6 & 24.3 ±  3.2 & 0.611\\ 
+obesity             &  &  & 0.580\\ 
+  - No              & 194 (67.6\%) & 373 (65.4\%) & \\ 
+  - Yes             & 93 (32.4\%) & 197 (34.6\%) & \\ 
+TC                  & 188.9 ± 51.1 & 183.3 ± 45.9 & 0.124\\ 
+LDLC                & 117.8 ± 41.2 & 116.0 ± 41.1 & 0.561\\ 
+HDLC                & 39.0 ± 11.5 & 37.8 ± 10.9 & 0.145\\ 
+TG                  & 119.9 ± 76.2 & 127.9 ± 97.3 & 0.195\\ 
+DM                  &  &  & 0.077\\ 
+  - No              & 173 (60.3\%) & 380 (66.7\%) & \\ 
+  - Yes             & 114 (39.7\%) & 190 (33.3\%) & \\ 
+HBP                 &  &  & 0.000\\ 
+  - No              & 83 (28.9\%) & 273 (47.9\%) & \\ 
+  - Yes             & 204 (71.1\%) & 297 (52.1\%) & \\ 
+smoking             &  &  & 0.000\\ 
+  - Ex-smoker       & 49 (17.1\%) & 155 (27.2\%) & \\ 
+  - Never           & 209 (72.8\%) & 123 (21.6\%) & \\ 
+  - Smoker          & 29 (10.1\%) & 292 (51.2\%) & \\ 
+\hline
+\end{tabular}
+\end{normalsize}
+\end{table}
+> out1=mytable(sex+Dx~.,data=acs)
+> mylatex(out1,size=6)
+\begin{table}[!hbp]
+\begin{large}
+\centering
+\begin{tabular}{lccccccccc}
+\multicolumn{10}{c}{Descriptive Statistics stratified by sex and Dx}\\ 
+\hline
+ & \multicolumn{4}{c}{Male}  &  &\multicolumn{4}{c}{Female} \\ 
+\cline{2-5}\cline{7-10} 
+  & NSTEMI & STEMI & Unstable Angina & p &  & NSTEMI & STEMI & Unstable Angina & p \\ 
+  & (N=103) & (N=220) & (N=247) &  &  & (N=50) & (N=84) & (N=153) &  \\ 
+\hline
+age              & 61.1 ± 11.6 & 59.4 ± 11.7 & 61.4 ± 10.6 & 0.133 &  & 70.9 ± 11.4 & 69.1 ± 10.4 & 67.7 ± 10.7 & 0.177 \\ 
+cardiogenicShock &  &  &  & 0.000 &  &  &  &  & 0.000 \\ 
+  - No           & 100 (97.1\%) & 183 (83.2\%) & 247 (100.0\%) &  &  & 49 (98.0\%) & 73 (86.9\%) & 153 (100.0\%) &  \\ 
+  - Yes          & 3 ( 2.9\%) & 37 (16.8\%) &  0 ( 0.0\%) &  &  & 1 ( 2.0\%) & 11 (13.1\%) &  0 ( 0.0\%) &  \\ 
+entry            &  &  &  & 0.022 &  &  &  &  & 0.013 \\ 
+  - Femoral      & 36 (35.0\%) & 88 (40.0\%) & 69 (27.9\%) &  &  & 22 (44.0\%) & 45 (53.6\%) & 52 (34.0\%) &  \\ 
+  - Radial       & 67 (65.0\%) & 132 (60.0\%) & 178 (72.1\%) &  &  & 28 (56.0\%) & 39 (46.4\%) & 101 (66.0\%) &  \\ 
+EF               & 55.1 ±  9.4 & 52.4 ±  8.9 & 59.1 ±  8.7 & 0.000 &  & 54.8 ±  9.1 & 52.3 ± 10.9 & 59.4 ±  8.8 & 0.000 \\ 
+height           & 167.5 ±  5.7 & 168.7 ±  6.0 & 167.3 ±  6.4 & 0.055 &  & 154.2 ±  5.1 & 155.7 ±  5.4 & 152.6 ±  6.7 & 0.002 \\ 
+weight           & 67.5 ±  8.4 & 68.8 ± 10.9 & 69.0 ± 10.6 & 0.479 &  & 57.2 ± 10.3 & 57.4 ±  9.0 & 57.1 ±  9.1 & 0.978 \\ 
+BMI              & 24.1 ±  2.6 & 24.1 ±  3.4 & 24.6 ±  3.4 & 0.205 &  & 24.1 ±  4.3 & 23.6 ±  3.2 & 24.5 ±  3.5 & 0.215 \\ 
+obesity          &  &  &  & 0.301 &  &  &  &  & 0.528 \\ 
+  - No           & 71 (68.9\%) & 149 (67.7\%) & 153 (61.9\%) &  &  & 35 (70.0\%) & 60 (71.4\%) & 99 (64.7\%) &  \\ 
+  - Yes          & 32 (31.1\%) & 71 (32.3\%) & 94 (38.1\%) &  &  & 15 (30.0\%) & 24 (28.6\%) & 54 (35.3\%) &  \\ 
+TC               & 192.6 ± 54.3 & 184.1 ± 42.6 & 178.7 ± 44.6 & 0.036 &  & 196.3 ± 52.7 & 180.7 ± 45.7 & 191.1 ± 53.1 & 0.192 \\ 
+LDLC             & 125.4 ± 47.1 & 118.9 ± 39.1 & 109.5 ± 39.2 & 0.002 &  & 127.7 ± 39.5 & 111.0 ± 40.0 & 118.3 ± 41.8 & 0.088 \\ 
+HDLC             & 38.4 ± 10.9 & 38.1 ± 10.9 & 37.4 ± 10.9 & 0.655 &  & 40.1 ± 13.8 & 39.5 ± 11.2 & 38.5 ± 10.8 & 0.627 \\ 
+TG               & 138.0 ± 100.2 & 104.3 ± 65.5 & 144.3 ± 114.2 & 0.000 &  & 112.5 ± 51.1 & 112.3 ± 87.2 & 126.3 ± 76.0 & 0.316 \\ 
+DM               &  &  &  & 0.219 &  &  &  &  & 0.240 \\ 
+  - No           & 71 (68.9\%) & 154 (70.0\%) & 155 (62.8\%) &  &  & 25 (50.0\%) & 54 (64.3\%) & 94 (61.4\%) &  \\ 
+  - Yes          & 32 (31.1\%) & 66 (30.0\%) & 92 (37.2\%) &  &  & 25 (50.0\%) & 30 (35.7\%) & 59 (38.6\%) &  \\ 
+HBP              &  &  &  & 0.016 &  &  &  &  & 0.084 \\ 
+  - No           & 43 (41.7\%) & 122 (55.5\%) & 108 (43.7\%) &  &  & 19 (38.0\%) & 28 (33.3\%) & 36 (23.5\%) &  \\ 
+  - Yes          & 60 (58.3\%) & 98 (44.5\%) & 139 (56.3\%) &  &  & 31 (62.0\%) & 56 (66.7\%) & 117 (76.5\%) &  \\ 
+smoking          &  &  &  & 0.002 &  &  &  &  & 0.184 \\ 
+  - Ex-smoker    & 34 (33.0\%) & 53 (24.1\%) & 68 (27.5\%) &  &  & 8 (16.0\%) & 13 (15.5\%) & 28 (18.3\%) &  \\ 
+  - Never        & 13 (12.6\%) & 40 (18.2\%) & 70 (28.3\%) &  &  & 37 (74.0\%) & 57 (67.9\%) & 115 (75.2\%) &  \\ 
+  - Smoker       & 56 (54.4\%) & 127 (57.7\%) & 109 (44.1\%) &  &  & 5 (10.0\%) & 14 (16.7\%) & 10 ( 6.5\%) &  \\ 
+\hline
+\end{tabular}
+\end{large}
+\end{table}
+> 
+> 
+> 
+> cleanEx()
+> nameEx("mytable")
+> ### * mytable
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: mytable
+> ### Title: Produce table for descriptive statistics
+> ### Aliases: mytable mytable.formula mytable.data.frame
+> 
+> ### ** Examples
+> 
+> mytable(acs)
+
+         Descriptive Statistics        
+---------------------------------------- 
+                        N      Total    
+---------------------------------------- 
+ age                  857  63.3 ± 11.7 
+ sex                  857               
+   - Female                287  (33.5%) 
+   - Male                  570  (66.5%) 
+ cardiogenicShock     857               
+   - No                    805  (93.9%) 
+   - Yes                     52  (6.1%) 
+ entry                857               
+   - Femoral               312  (36.4%) 
+   - Radial                545  (63.6%) 
+ Dx                   857               
+   - NSTEMI                153  (17.9%) 
+   - STEMI                 304  (35.5%) 
+   - Unstable Angina       400  (46.7%) 
+ EF                   723   55.8 ± 9.6 
+ height               764  163.2 ± 9.1 
+ weight               766  64.8 ± 11.4 
+ BMI                  764   24.3 ± 3.3 
+ obesity              857               
+   - No                    567  (66.2%) 
+   - Yes                   290  (33.8%) 
+ TC                   834 185.2 ± 47.8 
+ LDLC                 833 116.6 ± 41.1 
+ HDLC                 834  38.2 ± 11.1 
+ TG                   842 125.2 ± 90.9 
+ DM                   857               
+   - No                    553  (64.5%) 
+   - Yes                   304  (35.5%) 
+ HBP                  857               
+   - No                    356  (41.5%) 
+   - Yes                   501  (58.5%) 
+ smoking              857               
+   - Ex-smoker             204  (23.8%) 
+   - Never                 332  (38.7%) 
+   - Smoker                321  (37.5%) 
+---------------------------------------- 
+> mytable(~age+sex,data=acs)
+
+    Descriptive Statistics    
+------------------------------- 
+               N      Total    
+------------------------------- 
+ age         857  63.3 ± 11.7 
+ sex         857               
+   - Female       287  (33.5%) 
+   - Male         570  (66.5%) 
+------------------------------- 
+> mytable(Dx~age+sex+height+weight+TC+TG+HDLC,data=acs,method=3,digits=2)
+
+                            Descriptive Statistics by 'Dx'                           
+______________________________________________________________________________________ 
+                    NSTEMI                 STEMI             Unstable Angina       p  
+                   (N=153)                (N=304)                (N=400)        
+-------------------------------------------------------------------------------------- 
+ age         65.00 [55.00;75.00]    62.00 [53.00;71.00]    65.00 [56.00;72.00]   0.109
+ sex                                                                             0.012
+   - Female      50 (32.68%)            84 (27.63%)            153 (38.25%)           
+   - Male        103 (67.32%)           220 (72.37%)           247 (61.75%)           
+ height     165.00 [158.00;169.00] 165.00 [160.00;170.00] 163.00 [155.00;169.00] 0.000
+ weight      65.00 [58.00;71.00]    65.00 [58.00;73.00]    63.00 [57.00;72.00]   0.345
+ TC         189.50 [164.00;220.50] 181.00 [155.00;212.00] 181.50 [152.00;209.50] 0.073
+ TG         110.00 [74.00;158.00]   90.00 [61.00;132.00]  115.00 [75.00;166.00]  0.000
+ HDLC        37.50 [33.00;46.00]    38.00 [32.00;45.00]    37.00 [31.00;44.00]   0.364
+-------------------------------------------------------------------------------------- 
+> mytable(am+cyl~.,data=mtcars)
+
+                      Descriptive Statistics stratified by 'am' and 'cyl'                     
+_______________________________________________________________________________________________ 
+                             1                                             0                      
+       ------------------------------------------- -------------------------------------------- 
+            4           6            8         p        4            6            8         p  
+          (N=8)       (N=3)        (N=2)             (N=3)        (N=4)        (N=12)        
+----------------------------------------------------------------------------------------------- 
+ mpg   28.1 ±  4.5 20.6 ±  0.8  15.4 ±  0.6  0.001 22.9 ±  1.5  19.1 ±  1.6  15.1 ±  2.8  0.000
+ disp  93.6 ± 20.5 155.0 ±  8.7 326.0 ± 35.4 0.000 135.9 ± 14.0 204.6 ± 44.7 357.6 ± 71.8 0.000
+ hp    81.9 ± 22.7 131.7 ± 37.5 299.5 ± 50.2 0.000 84.7 ± 19.7  115.2 ±  9.2 194.2 ± 33.4 0.000
+ drat   4.2 ±  0.4  3.8 ±  0.2   3.9 ±  0.5  0.158  3.8 ±  0.1   3.4 ±  0.6   3.1 ±  0.2  0.004
+ wt     2.0 ±  0.4  2.8 ±  0.1   3.4 ±  0.3  0.000  2.9 ±  0.4   3.4 ±  0.1   4.1 ±  0.8  0.006
+ qsec  18.4 ±  1.1 16.3 ±  0.8  14.6 ±  0.1  0.000 21.0 ±  1.7  19.2 ±  0.8  17.1 ±  0.8  0.000
+ vs                                          0.009                                        0.000
+   - 0  1 (12.5%)   3 (100.0%)   2 (100.0%)          0 ( 0.0%)    0 ( 0.0%)  12 (100.0%)       
+   - 1  7 (87.5%)    0 ( 0.0%)    0 ( 0.0%)         3 (100.0%)   4 (100.0%)    0 ( 0.0%)       
+ gear                                                                                          
+   - 3  0 ( 0.0%)    0 ( 0.0%)    0 ( 0.0%)         1 (33.3%)    2 (50.0%)   12 (100.0%)       
+   - 4  6 (75.0%)   2 (66.7%)     0 ( 0.0%)         2 (66.7%)    2 (50.0%)     0 ( 0.0%)       
+   - 5  2 (25.0%)   1 (33.3%)    2 (100.0%)          0 ( 0.0%)    0 ( 0.0%)    0 ( 0.0%)       
+ carb                                                                                          
+   - 1  4 (50.0%)    0 ( 0.0%)    0 ( 0.0%)         1 (33.3%)    2 (50.0%)     0 ( 0.0%)       
+   - 2  4 (50.0%)    0 ( 0.0%)    0 ( 0.0%)         2 (66.7%)     0 ( 0.0%)   4 (33.3%)        
+   - 3  0 ( 0.0%)    0 ( 0.0%)    0 ( 0.0%)          0 ( 0.0%)    0 ( 0.0%)   3 (25.0%)        
+   - 4  0 ( 0.0%)   2 (66.7%)    1 (50.0%)           0 ( 0.0%)   2 (50.0%)    5 (41.7%)        
+   - 6  0 ( 0.0%)   1 (33.3%)     0 ( 0.0%)          0 ( 0.0%)    0 ( 0.0%)    0 ( 0.0%)       
+   - 8  0 ( 0.0%)    0 ( 0.0%)   1 (50.0%)           0 ( 0.0%)    0 ( 0.0%)    0 ( 0.0%)       
+----------------------------------------------------------------------------------------------- 
+> out=mytable(sex~.,data=acs)
+> out
+
+          Descriptive Statistics by 'sex'          
+____________________________________________________ 
+                        Female        Male       p  
+                       (N=287)      (N=570)   
+---------------------------------------------------- 
+ age                 68.7 ± 10.7  60.6 ± 11.2  0.000
+ cardiogenicShock                              0.136
+   - No              275 (95.8%)  530 (93.0%)       
+   - Yes              12 ( 4.2%)   40 ( 7.0%)       
+ entry                                         0.035
+   - Femoral         119 (41.5%)  193 (33.9%)       
+   - Radial          168 (58.5%)  377 (66.1%)       
+ Dx                                            0.012
+   - NSTEMI           50 (17.4%)  103 (18.1%)       
+   - STEMI            84 (29.3%)  220 (38.6%)       
+   - Unstable Angina 153 (53.3%)  247 (43.3%)       
+ EF                  56.3 ± 10.1  55.6 ±  9.4  0.387
+ height              153.8 ±  6.2 167.9 ±  6.1 0.000
+ weight              57.2 ±  9.3  68.7 ± 10.3  0.000
+ BMI                 24.2 ±  3.6  24.3 ±  3.2  0.611
+ obesity                                       0.580
+   - No              194 (67.6%)  373 (65.4%)       
+   - Yes              93 (32.4%)  197 (34.6%)       
+ TC                  188.9 ± 51.1 183.3 ± 45.9 0.124
+ LDLC                117.8 ± 41.2 116.0 ± 41.1 0.561
+ HDLC                39.0 ± 11.5  37.8 ± 10.9  0.145
+ TG                  119.9 ± 76.2 127.9 ± 97.3 0.195
+ DM                                            0.077
+   - No              173 (60.3%)  380 (66.7%)       
+   - Yes             114 (39.7%)  190 (33.3%)       
+ HBP                                           0.000
+   - No               83 (28.9%)  273 (47.9%)       
+   - Yes             204 (71.1%)  297 (52.1%)       
+ smoking                                       0.000
+   - Ex-smoker        49 (17.1%)  155 (27.2%)       
+   - Never           209 (72.8%)  123 (21.6%)       
+   - Smoker           29 (10.1%)  292 (51.2%)       
+---------------------------------------------------- 
+> summary(out)
+
+                                                            Descriptive Statistics by 'sex'                                                           
+_______________________________________________________________________________________________________________________________________________________ 
+                        Female        Male       p   sig  p1    p2    p3      class                               ptest                              N 
+                       (N=287)      (N=570)   
+------------------------------------------------------------------------------------------------------------------------------------------------------- 
+ age                 68.7 ± 10.7  60.6 ± 11.2  0.000 *** 0.001 0.000 0.000 continuous                             normal                            857
+ cardiogenicShock                              0.136     0.136       2.000 categorical Pearson's Chi-squared test with Yates' continuity correction 857
+   - No              275 (95.8%)  530 (93.0%)                                                                                                          
+   - Yes              12 ( 4.2%)   40 ( 7.0%)                                                                                                          
+ entry                                         0.035 **  0.035       2.000 categorical Pearson's Chi-squared test with Yates' continuity correction 857
+   - Femoral         119 (41.5%)  193 (33.9%)                                                                                                          
+   - Radial          168 (58.5%)  377 (66.1%)                                                                                                          
+ Dx                                            0.012 **  0.012       3.000 categorical                  Pearson's Chi-squared test                  857
+   - NSTEMI           50 (17.4%)  103 (18.1%)                                                                                                          
+   - STEMI            84 (29.3%)  220 (38.6%)                                                                                                          
+   - Unstable Angina 153 (53.3%)  247 (43.3%)                                                                                                          
+ EF                  56.3 ± 10.1  55.6 ±  9.4  0.387     0.000 0.387 0.053 continuous                             normal                            723
+ height              153.8 ±  6.2 167.9 ±  6.1 0.000 *** 0.000 0.000 0.000 continuous                             normal                            764
+ weight              57.2 ±  9.3  68.7 ± 10.3  0.000 *** 0.000 0.000 0.000 continuous                             normal                            766
+ BMI                 24.2 ±  3.6  24.3 ±  3.2  0.611     0.000 0.611 0.471 continuous                             normal                            764
+ obesity                                       0.580     0.580       2.000 categorical Pearson's Chi-squared test with Yates' continuity correction 857
+   - No              194 (67.6%)  373 (65.4%)                                                                                                          
+   - Yes              93 (32.4%)  197 (34.6%)                                                                                                          
+ TC                  188.9 ± 51.1 183.3 ± 45.9 0.124     0.000 0.124 0.145 continuous                             normal                            834
+ LDLC                117.8 ± 41.2 116.0 ± 41.1 0.561     0.000 0.561 0.466 continuous                             normal                            833
+ HDLC                39.0 ± 11.5  37.8 ± 10.9  0.145     0.000 0.145 0.011 continuous                             normal                            834
+ TG                  119.9 ± 76.2 127.9 ± 97.3 0.195     0.000 0.195 0.804 continuous                             normal                            842
+ DM                                            0.077 *   0.077       2.000 categorical Pearson's Chi-squared test with Yates' continuity correction 857
+   - No              173 (60.3%)  380 (66.7%)                                                                                                          
+   - Yes             114 (39.7%)  190 (33.3%)                                                                                                          
+ HBP                                           0.000 *** 0.000       2.000 categorical Pearson's Chi-squared test with Yates' continuity correction 857
+   - No               83 (28.9%)  273 (47.9%)                                                                                                          
+   - Yes             204 (71.1%)  297 (52.1%)                                                                                                          
+ smoking                                       0.000 *** 0.000       3.000 categorical                  Pearson's Chi-squared test                  857
+   - Ex-smoker        49 (17.1%)  155 (27.2%)                                                                                                          
+   - Never           209 (72.8%)  123 (21.6%)                                                                                                          
+   - Smoker           29 (10.1%)  292 (51.2%)                                                                                                          
+------------------------------------------------------------------------------------------------------------------------------------------------------- 
+> require(ztable)
+Loading required package: ztable
+Welcome to package ztable ver 0.2.2
+> ztable(out)
+> mytable(acs)
+
+         Descriptive Statistics        
+---------------------------------------- 
+                        N      Total    
+---------------------------------------- 
+ age                  857  63.3 ± 11.7 
+ sex                  857               
+   - Female                287  (33.5%) 
+   - Male                  570  (66.5%) 
+ cardiogenicShock     857               
+   - No                    805  (93.9%) 
+   - Yes                     52  (6.1%) 
+ entry                857               
+   - Femoral               312  (36.4%) 
+   - Radial                545  (63.6%) 
+ Dx                   857               
+   - NSTEMI                153  (17.9%) 
+   - STEMI                 304  (35.5%) 
+   - Unstable Angina       400  (46.7%) 
+ EF                   723   55.8 ± 9.6 
+ height               764  163.2 ± 9.1 
+ weight               766  64.8 ± 11.4 
+ BMI                  764   24.3 ± 3.3 
+ obesity              857               
+   - No                    567  (66.2%) 
+   - Yes                   290  (33.8%) 
+ TC                   834 185.2 ± 47.8 
+ LDLC                 833 116.6 ± 41.1 
+ HDLC                 834  38.2 ± 11.1 
+ TG                   842 125.2 ± 90.9 
+ DM                   857               
+   - No                    553  (64.5%) 
+   - Yes                   304  (35.5%) 
+ HBP                  857               
+   - No                    356  (41.5%) 
+   - Yes                   501  (58.5%) 
+ smoking              857               
+   - Ex-smoker             204  (23.8%) 
+   - Never                 332  (38.7%) 
+   - Smoker                321  (37.5%) 
+---------------------------------------- 
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:ztable’
+
+> nameEx("rank2group")
+> ### * rank2group
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: rank2group
+> ### Title: rank a numeric vector and returns a new ordinal vector
+> ### Aliases: rank2group
+> 
+> ### ** Examples
+> 
+> 
+> require(ggplot2)
+Loading required package: ggplot2
+> data(diamonds)
+> diamonds$PriceGroup=rank2group(diamonds$price,4)
+> table(diamonds$PriceGroup)
+
+    1     2     3     4 
+13490 13495 13470 13485 
+> aggregate(price~PriceGroup,data=diamonds,range)
+  PriceGroup price.1 price.2
+1          1     326     950
+2          2     951    2401
+3          3    2402    5324
+4          4    5325   18823
+> 
+> diamonds$PriceGroup3=rank2group(diamonds$price,3)
+> table(diamonds$PriceGroup3)
+
+    1     2     3 
+17996 17964 17980 
+> aggregate(price~PriceGroup3,data=diamonds,range)
+  PriceGroup3 price.1 price.2
+1           1     326    1240
+2           2    1241    4287
+3           3    4288   18823
+> diamonds$PriceGroup5=rank2group(diamonds$price,5)
+> table(diamonds$PriceGroup5)
+
+    1     2     3     4     5 
+10796 10784 10789 10783 10788 
+> aggregate(price~PriceGroup5,data=diamonds,range)
+  PriceGroup5 price.1 price.2
+1           1     326     837
+2           2     838    1698
+3           3    1699    3465
+4           4    3466    6301
+5           5    6302   18823
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:ggplot2’
+
+> nameEx("summary.cbind.mytable")
+> ### * summary.cbind.mytable
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: summary.cbind.mytable
+> ### Title: Summarizing function for class "cbind.mytable"
+> ### Aliases: summary.cbind.mytable
+> 
+> ### ** Examples
+> 
+> out=mytable(am+cyl~.,data=mtcars)
+> summary(out)
+
+                                                                                      Descriptive Statistics stratified by 'am' and 'cyl'                                                                                     
+_______________________________________________________________________________________________________________________________________________________________________________________________________________________________ 
+                                                             1                                                                                                             0                                                      
+       ----------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------ 
+            4           6            8         p   sig  p1    p2    p3      class              ptest            N       4            6            8         p   sig  p1    p2    p3      class              ptest            N 
+          (N=8)       (N=3)        (N=2)             (N=3)        (N=4)        (N=12)        
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+ mpg   28.1 ±  4.5 20.6 ±  0.8  15.4 ±  0.6  0.001 *** 0.910 0.001 0.010 continuous            normal           13 22.9 ±  1.5  19.1 ±  1.6  15.1 ±  2.8  0.000 *** 0.456 0.000 0.004 continuous            normal           19
+ disp  93.6 ± 20.5 155.0 ±  8.7 326.0 ± 35.4 0.000 *** 0.912 0.000 0.011 continuous            normal           13 135.9 ± 14.0 204.6 ± 44.7 357.6 ± 71.8 0.000 *** 0.157 0.000 0.001 continuous            normal           19
+ hp    81.9 ± 22.7 131.7 ± 37.5 299.5 ± 50.2 0.000 *** 0.638 0.000 0.020 continuous            normal           13 84.7 ± 19.7  115.2 ±  9.2 194.2 ± 33.4 0.000 *** 0.082 0.000 0.001 continuous            normal           19
+ drat   4.2 ±  0.4  3.8 ±  0.2   3.9 ±  0.5  0.158     0.085 0.158 0.281 continuous            normal           13  3.8 ±  0.1   3.4 ±  0.6   3.1 ±  0.2  0.004 *** 0.224 0.004 0.092 continuous            normal           19
+ wt     2.0 ±  0.4  2.8 ±  0.1   3.4 ±  0.3  0.000 *** 0.724 0.000 0.021 continuous            normal           13  2.9 ±  0.4   3.4 ±  0.1   4.1 ±  0.8  0.006 *** 0.003 0.006 0.004 continuous            normal           19
+ qsec  18.4 ±  1.1 16.3 ±  0.8  14.6 ±  0.1  0.000 *** 0.185 0.000 0.021 continuous            normal           13 21.0 ±  1.7  19.2 ±  0.8  17.1 ±  0.8  0.000 *** 0.969 0.000 0.002 continuous            normal           19
+ vs                                          0.009 *** 0.009 0.005 2.000 categorical Pearson's Chi-squared test 13                                        0.000 *** 0.000 0.000 2.000 categorical Pearson's Chi-squared test 19
+   - 0  1 (12.5%)   3 (100.0%)   2 (100.0%)                                                                          0 ( 0.0%)    0 ( 0.0%)  12 (100.0%)                                                                       
+   - 1  7 (87.5%)    0 ( 0.0%)    0 ( 0.0%)                                                                         3 (100.0%)   4 (100.0%)    0 ( 0.0%)                                                                       
+ gear                                                        0.206 3.000 categorical Pearson's Chi-squared test 13                                                        0.012 3.000 categorical Pearson's Chi-squared test 19
+   - 3  0 ( 0.0%)    0 ( 0.0%)    0 ( 0.0%)                                                                         1 (33.3%)    2 (50.0%)   12 (100.0%)                                                                       
+   - 4  6 (75.0%)   2 (66.7%)     0 ( 0.0%)                                                                         2 (66.7%)    2 (50.0%)     0 ( 0.0%)                                                                       
+   - 5  2 (25.0%)   1 (33.3%)    2 (100.0%)                                                                          0 ( 0.0%)    0 ( 0.0%)    0 ( 0.0%)                                                                       
+ carb                                                        0.001 6.000 categorical Pearson's Chi-squared test 13                                                        0.051 6.000 categorical Pearson's Chi-squared test 19
+   - 1  4 (50.0%)    0 ( 0.0%)    0 ( 0.0%)                                                                         1 (33.3%)    2 (50.0%)     0 ( 0.0%)                                                                       
+   - 2  4 (50.0%)    0 ( 0.0%)    0 ( 0.0%)                                                                         2 (66.7%)     0 ( 0.0%)   4 (33.3%)                                                                        
+   - 3  0 ( 0.0%)    0 ( 0.0%)    0 ( 0.0%)                                                                          0 ( 0.0%)    0 ( 0.0%)   3 (25.0%)                                                                        
+   - 4  0 ( 0.0%)   2 (66.7%)    1 (50.0%)                                                                           0 ( 0.0%)   2 (50.0%)    5 (41.7%)                                                                        
+   - 6  0 ( 0.0%)   1 (33.3%)     0 ( 0.0%)                                                                          0 ( 0.0%)    0 ( 0.0%)    0 ( 0.0%)                                                                       
+   - 8  0 ( 0.0%)    0 ( 0.0%)   1 (50.0%)                                                                           0 ( 0.0%)    0 ( 0.0%)    0 ( 0.0%)                                                                       
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("summary.mytable")
+> ### * summary.mytable
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: summary.mytable
+> ### Title: Summarizing function for class "mytable"
+> ### Aliases: summary.mytable
+> 
+> ### ** Examples
+> 
+> out=mytable(am~.,data=mtcars)
+> summary(out)
+
+                                                     Descriptive Statistics by 'am'                                                     
+_________________________________________________________________________________________________________________________________________ 
+             0            1         p   sig  p1    p2    p3      class                               ptest                             N 
+          (N=19)        (N=13)   
+----------------------------------------------------------------------------------------------------------------------------------------- 
+ mpg    17.1 ±  3.8  24.4 ±  6.2  0.000 *** 0.857 0.000 0.002 continuous                             normal                            32
+ cyl                              0.013 **  0.013 0.009 3.000 categorical                  Pearson's Chi-squared test                  32
+   - 4   3 (15.8%)    8 (61.5%)                                                                                                          
+   - 6   4 (21.1%)    3 (23.1%)                                                                                                          
+   - 8  12 (63.2%)    2 (15.4%)                                                                                                          
+ disp  290.4 ± 110.2 143.5 ± 87.2 0.000 *** 0.225 0.000 0.001 continuous                             normal                            32
+ hp    160.3 ± 53.9  126.8 ± 84.1 0.180     0.013 0.180 0.046 continuous                             normal                            32
+ drat    3.3 ±  0.4   4.0 ±  0.4  0.000 *** 0.028 0.000 0.000 continuous                             normal                            32
+ wt      3.8 ±  0.8   2.4 ±  0.6  0.000 *** 0.019 0.000 0.000 continuous                             normal                            32
+ qsec   18.2 ±  1.8  17.4 ±  1.8  0.206     0.285 0.206 0.266 continuous                             normal                            32
+ vs                               0.556     0.556 0.473 2.000 categorical Pearson's Chi-squared test with Yates' continuity correction 32
+   - 0  12 (63.2%)    6 (46.2%)                                                                                                          
+   - 1   7 (36.8%)    7 (53.8%)                                                                                                          
+ gear                             0.000 *** 0.000 0.000 3.000 categorical                  Pearson's Chi-squared test                  32
+   - 3  15 (78.9%)     0 ( 0.0%)                                                                                                         
+   - 4   4 (21.1%)    8 (61.5%)                                                                                                          
+   - 5   0 ( 0.0%)    5 (38.5%)                                                                                                          
+ carb    2.7 ±  1.1   2.9 ±  2.2  0.781     0.002 0.781 0.735 continuous                             normal                            32
+----------------------------------------------------------------------------------------------------------------------------------------- 
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("validColname")
+> ### * validColname
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: validColname
+> ### Title: Find valid string among character vector from approximate string
+> ### Aliases: validColname
+> 
+> ### ** Examples
+> 
+> a="dx"
+> b=c("Age","Sex","Dx")
+> validColname(a,b)
+[1] "Dx"
+> 
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  3.93 0.242 4.192 0.001 0.002 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

@@ -1,0 +1,138 @@
+---
+title: "Make a Heatmap Table using `ztable`"
+author: "Keon-Woong Moon"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{heatmapTable}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = NA,
+  message=FALSE
+)
+```
+
+## Installation
+
+You can install R package "ztable" from CRAN. Current version is 0.1.8.
+
+```{r,eval=FALSE}
+install.packages("ztable")
+```
+
+To make a heatmap table, you have to install the developmental version of ztable from github. Current github version is 0.2.0.
+
+```{r,eval=FALSE}
+if(!require(devtools)) install.packages("devtools")
+devtools::install_github("cardiomoon/ztable")
+```
+
+## Introduction
+
+A heat map (or heatmap) is a graphical representation of data where the individual values contained in a matrix are represented as colors. You can summarize the the diagnosis and smoking status of 857 patients of acute coronary syndrome(acs) using table() function.  
+
+```{r}
+require(moonBook)
+x=table(acs$Dx,acs$smoking)
+x
+```
+
+## Basic Table
+
+You can make `html` or `LaTex` table easly with ztable.
+```{r,results="asis"}
+library(ztable)
+library(magrittr)
+options(ztable.type="html")
+z=ztable(x) 
+print(z,caption="Table 1. Basic Table")
+```
+
+## Formatting the Table
+
+You can change the background color and font color of `ztable` using addCellColor function. For example, you can change the cell color of the 3rd row, 2nd column. Please keep in mind that the ztable count colname and rowname. 
+
+```{r,results="asis"}
+z %>% 
+    addCellColor(4,3,bg="orange",color="white") %>% 
+    print(caption="Table 2. Add Cell Color")
+```
+
+
+## Conditional Formatting
+
+You can select rows with logical expression. You can select cols with column name.
+
+```{r,results='asis'}
+ztable(head(iris),caption="Table 3. Conditinoal Formatting: Sepal.Width >= 3.5") %>%
+    addRowColor(rows=1,bg="#C90000",color="white") %>%
+    addCellColor(condition=Sepal.Width>=3.5,cols=Sepal.Width,color="red") 
+```
+
+##  Make a Heatmap Table
+
+You can make a heatmap table in which background colors representing the values. With makeHeatmap() function, you can make a heatmap table easily. The namakeHeatmap() function apply the "Reds" palette from RColorBrewer package.
+
+```{r,results="asis"}
+z %>% makeHeatmap() %>% print(caption="Table 4. Heatmap Table")
+```
+
+## Heatmap Table with desired palette
+
+You can change the palette with palette argument. For example, you can use the "Blue" palette.
+
+```{r,results='asis'}
+ztable(head(mtcars)) %>% 
+    makeHeatmap(palette="Blues") %>%
+    print(caption="Table 5. Heatmap table with 'Blue' palette")
+```
+
+## Heatmap Table with user-defined palette
+
+With the gradientColor() function, you makes sequential colour graient palette easily. 
+
+```{r,fig.width=8,out.width='100%'}
+mycolor=gradientColor(low="yellow",mid="orange",high="red",n=20,plot=TRUE)
+mycolor
+```
+
+```{r,results='asis'}
+ztable(head(mtcars[1:5])) %>% 
+    makeHeatmap(mycolor=mycolor) %>%
+    print(caption="Table 6. Heatmap table with user-defined palette")
+```
+
+## Heatmap Table with non-numeric data
+
+You can make heatmap table with data containing non-numeric columns. Only columns with numeric data affected by this function.
+
+```{r,results='asis'}
+ztable(head(acs[1:10])) %>% 
+    makeHeatmap %>%
+    print(caption="Table 7. Heatmap table with non-numeric data")
+```
+
+## Selected Columnwise Heatmap Table
+
+You can make selected columnwise heatmap table. You can select columns with `cols` argument. To make columnwise heatmap table, set the `margin` argument 2.
+
+```{r,results='asis'}
+ztable(head(mtcars)) %>% 
+    makeHeatmap(palette="YlOrRd",cols=c(1,3,4),margin=2) %>%
+    print(caption="Table 8. Columnwise heatmap table")
+```
+
+## Selected Rowwise Heatmap Table
+
+You can make selected columnwise heatmap table. You can select rows with `rows` argument. To make rowwise heatmap table, set the `margin` argument 1.
+
+```{r,results='asis'}
+ztable(t(head(mtcars))) %>%
+    makeHeatmap(palette="YlOrRd",rows=c(1,3,4),margin=1) %>%
+    print(caption="Table 9. Rowwise heatmap table")
+```

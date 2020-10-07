@@ -1,0 +1,97 @@
+.onAttach               Hooks for Namespace Events
+addCellColor            Add column colors of an object of ztable
+addColColor             Add column colors of an object of ztable
+addFrontColor           Add column colors of an object of ztable
+addRowColor             Add row colors of an object of ztable
+addSigColor             Add row color or cellcolor for rows or cells of
+                        p-value less than sigp in a ztable
+addSubColNames          Add a adjunctive name below column name in a
+                        ztable
+addcgroup               Add column groups of an object of ztable
+addrgroup               Add row groups of an object of ztable
+align2html              Convert the align in Latex format to html
+                        format
+align2lines             count the vertical column lines from align of
+                        Latex format
+align2nd                Delete first components of align
+alignCheck              Check the validity of align
+alignCount              Count the number of align
+cGroupSpan              Count the colspan of each colgroup
+caption2minipage        Convert long caption to minipage
+cgroup2df               Convert cgroup of ztable into data.frame
+colGroupCount           Count the colgroup of an object of ztable
+color2hex               Convert a named color into a hexadecimal color
+                        with rgb value
+data2table              Convert data to formatted data for table
+define_colors           Define colors
+getNewAlign             Make a character string indicating the
+                        alignment of components of table.
+getNewSpanCol           Calculating new spanCol with spanCol plus space
+                        made by column group
+getNewSpanRow           Calculating new spanRow with spanRow plus space
+                        made by row group
+getspanRowData          Gets the spanRow start column
+getspanRowLength        Gets spanRow length
+gradientColor           Make Sequential colour gradient palette
+hlines                  Add or delete horizontal lines in a ztable
+isGroupCol              Returns whether or not column with position
+                        start plus length is group column
+isspanCol               Identify the spanCol status of a cell
+isspanRow               Identify the spanRow status of a cell
+make.cell.color         Make a data.frame named "cellcolor" from ztable
+                        call
+make.frontcolor         Make a data.frame named "cellcolor" from ztable
+                        call
+makeHeatmap             Add gradient background color to ztable
+make_align              Make align for an object of class
+                        ztable.mytable
+myhtmlStyle             print html style
+name2rgb                Find rgb value from color name
+normalize2              Convert numeric vector min to 0, max to
+                        maxvalue
+palette2colors          Extract hexadecimal colors from a color palette
+parallelTables          Place two or more ztables or figures side by
+                        side in Latex or HTML format
+parallelTablesHTML      Place two or more ztables or figures side by
+                        side in HTML format
+parallelTablesLatex     Place two or more ztables or figures side by
+                        side in Latex format
+print.ztable            Print an object of class "ztable"
+printHTMLHead           Print HTML head if ztable object a has a
+                        colgroup
+printLatexHead          Print the head of latex table if the object of
+                        ztable has a colgroup
+printRowGroup           Print Row Groups in a latex table
+print_ztable            Print an object of class "ztable"
+repColor                Make vector x from vector color
+roundDf                 Round the numbers of a data.frame
+spanCol                 Merging data cells of ztable object in columns
+spanColWidth            Calculate the spanColWidth when spanCol start
+spanRow                 Merging data cells of ztable object in rows
+tableLength             Convert data to formatted data for table
+totalCol                Calculating total columns of ztable
+totalLeft               Arrange total column to the left
+tr                      Subfunction used in ztable2latex
+tr2                     Subfunction used in ztable2html
+trim.ztable             Make align and edit p value column for an
+                        object of class ztable.mytable
+update_ztable           Update ztable before print
+validColor              Find valid color name
+validColor2             Find valid color name
+vline2align             Make a latex "align" from a string and vertical
+                        line specifier
+vlines                  Add or delete vertical lines in a ztable
+zcolors                 Definition of Latex Color
+ztable.cbind.mytable    Make ztable from object cbind.mytable
+ztable.mytable          Make ztable from object mytable
+ztable.table            Exporting a R object to an object of class
+                        "ztable"
+ztable2flextable        Convert an object of ztable into an object of
+                        flextable
+ztable2html             Print an object of class "ztable" to html table
+ztable2latex            Print an object of class "ztable" to Latex
+                        table
+ztable2viewer           Print an object of ztable via
+                        rstudioapi::viewer
+ztable_sub              Exporting "data.frame" to an object of class
+                        "ztable"

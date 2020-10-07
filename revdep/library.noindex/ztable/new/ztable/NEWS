@@ -1,0 +1,138 @@
+ztable 0.2.2
+=============
+(6-Oct-2020)
+
+* Bug-fixed(Replace return with return() according to CRAN pollicy)
+
+
+
+ztable 0.2.1
+=============
+(20-Mar-2019)
+
+* Bug-fixed
+
+ztable 0.2.0
+=============
+(22-May-2018)
+
+* New function "ztable.table","gradientColor","makeHeatmap" added
+
+* New vignette "heatmapTable" added
+
+ztable 0.1.9
+=============
+(13-May-2018)
+
+* New function "color2hex", "palette2colors" and "ztable2flextable" added
+
+* "addColColor", "addRowColor" and "addCellColor" function can set background color and font color
+
+* New vignette "ztable_update" added
+
+* Bug-fixed
+
+ztable 0.1.8
+============
+(24-Apr-2018)
+
+* New function added "addFrontColor" which add font color of ztable
+
+* addcgroup and addrgroup functions now are able to set font colors
+
+
+ztable 0.1.7
+============
+(11-Nov-2017)
+
+* ztable.glm uses confint.dafault to compute confidence interval
+
+* A shiny app "ztableDemo" added in inst folder
+
+ztable 0.1.6
+============
+(16-Sep-2015)
+
+* new function added "addSigColor" which add color to row or cells with p-value
+  less than sigp of ztable which is made from class "mytable"
+
+* "ztable" is compatible with magrittr
+
+
+ztable 0.1.5
+============
+(14-Feb-2015)
+
+* new function added "hlines" which add and delete horizontal lines of ztable easily
+
+* "ztable" supports an R object of nls and fitdistr class
+
+* bug fixed
+
+
+ztable 0.1.4
+============
+(6-Feb-2015)
+
+* "ztable" supports merging cells by "spanRow" and "spanCol" function
+
+* new function added "vlines" which add and delete vertical lines of ztable easily
+
+* "ztable"" puts horizontal space between column groups without vertical lines,
+  but puts no space when vertical line is present between column groups.
+
+* "ztable" supports an R object of mytable and cbind.mytable class from the package
+  "moonBook"
+
+
+ztable 0.1.3
+============
+(18-JAN-2015)
+
+* new function "addColColor" which add the background color(s) of column(s) of ztable
+
+* new function "addRowColor" which add the background color(s) of row(s) of ztable
+
+* new function "addCellColor" which add the background color(s) of cell(s) of ztable
+
+* new function "addrgroup" which add the row groups to ztable
+
+* new function "addcgroup" which add the column groups to ztable
+
+* new function "ztable2viewer" which shows the ztable of html format via rstudio::viewer()
+
+* "ztable" support row groups and column groups
+
+* "ztable" support LaTex, HTML and rstudio::viewer output
+
+
+ztable 0.1.2
+============
+(2-JAN-2015)
+
+* new function "update_ztable" which update the parameters of ztable.
+
+* ztable parameters can be changed with "print.ztable" function.
+
+* bug fixed
+
+* "ztable" support horizontal,vertical,diagonal striping and combind horizontal and vertical striping
+
+ztable 0.1.1
+=============
+(19-Dec-2014)
+
+* new function "parallelTables" which places two or more ztables or figures side by side in LaTeX or HTML format.
+
+* bug fixed
+
+* "ztable" supports longtable, sidewaystable, wraptable and rotating table
+   (turn and rotate).
+
+ztable 0.1.0
+==============
+(15-Dec-2014)
+
+* new function "ztable" which creates zebra striping tables(tables with alternating row colors) in both LaTeX and html formats easily from mainly data.frame or an R object such as matrix, lm, aov, anova, glm and coxph objects.
+
+* new data "zcolors" added

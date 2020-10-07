@@ -1,0 +1,494 @@
+---
+title: "Package ztable"
+author: "Keon-Woong Moon"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ztable}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+# Introduction
+
+## Table Show
+
+Package "ztable" make everything possible about table. Basically, An object of "ztable" made from a data.frame. The default output format of ztable is RStudio::viewer or web-browser format(type="viewer"). So if you want to use ztable in a "html" format, you should change the parameter ztable.type to "html". If you want to use ztable in latex format, you should change the parameter ztable.type to "latex". 
+
+```{r,results='asis'}
+library(ztable)
+library(magrittr)
+options(ztable.type="html")
+z=ztable(head(iris))
+z
+```
+You can change the position of data in each cell by adjusting the parameter "align".
+
+```{r,results='asis'}
+z=ztable(head(iris),align="cccccc")
+z
+```
+
+You can change background color and font color with addRowColor() function.
+
+```{r,results='asis'}
+z <- ztable(head(iris))
+z <- addRowColor(z, rows=1,bg="#C90000",color="white") 
+print(z)
+```
+
+The pipe operator("%>%") from magrittr package can simplify your R code. 
+
+```{r,results='asis'}
+ztable(head(iris)) %>%
+    addRowColor(rows=1,bg="#C90000",color="white") %>%
+    print
+
+```
+
+You can add column groups to ztable using addcgroup function. The n.cgroup means how much columns included in each row group. 
+
+```{r,results='asis'}
+cgroup=c("Sepal","Petal","Species")
+n.cgroup=c(2,2,1)
+z <- ztable(head(iris)) %>%
+    addcgroup(cgroup=cgroup,n.cgroup=n.cgroup)
+z
+```
+
+
+You can add row groups to ztable using addrgroup function. The n.rgroup means how much rows included in each row group. The cspan.rgroup means how much columns occupied by row group name.
+
+```{r,results='asis'}
+rgroup=c("OneToThree","Four","FiveToSix")
+n.rgroup=c(3,1,2)
+
+z <- z %>% 
+    addrgroup(rgroup=rgroup,n.rgroup=n.rgroup,cspan.rgroup=1)
+z
+print(z,type="latex")
+```
+
+You can add another colname(subcolname), the N count for example.  The length of subcolnames should be same with column count of data.frame. You can use "NA" and the column name spans 2 rows. 
+
+```{r,results='asis'}
+ncount=c(123,120,123,124)
+sub=paste("(N=",ncount,")",sep="")
+z=addSubColNames(z,c(sub,NA))
+z
+```
+
+You can merge cells by spanRow or spanCol function.
+
+```{r,results='asis'}
+z=spanRow(z,col=2,from=4,to=7,bg="lightcyan",color="red")
+z=spanRow(z,col=3,from=5,to=7,"platinum","blue")
+z=spanRow(z,col=4,from=6,to=7,"cyan")
+z=spanRow(z,col=5,from=5,to=7,"yellow")
+z=spanRow(z,col=6,from=3,to=5,"yellow")
+z
+
+z=spanCol(z,row=2,from=3,to=4,"yellow")
+z=spanCol(z,row=3,from=4,to=5,"lightblue")
+z
+```
+
+You can add or adjust vertical lines of table by vlines function
+
+```{r,results='asis'}
+vlines(z,type="all")       # type=1 gets same result
+z <- vlines(z,type="none")      # type=0 gets same result
+z
+z <- z %>% vlines(add=c(1,2,5))
+z
+```
+
+Please note that if you add vertical lines between groups, the space between groups(empty columns) disappeared and vice versa.
+
+
+## Merge two tables
+
+You can bind two or more data.frame by cbind function. 
+
+```{r,results='asis'}
+t1=head(iris,10)[,c(1,3,5)]
+t2=tail(iris,10)[,c(1,3,5)]
+t=cbind(t1,t2)
+z=ztable(t,caption="Table 1. Top 10 and Last 10 Data from iris",align="ccccccc")
+z
+```
+
+And then, you can add column groups, row groups, add row colors, add column colors, add cell colors, and merge cells
+
+```{r,results='asis'}
+cgroup=c("Top 10","Last 10")
+n.cgroup=c(3,3)
+z=addcgroup(z,cgroup=cgroup,n.cgroup=n.cgroup)
+z 
+rgroup=c("Top 1-3","Top 4-5",NA," Top 7-10")
+n.rgroup=c(3,2,1,4)
+z=addrgroup(z,rgroup=rgroup,n.rgroup=n.rgroup,cspan.rgroup=1)
+z
+z <- z %>% 
+    addRowColor(c(5,10),"pink") %>%
+    addColColor(4,"amber") %>%
+    addCellColor(rows=c(5,10),cols=4,"red","white")
+z
+z <- z %>%
+    spanCol(row=2,from=2,to=3,"lightcyan","red") %>%
+    spanRow(col=7,from=7,to=8,"cyan")
+z
+hlines(z,type=1)
+```
+
+And you can adjust vertical lines, too.
+
+```{r,results='asis'}
+vlines(z,type=0)  # No vertical lines
+vlines(z,type=1)  # Vertical lines for all column
+```
+
+# Basic Use
+
+Package "ztable" consist of one function: ztable. It's main function is creating zebra zebra striping tables(tables with alternating row colors) in both Latex and html formats easily from mainly data.frame or an R object such as matrix, lm, aov, anova, glm and coxph objects. It is fully customizable and you can get similar tables in both latex and html format without changing source. The default output is Rstudio::viewer, but you can get html format by adding just one sentence.
+
+```{r, eval=FALSE}
+options(ztable.type="html")
+```
+
+It's usage is somewhat similar to xtable, but very simple.
+
+## data.frame
+
+### Basic Use
+
+It's use is very simple. Just use 'ztable()' function. You can get the zebra stripig table by set the parameter zebra=1 (default value is NULL)
+
+```{r,results="asis",message=FALSE}
+require(ztable)
+options(ztable.type="html")
+options(ztable.zebra=1)
+options(ztable.zebra.color="platinum")
+options(ztable.colnames.bold=TRUE)
+ztable(head(mtcars))
+```
+
+### Tailoring zebra striping
+
+You can get non-zebra table by change parameter zebra=NULL or change zebra striping on even rows by zebra=2. 
+
+```{r,results='asis'}
+ztable(head(mtcars),zebra=NULL,size=3,
+       caption="Table 1. Non-zebra Table with small size")
+```
+        
+### Customize the caption and the font size 
+
+You can change the position of table by using parameter position. You can use "r" for right position, "l" for left position and "c" for center position(default). You can change the color of zebra striping by change the parameter zebra.color. You can also change the size of font from 1 to 10(default is 5). You can change the caption.placement("top" or "bottom") and caption.position("c" for center / "r" for right/ "l" for left).  
+    
+```{r,results='asis'}
+ztable(head(mtcars[c(1:7)]),zebra=2,zebra.color="lightcyan",size=7,
+       caption="Table 2. Left-sided caption at botom with large font",
+       caption.placement="bottom",caption.position="l") 
+```
+       
+## aov  object
+
+'ztable()' can be used for 'aov' object. When used for 'aov' object, the function call is added as footer to the table. The parameter 'show.footer' can be used whether or not include footer in the table. Dafault value is TRUE.
+
+```{r,results="asis"}
+out <- aov(mpg ~ ., data=mtcars)
+ztable(out)
+```
+
+## Linear model : 'lm' object
+
+'ztable()' can be used for 'lm' object. When used for 'lm' object, the function call is added as footer to the table, too. 
+
+
+```{r,results='asis'}
+fit <- lm(mpg ~ cyl + disp + wt + drat + am, data=mtcars)
+ztable(fit)
+```
+
+## Analysis of Variance Table : 'anova' object
+
+'ztable()' can be used for 'anova' object to show the anova table. When used for 'anova' object, headings of anova are added as headings to the table. The parameter 'show.footer' can be used whether or not include footer in the table. Dafault value is TRUE.
+
+```{r,results='asis'}
+a=anova(fit)
+ztable(a)
+```
+
+This is examples of another 'anova' object. The models in this anova tables showed as table headings. You can decide whether or not include the headings in the tableby using parameter 'show.heading'(default: TRUE). 
+
+```{r,results='asis'}
+fit2 <- lm(mpg ~ cyl+wt, data=mtcars)
+b=anova(fit2,fit)
+ztable(b)
+ztable(b,show.heading=FALSE)
+```
+
+## Generalized linear model ; 'glm' object
+
+'ztable()' can be used for 'glm'(generalized linear model) object. In this time, 'ztable()' shows the **odds ratio(OR) and 95% confidence interval** as well as atandard R output.
+
+```{r,results='asis',warning=FALSE}
+require(survival)
+data(colon)
+attach(colon)
+out <- glm(status ~ rx+obstruct+adhere+nodes+extent, data=colon, family=binomial)
+ztable(out)
+```
+
+Again, 'ztable()' also shows the anova table of this model.
+
+```{r,results='asis'}
+anova(out)
+ztable(anova(out))
+```
+
+## More 'aov' object
+
+
+```{r,results='asis'}
+op <- options(contrasts = c("contr.helmert", "contr.poly"))
+npk.aov <- aov(yield ~ block + N*P*K, npk) 
+ztable(npk.aov,zebra=1)
+```
+
+## More 'lm' object
+
+```{r,results='asis'}
+ctl <- c(4.17,5.58,5.18,6.11,4.50,4.61,5.17,4.53,5.33,5.14)
+trt <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+group <- gl(2, 10, 20, labels = c("Ctl","Trt"))
+weight <- c(ctl, trt)
+lm.D9 <- lm(weight ~ group)
+ztable(lm.D9)
+ztable(anova(lm.D9),align="|c|rrrr|r|")
+```
+
+
+## More 'glm' object
+
+```{r,results='asis'}
+counts <- c(18,17,15,20,10,20,25,13,12)
+outcome <- gl(3,1,9)
+treatment <- gl(3,3)
+d.AD <- data.frame(treatment, outcome, counts)
+glm.D93 <- glm(counts ~ outcome + treatment, family = poisson())
+ztable(glm.D93)
+```
+
+## Principal Components Analysis : 'prcomp' object
+
+'ztable()' can be used in principal components analysis. Followings are examples of ztable() of 'prcomp' object.
+
+
+```{r,results='asis',message=FALSE}
+data(USArrests)
+pr1 <- prcomp(USArrests) 
+ztable(pr1)
+ztable(summary(pr1))
+```
+
+## Survival Analysis : 'coxph' object
+
+'ztable()' can be used in survival analysis. When used for Cox proportional hazard model, 'ztable()' showed the hazard ratio and 95% confidence interval ready for publication to medical journal.
+
+
+```{r,results='asis',message=FALSE}
+colon$TS = Surv(time,status==1) 
+out=coxph(TS~rx+obstruct+adhere+differ+extent+surg+node4,data=colon)
+ztable(out)
+```
+
+## Nonlinear Least Squares: 'nls' obbject
+
+'ztable()' can be used to determine the nonlinear (weighted) least-squares estimates of the parameters of a nonlinear model. Followings are examples of ztable() of 'nls' object.
+
+```{r,comment=NA}
+require(graphics)
+
+DNase1 <- subset(DNase, Run == 1)
+
+## using a selfStart model
+fm1DNase1 <- nls(density ~ SSlogis(log(conc), Asym, xmid, scal),DNase1)
+summary(fm1DNase1)
+```
+```{r,results='asis',message=FALSE}
+ztable(fm1DNase1)
+```
+
+
+## Maximum-likelihood Fitting of Univariate Distributions
+
+'ztable()' can be used in maximum-likelihood fitting of univariate distributions. Followings are examples of ztable() of 'fitdistr' object.
+```{r,results='asis'}
+require(MASS)
+set.seed(123)
+x <- rgamma(100, shape = 5, rate = 0.1)
+a=fitdistr(x, "gamma")
+ztable(a)
+x3 <- rweibull(100, shape = 4, scale = 100)
+b=fitdistr(x3, "weibull")
+ztable(b)
+```
+
+
+## Customize the zebra striping colors
+
+If you wanted to use several colors for zebra striping, you can set the parameter 'zebra' to zero(e.g. zebra=0) and set the 'zebra.color' parameter with vector of your favorite colors. Your favorite colors are used to zebra striping. For your convienience, ten colors are predifned for this purpose. The predefined colors are: 
+c("peach","peach-orange","peachpuff","peach-yellow","pear","pearl","peridot","periwinkle","pastelred", "pastelgray"). 
+
+```{r,results='asis',message=FALSE}
+ztable(head(mtcars,15),zebra=0,zebra.color=NULL) 
+```
+
+The color names used for this purpose are predefined in the data 'zcolors' included in 'ztable' package. Please type '?zcolors' in R console for help file or just type 'zcolors'. You can see 749 color names defined in data 'zcolors'. 
+
+
+## Vertical striping
+
+If you wanted to vertical striping table, you can get it by set the parameter zebra.type 2. You can change the ztables parameters when printing. 
+```{r,results='asis'}
+z1=ztable(head(iris),zebra=2)
+z1
+print(z1,zebra.type=2)
+print(z1,zebra=1,zebra.type=2,zebra.colnames=TRUE)
+```
+
+## More tailoring zebra striping
+
+You can update parameters of ztable with 'update_ztable' function.
+```{r,results='asis'}
+options(ztable.zebra.color=NULL)
+(z1=ztable(head(iris),zebra=0,zebra.type=2))
+```
+
+You can change the background color of colnames rows by setting zebra.colnames=TRUE.
+
+```{r,results='asis'}
+update_ztable(z1,colnames.bold=TRUE,zebra.colnames=TRUE)
+```
+
+You can customize the striping when printing.
+```{r,results='asis'}
+print(z1,zebra.color=c(rep("white",5),"peach"),zebra.colnames=TRUE)
+```
+
+
+## Change the background color of all cells
+
+You can change the background color of all cells by setting the zebra.type=0.
+```{r,results='asis'}
+ztable(head(iris),zebra=0,zebra.type=0)
+ztable(head(iris),zebra=0,zebra.type=0,zebra.color=zcolors$name,zebra.colnames=TRUE)
+```
+
+## Diagonal striping
+
+You can make diagonal striping with use of zebra.color greater/lesser than column length by 1.
+
+```{r,results='asis'}
+ztable(head(iris),zebra=0,zebra.type=0,zebra.color=1:7,zebra.colnames=TRUE)
+ztable(head(mtcars[,1:9]),zebra=0,zebra.type=0,zebra.color=1:9,zebra.colnames=TRUE)
+```
+
+## All background colors
+
+This is demonstration of All background colors. All 749 colors are available in package ztable. Please type ?zcolors. 
+```{r,results='asis'}
+mycolor=rep("white",6)
+for(i in 1:149){
+    mycolor=c(mycolor,"white",zcolors$name[((i-1)*5+1):((i-1)*5+5)])
+}
+mycolor=c(mycolor,"white",zcolors$name[c(746:749,1)])
+a=c(zcolors$name[1:5])
+for(i in 2:149){
+    a=rbind(a,zcolors$name[((i-1)*5+1):((i-1)*5+5)])
+}
+a=rbind(a,zcolors$name[c(746:749,1)])
+a=data.frame(a,stringsAsFactors=FALSE,row.names=NULL)
+ztable(a,zebra=0,zebra.type=0,zebra.color=mycolor,include.rownames=FALSE,
+       include.colnames=FALSE,longtable=TRUE)
+```
+
+## Place two or more ztables or figures side by side
+
+If you wanted to place two or more ztables or figures side by side, you can use function **parallelTables()**. Function **parallelTables()** takes three parameters. The first parameter width is a numeric vector specifies the width to which the tables or figures should be scaled. The second parameter is a list of ztable or names of valid figure. The 3rd parameter 'type' is the type of table to produce. Possible values for type are "latex" or "html". Default value is "latex". See the examples.
+
+```{r,results='asis'}
+z=ztable(head(mtcars[1:3]),tabular=TRUE,zebra.color="peach-orange")
+z1=ztable(head(iris[1:3]),tabular=TRUE,zebra=2)
+
+parallelTables(width=c(0.5,0.5),list(z,z1),type="html")
+parallelTables(width=c(0.5,0.5),list(z,"figures/ztable3.png"),type="html")
+```
+
+## mytable object from "moonBook" package
+
+'ztable()' can be used for 'mytable' object made by "mytable" function from "moonBook" package. 
+
+```{r,results='asis'}
+require(moonBook)
+res=mytable(Dx~.,data=acs)
+options(ztable.zebra=NULL)
+z=ztable(res)
+z
+vlines(z,type="all")
+
+```
+
+## cbind.mytable object
+
+'ztable()' can be used for 'cbind.mytable' object made by "mytable" function from "moonBook" package. 
+
+```{r,results='asis'}
+res1=mytable(sex+DM~.,data=acs)
+z=ztable(res1)
+z
+vlines(z,type="all")
+```
+
+You can use all ztable related function in this table.
+
+```{r,results='asis'}
+z=addRowColor(z,c(13,16),"platinum")
+z=addColColor(z,c(5,8),"pink")
+z=addCellColor(z,rows=16,cols=c(5,8),bg="orange")
+z=addCellColor(z,rows=13,cols=5,bg="orange")
+z
+```
+
+You can use pipe from package "magrittr"
+
+```{r,results='asis'}
+require(magrittr)
+
+res1=mytable(sex+DM~.,data=acs)
+z=ztable(res1)
+z %>%
+   addRowColor(c(13,16),"platinum") %>%
+   addColColor(c(5,8),"pink") %>%
+   addCellColor(rows=16,cols=c(5,8),bg="orange") %>%
+   addCellColor(rows=13,cols=5,bg="orange") %>%
+   print        
+```
+
+You can use addSigColor() function to colorized significant rows of ztable.mytable
+
+```{r,results='asis'}
+
+res1=mytable(sex~.,data=acs)
+res1 %>% ztable %>%
+   addSigColor %>%
+   print        
+res2<-mytable(sex+DM~.,data=acs)
+res2 %>% 
+    ztable %>%
+    addSigColor(level=0.1,bg="yellow",color="red") %>%
+    print
+
+```

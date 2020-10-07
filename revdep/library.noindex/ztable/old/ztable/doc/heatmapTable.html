@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Keon-Woong Moon" />
+
+<meta name="date" content="2018-07-23" />
+
+<title>Make a Heatmap Table using ztable</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Make a Heatmap Table using <code>ztable</code></h1>
+<h4 class="author"><em>Keon-Woong Moon</em></h4>
+<h4 class="date"><em>2018-07-23</em></h4>
+
+
+
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>You can install R package “ztable” from CRAN. Current version is 0.1.8.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;ztable&quot;</span>)</code></pre></div>
+<p>To make a heatmap table, you have to install the developmental version of ztable from github. Current github version is 0.2.0.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(devtools)) <span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
+devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;cardiomoon/ztable&quot;</span>)</code></pre></div>
+</div>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>A heat map (or heatmap) is a graphical representation of data where the individual values contained in a matrix are represented as colors. You can summarize the the diagnosis and smoking status of 857 patients of acute coronary syndrome(acs) using table() function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(moonBook)
+x=<span class="kw">table</span>(acs<span class="op">$</span>Dx,acs<span class="op">$</span>smoking)
+x
+                 
+                  Ex<span class="op">-</span>smoker Never Smoker
+  NSTEMI                 <span class="dv">42</span>    <span class="dv">50</span>     <span class="dv">61</span>
+  STEMI                  <span class="dv">66</span>    <span class="dv">97</span>    <span class="dv">141</span>
+  Unstable Angina        <span class="dv">96</span>   <span class="dv">185</span>    <span class="dv">119</span></code></pre></div>
+</div>
+<div id="basic-table" class="section level2">
+<h2>Basic Table</h2>
+<p>You can make <code>html</code> or <code>LaTex</code> table easly with ztable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ztable)
+<span class="kw">library</span>(magrittr)
+<span class="kw">options</span>(<span class="dt">ztable.type=</span><span class="st">&quot;html&quot;</span>)
+z=<span class="kw">ztable</span>(x) 
+<span class="kw">print</span>(z,<span class="dt">caption=</span><span class="st">&quot;Table 1. Basic Table&quot;</span>)</code></pre></div>
+<head>
+<style>
+        table {
+              font-family: times ;
+color:  black ;
+text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+            }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style>
+</head>
+<table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;">
+<caption style="text-align:center;">
+Table 1. Basic Table
+</caption>
+<tr>
+<th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">
+ 
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Ex-smoker
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Never
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Smoker
+</th>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; ">
+NSTEMI
+</td>
+<td align="right" style="border-left: 0px solid black;">
+42
+</td>
+<td align="right" style="border-left: 0px solid black;">
+50
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;">
+61
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+STEMI
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+66
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+97
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+141
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Unstable Angina
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+96
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+185
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+119
+</td>
+</tr>
+<tr>
+<td colspan="4" align="left" style="font-size:9pt ;border-top: 1px solid black; border-bottom: hidden;">
+</td>
+</tr>
+</table>
+</div>
+<div id="formatting-the-table" class="section level2">
+<h2>Formatting the Table</h2>
+<p>You can change the background color and font color of <code>ztable</code> using addCellColor function. For example, you can change the cell color of the 3rd row, 2nd column. Please keep in mind that the ztable count colname and rowname.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">addCellColor</span>(<span class="dv">4</span>,<span class="dv">3</span>,<span class="dt">bg=</span><span class="st">&quot;orange&quot;</span>,<span class="dt">color=</span><span class="st">&quot;white&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">print</span>(<span class="dt">caption=</span><span class="st">&quot;Table 2. Add Cell Color&quot;</span>)</code></pre></div>
+<head>
+<style>
+        table {
+              font-family: times ;
+color:  black ;
+text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+            }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style>
+</head>
+<table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;">
+<caption style="text-align:center;">
+Table 2. Add Cell Color
+</caption>
+<tr>
+<th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">
+ 
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Ex-smoker
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Never
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Smoker
+</th>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; ">
+NSTEMI
+</td>
+<td align="right" style="border-left: 0px solid black;">
+42
+</td>
+<td align="right" style="border-left: 0px solid black;">
+50
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;">
+61
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+STEMI
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+66
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+97
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+141
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Unstable Angina
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+96
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FF7F00;color: #FFFFFF;">
+185
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+119
+</td>
+</tr>
+<tr>
+<td colspan="4" align="left" style="font-size:9pt ;border-top: 1px solid black; border-bottom: hidden;">
+</td>
+</tr>
+</table>
+</div>
+<div id="conditional-formatting" class="section level2">
+<h2>Conditional Formatting</h2>
+<p>You can select rows with logical expression. You can select cols with column name.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ztable</span>(<span class="kw">head</span>(iris),<span class="dt">caption=</span><span class="st">&quot;Table 3. Conditinoal Formatting: Sepal.Width &gt;= 3.5&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">addRowColor</span>(<span class="dt">rows=</span><span class="dv">1</span>,<span class="dt">bg=</span><span class="st">&quot;#C90000&quot;</span>,<span class="dt">color=</span><span class="st">&quot;white&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">addCellColor</span>(<span class="dt">condition=</span>Sepal.Width<span class="op">&gt;=</span><span class="fl">3.5</span>,<span class="dt">cols=</span>Sepal.Width,<span class="dt">color=</span><span class="st">&quot;red&quot;</span>) </code></pre></div>
+<head>
+<style>
+        table {
+              font-family: times ;
+color:  black ;
+text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+            }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style>
+</head>
+<table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;">
+<caption style="text-align:center;">
+Table 3. Conditinoal Formatting: Sepal.Width &gt;= 3.5
+</caption>
+<tr>
+<th style="border-left: 0px solid black;background-color: #C90000;border-top: 2px solid gray;border-bottom: 1px solid gray;">
+ 
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #C90000;color: #FFFFFF;">
+Sepal.Length
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #C90000;color: #FFFFFF;">
+Sepal.Width
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #C90000;color: #FFFFFF;">
+Petal.Length
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #C90000;color: #FFFFFF;">
+Petal.Width
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;background-color: #C90000;color: #FFFFFF;">
+Species
+</th>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; ">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;">
+5.10
+</td>
+<td align="right" style="border-left: 0px solid black;color: #FF0000;">
+3.50
+</td>
+<td align="right" style="border-left: 0px solid black;">
+1.40
+</td>
+<td align="right" style="border-left: 0px solid black;">
+0.20
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+2
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.90
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.40
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.20
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.70
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.20
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.30
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.20
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+4
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.60
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.10
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.50
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.20
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+5
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+5.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;color: #FF0000;">
+3.60
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.40
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.20
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+setosa
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+6
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+5.40
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;color: #FF0000;">
+3.90
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.70
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.40
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+setosa
+</td>
+</tr>
+<tr>
+<td colspan="6" align="left" style="font-size:9pt ;border-top: 1px solid black; border-bottom: hidden;">
+</td>
+</tr>
+</table>
+</div>
+<div id="make-a-heatmap-table" class="section level2">
+<h2>Make a Heatmap Table</h2>
+<p>You can make a heatmap table in which background colors representing the values. With makeHeatmap() function, you can make a heatmap table easily. The namakeHeatmap() function apply the “Reds” palette from RColorBrewer package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">z <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">makeHeatmap</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">print</span>(<span class="dt">caption=</span><span class="st">&quot;Table 4. Heatmap Table&quot;</span>)</code></pre></div>
+<head>
+<style>
+        table {
+              font-family: times ;
+color:  black ;
+text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+            }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style>
+</head>
+<table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;">
+<caption style="text-align:center;">
+Table 4. Heatmap Table
+</caption>
+<tr>
+<th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">
+ 
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Ex-smoker
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Never
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Smoker
+</th>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; ">
+NSTEMI
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FFF5F0;">
+42
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FFF5F0;">
+50
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FEE0D2;">
+61
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+STEMI
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FEE0D2;">
+66
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FC9272;">
+97
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #CB181D;color: #FFFFFF;">
+141
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Unstable Angina
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FC9272;">
+96
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #67000D;color: #FFFFFF;">
+185
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #FB6A4A;color: #FFFFFF;">
+119
+</td>
+</tr>
+<tr>
+<td colspan="4" align="left" style="font-size:9pt ;border-top: 1px solid black; border-bottom: hidden;">
+</td>
+</tr>
+</table>
+</div>
+<div id="heatmap-table-with-desired-palette" class="section level2">
+<h2>Heatmap Table with desired palette</h2>
+<p>You can change the palette with palette argument. For example, you can use the “Blue” palette.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ztable</span>(<span class="kw">head</span>(mtcars)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">makeHeatmap</span>(<span class="dt">palette=</span><span class="st">&quot;Blues&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">print</span>(<span class="dt">caption=</span><span class="st">&quot;Table 5. Heatmap table with 'Blue' palette&quot;</span>)</code></pre></div>
+<head>
+<style>
+        table {
+              font-family: times ;
+color:  black ;
+text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+            }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style>
+</head>
+<table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;">
+<caption style="text-align:center;">
+Table 5. Heatmap table with ‘Blue’ palette
+</caption>
+<tr>
+<th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">
+ 
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+mpg
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+cyl
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+disp
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+hp
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+drat
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+wt
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+qsec
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+vs
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+am
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+gear
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+carb
+</th>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; ">
+Mazda RX4
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #F7FBFF;">
+21.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #F7FBFF;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #6BAED6;color: #FFFFFF;">
+160.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #C6DBEF;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #F7FBFF;">
+3.90
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #F7FBFF;">
+2.62
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #F7FBFF;">
+16.46
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #F7FBFF;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #F7FBFF;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #F7FBFF;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;background-color: #F7FBFF;">
+4.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Mazda RX4 Wag
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+21.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #6BAED6;color: #FFFFFF;">
+160.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #C6DBEF;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+3.90
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+2.88
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+17.02
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #F7FBFF;">
+4.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Datsun 710
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #DEEBF7;">
+22.80
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #C6DBEF;">
+108.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #C6DBEF;">
+93.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+3.85
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+2.32
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+18.61
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #F7FBFF;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Hornet 4 Drive
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+21.40
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #2171B5;color: #FFFFFF;">
+258.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #C6DBEF;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+3.08
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+3.21
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+19.44
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+3.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #F7FBFF;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Hornet Sportabout
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+18.70
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+8.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #08306B;color: #FFFFFF;">
+360.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #6BAED6;color: #FFFFFF;">
+175.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+3.15
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+3.44
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+17.02
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+3.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #F7FBFF;">
+2.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Valiant
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+18.10
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #4292C6;color: #FFFFFF;">
+225.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #C6DBEF;">
+105.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+2.76
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+3.46
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+20.22
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #F7FBFF;">
+3.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #F7FBFF;">
+1.00
+</td>
+</tr>
+<tr>
+<td colspan="12" align="left" style="font-size:9pt ;border-top: 1px solid black; border-bottom: hidden;">
+</td>
+</tr>
+</table>
+</div>
+<div id="heatmap-table-with-user-defined-palette" class="section level2">
+<h2>Heatmap Table with user-defined palette</h2>
+<p>With the gradientColor() function, you makes sequential colour graient palette easily.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mycolor=<span class="kw">gradientColor</span>(<span class="dt">low=</span><span class="st">&quot;yellow&quot;</span>,<span class="dt">mid=</span><span class="st">&quot;orange&quot;</span>,<span class="dt">high=</span><span class="st">&quot;red&quot;</span>,<span class="dt">n=</span><span class="dv">20</span>,<span class="dt">plot=</span><span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAwAAAAEgCAYAAAADshSRAAAEDWlDQ1BJQ0MgUHJvZmlsZQAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL+3gCAo9Q/bPrQvlQol2tQgKD60+INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p+tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M+fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H+n23BaIXzbcOnz5mfPoTvYVz7KzUl5+FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp+krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5+XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH+hRkH25+L+sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX++DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG+fAPPI6tJnNwb7ClP7IyF+D+bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv+thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf+ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r+xafL549HQ5jH+an+1y+LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC+P/Hs+y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C+DU9+z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VVBg/m8AAEAASURBVHgB7J0HYBRV14bPbnaT0AKBgHSkN6UjVekiIFgQla4ggoKK+tkLVrCXTwXBHxsiNvRTEQsg2EERpCO9iID0nmz93zM7k51sCggRk8l7dLOzM3dm7nnu3eWce8+54wpDhEICJEACJEACJEACJEACJFAgCLgLhJZUkgRIgARIgARIgARIgARIwCBAB4AdgQRIgARIgARIgARIgAQKEAE6AAWosakqCZAACZAACZAACZAACdABYB8gARIgARIgARIgARIggQJEgA5AAWpsqkoCJEACJEACJEACJEACdADYB0iABEiABEiABEiABEigABGgA1CAGpuqkgAJkAAJkAAJkAAJkAAdAPYBEiABEiABEiABEiABEihABOgAFKDGpqokQAIkQAIkQAIkQAIk4CECEiAB5xO49dZr5d13p0tSUiHHKLtq1TZDl7p1KjhGpwMHjkowGJCSyUmO0UkVOXz4oASCHilevLBj9Fr9e6T/1anlnP536PAx6XNZb3n2+UmOaScqQgIkkDUBVxiS9SHuJQEScAqBOjCS33xzrxQt6nKKSjJsWJq0au6WIYOdM46xbHlQRv8nKHOmxzumnVSRNj3S5IvX46VoEef0v2vv8knLs9D/LnFO/ztyLCwD7ispa9b96aj+R2VIgAQyE3DOL1dm3biHBEjAJBAX55YiML7q1XNO1F88bOQiRUTq1XWOTus2hMTrhU61naOTdkE31ClSGP2vpnP00nYqggm1etWdo9PK9SHR3woKCZCA8wnwm+78NqaGJEACJEACJEACJEACJJBOgA5AOgpukAAJkAAJkAAJkAAJkIDzCdABcH4bU0MSIAESIAESIAESIAESSCdAByAdBTdIgARIgARIgARIgARIwPkE6AA4v42pIQmQAAmQAAmQAAmQAAmkE6ADkI6CGyRAAiRAAiRAAiRAAiTgfAJ0AJzf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gARIgARyJkAHIGc+PEoCJEACJEACJEACJEACjiJAB8BRzUllSIAESIAESIAESIAESCBnAnQAcubDoyRAAiRAAiRAAiRAAiTgKAJ0ABzVnFSGBEiABEiABEiABEiABHImQAcgZz48SgIkQAIkQAIkQAIkQAKOIkAHwFHNSWVIgARIgARIgARIgARIIGcCdABy5sOjJEACJEACJEACJEACJOAoAnQAHNWcVIYESIAESIAESIAESIAEciZAByBnPjxKAiRAAiRAAiRAAiRAAo4iQAfAUc1JZUiABEiABEiABEiABEggZwJ0AHLmw6MkQAIkQAIkQAIkQAIk4CgCdAAc1ZxUhgRIgARIgARIgARIgARyJkAHIGc+PEoCJEACJEACJEACJEACjiJAB8BRzUllSIAESIAESIAESIAESCBnAnQAcubDoyRAAiRAAiRAAiRAAiTgKAJ0ABzVnFSGBEiABEiABEiABEiABHIm4ApDci7CoyRAAvmdgMvlkrp1XVK6tCu/q5Je/2+/DRnb57V1jk77D4Rl6TKR81o6RydtpG/nh6VOdfS/kunNl+83vvsl8k/nuU2c01b+gMj8pWGhWZDvuycVIIHjEvActwQLkAAJOIJA/bJuqV/VOcaK5QB0ODPOEe2jSsxfFZKlEpL2lZ2jk+r17fyAnFXSLfUqOKf/ffcLrGVIh7LOaatV28MyX4KGXvxDAiTgbAJ0AJzdvtSOBAwCdWtVlDFDdkn9as6J+pu3OCTn1XPLmIFex7Typz8FZOVmkTFXOEcnbZwXZwbl/os9Ur+Cc/rfN6vR/6qi/3V3Tlut3B6SZQfLOub7REVIgASyJ+CcX+PsdeQREiABEiABEiABEiABEiABkwAdAHYFEiABEiABEiABEiABEihABOgAFKDGpqokQAIkQAIkQAIkQAIkQAeAfYAESIAESIAESIAESIAEChABOgAFqLGpKgmQAAmQAAmQAAmQAAnQAWAfIAESIAESIAESIAESIIECRIAOQAFqbKpKAiRAAiRAAiRAAiRAAnQA2AdIgARIgARIgARIgARIoAARoANQgBqbqpIACZAACZAACZAACZAAHQD2ARIgARIgARIgARIgARIoQAToABSgxqaqJEACJEACJEACJEACJEAHgH2ABEiABEiABEiABEiABAoQAToABaixqSoJkAAJkAAJkAAJkAAJ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1zJ+Y2+v9f8LD2mrjDIqKzETUh75EZokrdzWoA27IPF2Wkc8hdb2BNvY6+S1z0b/w0xMReiyC6PsmgBcFevyq6ijcP33fmkPp+fq6uh/aPN/qv8ZbYC+dSaczuza4O+w09kE1cJKIrafuxKOzeWrSst3C3/Dw/ncUrJkSfthbpMACTiIQHQ4x0FKURUSKMgE6tWrl65+4cKFpVGjRumf/+mNM2KWED2V++mo45kwsCypZ8Yq6+fCGKkuilVQjDLZhH1Y5+XGe2GEdRTOPKGR4dI5OQdWwdgy5QxeUR0rw9nxImE7O4Pcuk5uvKsxqTH9OYmWqX6cMvpshsq2RWLq4SFblii3RggH0nbKKjbfKpcX342+ZfZnHe23L06rswRq8BtlikT1/Sf0MNogi9Clk71Xirl6UE7n6zNEKCRAAs4m8M/+cjmbHbUjARIgARIgARIgARIggXxHgA5AvmsyVpgESIAESIAESIAESIAETp4AHYCTZ8czSYAESIAESIAESIAESCDfEaADkO+ajBUmARIgARIgARIgARIggZMnQAfg5NnxTBIgARIgARIgARIgARLIdwToAOS7JmOFSYAESIAESIAESIAESODkCdABOHl2PJMESIAESIAESIAESIAE8h0BOgD5rslYYRIgARIgARIgARIgARI4eQJ0AE6eHc8kARIgARIgARIgARIggXxHgA5AvmsyVpgESIAESIAESIAESIAETp4AHYCTZ8czSYAESIAESIAESIAESCDfEaADkO+ajBUmARIgARIgARIgARIggZMnQAfg5NnxTBIgARIgARIgARIgARLIdwToAOS7JmOFSYAESIAESIAESIAESODkCdABOHl2PJMESIAESIAESIAESIAE8h0BOgD5rslYYRIgARIgARIgARIgARI4eQJ0AE6eHc8kARIgARIgARIgARIggXxHgA5AvmsyVpgESIAESIAESIAESIAETp6AKww5+dN5JgmQQH4gULlUkuw+cEgS41z5obonVMd9vshPV7LXOTodC4RFtXFSO2ljhoNhSVO93M5pq33QSSXZQTrpVyq5aBHZevCQoRv/kAAJOJeAx7mqUTMSIAGLQGLhojKnTpoUjbP25P/34cv80rKwW64+wzkTmcuPhOXmDUGZVcVZP83nbgzInKIeKeoc+1+GHwlIy4Bbrgo5p/8dwc/CIPxW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" width="100%" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mycolor
+ [<span class="dv">1</span>] <span class="st">&quot;#FFFF00&quot;</span> <span class="st">&quot;#FFF500&quot;</span> <span class="st">&quot;#FFEB00&quot;</span> <span class="st">&quot;#FFE200&quot;</span> <span class="st">&quot;#FFD800&quot;</span> <span class="st">&quot;#FFCE00&quot;</span> <span class="st">&quot;#FFC400&quot;</span>
+ [<span class="dv">8</span>] <span class="st">&quot;#FFBA00&quot;</span> <span class="st">&quot;#FFAF00&quot;</span> <span class="st">&quot;#FFA500&quot;</span> <span class="st">&quot;#FF9B00&quot;</span> <span class="st">&quot;#FF9000&quot;</span> <span class="st">&quot;#FF8600&quot;</span> <span class="st">&quot;#FF7A00&quot;</span>
+[<span class="dv">15</span>] <span class="st">&quot;#FF6E00&quot;</span> <span class="st">&quot;#FF6200&quot;</span> <span class="st">&quot;#FF5300&quot;</span> <span class="st">&quot;#FF4300&quot;</span> <span class="st">&quot;#FF2E00&quot;</span> <span class="st">&quot;#FF0000&quot;</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ztable</span>(<span class="kw">head</span>(mtcars[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>])) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">makeHeatmap</span>(<span class="dt">mycolor=</span>mycolor) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">print</span>(<span class="dt">caption=</span><span class="st">&quot;Table 6. Heatmap table with user-defined palette&quot;</span>)</code></pre></div>
+<head>
+<style>
+        table {
+              font-family: times ;
+color:  black ;
+text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+            }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style>
+</head>
+<table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;">
+<caption style="text-align:center;">
+Table 6. Heatmap table with user-defined palette
+</caption>
+<tr>
+<th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">
+ 
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+mpg
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+cyl
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+disp
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+hp
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+drat
+</th>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; ">
+Mazda RX4
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FFF500;">
+21.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FFFF00;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FFAF00;">
+160.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FFC400;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFFF00;">
+3.90
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Mazda RX4 Wag
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF500;">
+21.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFFF00;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFAF00;">
+160.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFC400;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #FFFF00;">
+3.90
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Datsun 710
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF500;">
+22.80
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFFF00;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFC400;">
+108.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFCE00;">
+93.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #FFFF00;">
+3.85
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Hornet 4 Drive
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF500;">
+21.40
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFFF00;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FF6E00;color: #FFFFFF;">
+258.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFC400;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #FFFF00;">
+3.08
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Hornet Sportabout
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF500;">
+18.70
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFFF00;">
+8.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FF0000;color: #FFFFFF;">
+360.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFA500;">
+175.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #FFFF00;">
+3.15
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Valiant
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF500;">
+18.10
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFFF00;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FF8600;color: #FFFFFF;">
+225.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFCE00;">
+105.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #FFFF00;">
+2.76
+</td>
+</tr>
+<tr>
+<td colspan="6" align="left" style="font-size:9pt ;border-top: 1px solid black; border-bottom: hidden;">
+</td>
+</tr>
+</table>
+</div>
+<div id="heatmap-table-with-non-numeric-data" class="section level2">
+<h2>Heatmap Table with non-numeric data</h2>
+<p>You can make heatmap table with data containing non-numeric columns. Only columns with numeric data affected by this function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ztable</span>(<span class="kw">head</span>(acs[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>])) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span>makeHeatmap <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">print</span>(<span class="dt">caption=</span><span class="st">&quot;Table 7. Heatmap table with non-numeric data&quot;</span>)</code></pre></div>
+<head>
+<style>
+        table {
+              font-family: times ;
+color:  black ;
+text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+            }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style>
+</head>
+<table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;">
+<caption style="text-align:center;">
+Table 7. Heatmap table with non-numeric data
+</caption>
+<tr>
+<th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">
+ 
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+age
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+sex
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+cardiogenicShock
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+entry
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Dx
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+EF
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+height
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+weight
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+BMI
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+obesity
+</th>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; ">
+1
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FCBBA1;">
+62
+</td>
+<td align="left" style="border-left: 0px solid black;">
+Male
+</td>
+<td align="left" style="border-left: 0px solid black;">
+No
+</td>
+<td align="left" style="border-left: 0px solid black;">
+Femoral
+</td>
+<td align="left" style="border-left: 0px solid black;">
+STEMI
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FFF5F0;">
+18.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #67000D;color: #FFFFFF;">
+168.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FC9272;">
+72.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FFF5F0;">
+25.51
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;">
+Yes
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+2
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FC9272;">
+78
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Female
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+No
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Femoral
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+STEMI
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+18.40
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #A50F15;color: #FFFFFF;">
+148.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FCBBA1;">
+48.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+21.91
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+No
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+3
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FC9272;">
+76
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Female
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Yes
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Femoral
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+STEMI
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+20.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+No
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+4
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FB6A4A;color: #FFFFFF;">
+89
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Female
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+No
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Femoral
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+STEMI
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+21.80
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #67000D;color: #FFFFFF;">
+165.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FCBBA1;">
+50.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+18.37
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+No
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+5
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FCBBA1;">
+56
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Male
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+No
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Radial
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+NSTEMI
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+21.80
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #67000D;color: #FFFFFF;">
+162.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FCBBA1;">
+64.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+24.39
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+No
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+6
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FC9272;">
+73
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Female
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+No
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Radial
+</td>
+<td align="left" style="border-left: 0px solid black;border-top: hidden;">
+Unstable Angina
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+22.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #A50F15;color: #FFFFFF;">
+153.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FCBBA1;">
+59.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFF5F0;">
+25.20
+</td>
+<td align="left" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+Yes
+</td>
+</tr>
+<tr>
+<td colspan="11" align="left" style="font-size:9pt ;border-top: 1px solid black; border-bottom: hidden;">
+</td>
+</tr>
+</table>
+</div>
+<div id="selected-columnwise-heatmap-table" class="section level2">
+<h2>Selected Columnwise Heatmap Table</h2>
+<p>You can make selected columnwise heatmap table. You can select columns with <code>cols</code> argument. To make columnwise heatmap table, set the <code>margin</code> argument 2.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ztable</span>(<span class="kw">head</span>(mtcars)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">makeHeatmap</span>(<span class="dt">palette=</span><span class="st">&quot;YlOrRd&quot;</span>,<span class="dt">cols=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>),<span class="dt">margin=</span><span class="dv">2</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">print</span>(<span class="dt">caption=</span><span class="st">&quot;Table 8. Columnwise heatmap table&quot;</span>)</code></pre></div>
+<head>
+<style>
+        table {
+              font-family: times ;
+color:  black ;
+text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+            }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style>
+</head>
+<table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;">
+<caption style="text-align:center;">
+Table 8. Columnwise heatmap table
+</caption>
+<tr>
+<th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">
+ 
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+mpg
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+cyl
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+disp
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+hp
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+drat
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+wt
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+qsec
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+vs
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+am
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+gear
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+carb
+</th>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; ">
+Mazda RX4
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FC4E2A;color: #FFFFFF;">
+21.00
+</td>
+<td align="right" style="border-left: 0px solid black;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FED976;">
+160.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FED976;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;">
+3.90
+</td>
+<td align="right" style="border-left: 0px solid black;">
+2.62
+</td>
+<td align="right" style="border-left: 0px solid black;">
+16.46
+</td>
+<td align="right" style="border-left: 0px solid black;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;">
+4.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Mazda RX4 Wag
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FC4E2A;color: #FFFFFF;">
+21.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FED976;">
+160.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FED976;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.90
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+2.88
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+17.02
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+4.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Datsun 710
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #800026;color: #FFFFFF;">
+22.80
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFFFCC;">
+108.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFFFCC;">
+93.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.85
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+2.32
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+18.61
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Hornet 4 Drive
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #E31A1C;color: #FFFFFF;">
+21.40
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FC4E2A;color: #FFFFFF;">
+258.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FED976;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.08
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.21
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+19.44
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Hornet Sportabout
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFEDA0;">
+18.70
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+8.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #800026;color: #FFFFFF;">
+360.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #800026;color: #FFFFFF;">
+175.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.15
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.44
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+17.02
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+2.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+Valiant
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFFFCC;">
+18.10
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FD8D3C;color: #FFFFFF;">
+225.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFEDA0;">
+105.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+2.76
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.46
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+20.22
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+1.00
+</td>
+</tr>
+<tr>
+<td colspan="12" align="left" style="font-size:9pt ;border-top: 1px solid black; border-bottom: hidden;">
+</td>
+</tr>
+</table>
+</div>
+<div id="selected-rowwise-heatmap-table" class="section level2">
+<h2>Selected Rowwise Heatmap Table</h2>
+<p>You can make selected columnwise heatmap table. You can select rows with <code>rows</code> argument. To make rowwise heatmap table, set the <code>margin</code> argument 1.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ztable</span>(<span class="kw">t</span>(<span class="kw">head</span>(mtcars))) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">makeHeatmap</span>(<span class="dt">palette=</span><span class="st">&quot;YlOrRd&quot;</span>,<span class="dt">rows=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>),<span class="dt">margin=</span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">print</span>(<span class="dt">caption=</span><span class="st">&quot;Table 9. Rowwise heatmap table&quot;</span>)</code></pre></div>
+<head>
+<style>
+        table {
+              font-family: times ;
+color:  black ;
+text-align: right;}
+        th {
+              padding: 1px 1px 5px 5px;
+            }
+        td {
+             padding: 1px 1px 5px 5px; }
+      </style>
+</head>
+<table align="center" style="border-collapse: collapse; caption-side:top; font-size:11pt;">
+<caption style="text-align:center;">
+Table 9. Rowwise heatmap table
+</caption>
+<tr>
+<th style="border-left: 0px solid black;background-color: #FFFFFF;border-top: 2px solid gray;border-bottom: 1px solid gray;">
+ 
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Mazda RX4
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Mazda RX4 Wag
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Datsun 710
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Hornet 4 Drive
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Hornet Sportabout
+</th>
+<th <th align="center" style="font-weight: normal;border-left: 0px solid black;border-right:0px solid black;border-bottom: 1px solid gray;border-top: 2px solid gray;">
+Valiant
+</th>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; ">
+mpg
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FC4E2A;color: #FFFFFF;">
+21.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FC4E2A;color: #FFFFFF;">
+21.00
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #800026;color: #FFFFFF;">
+22.80
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #E31A1C;color: #FFFFFF;">
+21.40
+</td>
+<td align="right" style="border-left: 0px solid black;background-color: #FFEDA0;">
+18.70
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;background-color: #FFFFCC;">
+18.10
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+cyl
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+6.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+8.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+6.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+disp
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FED976;">
+160.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FED976;">
+160.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFFFCC;">
+108.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FC4E2A;color: #FFFFFF;">
+258.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #800026;color: #FFFFFF;">
+360.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #FD8D3C;color: #FFFFFF;">
+225.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+hp
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FED976;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FED976;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FFFFCC;">
+93.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #FED976;">
+110.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;background-color: #800026;color: #FFFFFF;">
+175.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;background-color: #FFEDA0;">
+105.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+drat
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.90
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.90
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.85
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.08
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.15
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+2.76
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+wt
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+2.62
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+2.88
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+2.32
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.21
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.44
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+3.46
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+qsec
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+16.46
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+17.02
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+18.61
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+19.44
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+17.02
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+20.22
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+vs
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+1.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+am
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+0.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+gear
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+3.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+3.00
+</td>
+</tr>
+<tr>
+<td style="border-left: 0px solid black; border-top: hidden;">
+carb
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+4.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+1.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-top: hidden;">
+2.00
+</td>
+<td align="right" style="border-left: 0px solid black;border-right:0px solid black;border-top: hidden;">
+1.00
+</td>
+</tr>
+<tr>
+<td colspan="7" align="left" style="font-size:9pt ;border-top: 1px solid black; border-bottom: hidden;">
+</td>
+</tr>
+</table>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

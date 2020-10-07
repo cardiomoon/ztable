@@ -1,0 +1,157 @@
+---
+title: "ztable Update"
+author: "Keon-Woong Moon"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ztable_update}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = NA
+)
+```
+
+# Introduction
+
+If you are unfamiliar to ztable, please read the ztable vignette: https://CRAN.R-project.org/package=ztable/vignettes/ztable.html
+
+## Installation
+
+You can install R package "ztable" from CRAN. Current version is 0.1.8.
+
+```{r,eval=FALSE}
+install.packages("ztable")
+```
+
+You can install the developmental version of ztable from github. Current github version is 0.1.9.
+```{r,eval=FALSE}
+if(!require(devtools)) install.packages("devtools")
+devtools::install_github("cardiomoon/ztable")
+```
+
+
+## Make table from a data.frame
+
+Package "ztable" make everything possible about table. Basically, An object of "ztable" made from a data.frame. The default output format of ztable is RStudio::viewer or web-browser format(type="viewer"). So if you want to use ztable in a "html" format, you should change the parameter ztable.type to "html". If you want to use ztable in latex format, you should change the parameter ztable.type to "latex". 
+
+```{r,results='asis'}
+library(ztable)
+library(magrittr)
+options(ztable.type="html")
+z=ztable(head(iris),caption="Table 1. Basic Table")
+z
+```
+
+## Use background and font color
+
+You can change background color and font color with bg and color arguments in addRowColor(), addColColor() and addCellColor() functions.
+
+```{r,results='asis'}
+ztable(head(iris),caption="Table 2. Table with desired background and font colors") %>%
+    addRowColor(rows=1,bg="#C90000",color="white") %>%
+    addCellColor(rows=3,cols=c(4,6), bg="cyan",color="red") 
+```
+
+## Conditional Formatting
+
+You can select rows with logical expression. You can select cols with column name.
+
+```{r,results='asis'}
+ztable(head(iris),caption="Table 3. Conditinoal Formatting: Sepal.Width >= 3.5") %>%
+    addRowColor(rows=1,bg="#C90000",color="white") %>%
+    addCellColor(condition=Sepal.Width>=3.5,cols=Sepal.Width,color="red") 
+```
+
+
+```{r,results='asis'}
+ztable(head(mtcars),caption="Table 4. Cars with mpg > 21 ") %>%
+    addCellColor(condition=mpg>21,cols=1:2,bg="cyan",color="red") 
+```
+
+
+## Use of color palette
+
+You can use color palettes from RColorBrewer packages. You can extract colors from palette by using palette2colors() function.
+
+```{r}
+require(RColorBrewer)
+
+reds=palette2colors("Reds")
+reds
+```
+
+You can use the extracted colors to your ztable.
+
+```{r,results='asis'}
+ztable(head(iris),caption="Table 5. Use of color palette") %>% 
+    addColColor(bg=reds)
+
+ztable(head(mtcars),caption="Table 6. Use of color palette(2)") %>%
+    addRowColor(bg=palette2colors("Set3"))
+```
+
+## Make a flextable from a ztable
+
+You can use ztable for html nad latex output. But it is impossible to use ztable in `Microsoft Word` or `Microsoft Powerpoint` output directly. The `officer` package by David Gohel makes it possible to access and manipulate `Microsoft Word` or `Microsoft Powerpoint` document. You can insert a flextable object office documents with officer package.
+
+```{r}
+require(officer)
+require(flextable)
+
+ft=regulartable(head(iris))
+ft
+```
+
+You can make a 'Microsoft Word' document  with this flextable. 
+
+```{r}
+read_docx() %>%
+    body_add_flextable(ft) %>%
+    print(target = "flextable.docx")
+```
+
+You can convert an object of class ztable to a flextable object. 
+
+```{r,results='asis'}
+cgroup=c("Sepal","Petal","Species")
+n.cgroup=c(2,2,1)
+z <- ztable(head(iris),caption="Table 9. Use of column groups") %>%
+    addcgroup(cgroup=cgroup,n.cgroup=n.cgroup,color=c("red","green","blue")) %>%
+    spanRow(col=4,from=2,to=3,bg="cyan") %>%
+    spanCol(row=5,from=2,to=3,bg="cyan",color="blue")
+z
+ztable2flextable(z)
+```
+
+
+```{r,results='asis'}
+fit <- lm(mpg ~ cyl + disp + wt + drat + am, data=mtcars)
+z=ztable(fit,caption="Table 10. Results of Multiple Regression Analysis ")
+z
+ztable2flextable(z)
+```
+
+You can change the color of rows in which p value is below the desired level(default value is 0.05).
+
+```{r,results='asis'}
+z1=z %>% addSigColor
+z1
+ztable2flextable(z1) %>% autofit()
+```
+
+You can change the significant level and background and font color.
+
+```{r,results='asis'}
+z2= z %>% addSigColor(level=0.01,bg="yellow",color="red")
+z2
+ztable2flextable(z2) 
+
+```
+
+For more options of flextable, please read the flextable vignette at https://davidgohel.github.io/flextable/index.html. 
+

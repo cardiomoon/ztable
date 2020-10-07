@@ -1,0 +1,3640 @@
+
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin17.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "processR"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> library('processR')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("addCatVars")
+> ### * addCatVars
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: addCatVars
+> ### Title: Add dummy vars to data.frame
+> ### Aliases: addCatVars
+> 
+> ### ** Examples
+> 
+> mtcars1=addCatVars(mtcars,c("cyl","carb"))
+> mtcars1[c(3:5),]
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb D1 D2 E1
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1  0  0  0
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1  1  0  0
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2  0  1  1
+                  E2 E3 E4 E5
+Datsun 710         0  0  0  0
+Hornet 4 Drive     0  0  0  0
+Hornet Sportabout  0  0  0  0
+> mtcars2=addCatVars(mtcars,c("cyl","carb"),mode=3)
+> mtcars2[c(3:5),]
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb         D1
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1 -0.6666667
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1  0.3333333
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2  0.3333333
+                    D2         E1   E2 E3 E4 E5
+Datsun 710         0.0 -0.8333333  0.0  0  0  0
+Hornet 4 Drive    -0.5 -0.8333333  0.0  0  0  0
+Hornet Sportabout  0.5  0.1666667 -0.8  0  0  0
+> protest1=addCatVars(protest,"protest")
+> head(protest1)
+  subnum protest sexism angry liking respappr D1 D2
+1    209       2   4.87     2   4.83     4.25  0  1
+2     44       0   4.25     1   4.50     5.75  0  0
+3    124       2   5.00     3   5.50     4.75  0  1
+4    232       2   5.50     1   5.66     7.00  0  1
+5     30       2   5.62     1   6.16     6.75  0  1
+6    140       1   5.75     1   6.00     5.50  1  0
+> iris1=addCatVars(iris,c("Species"),mode=3)
+> (iris1[c(1,51,101),])
+    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species         D1
+1            5.1         3.5          1.4         0.2     setosa -0.6666667
+51           7.0         3.2          4.7         1.4 versicolor  0.3333333
+101          6.3         3.3          6.0         2.5  virginica  0.3333333
+      D2
+1    0.0
+51  -0.5
+101  0.5
+> 
+> 
+> 
+> cleanEx()
+> nameEx("addCovarEquation")
+> ### * addCovarEquation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: addCovarEquation
+> ### Title: Add covariates to equation
+> ### Aliases: addCovarEquation
+> 
+> ### ** Examples
+> 
+> equation="M ~ X*W\nY ~ a1*M + C1*X"
+> covar=list(name=c("C1","C2","C3"),label=c("ese","sex","tenure"),site=list(c("M","Y"),"Y","Y"))
+> grouplabels=list(C1="e")
+> addCovarEquation(equation,covar=covar)
+[1] "M ~  X*W + f1*C1\nY ~  a1*M + C1*X + f1*C1 + f2*C2 + f3*C3"
+> equation="M1 ~ a11*X\nM2 ~ a12*M"
+> covar=list(name=c("C1","C2","C3"),label=c("ese","sex","tenure"),site=list(c("M1","Y"),"M2","M2"))
+> addCovarEquation(equation,covar=covar,multipleMediator=TRUE)
+[1] "M1 ~  a11*X + f11*C1\nM2 ~  a12*M + f12*C2 + f22*C3"
+> addCovarEquation(equation,covar=covar)
+[1] "M1 ~  a11*X + f1*C1\nM2 ~  a12*M + f1*C2 + f2*C3"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("addLabels")
+> ### * addLabels
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: addLabels
+> ### Title: add name to labels
+> ### Aliases: addLabels
+> 
+> ### ** Examples
+> 
+> labels=c(X="X",M="M",Y="Y")
+> addLabels(labels,"W","X")
+  X   M   Y 
+"X" "M" "Y" 
+> addLabels(labels,"W","W")
+  X   M   Y   W 
+"X" "M" "Y" "W" 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("adjustypos")
+> ### * adjustypos
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: adjustypos
+> ### Title: Adjust y position
+> ### Aliases: adjustypos
+> 
+> ### ** Examples
+> 
+> ypos=c(0.5,0.9,1,1,2,3)
+> adjustypos(ypos)
+[1] 0.50 0.90 0.08 0.08 0.34 0.60
+> adjustypos(ypos,totalOnly=TRUE)
+[1] 0.50 0.90 0.32 0.32 0.50 0.68
+> 
+> 
+> 
+> cleanEx()
+> nameEx("catMediation")
+> ### * catMediation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: catMediation
+> ### Title: Make Mediation Equation with one categorical variable
+> ### Aliases: catMediation
+> 
+> ### ** Examples
+> 
+> labels=list(X="cyl",M="am",Y="mpg")
+> moderator=list(name=c("cyl","wt"),site=list(c("a","c"),c("c")))
+> covar=list(name=c("carb","disp"),label=c("carb","disp"),site=list(c("M","Y"),"Y","Y"))
+> cat(catMediation(labels=labels,data=mtcars))
+am~a*cyl
+mpg~b*am+c*cyl
+indirect :=(a)*(b)
+direct :=c
+total := direct + indirect
+prop.mediated := indirect / total
+> cat(catMediation(X="am",Y="mpg",data=mtcars,moderator=moderator,covar=covar,maxylev=6))
+mpg ~ c1*am+c2*D1+c3*D2+c4*wt+c5*am:D1+c6*am:D2+c7*am:wt + g1*E1 + g2*E2 + g3*E3 + g4*E4 + g5*E5 + g6*disp> cat(catMediation(X="am",Y="mpg",data=mtcars,moderator=moderator,covar=covar))
+mpg ~ c1*am+c2*cyl+c3*wt+c4*am:cyl+c5*am:wt + g1*carb + g2*disp> cat(catMediation(X="cyl",M="am",Y="mpg",data=mtcars))
+am~a*cyl
+mpg~b*am+c*cyl
+indirect :=(a)*(b)
+direct :=c
+total := direct + indirect
+prop.mediated := indirect / total
+> cat(catMediation(X="cyl",M="am",Y="mpg",data=mtcars,moderator=moderator))
+am~a1*cyl+a2*cyl+a3*cyl:cyl
+mpg~b*am+c1*cyl+c2*cyl+c3*wt+c4*cyl:cyl+c5*cyl:wt
+cyl ~ cyl.mean*1
+cyl ~~ cyl.var*cyl
+
+wt ~ wt.mean*1
+wt ~~ wt.var*wt
+
+CE.XonM :=a1+a2+a3*cyl.mean
+
+indirect :=(a1+a2+a3*cyl.mean)*(b)
+index.mod.med :=a3*b
+direct :=c1+c2+c4*cyl.mean+c5*wt.mean
+total := direct + indirect
+prop.mediated := indirect / total
+CE.XonM.below :=a1+a2+a3*(cyl.mean-sqrt(cyl.var))
+indirect.below :=(a1+a2+a3*(cyl.mean-sqrt(cyl.var)))*(b)
+CE.XonM.above :=a1+a2+a3*(cyl.mean+sqrt(cyl.var))
+indirect.above :=(a1+a2+a3*(cyl.mean+sqrt(cyl.var)))*(b)
+direct.below:=c1+c2+c4*(cyl.mean-sqrt(cyl.var))+c5*(wt.mean-sqrt(wt.var))
+direct.above:=c1+c2+c4*(cyl.mean+sqrt(cyl.var))+c5*(wt.mean+sqrt(wt.var))
+total.below := direct.below + indirect.below
+total.above := direct.above + indirect.above
+prop.mediated.below := indirect.below / total.below
+prop.mediated.above := indirect.above / total.above
+> cat(catMediation(X="cyl",M="am",Y="mpg",data=mtcars,moderator=moderator))
+am~a1*cyl+a2*cyl+a3*cyl:cyl
+mpg~b*am+c1*cyl+c2*cyl+c3*wt+c4*cyl:cyl+c5*cyl:wt
+cyl ~ cyl.mean*1
+cyl ~~ cyl.var*cyl
+
+wt ~ wt.mean*1
+wt ~~ wt.var*wt
+
+CE.XonM :=a1+a2+a3*cyl.mean
+
+indirect :=(a1+a2+a3*cyl.mean)*(b)
+index.mod.med :=a3*b
+direct :=c1+c2+c4*cyl.mean+c5*wt.mean
+total := direct + indirect
+prop.mediated := indirect / total
+CE.XonM.below :=a1+a2+a3*(cyl.mean-sqrt(cyl.var))
+indirect.below :=(a1+a2+a3*(cyl.mean-sqrt(cyl.var)))*(b)
+CE.XonM.above :=a1+a2+a3*(cyl.mean+sqrt(cyl.var))
+indirect.above :=(a1+a2+a3*(cyl.mean+sqrt(cyl.var)))*(b)
+direct.below:=c1+c2+c4*(cyl.mean-sqrt(cyl.var))+c5*(wt.mean-sqrt(wt.var))
+direct.above:=c1+c2+c4*(cyl.mean+sqrt(cyl.var))+c5*(wt.mean+sqrt(wt.var))
+total.below := direct.below + indirect.below
+total.above := direct.above + indirect.above
+prop.mediated.below := indirect.below / total.below
+prop.mediated.above := indirect.above / total.above
+> cat(catMediation(X="am",M="hp",Y="mpg",data=mtcars,moderator=moderator,maxylev=6))
+hp~a1*am+a2*D1+a3*D2+a4*am:D1+a5*am:D2
+mpg~b*hp+c1*am+c2*D1+c3*D2+c4*wt+c5*am:D1+c6*am:D2+c7*am:wt
+cyl ~ cyl.mean*1
+cyl ~~ cyl.var*cyl
+
+wt ~ wt.mean*1
+wt ~~ wt.var*wt
+
+CE.XonM :=a1+a4*D1+a5*D2
+
+indirect :=(a1+a4*D1+a5*D2)*(b)
+direct :=c1+c5*D1+c6*D2+c7*wt.mean
+total := direct + indirect
+prop.mediated := indirect / total
+CE.XonM.below :=a1+a4*D1+a5*D2
+indirect.below :=(a1+a4*D1+a5*D2)*(b)
+CE.XonM.above :=a1+a4*D1+a5*D2
+indirect.above :=(a1+a4*D1+a5*D2)*(b)
+direct.below:=c1+c5*D1+c6*D2+c7*(wt.mean-sqrt(wt.var))
+direct.above:=c1+c5*D1+c6*D2+c7*(wt.mean+sqrt(wt.var))
+total.below := direct.below + indirect.below
+total.above := direct.above + indirect.above
+prop.mediated.below := indirect.below / total.below
+prop.mediated.above := indirect.above / total.above
+> cat(catMediation(X="hp",M="am",Y="mpg",data=mtcars,maxylev=6))
+am~a*hp
+mpg~b*am+c*hp
+indirect :=(a)*(b)
+direct :=c
+total := direct + indirect
+prop.mediated := indirect / total
+> cat(catMediation(X="am",M="hp",Y="mpg",data=mtcars,moderator=moderator,covar=covar))
+hp ~ a1*am+a2*cyl+a3*am:cyl + f*carb
+mpg ~ b*hp+c1*am+c2*cyl+c3*wt+c4*am:cyl+c5*am:wt + g1*carb + g2*disp
+cyl ~ cyl.mean*1
+cyl ~~ cyl.var*cyl
+
+wt ~ wt.mean*1
+wt ~~ wt.var*wt
+
+CE.XonM := a1+a3*cyl.mean 
+
+indirect :=( a1+a3*cyl.mean )*(b)
+index.mod.med :=a3*b
+direct :=c1+c4*cyl.mean+c5*wt.mean
+total := direct + indirect
+prop.mediated := indirect / total
+CE.XonM.below := a1+a3*(cyl.mean-sqrt(cyl.var)) 
+indirect.below :=( a1+a3*(cyl.mean-sqrt(cyl.var)) )*(b)
+CE.XonM.above := a1+a3*(cyl.mean+sqrt(cyl.var)) 
+indirect.above :=( a1+a3*(cyl.mean+sqrt(cyl.var)) )*(b)
+direct.below:=c1+c4*(cyl.mean-sqrt(cyl.var))+c5*(wt.mean-sqrt(wt.var))
+direct.above:=c1+c4*(cyl.mean+sqrt(cyl.var))+c5*(wt.mean+sqrt(wt.var))
+total.below := direct.below + indirect.below
+total.above := direct.above + indirect.above
+prop.mediated.below := indirect.below / total.below
+prop.mediated.above := indirect.above / total.above
+> 
+> 
+> 
+> cleanEx()
+> nameEx("changeLabelName")
+> ### * changeLabelName
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: changeLabelName
+> ### Title: Change Label Names
+> ### Aliases: changeLabelName
+> 
+> ### ** Examples
+> 
+> labels=list(X="frame:test",Mi="empathy",Y="intervention",W="frame",Z="test")
+> x=c("skeptic","test","empathy","skeptic:frame:test","D1:frame","frame:test")
+> changeLabelName(x,labels)
+[1] "skeptic"     "Z"           "Mi"          "skeptic:W:Z" "D1:W"       
+[6] "X"          
+> changeLabelName(x,labels,add=TRUE)
+[1] "skeptic"                         "test(Z)"                        
+[3] "empathy(Mi)"                     "skeptic:frame:test(skeptic:W:Z)"
+[5] "D1:frame(D1:W)"                  "frame:test(X)"                  
+> x=c("baby","milk","baby:milk")
+> labels=list(X="baby",M=c("wine","tent","sand"),Y="tile",W="milk")
+> changeLabelName(x,labels)
+[1] "X"   "W"   "X:W"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("checkEqVars")
+> ### * checkEqVars
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: checkEqVars
+> ### Title: Check dependent variables in a equation
+> ### Aliases: checkEqVars
+> 
+> ### ** Examples
+> 
+> eq="M2~X+M+X+X*M*W"
+> checkEqVars(eq)
+[1] "M2~X+M+W+X:M+X:W+M:W+X:M:W"
+> eq="Y~M+W+M:W+X+W+X:W"
+> checkEqVars(eq)
+[1] "Y~M+X+W+M:W+X:W"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("checkEquationVars")
+> ### * checkEquationVars
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: checkEquationVars
+> ### Title: Check dependent variables in equations
+> ### Aliases: checkEquationVars
+> 
+> ### ** Examples
+> 
+> equation="M1~X*M*W+W*Z\nM2~X+M1+X"
+> checkEquationVars(equation)
+[1] "M1~X+M+W+X:M+X:W+M:W+X:M:W+Z+W:Z\nM2~X+M1"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("compareMC")
+> ### * compareMC
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: compareMC
+> ### Title: Compare effects of mean-centering and standardization of model
+> ### Aliases: compareMC
+> 
+> ### ** Examples
+> 
+> fit=lm(govact~negemot*age,data=glbwarm)
+> compareMC(fit)
+===================================================================== 
+                                coef        SE          t          p      
+--------------------------------------------------------------------- 
+Model 1: Original Data 
+R2 = 0.354 , MSE = 1.200 
+F(3,811) = 148.071, p < .001 
+                Constant   iy     4.335     0.330    13.154     <.001 
+              negemot(X)   b1     0.147     0.085     1.729      .084 
+                  age(W)   b2    -0.031     0.006    -5.009     <.001 
+        negemot:age(X:W)   b3     0.007     0.002     4.476     <.001 
+--------------------------------------------------------------------- 
+Model 2: X and W Mean-Centered 
+R2 = 0.354 , MSE = 1.200 
+F(3,811) = 148.071, p < .001 
+                Constant   iy     4.597     0.038   119.586     <.001 
+           negemot.c(X')   b1     0.501     0.025    19.810     <.001 
+               age.c(W')   b2    -0.005     0.002    -2.237      .026 
+  negemot.c:age.c(X':W')   b3     0.007     0.002     4.476     <.001 
+--------------------------------------------------------------------- 
+Model 3: Standardized Variant 1 
+R2 = 0.354 , MSE = 0.648 
+F(3,811) = 148.071, p < .001 
+                Constant  izy     0.007     0.028     0.263      .792 
+            Znegemot(Zx)   b1     0.562     0.028    19.810     <.001 
+                Zage(Zw)   b2    -0.063     0.028    -2.237      .026 
+    Znegemot:Zage(Zx:Zw)   b3     0.131     0.029     4.476     <.001 
+--------------------------------------------------------------------- 
+Model 4: Standardized Variant 2 
+R2 = 0.354 , MSE = 0.648 
+F(3,811) = 148.071, p < .001 
+                Constant  izy     0.000     0.028     0.000     <.001 
+            Znegemot(Zx)   b1     0.165     0.096     1.729      .084 
+                Zage(Zw)   b2    -0.368     0.073    -5.009     <.001 
+        Znegemotage(Zxw)   b3     0.511     0.114     4.476     <.001 
+===================================================================== 
+> compareMC(fit,mode=2)
+[[1]]
+
+Call:
+lm(formula = govact ~ negemot * age, data = glbwarm)
+
+Coefficients:
+(Intercept)      negemot          age  negemot:age  
+   4.334565     0.147134    -0.030657     0.007136  
+
+
+[[2]]
+
+Call:
+lm(formula = govact ~ negemot.c * age.c, data = data)
+
+Coefficients:
+    (Intercept)        negemot.c            age.c  negemot.c:age.c  
+       4.597115         0.500613        -0.005268         0.007136  
+
+
+[[3]]
+
+Call:
+lm(formula = Zgovact ~ Znegemot * Zage, data = data)
+
+Coefficients:
+  (Intercept)       Znegemot           Zage  Znegemot:Zage  
+      0.00744        0.56243       -0.06324        0.13092  
+
+
+[[4]]
+
+Call:
+lm(formula = Zgovact ~ Znegemot + Zage + Znegemotage, data = data)
+
+Coefficients:
+(Intercept)     Znegemot         Zage  Znegemotage  
+  2.260e-15    1.653e-01   -3.680e-01    5.109e-01  
+
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("compareVIF")
+> ### * compareVIF
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: compareVIF
+> ### Title: Compare correlation, tolerance, vif of mean-centered and
+> ###   standardized models
+> ### Aliases: compareVIF
+> 
+> ### ** Examples
+> 
+> fit=lm(govact~negemot*age,data=glbwarm)
+> compareVIF(fit)
+
+============================================================================= 
+     Original Data            X       W      XW  variance       tol       VIF 
+----------------------------------------------------------------------------- 
+             negemot(X)   1.000                     2.336     0.087    11.473 
+                 age(W)  -0.057   1.000           266.694     0.148     6.776 
+        negemot:age(XW)   0.766   0.549   1.000  9489.221     0.061    16.357 
+============================================================================= 
+ After Mean-Centering        X'      W'    X'W'  variance       tol       VIF 
+----------------------------------------------------------------------------- 
+          negemot.c(X')   1.000                     2.336     0.988     1.012 
+              age.c(W')  -0.057   1.000           266.694     0.997     1.003 
+  negemot.c:age.c(X'W')   0.092  -0.015   1.000   585.165     0.991     1.009 
+============================================================================= 
+ After Standardization       Zx      Zw    ZxZw  variance       tol       VIF 
+----------------------------------------------------------------------------- 
+           Znegemot(Zx)   1.000                     1.000     0.988     1.012 
+               Zage(Zw)  -0.057   1.000             1.000     0.997     1.003 
+    Znegemot:Zage(ZxZw)   0.092  -0.015   1.000     0.939     0.991     1.009 
+============================================================================= 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("compareVIFTable")
+> ### * compareVIFTable
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: compareVIFTable
+> ### Title: Make table comparing correlation, tolerance, vif of
+> ###   mean-centered and standardized models
+> ### Aliases: compareVIFTable
+> 
+> ### ** Examples
+> 
+> fit=lm(govact~negemot*age,data=glbwarm)
+> compareVIFTable(fit)
+a flextable object.
+col_keys: `rowname`, `X`, `W`, `XW`, `variance`, `tol`, `VIF` 
+header has 0 row(s) 
+body has 12 row(s) 
+original dataset sample: 
+                                  rowname      X     W    XW variance   tol
+Original Data               Original Data      X     W    XW variance   tol
+negemot(X)                     negemot(X)  1.000                2.336 0.087
+age(W)                             age(W) -0.057 1.000        266.694 0.148
+negemot:age(XW)           negemot:age(XW)  0.766 0.549 1.000 9489.221 0.061
+After Mean-Centering After Mean-Centering     X'    W'  X'W' variance   tol
+                        VIF
+Original Data           VIF
+negemot(X)           11.473
+age(W)                6.776
+negemot:age(XW)      16.357
+After Mean-Centering    VIF
+> compareVIFTable(fit,vanilla=FALSE)
+a flextable object.
+col_keys: `rowname`, `X`, `W`, `XW`, `variance`, `tol`, `VIF` 
+header has 0 row(s) 
+body has 12 row(s) 
+original dataset sample: 
+                                  rowname      X     W    XW variance   tol
+Original Data               Original Data      X     W    XW variance   tol
+negemot(X)                     negemot(X)  1.000                2.336 0.087
+age(W)                             age(W) -0.057 1.000        266.694 0.148
+negemot:age(XW)           negemot:age(XW)  0.766 0.549 1.000 9489.221 0.061
+After Mean-Centering After Mean-Centering     X'    W'  X'W' variance   tol
+                        VIF
+Original Data           VIF
+negemot(X)           11.473
+age(W)                6.776
+negemot:age(XW)      16.357
+After Mean-Centering    VIF
+> 
+> 
+> 
+> cleanEx()
+> nameEx("conceptDiagram2")
+> ### * conceptDiagram2
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: conceptDiagram2
+> ### Title: Make concept Diagram
+> ### Aliases: conceptDiagram2
+> 
+> ### ** Examples
+> 
+> labels=list(X="Time Spent in\n Grad School", M="# of\n Publications", Y="# of Job Offers")
+> conceptDiagram2(xb=TRUE,labels=labels)
+> moderator=list(name="Z1",label="Time Spent\n with Alex",pos=3,
++     site=list(c("a","b","c")),latent=FALSE)
+> conceptDiagram2(moderator=moderator,labels=labels)
+> moderator=list(name=c("Z1","Z2"),label=c("Time Spent\n with Alex","Z2label"),pos=c(3,3),
++     site=list(c("a","b","c"),c("b","c")),latent=c(FALSE,FALSE))
+> conceptDiagram2(moderator=moderator,labels=labels,yinterval=0.4)
+> covar=list(name=c("C1","C2"),label=c("sex","tenure"),site=list(c("Y"),c("Y")))
+> conceptDiagram2(M=NULL,moderator=list(name="M",pos=4,site=list("c"),latent=FALSE),covar=covar)
+> conceptDiagram2(covar=covar)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("condPlot")
+> ### * condPlot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: condPlot
+> ### Title: Draw conditional effect plot
+> ### Aliases: condPlot
+> 
+> ### ** Examples
+> 
+> fit=lm(justify~frame*skeptic,data=disaster)
+> condPlot(fit,rangemode=2,xpos=0.7,labels=c("Climate change(X=1)","Natural causes(X=0)"))
+Joining, by = "frame"
+Joining, by = "x"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("condPlot2")
+> ### * condPlot2
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: condPlot2
+> ### Title: Draw conditional plot for moderated moderation
+> ### Aliases: condPlot2
+> 
+> ### ** Examples
+> 
+> fit=lm(govact~negemot*sex*age+posemot+ideology,data=glbwarm)
+> condPlot2(fit)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("condPlotCat")
+> ### * condPlotCat
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: condPlotCat
+> ### Title: Make conditional effect plot with data including a categorical
+> ###   variable
+> ### Aliases: condPlotCat
+> 
+> ### ** Examples
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("condPlotCat2")
+> ### * condPlotCat2
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: condPlotCat2
+> ### Title: Draw direct and indirect effect plot
+> ### Aliases: condPlotCat2
+> 
+> ### ** Examples
+> 
+> library(lavaan)
+This is lavaan 0.6-7
+lavaan is BETA software! Please report any bugs.
+> labels=list(X="protest",W="sexism",M="respappr",Y="liking")
+> moderator=list(name="sexism",site=list(c("a","c")))
+> data1=addCatVars(protest,"protest",mode=3)
+> catlabels=c("Indirect: Protest\n   vs. No Protest",
++       "Indirect: Collective\n       vs. Individual",
++       "Direct: Protest\n vs. No Protest",
++       "Direct: Collective\n      vs. Individual")
+> model=catMediation(X="protest",M="respappr",Y="liking",moderator=moderator,
++        data=data1,maxylev=6,rangemode = 2)
+> semfit=sem(model=model,data=data1)
+Warning in lavaan::lavaan(model = model, data = data1, model.type = "sem",  :
+  lavaan WARNING: syntax contains parameters involving exogenous covariates; switching to fixed.x = FALSE
+> condPlotCat2(labels=labels,data=data1,semfit=semfit,catlabels=catlabels,
++        xpos=c(0.7,0.3,0.3,0.7),add.point=TRUE)
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:lavaan’
+
+> nameEx("densityPlot")
+> ### * densityPlot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: densityPlot
+> ### Title: Draw Smoothed Kernel density plot
+> ### Aliases: densityPlot
+> 
+> ### ** Examples
+> 
+> require(lavaan)
+Loading required package: lavaan
+This is lavaan 0.6-7
+lavaan is BETA software! Please report any bugs.
+> labels=list(X="cond",M="pmi",Y="reaction")
+> model=tripleEquation(labels=labels)
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:lavaan’
+
+> nameEx("divideEquation")
+> ### * divideEquation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: divideEquation
+> ### Title: divide equation
+> ### Aliases: divideEquation
+> 
+> ### ** Examples
+> 
+> equation="(a1+a3*W)*(b)"
+> divideEquation(equation)
+[1] "a1+a3*W" "b"      
+> 
+> 
+> 
+> cleanEx()
+> nameEx("drawCatModel")
+> ### * drawCatModel
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: drawCatModel
+> ### Title: Draw statistical diagram including categorical X
+> ### Aliases: drawCatModel
+> 
+> ### ** Examples
+> 
+> drawCatModel(xcount=4)
+> drawCatModel(M="M",box.col="yellow")
+> drawCatModel(W="W",xlim=c(-0.08,1),ylim=c(0.13,0.95),ypos=c(1,0.55))
+> drawCatModel(M="M",W="W",xlim=c(-0.08,1),ylim=c(0.13,0.95),ypos=c(1,0.55))
+> drawCatModel(xcount=4,M="M",W="W",xlim=c(-0.08,1),ylim=c(0.13,0.95),ypos=c(1,0.55))
+> 
+> 
+> 
+> cleanEx()
+> nameEx("drawConcept")
+> ### * drawConcept
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: drawConcept
+> ### Title: Draw Concept Diagram
+> ### Aliases: drawConcept
+> 
+> ### ** Examples
+> 
+> labels=list(X="estress",M="affect",Y="withdraw")
+> vars=list(name=list(c("tenure","age")),site=list(c("a","b")))
+> moderator=list(name=c("age","sex"),site=list(c("c"),c("b","c")),pos=c(1,2),
++      arr.pos=list(c(0.3),c(0.3,0.7)))
+> drawConcept(labels=labels)
+> drawConcept(labels=labels,vars=vars,drawbox=TRUE)
+> drawConcept(labels=labels,moderator=moderator,drawbox=TRUE)
+> drawConcept(labels=labels,vars=vars,moderator=moderator,drawbox=TRUE)
+> labels=list(X="X",M=c("M1","M2","M3"),Y="Y")
+> drawConcept(labels=labels,serial=TRUE)
+> drawConcept(labels=labels,parallel=TRUE,bmatrix=c(1,1,0,1,0,0,1,1,1,1))
+> drawConcept(labels=labels,parallel2=TRUE,bmatrix=c(1,1,0,1,0,0,1,1,1,1))
+> labels=list(X="baby",M=c("wine","tent","sand"),Y="tile")
+> bmatrix=c(1,1,0,1,0,0,1,1,1,1)
+> drawConcept(labels=labels,parallel=TRUE,bmatrix=bmatrix)
+> moderator=list(name=c("milk","hair"),
++   matrix=list(c(1,1,0,1,0,0,0,0,0,0),c(0,0,0,0,0,0,0,1,0,0)))
+> drawConcept(labels=labels,parallel=TRUE,bmatrix=bmatrix,moderator=moderator)
+> bmatrix=c(1,1,0,0,1,1,1,1,0,1)
+> moderator=list(name=c("milk","hair"),
++             matrix=list(c(1,0,0,0,1,0,1,0,0,0),c(1,1,0,0,0,0,0,0,0,0)),
++             pos=c(1,4))
+> node.pos=list(X=c(0,0.5),M1=c(0.3,0.9),M2=c(0.3,0.1),M3=c(0.7,0.9),
++ Y=c(1,0.5),W1=c(0.7,0.1),W2=c(0,0.9))
+> drawConcept(labels=labels,bmatrix=bmatrix,moderator=moderator,node.pos=node.pos)
+> labels=list(X="baby",M=c("wine","tent","sand"),Y="tile")
+> vars=list(name=list(c("milk","hair")),matrix=list(c(1,0,0,0,0,0,1,0,0,0)),pos=2)
+> bmatrix=c(1,1,0,1,0,0,1,1,1,1)
+> drawConcept(labels=labels,parallel=TRUE,bmatrix=bmatrix,vars=vars)
+> labels=list(X="X",M=c("M1","M2"),Y="Y")
+> vars=list(name=list(c("W","Z")),matrix=list(c(0,0,1,0,0,0)),pos=6)
+> bmatrix=c(1,1,1,1,1,1)
+> drawConcept(labels=labels,bmatrix=bmatrix,vars=vars,palette="Set3")
+> labels=list(X="X",M="M",Y="Y")
+> vars=list(name=list(c("W","Z")),site=list(c("a","c")),arr.pos=list(c(0.7,0.3)))
+> moderator=list(name=c("V","Q"),site=list(c("b","c"),c("c")),
++    pos=c(2,5),arr.pos=list(c(0.3,0.7),0.5))
+> drawConcept(labels=labels,vars=vars,moderator=moderator,nodemode=2)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("drawModel")
+> ### * drawModel
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: drawModel
+> ### Title: Draw statistical diagram with an object of class lavaan or a
+> ###   list of class lm
+> ### Aliases: drawModel
+> 
+> ### ** Examples
+> 
+> library(lavaan)
+This is lavaan 0.6-7
+lavaan is BETA software! Please report any bugs.
+> labels=list(X="frame",Y="donate")
+> drawModel(labels=labels)
+> drawModel(labels=labels,arrowslabels=list(c="c"))
+> labels=list(X="frame",W="skeptic",M="justify",Y="donate")
+> moderator=list(name="skeptic",site=list(c("a","c")))
+> model=tripleEquation(labels=labels,moderator=moderator,data=disaster)
+> semfit=sem(model=model,data=disaster)
+Warning in lavaan::lavaan(model = model, data = disaster, model.type = "sem",  :
+  lavaan WARNING: syntax contains parameters involving exogenous covariates; switching to fixed.x = FALSE
+> drawModel(semfit,labels=labels,interactionFirst=TRUE)
+> labels=list(X="protest",W="sexism",M="respappr",Y="liking")
+> moderator=list(name="sexism",site=list(c("a","c")))
+> data1=addCatVars(protest,"protest",mode=3)
+> model=catMediation(X="protest",M="respappr",Y="liking",moderator=moderator,data=protest,maxylev=6)
+> semfit=sem(model,data=data1)
+Warning in lavaan::lavaan(model = model, data = data1, model.type = "sem",  :
+  lavaan WARNING: syntax contains parameters involving exogenous covariates; switching to fixed.x = FALSE
+> nodelabels=list(D1="Ind.Protest",D2="Col.Protest",W="sexism",M="respappr",Y="liking")
+> drawModel(semfit,labels=labels,nodelabels=nodelabels,whatLabel="name",
++        xlim=c(-0.4,1.3))
+> drawModel(semfit,labels=labels)
+> labels=list(X="cyl",M=c("am","wt","hp"),Y="mpg",W="vs")
+> moderator=list(name=c("vs"),site=list(c("a1","b1")))
+> model=multipleMediation(labels=labels,moderator=moderator,data=mtcars)
+> semfit=sem(model=model,data=mtcars)
+Warning in lav_data_full(data = data, group = group, cluster = cluster,  :
+  lavaan WARNING: some observed variances are (at least) a factor 1000 times larger than others; use varTable(fit) to investigate
+Warning in lavaan::lavaan(model = model, data = mtcars, model.type = "sem",  :
+  lavaan WARNING: syntax contains parameters involving exogenous covariates; switching to fixed.x = FALSE
+> drawModel(semfit,labels=labels,maxypos=0.5)
+> labels=list(X="X",M=c("M1","M2","M3"),Y="Y")
+> nodelabels=c(X="Intervention\n(vs.control)",
++    M=c("Restrained\nEating","Emotional\nEating","Perceived\nBarriers to\nExercise"),Y="Weight Loss")
+> drawModel(labels=labels,nodelabels=nodelabels,whatLabel="none",parallel=TRUE,
++ ylim=c(-0.3,1.2),label.pos=2)
+> labels=list(X="X",M=c("M1","M2","Mk-1","Mk"),Y="Y")
+> drawModel(labels=labels,parallel=TRUE,kmediator=TRUE,nodemode=2,
++     arrow.pos=list(c=0.4),serial=FALSE,radx=0.08)
+> labels=list(X="cond",M=c("import","pmi"),Y="reaction")
+> drawModel(labels=labels,parallel=TRUE)
+> drawModel(labels=labels,parallel=TRUE,serial=TRUE)
+> model=multipleMediation(labels=labels,data=pmi,serial=TRUE)
+> model=multipleMediation(labels=labels,data=pmi)
+> cat(model)
+import~a1*cond
+pmi~a2*cond
+reaction~b1*import+b2*pmi+c*cond
+
+# Indirect Effect(s)
+
+indirect1 := (a1)*(b1)
+direct1 :=c
+indirect2 := (a2)*(b2)
+direct2 :=c
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := indirect1-indirect2
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> semfit=sem(model=model,data=pmi)
+> drawModel(semfit,labels=labels,parallel=TRUE)
+> drawModel(semfit,labels=labels,whatLabel="est",parallel=TRUE)
+> labels=list(X="X",M=c("M1","M2"),Y="Y")
+> drawModel(labels=labels,serial=TRUE,nodemode=4)
+> labels=list(X="X",M=c("M1","M2","M3"),Y="Y")
+> drawModel(labels=labels,serial=TRUE)
+> equation='M1~X
++ M2~X+M1
++ M3~X+M1
++ Y~X+M1+M2+M3'
+> node.pos=list(X=c(0,0.5),M1=c(0.5,0.5),M2=c(0.75,0.9),M3=c(0.75,0.1),Y=c(1,0.5))
+> curved.arrow=list(a2=-0.1,a3=0.1,c=-0.15)
+> drawModel(equation=equation,nodemode=2,node.pos=node.pos,curved.arrow=curved.arrow)
+> equation='M1~X
++ M2~X
++ M3~X
++ M4~X+M1+M2+M3
++ Y~X+M1+M2+M3+M4'
+> node.pos=list(X=c(0,0.5),M1=c(0.35,0.9),M2=c(0.35,0.5),M3=c(0.35,0.1),M4=c(0.7,0.5),Y=c(1,0.5))
+> curved.arrow=list(a4=0.15,b2=0.15)
+> segment.arrow=list(c=0.5)
+> drawModel(equation=equation,nodemode=2,node.pos=node.pos,radx=0.08,curved.arrow=curved.arrow,
++ segment.arrow=segment.arrow)
+> labels=list(X="baby",M="wine",Y="tile")
+> moderator=list(name=c("milk"),site=list("a"))
+> covar=list(name=c("milk","tent","sand"),site=list(c("Y"),c("M","Y"),c("M","Y")))
+> drawModel(labels=labels,moderator=moderator,covar=covar,palette="Set3")
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:lavaan’
+
+> nameEx("eq2var")
+> ### * eq2var
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: eq2var
+> ### Title: make data.frame with equation
+> ### Aliases: eq2var
+> 
+> ### ** Examples
+> 
+> labels=list(X="frame",M="justify",Y="donate",W="skeptic")
+> eq="donate~justify+frame+skeptic+frame:skeptic"
+> eq2var(eq,labels=labels)
+       y             x Variables Predictors name
+1 donate       justify         Y          M    b
+2 donate         frame         Y          X   c1
+3 donate       skeptic         Y          W   c2
+4 donate frame:skeptic         Y        X:W   c3
+> eq="Y~M+W+M:W+X+X:W"
+> labels=list(X="X",M="M",Y="Y")
+> eq2var(eq,labels=labels)
+  y   x Variables Predictors name
+1 Y   M         Y          M   b1
+2 Y   W         Y          W   c1
+3 Y M:W         Y        M:W   b2
+4 Y   X         Y          X   c2
+5 Y X:W         Y        X:W   c3
+> eq="wine~baby+milk+baby:milk"
+> labels=list(X="baby",M=c("wine","tent","sand"),Y="tile",W="milk")
+> eq2var(eq,labels=labels)
+     y         x Variables Predictors name
+1 wine      baby        M1          X   a1
+2 wine      milk        M1          W  a11
+3 wine baby:milk        M1        X:W   a1
+> eq="M3~X"
+> eq="Y~M1+M2+X"
+> labels=list(X="X",M=c("M1","M2"),Y="Y")
+> eq2var(eq,labels=labels)
+  y  x Variables Predictors name
+1 Y M1         Y         M1   b1
+2 Y M2         Y         M2   b2
+3 Y  X         Y          X    c
+> 
+> 
+> 
+> cleanEx()
+> nameEx("equations2var")
+> ### * equations2var
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: equations2var
+> ### Title: make data.frame with equation
+> ### Aliases: equations2var
+> 
+> ### ** Examples
+> 
+> labels=list(X="frame",M="justify",Y="donate",W="skeptic")
+> moderator=list(name="skeptic",site=list(c("a","c")))
+> eq=multipleMediation(labels=labels,moderator=moderator,mode=1)
+> covar=list(name=c("C1","C2","C3"),site=list(c("M","Y"),c("M","Y"),c("M","Y")))
+> eq=multipleMediation(labels=labels,covar=covar,mode=1)
+> equations2var(eq,labels=labels)
+        y       x Variables Predictors name
+1 justify   frame         M          X    a
+2 justify      C1         M         C1   f1
+3 justify      C2         M         C2   f2
+4 justify      C3         M         C3   f3
+5  donate justify         Y          M    b
+6  donate   frame         Y          X    c
+7  donate      C1         Y         C1   g1
+8  donate      C2         Y         C2   g2
+9  donate      C3         Y         C3   g3
+> 
+> 
+> 
+> cleanEx()
+> nameEx("extractIMM")
+> ### * extractIMM
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: extractIMM
+> ### Title: extract index of moderated mediation from string
+> ### Aliases: extractIMM
+> 
+> ### ** Examples
+> 
+> string="(a1+a3*age.mean)*(b1+b3*age.mean)"
+> string="(a1+a3*skeptic.mean)*(b1+b2*skeptic.mean+b4*Z.mean)"
+> string="(a1+a3*age.mean)*(b)"
+> string="(a1+a3*4.12)*(b)"
+> string="(a)*(b)"
+> extractIMM(string)
+NULL
+> 
+> 
+> 
+> cleanEx()
+> nameEx("extractModerator")
+> ### * extractModerator
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: extractModerator
+> ### Title: Extract name of moderator from string
+> ### Aliases: extractModerator
+> 
+> ### ** Examples
+> 
+> string="(a1+a3*age.mean)*(b1+b3*age.mean)"
+> string="(a1+a3*age.mean)*(b)"
+> string="(a1+a3*4.12)*(b)"
+> string="(a)*(b)"
+> extractNumber(string)
+NULL
+> extractModerator(string)
+NULL
+> 
+> 
+> 
+> cleanEx()
+> nameEx("findName")
+> ### * findName
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: findName
+> ### Title: convert name with list
+> ### Aliases: findName
+> 
+> ### ** Examples
+> 
+> labels=list(X="wt",M="am",Y="mpg");name="MiX"
+> nodeslabels=list(X="weight",M="automatic",Y="milepergallon")
+> findName(labels=labels,nodeslabels=nodeslabels,name="MiX")
+[1] "weight:automatic"
+> findName(labels=labels,name="MiX")
+[1] "wt:am"
+> findName(labels=labels,nodeslabels=nodeslabels,name="M")
+[1] "automatic"
+> labels=list(X="GDPpp",M="Illit",Y="LifeEx")
+> nodeslabels=list(X="GDP\nper inhabitant",M="Illiteracy Rate",Y="Mean Life\nExpectation")
+> findName(labels=labels,name="Mi")
+[1] "Illit"
+> findName(labels=labels,nodeslabels=nodeslabels,name="Mi")
+[1] "Illiteracy Rate"
+> labels=list(X="GDPpp",Mi="Illit",Y="LifeEx")
+> nodeslabels=list(X="GDP\nper inhabitant",Mi="Illiteracy Rate",Y="Mean Life\nExpectation")
+> findName(labels=labels,name="M")
+[1] "Illit"
+> findName(labels=labels,nodeslabels=nodeslabels,name="M")
+[1] "Illiteracy Rate"
+> labels=list(X="cond",M=c("import","pmi"),Y="reaction")
+> findName(labels=labels,name="M1")
+[1] "import"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("findNames")
+> ### * findNames
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: findNames
+> ### Title: convert a vector of names with list
+> ### Aliases: findNames
+> 
+> ### ** Examples
+> 
+> labels=list(X="wt",Mi="am",Y="mpg");names=c("X","MiX","Y")
+> findNames(labels,names=names)
+[1] "wt"    "wt:am" "mpg"  
+> 
+> 
+> 
+> cleanEx()
+> nameEx("fit2table")
+> ### * fit2table
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: fit2table
+> ### Title: Make estimateTable with a list of lm object
+> ### Aliases: fit2table
+> 
+> ### ** Examples
+> 
+> labels=list(X="frame",M="justify",Y="donate",W="skeptic")
+> moderator=list(name="skeptic",site=list(c("a","c")))
+> eq=tripleEquation(labels=labels,moderator=moderator,data=disaster,mode=1)
+> fit=eq2fit(eq,data=disaster)
+> fit2table(fit=fit,labels=labels)
+                    B    SE       t            p    Predictors Variables label
+frame          -0.562 0.218  -2.581 1.053946e-02         frame   justify    a1
+skeptic         0.105 0.038   2.756 6.374932e-03       skeptic   justify    a2
+frame:skeptic   0.201 0.055   3.640 3.442787e-04 frame:skeptic   justify    a3
+frame1          0.160 0.268   0.599 5.498534e-01         frame    donate    c1
+skeptic1       -0.043 0.047  -0.907 3.654478e-01       skeptic    donate    c2
+justify        -0.923 0.084 -10.981 2.212769e-22       justify    donate     b
+frame:skeptic1  0.015 0.069   0.217 8.287964e-01 frame:skeptic    donate    c3
+> 
+> 
+> 
+> cleanEx()
+> nameEx("fit2vif")
+> ### * fit2vif
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: fit2vif
+> ### Title: Summarizing correlation, tolerance and variance inflation
+> ###   factors of a model
+> ### Aliases: fit2vif
+> 
+> ### ** Examples
+> 
+> fit=lm(govact~negemot*age,data=glbwarm)
+> fit2vif(fit)
+                 X     W    XW variance   tol    VIF
+negemot      1.000                2.336 0.087 11.473
+age         -0.057 1.000        266.694 0.148  6.776
+negemot:age  0.766 0.549 1.000 9489.221 0.061 16.357
+> 
+> 
+> 
+> cleanEx()
+> nameEx("get2ndIndirect")
+> ### * get2ndIndirect
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: get2ndIndirect
+> ### Title: get2ndIndirect effect
+> ### Aliases: get2ndIndirect
+> 
+> ### ** Examples
+> 
+> get2ndIndirect(X="X",M=c("M1","M2","M3"))
+[1] "a1*d21*b2"     "a1*d31*b3"     "a2*d32*b3"     "a1*d21*d32*b3"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("getBootData")
+> ### * getBootData
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: getBootData
+> ### Title: Get bootstrapped values
+> ### Aliases: getBootData
+> 
+> ### ** Examples
+> 
+> require(lavaan)
+Loading required package: lavaan
+This is lavaan 0.6-7
+lavaan is BETA software! Please report any bugs.
+> labels=list(X="cond",M="pmi",Y="reaction")
+> model=tripleEquation(labels=labels)
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:lavaan’
+
+> nameEx("getCatSlopeDf")
+> ### * getCatSlopeDf
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: getCatSlopeDf
+> ### Title: Make data summarizing regression slopes and intercepts
+> ### Aliases: getCatSlopeDf
+> 
+> ### ** Examples
+> 
+> labels=list(X="protest",W="sexism",M="respappr",Y="liking")
+> getCatSlopeDf(labels=labels,yvar="M",data=protest,mode=3)
+       slope intercept label
+1 -0.5292904  6.567698      
+2  0.4485108  2.792550      
+3  0.2046289  4.463295      
+4  0.3265698  3.627922      
+> getCatSlopeDf(labels=labels,yvar="M",data=protest,mode=1)
+       slope intercept label
+1 -0.5290051  6.566718      
+2  0.4487960  2.791570      
+3  0.2049141  4.462315      
+> 
+> 
+> 
+> cleanEx()
+> nameEx("getCoef")
+> ### * getCoef
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: getCoef
+> ### Title: Get coef summary table
+> ### Aliases: getCoef
+> 
+> ### ** Examples
+> 
+> fit=lm(mpg~hp*wt+am,data=mtcars)
+> getCoef(fit)
+               Estimate  Std. Error     t value     Pr(>|t|)
+(Intercept) 49.45224079 5.280730731  9.36465866 5.694894e-10
+hp          -0.11930318 0.026549992 -4.49352965 1.187315e-04
+wt          -8.10055755 1.789325217 -4.52715777 1.084926e-04
+hp:wt        0.02748826 0.008472529  3.24439879 3.130390e-03
+am           0.12510693 1.333430965  0.09382333 9.259423e-01
+> 
+> 
+> 
+> cleanEx()
+> nameEx("getHelmert")
+> ### * getHelmert
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: getHelmert
+> ### Title: Get Helmert Coding of column j of group with length of unique
+> ###   values (count-1)
+> ### Aliases: getHelmert
+> 
+> ### ** Examples
+> 
+> x=c(1:4,4:2,2,3,5)
+> getHelmert(x,1)
+ [1] -0.8  0.2  0.2  0.2  0.2  0.2  0.2  0.2  0.2  0.2
+> getHelmert(mtcars$cyl,1)
+ [1] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
+[26] NA NA NA NA NA NA NA
+> 
+> 
+> 
+> cleanEx()
+> nameEx("getInfo")
+> ### * getInfo
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: getInfo
+> ### Title: Get information of a model
+> ### Aliases: getInfo
+> 
+> ### ** Examples
+> 
+> fit=lm(mpg~wt*hp,data=mtcars)
+> getInfo(fit)
+[1] "32"                         "0.885"                     
+[3] "0.872"                      "2.153 ( df = 28)"          
+[5] "F(3,28) = 71.660, p < .001" "4.634"                     
+> 
+> 
+> 
+> cleanEx()
+> nameEx("getRatioTable")
+> ### * getRatioTable
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: getRatioTable
+> ### Title: Get coding table for dummy variables
+> ### Aliases: getRatioTable
+> 
+> ### ** Examples
+> 
+> getRatioTable(count=3)
+     [,1] [,2]
+[1,]    0    0
+[2,]    1    0
+[3,]    0    1
+> getRatioTable(count=4,mode=3)
+      [,1]       [,2] [,3]
+[1,] -0.75  0.0000000  0.0
+[2,]  0.25 -0.6666667  0.0
+[3,]  0.25  0.3333333 -0.5
+[4,]  0.25  0.3333333  0.5
+> 
+> 
+> 
+> cleanEx()
+> nameEx("getYhat")
+> ### * getYhat
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: getYhat
+> ### Title: Get predicted value from object of class "lm"
+> ### Aliases: getYhat
+> 
+> ### ** Examples
+> 
+> iris1=addCatVars(iris,c("Species"))
+> iris3=addCatVars(iris,c("Species"),mode=3)
+> fit1=lm(Sepal.Length~Sepal.Width+D1+D2,data=iris1)
+> getYhat(fit1)
+          Ŷ
+Ŷ0 4.708147
+Ŷ1 6.166890
+Ŷ2 6.654963
+> fit1=lm(Sepal.Length~D2*Sepal.Width+Sepal.Width*D1+Petal.Width,data=iris1)
+> getYhat(fit1)
+                  Ŷ  slopeSepal.Width interceptSepal.Width
+Ŷ0 5.09330046712761 0.667763563554461      3.0517246654871
+Ŷ1 6.09785243178939 0.718116337308756     3.90233141652409
+Ŷ2 6.35939309832673 0.740699166574377     4.09482884638666
+> fit3=lm(Sepal.Length~D2*Sepal.Width+Sepal.Width*D1+Petal.Width*D1+Petal.Width*D2,data=iris3)
+> getYhat(fit3,mode=3)
+                  Ŷ  slopeSepal.Width interceptSepal.Width  slopePetal.Width
+Ŷ0  5.1138820849264 0.666400848557631     3.07647255726954 0.372267132299053
+Ŷ1 5.95719676304586  0.47973344187148     4.49049172009745 0.920894573041168
+Ŷ2 6.56385573022716 0.848967345065913     3.96827956724565 0.114788163542335
+   interceptPetal.Width
+Ŷ0     4.66740970425574
+Ŷ1     4.85273720511182
+Ŷ2     6.42618645941872
+> 
+> 
+> 
+> cleanEx()
+> nameEx("getYhat1")
+> ### * getYhat1
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: getYhat1
+> ### Title: Get Yhat value from simple mediation
+> ### Aliases: getYhat1
+> 
+> ### ** Examples
+> 
+> data=protest
+> labels=list(X="protest",M="respappr",Y="liking")
+> getYhat1(data=protest,labels=labels)
+(Intercept) (Intercept) (Intercept) 
+      5.715       5.711       5.495 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("interactStr")
+> ### * interactStr
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: interactStr
+> ### Title: make interaction equation
+> ### Aliases: interactStr
+> 
+> ### ** Examples
+> 
+> interactStr(LETTERS[1])
+[1] "a*A"
+> interactStr(LETTERS[1:3])
+[1] "a1*A"   "a2*B"   "a3*A:B" "a4*C"   "a5*A:C"
+> interactStr(LETTERS[1:3],skip=TRUE)
+[1] "a1*A"   "a2*A:B" "a3*C"   "a4*A:C"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("jnPlot")
+> ### * jnPlot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: jnPlot
+> ### Title: Draw johnson_neyman plot
+> ### Aliases: jnPlot
+> 
+> ### ** Examples
+> 
+> fit=lm(mpg~hp*wt,data=mtcars)
+> jnPlot(fit)
+[1m[4mJOHNSON-NEYMAN INTERVAL[24m[22m 
+
+When wt is [7mOUTSIDE[27m the interval [3.692, 5.901], the slope of hp is
+p < .05.
+
+[3mNote: The range of observed values of wt is [23m[1.513, 5.424]
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("label2name")
+> ### * label2name
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: label2name
+> ### Title: Change label into name
+> ### Aliases: label2name
+> 
+> ### ** Examples
+> 
+> label="X:W:Z"
+> labels=list(X="dep",W="mod",Z="mod2")
+> label2name(label,labels)
+[1] "dep:mod:mod2"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("labels2table")
+> ### * labels2table
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: labels2table
+> ### Title: Make table with labels
+> ### Aliases: labels2table
+> 
+> ### ** Examples
+> 
+> labels=list(X="frame",M="justify",Y="donate",W="skeptic")
+> moderator=list(name="skeptic",site=list(c("a","c")))
+> covar=list(name=c("C1","C2","C3"),site=list(c("M","Y"),c("M","Y"),c("M","Y")))
+> labels=list(X="X",M=c("M1","M2","M3"),Y="Y")
+> labels=list(X="X",M=c("M1","M2"),Y="Y")
+> moderator=list();serial=FALSE;eq=NULL
+> labels2table(labels)
+   y  x Variables Predictors name
+1 M1  X        M1          X   a1
+2 M2  X        M2          X   a2
+3 M2 M1        M2         M1  d21
+4  Y M1         Y         M1   b1
+5  Y M2         Y         M2   b2
+6  Y  X         Y          X    c
+> labels2table(labels,serial=FALSE)
+   y  x Variables Predictors name
+1 M1  X        M1          X   a1
+2 M2  X        M2          X   a2
+3  Y M1         Y         M1   b1
+4  Y M2         Y         M2   b2
+5  Y  X         Y          X    c
+> labels2table(labels,covar=covar)
+   y  x Variables Predictors name
+1 M1  X        M1          X   a1
+2 M2  X        M2          X   a2
+3 M2 M1        M2         M1  d21
+4  Y M1         Y         M1   b1
+5  Y M2         Y         M2   b2
+6  Y  X         Y          X    c
+7  Y C1         Y         C1   g1
+8  Y C2         Y         C2   g2
+9  Y C3         Y         C3   g3
+> labels2table(labels,moderator=moderator)
+   y  x Variables Predictors name
+1 M1  X        M1          X   a1
+2 M2  X        M2          X   a2
+3 M2 M1        M2         M1  d21
+4  Y M1         Y         M1   b1
+5  Y M2         Y         M2   b2
+6  Y  X         Y          X    c
+> labels=list(X="X",M="M",Y="Y")
+> moderator=list(name=c("W"),site=list(c("b","c")))
+> labels2table(labels,moderator=moderator)
+  y   x Variables Predictors name
+1 M   X         M          X    a
+2 Y   M         Y          M   b1
+3 Y   X         Y          X   c1
+4 Y   W         Y          W   c2
+5 Y M:W         Y        M:W   b2
+6 Y X:W         Y        X:W   c3
+> labels=list(X="baby",M="wine",Y="tile")
+> moderator=list(name=c("milk"),site=list("a"))
+> covar=list(name=c("milk","tent","sand"),site=list(c("Y"),c("M","Y"),c("M","Y")))
+> labels2table(labels,moderator=moderator,covar=covar,serial=FALSE)
+      y         x Variables Predictors name
+1  wine      baby         M          X   a1
+2  wine      milk         M          W   a2
+3  wine baby:milk         M        X:W   a3
+4  wine      tent         M         C2   f2
+5  wine      sand         M         C3   f3
+6  tile      wine         Y          M   b1
+7  tile      baby         Y          X    c
+8  tile      milk         Y          W   b2
+9  tile      tent         Y         C2   g2
+10 tile      sand         Y         C3   g3
+> 
+> 
+> 
+> cleanEx()
+> nameEx("makeAnovaDf")
+> ### * makeAnovaDf
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: makeAnovaDf
+> ### Title: Make data summarizing ANOVA results
+> ### Aliases: makeAnovaDf
+> 
+> ### ** Examples
+> 
+> labels=list(X="protest",W="sexism",M="respappr",Y="liking")
+> makeAnovaDf(labels=labels,data=protest,total=TRUE,mode=3)
+        W     F         p df df2   p1                   label1
+16% 4.250 1.964 0.1446726  2 122 .145 italic(F)(2,122) ==1.964
+50% 5.120 0.294 0.7456897  2 122 .746 italic(F)(2,122) ==0.294
+84% 5.896 1.065 0.3480328  2 122 .348 italic(F)(2,122) ==1.065
+                 label2
+16% italic(p),' = .145'
+50% italic(p),' = .746'
+84% italic(p),' = .348'
+                                                       label
+16% paste(italic(F)(2,122) ==1.964,', ',italic(p),' = .145')
+50% paste(italic(F)(2,122) ==0.294,', ',italic(p),' = .746')
+84% paste(italic(F)(2,122) ==1.065,', ',italic(p),' = .348')
+                 label3
+16% F = 1.964\np = .145
+50% F = 0.294\np = .746
+84% F = 1.065\np = .348
+> 
+> 
+> 
+> cleanEx()
+> nameEx("makeCEDf")
+> ### * makeCEDf
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: makeCEDf
+> ### Title: Make data summarizing conditional effects
+> ### Aliases: makeCEDf
+> 
+> ### ** Examples
+> 
+> labels=list(X="protest",W="sexism",M="respappr",Y="liking")
+> data1=addCatVars(protest,varnames="protest",mode=1)
+> makeCEDf(labels=labels,data=protest,mode=1)
+        W         d1          p1         d2           p2
+16% 4.250 -0.2985437 0.381930191 -0.1850712 0.5502193713
+50% 5.120  0.4855237 0.028511506  0.4916289 0.0244418906
+84% 5.896  1.1848758 0.000167682  1.0952144 0.0007221529
+> 
+> 
+> 
+> cleanEx()
+> nameEx("makeCatEquation")
+> ### * makeCatEquation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: makeCatEquation
+> ### Title: Make equation for sem and lm for categorical variables
+> ### Aliases: makeCatEquation
+> 
+> ### ** Examples
+> 
+> makeCatEquation(X="wt",Y="mpg",data=mtcars)
+[1] "mpg~b1*wt"
+> makeCatEquation(X="wt",Y="mpg",W="cyl",data=mtcars)
+[1] "mpg~b1*wt+b2*D1+b3*D2+b4*wt:D1+b5*wt:D2"
+> makeCatEquation(X="wt",Y="mpg",W=c("cyl","hp"),data=mtcars)
+[1] "mpg~b1*wt+b2*D1+b3*D2+b4*hp+b5*wt:D1+b6*wt:D2+b7*wt:hp"
+> grouplabels=list(carb="f")
+> makeCatEquation(X="carb",Y="mpg",W=c("cyl","hp"),data=mtcars,maxylev=6)
+[1] "mpg~b1*D1+b2*D2+b3*D3+b4*D4+b5*D5+b6*E1+b7*E2+b8*hp+b9*D1:E1+b10*D1:E2+b11*D1:hp+b12*D2:E1+b13*D2:E2+b14*D2:hp+b15*D3:E1+b16*D3:E2+b17*D3:hp+b18*D4:E1+b19*D4:E2+b20*D4:hp+b21*D5:E1+b22*D5:E2+b23*D5:hp"
+> makeCatEquation(X="carb",Y="mpg",W=c("cyl","hp"),data=mtcars)
+[1] "mpg~b1*D1+b2*D2+b3*D3+b4*D4+b5*D5+b6*E1+b7*E2+b8*hp+b9*D1:E1+b10*D1:E2+b11*D1:hp+b12*D2:E1+b13*D2:E2+b14*D2:hp+b15*D3:E1+b16*D3:E2+b17*D3:hp+b18*D4:E1+b19*D4:E2+b20*D4:hp+b21*D5:E1+b22*D5:E2+b23*D5:hp"
+> cat(makeCatEquation(X="wt",Y="carb",W=c("am","hp"),data=mtcars,maxylev=6,grouplabels=grouplabels))
+f1~b1*wt+b2*am+b3*hp+b4*wt:am+b5*wt:hp
+f2~b6*wt+b7*am+b8*hp+b9*wt:am+b10*wt:hp
+f3~b11*wt+b12*am+b13*hp+b14*wt:am+b15*wt:hp
+f4~b16*wt+b17*am+b18*hp+b19*wt:am+b20*wt:hp
+f5~b21*wt+b22*am+b23*hp+b24*wt:am+b25*wt:hp
+f6~b26*wt+b27*am+b28*hp+b29*wt:am+b30*wt:hp> 
+> 
+> 
+> cleanEx()
+> nameEx("makeCatEquation2")
+> ### * makeCatEquation2
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: makeCatEquation2
+> ### Title: Make equation for sem and lm for multiple X or multiple Y
+> ### Aliases: makeCatEquation2
+> 
+> ### ** Examples
+> 
+> makeCatEquation2(X="wt",Y="mpg")
+[1] "mpg~b1*wt"
+> makeCatEquation2(X="wt",Y="mpg",W="cyl")
+[1] "mpg~b1*wt+b2*cyl+b3*wt:cyl"
+> makeCatEquation2(X="wt",Y=c("cyl","am"),prefix="a")
+[1] "cyl~a11*wt\nam~a12*wt"
+> makeCatEquation2(X="wt",Y=c("hp","vs"),W="cyl",prefix="a")
+[1] "hp~a11*wt+a21*cyl+a31*wt:cyl\nvs~a12*wt+a22*cyl+a32*wt:cyl"
+> makeCatEquation2(X="wt",Y=c("hp","vs"),W=c("cyl","am"),prefix="a",pos=list(1,2))
+[1] "hp~a11*wt+a21*cyl+a31*wt:cyl\nvs~a12*wt+a22*cyl+a32*wt:cyl"
+> makeCatEquation2(X="wt",Y=c("hp","vs"),W=c("cyl"),prefix="a",pos=list(1))
+[1] "hp~a11*wt+a21*cyl+a31*wt:cyl\nvs~a12*wt+a22*cyl+a32*wt:cyl"
+> makeCatEquation2(X="wt",Y=c("hp","vs"),W=c("cyl"),prefix="a",pos=list(c(1,2)))
+[1] "hp~a11*wt+a21*cyl+a31*wt:cyl\nvs~a12*wt+a22*cyl+a32*wt:cyl"
+> makeCatEquation2(X=c("hp","vs"),Y="mpg",W=c("cyl"),prefix="b",pos=list(c(1)))
+[1] "mpg~b11*hp+b21*cyl+b31*hp:cyl+b12*vs"
+> makeCatEquation2(X=c("hp","vs"),Y="mpg",W=c("cyl"),prefix="b")
+[1] "mpg~b11*hp+b21*cyl+b31*hp:cyl+b12*vs+b22*vs:cyl"
+> makeCatEquation2(X=c("hp","vs"),Y="mpg",W=c("cyl"),prefix="b",pos=list(c(1,2)))
+[1] "mpg~b11*hp+b21*cyl+b31*hp:cyl+b12*vs+b22*vs:cyl"
+> cat(makeCatEquation2(X="wt",Y="carb",W=c("am","hp")))
+carb~b1*wt+b2*am+b3*wt:am+b4*hp+b5*wt:hp> cat(makeCatEquation2(X="X",Y=c("M1","M2","M3"),W=NULL,prefix="a",serial=TRUE))
+M1~a11*X
+M2~a12*X+d21*M1
+M3~a13*X+d31*M1+d32*M2> cat(makeCatEquation2(X="X",Y=c("M1","M2","M3"),W=NULL,prefix="a"))
+M1~a11*X
+M2~a12*X
+M3~a13*X> cat(makeCatEquation2(X="X",Y=c("M1","M2"),prefix="a",mode=1,serial=TRUE))
+M1~X
+M2~X+M1> 
+> 
+> 
+> cleanEx()
+> nameEx("makeCatEquation3")
+> ### * makeCatEquation3
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: makeCatEquation3
+> ### Title: Make equation for sem and lm for multiple X or multiple Y
+> ### Aliases: makeCatEquation3
+> 
+> ### ** Examples
+> 
+> cat(makeCatEquation3(X="X",Y=c("M1","M2","M3"),prefix="a",bmatrix=c(1,1,0,1,0,0,1,1,1,1)))
+M1~a1*X
+M2~a2*X
+M3~a3*X> cat(makeCatEquation3(X="X",Y=c("M1","M2","M3"),prefix="a",bmatrix=c(1,1,0,1,0,1,1,1,1,1)))
+M1~a1*X
+M2~a2*X
+M3~a3*X+d32*M2> cat(makeCatEquation3(X="X",Y=c("M1","M2","M3"),prefix="a",bmatrix=c(1,1,0,1,1,0,1,1,1,1)))
+M1~a1*X
+M2~a2*X
+M3~a3*X+d31*M1> cat(makeCatEquation3(X="X",Y=c("M1","M2","M3"),prefix="a",bmatrix=c(1,1,1,1,1,1,1,1,1,1)))
+M1~a1*X
+M2~a2*X+d21*M1
+M3~a3*X+d31*M1+d32*M2> cat(makeCatEquation3(X=c("M1","M2","M3"),Y="Y",prefix="a",bmatrix=c(1,1,1,1,1,1,1,1,1,1),depy=TRUE))
+Y~b1*M1+b2*M2+b3*M3> cat(makeCatEquation3(X="X",Y="Y",prefix="a",bmatrix=c(1,1,1,1,1,1,1,1,1,1),depy=TRUE,depx=TRUE))
+Y~c1*X> cat(makeCatEquation3(X="X",Y="Y",prefix="a",bmatrix=c(1,1,1,1,1,1,0,1,1,1),depy=TRUE,depx=TRUE))
+> cat(makeCatEquation3(X=c("M1","M2"),Y="Y",prefix="a",bmatrix=c(1,1,1,1,0,1),depy=TRUE))
+Y~b1*M2> cat(makeCatEquation3(X=c("M1","M2"),Y="Y",prefix="a",bmatrix=c(1,1,1,1,1,0),depy=TRUE))
+Y~b1*M1> cat(makeCatEquation3(X="X",Y=c("M1","M2"),prefix="a",bmatrix=c(1,1,1,0,0,1),depy=FALSE))
+M1~a1*X
+M2~a2*X+d21*M1> cat(makeCatEquation3(X="X",Y=c("M1","M2"),W="W",prefix="a",bmatrix=c(1,1,1,1,1,1),depy=FALSE,
++   moderator=list(name="W",matrix=list(c(0,0,1,0,0,0)))))
+M1~a1*X
+M2~a2*X+d21*M1+d22*W+d23*M1:W> cat(makeCatEquation3(X=c("M1","M2"),Y="Y",prefix="a",bmatrix=c(1,1,1,1,0,1),depy=TRUE))
+Y~b1*M2> cat(makeCatEquation3(X=c("M1","M2"),Y="Y",W="W",pos=list(c(1,2)),prefix="a",
++   bmatrix=c(1,1,1,1,0,1),depy=TRUE))
+Y~b1*M2+b2*W+b3*M2:W> cat(makeCatEquation3(X=c("M1","M2"),Y="Y",W="W",
++   moderator=list(name="W",matrix=list(c(0,0,0,0,1,1))),bmatrix=c(1,1,1,1,1,1),depy=TRUE))
+Y~b1*M1+b2*W+b3*M1:W+b4*M2+b5*M2:W> vars=list(name=list(c("W","Z")),matrix=list(c(0,0,1,0,0,0)))
+> cat(makeCatEquation3(X="X",Y=c("M1","M2"),bmatrix=c(1,1,1,1,1,0),vars=vars,depy=FALSE,depx=TRUE))
+M1~a1*X
+M2~a2*X+d21*M1+d22*W+d23*Z+d24*M1:W+d25*M1:Z+d26*W:Z+d27*interaction0> 
+> 
+> 
+> cleanEx()
+> nameEx("makeCatModel")
+> ### * makeCatModel
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: makeCatModel
+> ### Title: Make simple regression model with one categorical variable
+> ### Aliases: makeCatModel
+> 
+> ### ** Examples
+> 
+> labels=list(X="protest",W="sexism",M="respappr",Y="liking")
+> data1=addCatVars(protest,"protest")
+> makeCatModel(labels=labels,data=data1)
+
+Call:
+lm(formula = as.formula(model), data = data1)
+
+Coefficients:
+(Intercept)           D1           D2       sexism    D1:sexism    D2:sexism  
+     7.7062      -4.1288      -3.4908      -0.4725       0.9012       0.7778  
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("makeEquation")
+> ### * makeEquation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: makeEquation
+> ### Title: Make mediation equations 3
+> ### Aliases: makeEquation
+> 
+> ### ** Examples
+> 
+> X="X";M=c("M1","M2","M3");Y=c("Y1","Y2");add2ndMediation=TRUE
+> covar=list(name=c("C1","C2","C3"),label=c("ese","sex","tenure"),site=list(c("M1","Y1"),"Y2","Y2"))
+> cat(makeEquation(X,M,Y,covar=covar))
+# Mediation Effect
+Y1 ~ b1*M1+b2*M2+b3*M3+c1*X + g1*C1
+Y2 ~ b4*M1+b5*M2+b6*M3+c2*X + g1*C2 + g2*C3
+M1 ~ a1*X + h1*C1
+M2 ~ a2*X+d1*M1
+M3 ~ a3*X+d2*M2
+ind1:=a1*b1
+ind2:=a2*b2
+ind3:=a3*b3
+ind4:=a1*b4
+ind5:=a2*b5
+ind6:=a3*b6
+secondInd1:=a1*d1*b2
+secondInd2:=a2*d2*b3
+secondInd3:=a1*d1*b5
+secondInd4:=a2*d2*b6
+thirdInd1:=a1*d1*d2*b3
+thirdInd2:=a1*d1*d2*b6
+total1:=c1+a1*b1+a2*b2+a3*b3+a1*d1*b2+a2*d2*b3+a1*d1*d2*b3
+total2:=c2+a1*b4+a2*b5+a3*b6+a1*d1*b5+a2*d2*b6+a1*d1*d2*b6> 
+> 
+> 
+> cleanEx()
+> nameEx("makeIndirectEquation")
+> ### * makeIndirectEquation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: makeIndirectEquation
+> ### Title: Make indirect equation
+> ### Aliases: makeIndirectEquation
+> 
+> ### ** Examples
+> 
+> X="negemot";M="ideology"
+> temp1=c("a1*negemot","a2*sex","a4*negemot*sex","a5*negemot*age","a6*sex*age")
+> temp2="b1*ideology"
+> temp3="c1*negemot"
+> moderatorNames=c("age","sex")
+> X= "hp";M= "am"
+> temp1= c("a1*hp","a2*wt","a3*hp:wt")
+> temp2= "b1*am"
+> temp3= c("c1*hp","c2*wt","c3*hp:wt")
+> #moderatorNames=c("wt")
+> #X= c("d1","d2");M="am"
+> #temp1=c("a1*d1","a2*d2","a3*wt","a4*d1:wt","a5*d2:wt")
+> #temp2="b1*am"
+> #temp3=c("c1*d1","c2*d2","c3*wt","c4*d1:wt","c5*d2:wt")
+> cat(makeIndirectEquation(X,M,temp1,temp2,temp3,moderatorNames))
+CE.XonM :=a1+a3*wt
+indirect :=(a1+a3*wt)*(b1)
+direct :=c1+c3*wt
+total := direct + indirect
+prop.mediated := indirect / total
+> cat(makeIndirectEquation(X,M,temp1,temp2,temp3,moderatorNames,range=TRUE))
+CE.XonM :=a1+a3*wt
+indirect :=(a1+a3*wt)*(b1)
+direct :=c1+c3*wt
+total := direct + indirect
+prop.mediated := indirect / total
+CE.XonM.below :=a1+a3*wt
+indirect.below :=(a1+a3*wt)*(b1)
+CE.XonM.above :=a1+a3*wt
+indirect.above :=(a1+a3*wt)*(b1)
+direct.below:=c1+c3*wt
+direct.above:=c1+c3*wt
+total.below := direct.below + indirect.below
+total.above := direct.above + indirect.above
+prop.mediated.below := indirect.below / total.below
+prop.mediated.above := indirect.above / total.above
+> X="wt";M=NULL;temp1=NULL;temp2=NULL;temp3=c("c1*wt","c2*hp","c3*wt:hp");
+> moderatorNames="hp";range=TRUE;rangemode=1;probs=c(0.16,0.5,0.84)
+> cat(makeIndirectEquation(X,M,temp1,temp2,temp3,moderatorNames,range=TRUE))
+direct :=c1+c3*hp.mean
+direct.below:=c1+c3*(hp.mean-sqrt(hp.var))
+direct.above:=c1+c3*(hp.mean+sqrt(hp.var))
+> X="frame:skeptic"; M="justify";temp1="a1*frame:skeptic";
+> temp2="b1*justify";temp3="c1*frame:skeptic";moderatorNames=NULL
+> range=TRUE;rangemode=1
+> 
+> 
+> 
+> cleanEx()
+> nameEx("matrix2df")
+> ### * matrix2df
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: matrix2df
+> ### Title: Make data.frame with matrix
+> ### Aliases: matrix2df
+> 
+> ### ** Examples
+> 
+> labels=list(X="indep",M=c("med1","med2"),Y="dep")
+> matrix2df(c(1,1,1,0,0,1),labels=labels)
+     indep med1 med2
+med1     1          
+med2     1    1     
+dep      0    0    1
+> 
+> 
+> 
+> cleanEx()
+> nameEx("matrix2no")
+> ### * matrix2no
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: matrix2no
+> ### Title: Calculate the dimension of matrix
+> ### Aliases: matrix2no
+> 
+> ### ** Examples
+> 
+> matrix2no(c(1,1,1,0,0,1))
+[1] 3
+> 
+> 
+> 
+> cleanEx()
+> nameEx("matrixPlot")
+> ### * matrixPlot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: matrixPlot
+> ### Title: Draw matrix plot
+> ### Aliases: matrixPlot
+> 
+> ### ** Examples
+> 
+> matrixPlot(c(1,1,1))
+> labels=list(X="X",M=c("M1","M2"),Y="Y")
+> bmatrix=c(1,1,1,0,0,1)
+> eq=multipleMediation(labels=labels,bmatrix=bmatrix,mode=1)
+> drawModel(equation=eq,labels=labels,nodemode=2)
+> matrixPlot(bmatrix)
+> bmatrix=c(1,1,0,1,0,0,1,1,1,1)
+> matrixPlot(c(1,1,0,1,0,0,1,1,1,1))
+> labels=list(X="X",M=c("M1","M2","M3"),Y="Y")
+> eq=multipleMediation(labels=labels,bmatrix=bmatrix,mode=1)
+> drawModel(equation=eq,labels=labels,parallel=TRUE,nodemode=2)
+> labels=list(X="indep",M=c("med1","med2"),Y="dep")
+> matrixPlot(c(1,1,1,0,0,1),labels=labels)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("meanCentering")
+> ### * meanCentering
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: meanCentering
+> ### Title: Perform mean centering
+> ### Aliases: meanCentering
+> 
+> ### ** Examples
+> 
+> library(processR)
+> newData=meanCentering(education,colnames(education)[1:3])
+> 
+> 
+> 
+> cleanEx()
+> nameEx("meanSummary")
+> ### * meanSummary
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: meanSummary
+> ### Title: Make mean summary table
+> ### Aliases: meanSummary
+> 
+> ### ** Examples
+> 
+> labels=list(X="cond",Y="reaction",M="pmi")
+> xlabels=c("Front Page","Interior Page")
+> meanSummary(data=pmi,labels=labels,xlabels=xlabels)
+======================================================== 
+                                Y        M        Y      
+                             reaction   pmi    adjusted  
+-------------------------------------------------------- 
+     Front Page       Mean    3.250    5.377    3.364    
+    cond(X) = 0        SD     1.608    1.338             
+   Interior Page      Mean    3.746    5.853    3.618    
+    cond(X) = 1        SD     1.452    1.267             
+-------------------------------------------------------- 
+                      Mean    3.484    5.602             
+                       SD     1.550    1.321             
+======================================================== 
+> labels=list(X="frame",Y="justify",W="skeptic")
+> xlabels=c("Natural causes condition","Climate change condition")
+> meanSummary(data=disaster,labels=labels,xlabels=xlabels)
+==================================================== 
+                                      Y        W     
+                                   justify  skeptic  
+---------------------------------------------------- 
+ Natural causes condition   Mean    2.802    3.339   
+       frame(X) = 0          SD     0.849    2.042   
+ Climate change condition   Mean    2.937    3.421   
+       frame(X) = 1          SD     1.010    2.032   
+---------------------------------------------------- 
+                            Mean    2.867    3.378   
+                             SD     0.930    2.033   
+==================================================== 
+> labels=list(X="protest",Y="liking",M="respappr")
+> meanSummary(data=protest,labels=labels)
+======================================================== 
+                               Y        M         Y      
+                             liking  respappr  adjusted  
+-------------------------------------------------------- 
+   protest(X) = 0     Mean   5.310    3.884     5.715    
+                       SD    1.302    1.457              
+   protest(X) = 1     Mean   5.826    5.145     5.711    
+                       SD    0.819    1.075              
+   protest(X) = 2     Mean   5.753    5.494     5.495    
+                       SD    0.936    0.936              
+-------------------------------------------------------- 
+                      Mean   5.637    4.866              
+                       SD    1.050    1.348              
+======================================================== 
+> meanSummary(data=protest,labels=labels,maxylev=2)
+======================================================== 
+                               Y        M         Y      
+                             liking  respappr  adjusted  
+-------------------------------------------------------- 
+   protest(X) = 0     Mean   5.310    3.884     5.758    
+                       SD    1.302    1.457              
+   protest(X) = 1     Mean   5.826    5.145      5.64    
+                       SD    0.819    1.075              
+   protest(X) = 2     Mean   5.753    5.494     5.522    
+                       SD    0.936    0.936              
+-------------------------------------------------------- 
+                      Mean   5.637    4.866              
+                       SD    1.050    1.348              
+======================================================== 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("meanSummaryTable")
+> ### * meanSummaryTable
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: meanSummaryTable
+> ### Title: Make mean summary table
+> ### Aliases: meanSummaryTable
+> 
+> ### ** Examples
+> 
+> labels=list(X="cond",Y="reaction",M="pmi")
+> xlabels=c("Front Page","Interior Page")
+> meanSummaryTable(data=pmi,labels=labels,xlabels=xlabels)
+a flextable object.
+col_keys: `X`, `name`, `Y`, `M`, `adjY` 
+header has 2 row(s) 
+body has 6 row(s) 
+original dataset sample: 
+======================================================== 
+                                Y        M        Y      
+                             reaction   pmi    adjusted  
+-------------------------------------------------------- 
+     Front Page       Mean    3.250    5.377    3.364    
+    cond(X) = 0        SD     1.608    1.338             
+   Interior Page      Mean    3.746    5.853    3.618    
+-------------------------------------------------------- 
+    cond(X) = 1        SD     1.452    1.267             
+                      Mean    3.484    5.602             
+======================================================== 
+> labels=list(X="frame",Y="justify",W="skeptic")
+> xlabels=c("Natural causes condition","Climate change condition")
+> meanSummaryTable(data=disaster,labels=labels,xlabels=xlabels)
+a flextable object.
+col_keys: `X`, `name`, `Y`, `W` 
+header has 2 row(s) 
+body has 6 row(s) 
+original dataset sample: 
+==================================================== 
+                                      Y        W     
+                                   justify  skeptic  
+---------------------------------------------------- 
+ Natural causes condition   Mean    2.802    3.339   
+       frame(X) = 0          SD     0.849    2.042   
+ Climate change condition   Mean    2.937    3.421   
+---------------------------------------------------- 
+       frame(X) = 1          SD     1.010    2.032   
+                            Mean    2.867    3.378   
+==================================================== 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("medSummary")
+> ### * medSummary
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: medSummary
+> ### Title: Summarize the mediation effects
+> ### Aliases: medSummary
+> 
+> ### ** Examples
+> 
+> library(lavaan)
+This is lavaan 0.6-7
+lavaan is BETA software! Please report any bugs.
+> labels=list(X="cond",M="pmi",Y="reaction")
+> model=tripleEquation(labels=labels)
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:lavaan’
+
+> nameEx("mediationBK")
+> ### * mediationBK
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: mediationBK
+> ### Title: Perform mediation analysis by Baron and Kenny Method
+> ### Aliases: mediationBK
+> 
+> ### ** Examples
+> 
+> labels=list(X="cond",M="pmi",Y="reaction")
+> result=mediationBK(labels=labels,data=pmi,silent=FALSE)
+Step 1:  Path C (Total Effect) 
+-Estimate the relationship between X on Y
+
+Call:
+lm(formula = reaction ~ cond, data = pmi)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.4957 -1.0000 -0.2457  1.2543  3.5000 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   3.2500     0.1906  17.052   <2e-16 ***
+cond          0.4957     0.2775   1.786   0.0766 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.537 on 121 degrees of freedom
+Multiple R-squared:  0.02568,	Adjusted R-squared:  0.01763 
+F-statistic:  3.19 on 1 and 121 DF,  p-value: 0.07661
+
+
+Step 2: Path A (X on M) 
+-Estimate the relationship between X on M
+
+Call:
+lm(formula = pmi ~ cond, data = pmi)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.8534 -0.8534  0.1466  1.1231  1.6231 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   5.3769     0.1618  33.222   <2e-16 ***
+cond          0.4765     0.2357   2.022   0.0454 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.305 on 121 degrees of freedom
+Multiple R-squared:  0.03268,	Adjusted R-squared:  0.02468 
+F-statistic: 4.088 on 1 and 121 DF,  p-value: 0.0454
+
+
+Step 3: Path B (M on Y, controlling for X) 
+-Estimate the relationship between M on Y, controlling for X
+
+Call:
+lm(formula = reaction ~ pmi + cond, data = pmi)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-3.07636 -1.06128 -0.06346  0.94573  2.94299 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.52687    0.54968   0.958    0.340    
+pmi          0.50645    0.09705   5.219 7.66e-07 ***
+cond         0.25435    0.25582   0.994    0.322    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.393 on 120 degrees of freedom
+Multiple R-squared:  0.2059,	Adjusted R-squared:  0.1927 
+F-statistic: 15.56 on 2 and 120 DF,  p-value: 9.83e-07
+
+
+Step 4: Path C' (Direct Effect, X on Y, controlling for M) 
+-Estimate the relationship between Y on X, controlling for M
+> result
+
+Results of Baron and Kenny Method
+Step 1 : Path C (Total Effect) : c = 0.496 ( p = 0.077 )
+Step 2 : Path A (X on M) : a = 0.477 ( p = 0.045 )
+Step 3 : Path B (M on Y, controlling for X) : b = 0.506 ( p < 0.001 )
+Step 4 : Path C' (Direct Effect, X on Y, controlling for M) : c' = 0.254 ( p = 0.322 )
+Result : Complete mediation 
+
+Normal theory test for indirect effect(s) :
+
+         ab        seab           z           p    ci.lower    ci.upper 
+ 0.24133546  0.13003848  1.85587728  0.06347105 -0.01353528  0.49620621 
+
+Results of bda.mediation.test
+
+             Sobel     Aroian    Goodman
+z.value 1.88527150 1.85587728 1.91610816
+p.value 0.05939319 0.06347105 0.05535133
+> 
+> 
+> 
+> cleanEx()
+> nameEx("modSummary")
+> ### * modSummary
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: modSummary
+> ### Title: Make moderation effect summary
+> ### Aliases: modSummary
+> 
+> ### ** Examples
+> 
+> require(lavaan)
+Loading required package: lavaan
+This is lavaan 0.6-7
+lavaan is BETA software! Please report any bugs.
+> labels=list(X="frame",W="skeptic",M="justify",Y="donate")
+> moderator=list(name='skeptic',site=list(c("a")))
+> model=tripleEquation(labels=labels,moderator=moderator,data=disaster,rangemode=2)
+> cat(model)
+justify~a1*frame+a2*skeptic+a3*frame:skeptic
+donate~c*frame+b*justify
+skeptic ~ skeptic.mean*1
+skeptic ~~ skeptic.var*skeptic
+CE.XonM :=a1+a3*2.8
+indirect :=(a1+a3*2.8)*(b)
+index.mod.med :=a3*b
+direct :=c
+total := direct + indirect
+prop.mediated := indirect / total
+CE.XonM.below :=a1+a3*1.592
+indirect.below :=(a1+a3*1.592)*(b)
+CE.XonM.above :=a1+a3*5.2
+indirect.above :=(a1+a3*5.2)*(b)
+direct.below:=c
+direct.above:=c
+total.below := direct.below + indirect.below
+total.above := direct.above + indirect.above
+prop.mediated.below := indirect.below / total.below
+prop.mediated.above := indirect.above / total.above
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:lavaan’
+
+> nameEx("modSummary2")
+> ### * modSummary2
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: modSummary2
+> ### Title: Make table summarizing moderation effect
+> ### Aliases: modSummary2
+> 
+> ### ** Examples
+> 
+> labels=list(X="negemot",W="sex",Z="age",Y="govact",C1="posemot",C2="ideology")
+> fit=lm(govact~negemot*sex+negemot*age+posemot+ideology,data=glbwarm)
+> modSummary2(fit,rangemode=2,mod2.values=c(30,50,70),summarymode=2)
+   negemot   sex    age posemot ideology govact se.fit  ymax  ymin
+1    1.670 0.000 30.000   3.132    4.083  4.200  0.111 4.311 4.090
+2    3.670 0.000 30.000   3.132    4.083  4.671  0.066 4.737 4.606
+3    5.330 0.000 30.000   3.132    4.083  5.062  0.099 5.162 4.963
+4    1.670 1.000 30.000   3.132    4.083  3.800  0.120 3.920 3.680
+5    3.670 1.000 30.000   3.132    4.083  4.680  0.074 4.754 4.606
+6    5.330 1.000 30.000   3.132    4.083  5.411  0.120 5.531 5.290
+7    1.670 0.000 50.000   3.132    4.083  3.994  0.091 4.085 3.903
+8    3.670 0.000 50.000   3.132    4.083  4.655  0.052 4.707 4.603
+9    5.330 0.000 50.000   3.132    4.083  5.204  0.079 5.283 5.125
+10   1.670 1.000 50.000   3.132    4.083  3.594  0.082 3.676 3.512
+11   3.670 1.000 50.000   3.132    4.083  4.664  0.054 4.718 4.610
+12   5.330 1.000 50.000   3.132    4.083  5.552  0.086 5.638 5.466
+13   1.670 0.000 70.000   3.132    4.083  3.788  0.126 3.914 3.663
+14   3.670 0.000 70.000   3.132    4.083  4.639  0.074 4.713 4.565
+15   5.330 0.000 70.000   3.132    4.083  5.346  0.115 5.460 5.231
+16   1.670 1.000 70.000   3.132    4.083  3.388  0.102 3.490 3.286
+17   3.670 1.000 70.000   3.132    4.083  4.648  0.068 4.716 4.580
+18   5.330 1.000 70.000   3.132    4.083  5.694  0.104 5.798 5.590
+> modSummary2(fit,mod2.values=c(30,50,70),summarymode=1,labels=labels)
+   negemot(X) sex(W) age(Z) posemot(C1) ideology(C2) govact(Y) se.fit  ymax
+1       1.670  0.000 30.000       3.000        4.000     4.221  0.110 4.331
+2       3.670  0.000 30.000       3.000        4.000     4.692  0.065 4.757
+3       5.330  0.000 30.000       3.000        4.000     5.083  0.099 5.182
+4       1.670  1.000 30.000       3.000        4.000     3.820  0.120 3.940
+5       3.670  1.000 30.000       3.000        4.000     4.700  0.074 4.774
+6       5.330  1.000 30.000       3.000        4.000     5.431  0.120 5.551
+7       1.670  0.000 50.000       3.000        4.000     4.015  0.091 4.106
+8       3.670  0.000 50.000       3.000        4.000     4.676  0.052 4.728
+9       5.330  0.000 50.000       3.000        4.000     5.224  0.079 5.303
+10      1.670  1.000 50.000       3.000        4.000     3.614  0.082 3.697
+11      3.670  1.000 50.000       3.000        4.000     4.684  0.054 4.739
+12      5.330  1.000 50.000       3.000        4.000     5.573  0.086 5.659
+13      1.670  0.000 70.000       3.000        4.000     3.809  0.126 3.935
+14      3.670  0.000 70.000       3.000        4.000     4.660  0.074 4.734
+15      5.330  0.000 70.000       3.000        4.000     5.366  0.115 5.481
+16      1.670  1.000 70.000       3.000        4.000     3.408  0.103 3.511
+17      3.670  1.000 70.000       3.000        4.000     4.668  0.069 4.737
+18      5.330  1.000 70.000       3.000        4.000     5.714  0.105 5.819
+    ymin
+1  4.110
+2  4.627
+3  4.984
+4  3.700
+5  4.626
+6  5.311
+7  3.924
+8  4.624
+9  5.146
+10 3.532
+11 4.630
+12 5.486
+13 3.683
+14 4.586
+15 5.252
+16 3.306
+17 4.599
+18 5.610
+> labels=list(X="frame",W="skeptic",Y="justify")
+> fit=lm(justify~frame*skeptic,data=disaster)
+> modSummary2(fit,labels=labels)
+  frame(X) skeptic(W) justify(Y) se.fit  ymax  ymin
+1    0.000      1.592      2.619  0.102 2.721 2.517
+2    1.000      1.592      2.377  0.109 2.486 2.268
+3    0.000      2.800      2.746  0.080 2.826 2.666
+4    1.000      2.800      2.747  0.085 2.831 2.662
+5    0.000      5.200      2.998  0.105 3.103 2.893
+6    1.000      5.200      3.482  0.108 3.589 3.374
+> 
+> 
+> 
+> cleanEx()
+> nameEx("modSummary2Table")
+> ### * modSummary2Table
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: modSummary2Table
+> ### Title: Make flextable summarizing moderation effect
+> ### Aliases: modSummary2Table
+> 
+> ### ** Examples
+> 
+> fit=lm(govact~negemot*sex+negemot*age+posemot+ideology,data=glbwarm)
+> modSummary2Table(fit)
+a flextable object.
+col_keys: `negemot`, `sex`, `age`, `posemot`, `ideology`, `govact`, `se.fit`, `ymax`, `ymin` 
+header has 1 row(s) 
+body has 18 row(s) 
+original dataset sample: 
+  negemot   sex    age posemot ideology govact se.fit  ymax  ymin
+1   1.670 0.000 30.000   3.132    4.083  4.200  0.111 4.311 4.090
+2   3.670 0.000 30.000   3.132    4.083  4.671  0.066 4.737 4.606
+3   5.330 0.000 30.000   3.132    4.083  5.062  0.099 5.162 4.963
+4   1.670 1.000 30.000   3.132    4.083  3.800  0.120 3.920 3.680
+5   3.670 1.000 30.000   3.132    4.083  4.680  0.074 4.754 4.606
+> 
+> 
+> 
+> cleanEx()
+> nameEx("modSummary3")
+> ### * modSummary3
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: modSummary3
+> ### Title: Summary of moderation effect
+> ### Aliases: modSummary3
+> 
+> ### ** Examples
+> 
+> fit=lm(govact~negemot*sex+negemot*age+posemot+ideology,data=glbwarm)
+> modSummary3(fit,mod2.values=c(30,50,70))
+Conditional Effect =  0.093+0.204*W+0.005*Z 
+  sex(W) age(Z) slope
+1      0     30 0.236
+2      0     50 0.331
+3      0     70 0.426
+4      1     30 0.440
+5      1     50 0.535
+6      1     70 0.630
+> fit1=lm(govact~negemot*sex*age+posemot+ideology,data=glbwarm)
+> modSummary3(fit1,rangemode=1)
+Conditional Effect =  0.273-0.131*W+0.001*Z+0.007*W*Z 
+  sex(W) age(Z) slope
+1      0 33.205 0.303
+2      0 49.536 0.318
+3      0 65.867 0.333
+4      1 33.205 0.394
+5      1 49.536 0.518
+6      1 65.867 0.642
+> fit=lm(mpg~hp*wt,data=mtcars)
+> modSummary3(fit)
+Conditional Effect =  -0.12+0.028*W 
+    wt(W)  slope
+16% 2.157 -0.060
+50% 3.325 -0.028
+84% 3.844 -0.013
+> 
+> 
+> 
+> cleanEx()
+> nameEx("modSummary3Table")
+> ### * modSummary3Table
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: modSummary3Table
+> ### Title: Make flextable summarizing moderation effect
+> ### Aliases: modSummary3Table
+> 
+> ### ** Examples
+> 
+> fit=lm(govact~negemot*sex+negemot*age+posemot+ideology,data=glbwarm)
+> modSummary3Table(fit,mod2.values=c(30,50,70))
+Conditional Effect =  0.093+0.204*W+0.005*Z 
+a flextable object.
+col_keys: `sex(W)`, `age(Z)`, `slope` 
+header has 1 row(s) 
+body has 6 row(s) 
+original dataset sample: 
+  sex(W) age(Z) slope
+1  0.000 30.000 0.236
+2  0.000 50.000 0.331
+3  0.000 70.000 0.426
+4  1.000 30.000 0.440
+5  1.000 50.000 0.535
+> 
+> 
+> 
+> cleanEx()
+> nameEx("modelsSummary")
+> ### * modelsSummary
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: modelsSummary
+> ### Title: Make Summary for Model Coefficients
+> ### Aliases: modelsSummary
+> 
+> ### ** Examples
+> 
+> fit1=lm(mpg~wt,data=mtcars)
+> fit2=lm(mpg~wt*hp*am,data=mtcars)
+> fit=list(fit1,fit2)
+> labels=list(Y="mpg",X="wt",W="hp",Z="am")
+> modelsSummary(fit,labels=labels)
+==================================================================================================== 
+                                                         Consequent                                  
+                         --------------------------------------------------------------------------- 
+                                        mpg(Y)                               mpg(Y)                
+                         -------------------------------------  -------------------------------------  
+       Antecedent               Coef     SE      t       p            Coef     SE      t       p     
+---------------------------------------------------------------------------------------------------- 
+          wt(X)            c  -5.344   0.559  -9.559   <.001   c1  -4.797   4.002  -1.199    .242  
+          hp(W)                                                c2  -0.089   0.065  -1.372    .183  
+          am(Z)                                                c3  12.837  14.222   0.903    .376  
+       wt:hp(X:W)                                              c4   0.014   0.019   0.755    .458  
+       wt:am(X:Z)                                              c5  -5.362   4.597  -1.166    .255  
+       hp:am(W:Z)                                              c6  -0.033   0.089  -0.366    .717  
+     wt:hp:am(X:W:Z)                                           c7   0.018   0.026   0.680    .503  
+        Constant          iY  37.285   1.878  19.858   <.001   iY  40.327  13.008   3.100    .005  
+---------------------------------------------------------------------------------------------------- 
+      Observations                        32                                   32                  
+           R2                            0.753                                0.896                
+       Adjusted R2                       0.745                                0.866                
+       Residual SE                 3.046 ( df = 30)                     2.209 ( df = 24)           
+       F statistic            F(1,30) = 91.375, p < .001           F(7,24) = 29.552, p < .001      
+==================================================================================================== 
+> labels=list(Y="withdraw",M="affect",X="estress")
+> covar=list(name=c("ese","sex","age"),site=list(c("M","Y"),c("M","Y"),c("M","Y")))
+> modelsSummary(labels=labels,covar=covar,data=estress)
+==================================================================================================== 
+                                                         Consequent                                  
+                         --------------------------------------------------------------------------- 
+                                       affect(M)                           withdraw(Y)             
+                         -------------------------------------  -------------------------------------  
+       Antecedent               Coef     SE      t       p            Coef     SE      t       p     
+---------------------------------------------------------------------------------------------------- 
+       estress(X)          a   0.158   0.030   5.283   <.001   c'  -0.092   0.053  -1.757    .080  
+         ese(C1)          f1  -0.154   0.045  -3.459    .001   g1  -0.216   0.076  -2.823    .005  
+         sex(C2)          f2   0.023   0.086   0.265    .791   g2   0.136   0.144   0.939    .349  
+         age(C3)          f3  -0.004   0.004  -0.973    .332   g3  -0.005   0.007  -0.693    .489  
+        affect(M)                                               b   0.705   0.104   6.753   <.001  
+        Constant          iM   1.894   0.358   5.290   <.001   iY   2.952   0.631   4.679   <.001  
+---------------------------------------------------------------------------------------------------- 
+      Observations                        262                                  262                 
+           R2                            0.157                                0.207                
+       Adjusted R2                       0.143                                0.192                
+       Residual SE                 0.670 ( df = 257)                    1.121 ( df = 256)          
+       F statistic            F(4,257) = 11.926, p < .001          F(5,256) = 13.394, p < .001     
+==================================================================================================== 
+> labels=list(X="dysfunc",M="negtone",W="negexp",Y="perform")
+> moderator=list(name="negexp",site=list(c("a","b","c")))
+> eq=tripleEquation(labels=labels,moderator=moderator,data=teams,mode=1)
+> fit=eq2fit(eq,data=teams)
+> modelsSummary(fit,labels=labels)
+==================================================================================================== 
+                                                         Consequent                                  
+                         --------------------------------------------------------------------------- 
+                                      negtone(M)                           perform(Y)              
+                         -------------------------------------  -------------------------------------  
+       Antecedent               Coef     SE      t       p            Coef     SE      t       p     
+---------------------------------------------------------------------------------------------------- 
+       dysfunc(X)         a1   0.644   0.169   3.802   <.001  c'1   0.382   0.186   2.060    .044  
+        negexp(W)         a2   0.124   0.122   1.022    .311  c'2  -0.011   0.121  -0.090    .929  
+   dysfunc:negexp(X:W)    a3  -0.253   0.261  -0.969    .337  c'3  -0.090   0.268  -0.336    .738  
+       negtone(M)                                               b  -0.447   0.136  -3.291    .002  
+   negexp:negtone(W:M)                                        c'4  -0.484   0.262  -1.848    .070  
+        Constant          iM   0.025   0.062   0.411    .683   iY  -0.013   0.059  -0.216    .830  
+---------------------------------------------------------------------------------------------------- 
+      Observations                        60                                   60                  
+           R2                            0.213                                0.313                
+       Adjusted R2                       0.171                                0.250                
+       Residual SE                 0.478 ( df = 56)                     0.453 ( df = 54)           
+       F statistic             F(3,56) = 5.054, p = .004            F(5,54) = 4.930, p = .001      
+==================================================================================================== 
+> labels=list(X="cond",M="pmi",Y="reaction")
+> modelsSummary(labels=labels,data=pmi)
+==================================================================================================== 
+                                                         Consequent                                  
+                         --------------------------------------------------------------------------- 
+                                        pmi(M)                             reaction(Y)             
+                         -------------------------------------  -------------------------------------  
+       Antecedent               Coef     SE      t       p            Coef     SE      t       p     
+---------------------------------------------------------------------------------------------------- 
+         cond(X)           a   0.477   0.236   2.022    .045   c'   0.254   0.256   0.994    .322  
+         pmi(M)                                                 b   0.506   0.097   5.219   <.001  
+        Constant          iM   5.377   0.162  33.222   <.001   iY   0.527   0.550   0.958    .340  
+---------------------------------------------------------------------------------------------------- 
+      Observations                        123                                  123                 
+           R2                            0.033                                0.206                
+       Adjusted R2                       0.025                                0.193                
+       Residual SE                 1.305 ( df = 121)                    1.393 ( df = 120)          
+       F statistic            F(1,121) = 4.088, p = .045           F(2,120) = 15.557, p < .001     
+==================================================================================================== 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("modelsSummary2")
+> ### * modelsSummary2
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: modelsSummary2
+> ### Title: Make Summary for Model Coefficients
+> ### Aliases: modelsSummary2
+> 
+> ### ** Examples
+> 
+> fit1=lm(mpg~wt,data=mtcars)
+> fit2=lm(mpg~wt*hp*vs+am,data=mtcars)
+> labels=list(Y="mpg",X="wt",W="hp",Z="vs")
+> fit=list(fit1,fit2)
+> modelsSummary2(fit,labels=labels)
+================================================================= 
+                            coef        SE          t          p      
+----------------------------------------------------------------- 
+Model 1 
+R2 = 0.753 , MSE = 9.277 
+F(1,30) = 91.375, p < .001 
+            Constant   iY    37.285     1.878    19.858     <.001 
+               wt(X)    c    -5.344     0.559    -9.559     <.001 
+----------------------------------------------------------------- 
+Model 2 
+R2 = 0.900 , MSE = 4.904 
+F(8,23) = 25.825, p < .001 
+            Constant   iY    43.665    11.712     3.728      .001 
+               wt(X)  c'1    -6.854     3.712    -1.847      .078 
+               hp(W)  c'2    -0.094     0.055    -1.716      .100 
+               vs(Z)  c'3    -3.308    13.263    -0.249      .805 
+          wt:hp(X:W)    b     0.022     0.017     1.275      .215 
+          wt:vs(X:Z)  c'4     3.565     4.856     0.734      .470 
+          hp:vs(W:Z)  c'5     0.049     0.109     0.450      .657 
+     wt:hp:vs(X:W:Z)  c'6    -0.036     0.040    -0.884      .386 
+                  am  c'7     0.558     1.440     0.387      .702 
+================================================================= 
+> modelsSummary2(fit,labels=labels,prefix=c("c","b"),autoPrefix=FALSE)
+================================================================= 
+                            coef        SE          t          p      
+----------------------------------------------------------------- 
+Model 1 
+R2 = 0.753 , MSE = 9.277 
+F(1,30) = 91.375, p < .001 
+            Constant   iy    37.285     1.878    19.858     <.001 
+               wt(X)   c1    -5.344     0.559    -9.559     <.001 
+----------------------------------------------------------------- 
+Model 2 
+R2 = 0.900 , MSE = 4.904 
+F(8,23) = 25.825, p < .001 
+            Constant   iy    43.665    11.712     3.728      .001 
+               wt(X)   b1    -6.854     3.712    -1.847      .078 
+               hp(W)   b2    -0.094     0.055    -1.716      .100 
+               vs(Z)   b3    -3.308    13.263    -0.249      .805 
+          wt:hp(X:W)   b4     0.022     0.017     1.275      .215 
+          wt:vs(X:Z)   b5     3.565     4.856     0.734      .470 
+          hp:vs(W:Z)   b6     0.049     0.109     0.450      .657 
+     wt:hp:vs(X:W:Z)   b7    -0.036     0.040    -0.884      .386 
+                  am   b8     0.558     1.440     0.387      .702 
+================================================================= 
+> modelsSummary2(fit1)
+================================================================= 
+                            coef        SE          t          p      
+----------------------------------------------------------------- 
+            Constant   iy    37.285     1.878    19.858     <.001 
+                  wt   b1    -5.344     0.559    -9.559     <.001 
+
+                                          R2 = 0.753, MSE = 9.277 
+                                       F(1,30) = 91.375, p < .001 
+================================================================= 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("modelsSummaryTable")
+> ### * modelsSummaryTable
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: modelsSummaryTable
+> ### Title: Make Summary Table for Model Coefficients
+> ### Aliases: modelsSummaryTable
+> 
+> ### ** Examples
+> 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("moderator2df")
+> ### * moderator2df
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: moderator2df
+> ### Title: Make data.frame from a list of moderator
+> ### Aliases: moderator2df
+> 
+> ### ** Examples
+> 
+> moderator=list(name=c("milk","hair"),matrix=list(c(1,1,0,1,0,0,0,0,0,0)
++    ,c(0,0,0,0,0,0,0,1,0,0)))
+> moderator2df(moderator)
+  name label xpos ypos
+1 milk    W1 0.05 0.85
+2 hair    W2 0.95 0.85
+> 
+> 
+> 
+> cleanEx()
+> nameEx("modmedEquation")
+> ### * modmedEquation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: modmedEquation
+> ### Title: Make moderated mediation equation
+> ### Aliases: modmedEquation
+> 
+> ### ** Examples
+> 
+> X="X";Y="Y"
+> moderator=list(name=c("Z"),site=list(c("a","c")))
+> cat(modmedEquation(X=X,Y=Y,moderator=moderator,range=TRUE))
+
+Y ~ c1*X+c2*Z+c3*X:Z
+Z ~ Z.mean*1
+Z ~~ Z.var*Z
+> X="X";M="M";Y="Y"
+> cat(modmedEquation(X=X,M=M,Y=Y,range=TRUE))
+M ~ a*X
+Y ~ c*X + b*M
+indirect :=(a)*(b)
+direct :=c
+total := direct + indirect
+indirect.SDbelow :=(a)*(b)
+indirect.SDabove :=(a)*(b)
+direct.SDbelow:=c
+direct.SDabove:=c
+total.SDbelow := direct.SDbelow + indirect.SDbelow
+total.SDabove := direct.SDabove + indirect.SDabove
+prop.mediated.SDbelow := indirect.SDbelow / total.SDbelow
+prop.mediated.SDabove := indirect.SDabove / total.SDabove
+> X="X";M="M";Y="Y"
+> moderator=list(name=c("Z"),site=list(c("a","c")))
+> cat(modmedEquation(X=X,M=M,Y=Y,moderator=moderator,range=TRUE))
+M ~ a1*X+a2*Z+a3*X:Z
+Y ~ c1*X+c2*Z+c3*X:Z + b*M
+Z ~ Z.mean*1
+Z ~~ Z.var*Z
+indirect :=(a1+a3*Z.mean)*(b)
+direct :=c1+c3*Z.mean
+total := direct + indirect
+indirect.SDbelow :=(a1+a3*(Z.mean-sqrt(Z.var)))*(b)
+indirect.SDabove :=(a1+a3*(Z.mean+sqrt(Z.var)))*(b)
+direct.SDbelow:=c1+c3*(Z.mean-sqrt(Z.var))
+direct.SDabove:=c1+c3*(Z.mean+sqrt(Z.var))
+total.SDbelow := direct.SDbelow + indirect.SDbelow
+total.SDabove := direct.SDabove + indirect.SDabove
+prop.mediated.SDbelow := indirect.SDbelow / total.SDbelow
+prop.mediated.SDabove := indirect.SDabove / total.SDabove
+index.mod.med := a3*b
+> X="X";M="M";Y="Y";labels=NULL;range=FALSE
+> moderator=list(name=c("X"),site=list(c("b")))
+> cat(modmedEquation(X=X,M=M,Y=Y,moderator=moderator,range=FALSE))
+M ~ a*X
+Y ~ c*X + b1*M+b2*M:X
+X ~ X.mean*1
+X ~~ X.var*X
+indirect :=(a)*(b1+b2*X.mean)
+direct :=c
+total := direct + indirect
+> X="X";Y="Y"
+> moderator=list(name=c("Z"),site=list(c("c")))
+> cat(modmedEquation(X=X,Y=Y,moderator=moderator,range=FALSE))
+
+Y ~ c1*X+c2*Z+c3*X:Z
+Z ~ Z.mean*1
+Z ~~ Z.var*Z
+> covar=list(name=c("C1","C2","C3"),label=c("ese","sex","tenure"),site=list(c("M","Y"),"Y","Y"))
+> cat(modmedEquation(X=X,M="M",Y=Y,moderator=moderator,range=FALSE,covar=covar))
+M ~ a*X
+Y ~ c1*X+c2*Z+c3*X:Z + b*M + g1*C1 + g2*C2 + g3*C3
+Z ~ Z.mean*1
+Z ~~ Z.var*Z
+indirect :=(a)*(b)
+direct :=c1+c3*Z.mean
+total := direct + indirect
+> 
+> 
+> 
+> cleanEx()
+> nameEx("modmedSummary")
+> ### * modmedSummary
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: modmedSummary
+> ### Title: Summarize the moderated mediation
+> ### Aliases: modmedSummary
+> 
+> ### ** Examples
+> 
+> require(lavaan)
+Loading required package: lavaan
+This is lavaan 0.6-7
+lavaan is BETA software! Please report any bugs.
+> labels=list(X="frame",M="justify",Y="donate",W="skeptic")
+> moderator=list(name="skeptic",site=list(c("a","c")))
+> model=tripleEquation(labels=labels,moderator=moderator)
+> cat(model)
+justify~a1*frame+a2*skeptic+a3*frame:skeptic
+donate~c1*frame+c2*skeptic+c3*frame:skeptic+b*justify
+skeptic ~ skeptic.mean*1
+skeptic ~~ skeptic.var*skeptic
+CE.XonM :=a1+a3*skeptic.mean
+indirect :=(a1+a3*skeptic.mean)*(b)
+index.mod.med :=a3*b
+direct :=c1+c3*skeptic.mean
+total := direct + indirect
+prop.mediated := indirect / total
+CE.XonM.below :=a1+a3*(skeptic.mean-sqrt(skeptic.var))
+indirect.below :=(a1+a3*(skeptic.mean-sqrt(skeptic.var)))*(b)
+CE.XonM.above :=a1+a3*(skeptic.mean+sqrt(skeptic.var))
+indirect.above :=(a1+a3*(skeptic.mean+sqrt(skeptic.var)))*(b)
+direct.below:=c1+c3*(skeptic.mean-sqrt(skeptic.var))
+direct.above:=c1+c3*(skeptic.mean+sqrt(skeptic.var))
+total.below := direct.below + indirect.below
+total.above := direct.above + indirect.above
+prop.mediated.below := indirect.below / total.below
+prop.mediated.above := indirect.above / total.above
+> 
+> 
+> 
+> cleanEx()
+
+detaching ‘package:lavaan’
+
+> nameEx("multipleMediation")
+> ### * multipleMediation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: multipleMediation
+> ### Title: Make Mediation Equation with multiple X or multiple Y
+> ### Aliases: multipleMediation
+> 
+> ### ** Examples
+> 
+> labels=list(X="cyl",M="am",Y="mpg")
+> covar=list(name=c("carb","disp"),site=list(c("M","Y"),"Y","Y"))
+> cat(multipleMediation(labels=labels,covar=covar,data=mtcars))
+am ~ a*cyl + f*carb
+mpg ~ b*am+c*cyl + g1*carb + g2*disp
+
+# Indirect Effect(s)
+
+indirect1 := ( a )*(b)
+direct1 :=c
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> labels=list(X=c("cyl","wt"),M="am",Y="mpg")
+> moderator=list(name=c("vs"),site=list(c("a1","b1")))
+> cat(multipleMediation(labels=labels,data=mtcars))
+am~a1*cyl+a2*wt
+mpg~b*am+c1*cyl+c2*wt
+
+# Indirect Effect(s)
+
+indirect1 := (a1)*(b)
+direct1 :=c1
+indirect2 := (a2)*(b)
+direct2 :=c2
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := indirect1-indirect2
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2
+direct := c1+c2
+total := indirect + direct
+prop.mediated := indirect / total
+> cat(multipleMediation(labels=labels,moderator=moderator,data=mtcars))
+am~a11*cyl+a21*vs+a31*cyl:vs+a12*wt
+mpg~b1*am+b2*vs+b3*am:vs+c1*cyl+c2*wt
+vs ~ vs.mean*1
+vs ~~ vs.var*vs
+
+
+# Indirect Effect(s)
+
+indirect1 := (a11+a31*vs.mean)*(b1+b3*vs.mean)
+direct1 :=c1
+indirect1.below :=(a11+a31*(vs.mean-sqrt(vs.var)))*(b1+b3*(vs.mean-sqrt(vs.var)))
+indirect1.above :=(a11+a31*(vs.mean+sqrt(vs.var)))*(b1+b3*(vs.mean+sqrt(vs.var)))
+direct1.below:=c1
+direct1.above:=c1
+total1.below := direct1.below + indirect1.below
+total1.above := direct1.above + indirect1.above
+prop.mediated1.below := indirect1.below / total1.below
+prop.mediated1.above := indirect1.above / total1.above
+
+indirect2 := (a12)*(b1+b3*vs.mean)
+index.mod.med2 :=a12*b3
+
+direct2 :=c2
+indirect2.below :=(a12)*(b1+b3*(vs.mean-sqrt(vs.var)))
+indirect2.above :=(a12)*(b1+b3*(vs.mean+sqrt(vs.var)))
+direct2.below:=c2
+direct2.above:=c2
+total2.below := direct2.below + indirect2.below
+total2.above := direct2.above + indirect2.above
+prop.mediated2.below := indirect2.below / total2.below
+prop.mediated2.above := indirect2.above / total2.above
+
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := indirect1-indirect2
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2
+direct := c1+c2
+total := indirect + direct
+prop.mediated := indirect / total
+> labels=list(X="wt",M=c("cyl","am"),Y="mpg")
+> moderator=list(name=c("vs"),site=list(c("b1","b2")))
+> cat(multipleMediation(labels=labels,data=mtcars,range=FALSE))
+cyl~a1*wt
+am~a2*wt
+mpg~b1*cyl+b2*am+c*wt
+
+# Indirect Effect(s)
+
+indirect1 := (a1)*(b1)
+direct1 :=c
+indirect2 := (a2)*(b2)
+direct2 :=c
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := indirect1-indirect2
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> cat(multipleMediation(labels=labels,moderator=moderator,data=mtcars,range=FALSE))
+cyl~a1*wt+a2*vs+a3*wt:vs
+am~a4*wt
+mpg~b1*cyl+b2*vs+b3*cyl:vs+b4*am+b5*am:vs+c*wt
+vs ~ vs.mean*1
+vs ~~ vs.var*vs
+
+
+# Indirect Effect(s)
+
+indirect1 := (a1+a3*vs.mean)*(b1+b3*vs.mean)
+direct1 :=c
+indirect2 := (a4)*(b4+b5*vs.mean)
+index.mod.med2 :=a4*b5
+
+direct2 :=c
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := indirect1-indirect2
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> eq=multipleMediation(labels=labels,moderator=moderator,data=mtcars,range=FALSE,serial=FALSE,mode=1)
+> drawModel(equation=eq,labels=labels)
+> labels=list(X="X",M=c("M1","M2","M3"),Y="Y")
+> labels=list(X="X",M=c("M1","M2"),Y="Y")
+> cat(multipleMediation(labels=labels))
+M1~a1*X
+M2~a2*X
+Y~b1*M1+b2*M2+c*X
+
+# Indirect Effect(s)
+
+indirect1 := (a1)*(b1)
+direct1 :=c
+indirect2 := (a2)*(b2)
+direct2 :=c
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := indirect1-indirect2
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> cat(multipleMediation(labels=labels,serial=TRUE))
+M1~a1*X
+M2~a2*X+d21*M1
+Y~b1*M1+b2*M2+c*X
+
+# Indirect Effect(s)
+
+indirect1 := (a1)*(b1)
+direct1 :=c
+indirect2 := (a2)*(b2)
+direct2 :=c
+
+# Secondary Indirect Effect(s)
+
+indirect3:= a1*d21*b2
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := indirect1-indirect2
+Contrast2 := indirect1-a1*d21*b2
+Contrast3 := indirect2-a1*d21*b2
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2+a1*d21*b2
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> moderator=list(name=c("W"),site=list(c("a1","b1")))
+> cat(multipleMediation(labels=labels,moderator=moderator,range=FALSE))
+M1~a1*X+a2*W+a3*X:W
+M2~a4*X
+Y~b1*M1+b2*W+b3*M1:W+b4*M2+c*X
+W ~ W.mean*1
+W ~~ W.var*W
+
+
+# Indirect Effect(s)
+
+indirect1 := (a1+a3*W.mean)*(b1+b3*W.mean)
+direct1 :=c
+indirect2 := (a4)*(b4)
+direct2 :=c
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := indirect1-indirect2
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> cat(multipleMediation(labels=labels,moderator=moderator,data=mtcars,range=FALSE))
+M1~a1*X+a2*W+a3*X:W
+M2~a4*X
+Y~b1*M1+b2*W+b3*M1:W+b4*M2+c*X
+W ~ W.mean*1
+W ~~ W.var*W
+
+
+# Indirect Effect(s)
+
+indirect1 := (a1+a3*W.mean)*(b1+b3*W.mean)
+direct1 :=c
+indirect2 := (a4)*(b4)
+direct2 :=c
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := indirect1-indirect2
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> cat(multipleMediation(X="am",Y="mpg",data=mtcars,moderator=moderator,covar=covar))
+mpg ~ c*am + g1*carb + g2*disp> labels=list(X="cond",M=c("import","pmi"),Y="reaction")
+> cat(multipleMediation(labels=labels,data=pmi,serial=TRUE))
+import~a1*cond
+pmi~a2*cond+d21*import
+reaction~b1*import+b2*pmi+c*cond
+
+# Indirect Effect(s)
+
+indirect1 := (a1)*(b1)
+direct1 :=c
+indirect2 := (a2)*(b2)
+direct2 :=c
+
+# Secondary Indirect Effect(s)
+
+indirect3:= a1*d21*b2
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := indirect1-indirect2
+Contrast2 := indirect1-a1*d21*b2
+Contrast3 := indirect2-a1*d21*b2
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2+a1*d21*b2
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> cat(multipleMediation(labels=labels,data=pmi,contrast=2))
+import~a1*cond
+pmi~a2*cond
+reaction~b1*import+b2*pmi+c*cond
+
+# Indirect Effect(s)
+
+indirect1 := (a1)*(b1)
+direct1 :=c
+indirect2 := (a2)*(b2)
+direct2 :=c
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := abs(indirect1)-abs(indirect2)
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> cat(multipleMediation(labels=labels,data=pmi,mode=1,serial=TRUE))
+import~cond
+pmi~cond+import
+reaction~import+pmi+cond> labels=list(X="X",M=c("M1","M2","M3"),Y="Y")
+> cat(multipleMediation(labels=labels,bmatrix=c(1,1,1,1,1,1,1,1,1,1)))
+M1~a1*X
+M2~a2*X+d21*M1
+M3~a3*X+d31*M1+d32*M2
+Y~b1*M1+b2*M2+b3*M3+c*X
+
+# Indirect Effect(s)
+
+indirect1 := (a1)*(b1)
+direct1 :=c
+indirect2 := (a2)*(b2)
+direct2 :=c
+indirect3 := (a3)*(b3)
+direct3 :=c
+
+# Specific Indirect Effect Contrast(s)
+
+Contrast1 := indirect1-indirect2
+Contrast2 := indirect1-indirect3
+Contrast3 := indirect2-indirect3
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1+indirect2+indirect3
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> labels=list(X="X",M=c("M1","M2"),Y="Y",W="W")
+> cat(multipleMediation(labels=labels,bmatrix=c(1,1,1,1,1,0)))
+M1~a1*X
+M2~a2*X+d21*M1
+Y~b*M1+c*X
+
+# Indirect Effect(s)
+
+indirect1 := (a1)*(b)
+direct1 :=c
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> cat(multipleMediation(labels=labels,bmatrix=c(1,1,1,1,0,0)))
+M1~a1*X
+M2~a2*X+d21*M1
+Y~c*X> moderator=list(name=c("W"),matrix=list(c(1,1,0,1,0,0)))
+> eq=multipleMediation(labels=labels,moderator=moderator,bmatrix=c(1,1,1,1,1,1),mode=1)
+> drawModel(equation=eq,labels=labels,nodemode=2)
+> labels=list(X="X",M=c("M1","M2","M3"),Y="Y",W="W")
+> cat(multipleMediation(labels=labels,bmatrix=c(1,1,0,0,1,1,1,1,0,1)))
+M1~a1*X
+M2~a2*X
+M3~d31*M1+d32*M2
+Y~b1*M1+b2*M3+c*X
+
+# Indirect Effect(s)
+
+indirect1 := (a1)*(b1)
+direct1 :=c
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> labels=list(X="X",M=c("M1","M2"),Y="Y")
+> cat(multipleMediation(labels=labels,serial=TRUE,mode=1))
+M1~X
+M2~X+M1
+Y~M1+M2+X> vars=list(name=list(c("W","Z")),matrix=list(c(0,0,1,0,0,0)))
+> cat(multipleMediation(labels=labels,bmatrix=c(1,1,1,1,1,0),vars=vars))
+M1~a1*X
+M2~a2*X+d21*M1+d22*W+d23*Z+d24*M1:W+d25*M1:Z+d26*W:Z+d27*interaction0
+Y~b*M1+c*X
+
+# Indirect Effect(s)
+
+indirect1 := (a1)*(b)
+direct1 :=c
+
+# Indirect/Direct/Total Effect(s)
+
+indirect := indirect1
+direct := c
+total := indirect + direct
+prop.mediated := indirect / total
+> 
+> 
+> 
+> cleanEx()
+> nameEx("parallelMatrix")
+> ### * parallelMatrix
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: parallelMatrix
+> ### Title: Make bmatrix for parallel multiple mediator model
+> ### Aliases: parallelMatrix
+> 
+> ### ** Examples
+> 
+> parallelMatrix(3)
+ [1] 1 1 0 1 0 0 1 1 1 1
+> 
+> 
+> 
+> cleanEx()
+> nameEx("plot.mediationBK")
+> ### * plot.mediationBK
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: plot.mediationBK
+> ### Title: S3 method for class mediationBK
+> ### Aliases: plot.mediationBK
+> 
+> ### ** Examples
+> 
+> labels=list(X="cond",M="pmi",Y="reaction")
+> result=mediationBK(labels=labels,data=pmi)
+> plot(result,type=1)
+> plot(result)
+> plot(result,type=1,whatLabel="label",arrowslabels="c",addprime=FALSE)
+> plot(result,whatLabel="label",arrowslabels=c("a","b","c"))
+> 
+> 
+> 
+> cleanEx()
+> nameEx("pmacroModel")
+> ### * pmacroModel
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: pmacroModel
+> ### Title: draw conceptual diagram of process macro model
+> ### Aliases: pmacroModel
+> 
+> ### ** Examples
+> 
+> pmacroModel(1)
+> covar=list(name=c("C1","C2"),label=c("ese","sex","tenure"),site=list("Y","Y"))
+> pmacroModel(1,covar=covar)
+> covar=list(name=c("C1","C2","C3"),label=c("ese","sex","tenure"),site=list("M",c("Mi","Y"),c("Y")))
+> pmacroModel(4,covar=covar)
+> 
+> 
+> 
+> cleanEx()
+> nameEx("productEq")
+> ### * productEq
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: productEq
+> ### Title: Make products of equations
+> ### Aliases: productEq
+> 
+> ### ** Examples
+> 
+> equation1=c("a1+b1*W")
+> equation2=c("a2+b2*W")
+> productEq(equation1,equation2)
+[1] "a1*a2"     "a1*b2*W"   "b1*W*a2"   "b1*W*b2*W"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("qqPlot")
+> ### * qqPlot
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: qqPlot
+> ### Title: Draw quantile-quantile plot
+> ### Aliases: qqPlot
+> 
+> ### ** Examples
+> 
+> qqPlot(rnorm(200))
+> qqPlot(rt(200, df = 5))
+> 
+> 
+> 
+> cleanEx()
+> nameEx("r2diff")
+> ### * r2diff
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: r2diff
+> ### Title: Calculate difference of R2 and adjusted R2
+> ### Aliases: r2diff
+> 
+> ### ** Examples
+> 
+> fit=lm(mpg~wt*hp,data=mtcars)
+> r2diff(fit)
+Test of highest order unconditional interaction(s)
+
+Removing :  wt:hp 
+r2diff = 0.058, F(1,28) = 14.088, p = .001 
+> r2diff(fit,mode=2)
+      r2diff ar2diff      F df1 df2     p
+wt     0.172   0.180 41.877   1  28 <.001
+hp     0.097   0.100 23.646   1  28 <.001
+wt:hp  0.058   0.058 14.088   1  28  .001
+> 
+> 
+> 
+> cleanEx()
+> nameEx("regEquation")
+> ### * regEquation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: regEquation
+> ### Title: Make regression equation
+> ### Aliases: regEquation
+> 
+> ### ** Examples
+> 
+> X="X";M=NULL;Y="Y"; moderator=list(name="W",site=list("c"))
+> regEquation(X,M,Y,moderator)
+[1] "Y ~  X+X*W"
+> M=c("M1","M2")
+> regEquation(X,M,Y,moderator,secondIndirect=TRUE)
+[1] "M1 ~ X\nM2 ~ X+M1\nY ~  X+M1+M2+X*W"
+> covar=list(name=c("C1","C2","C3"),label=c("ese","sex","tenure"),site=list(c("M1","Y"),"Y","Y"))
+> regEquation(X,M,Y,moderator,covar=covar)
+[1] "M1 ~ X + C1\nM2 ~ X\nY ~  X+M1+M2+X*W + C1 + C2 + C3"
+> covar=list(name=c("ese","sex","tenure"),site=list(c("M","Y"),c("M","Y"),c("M","Y")))
+> regEquation(X="estress",M="affect",Y="withdraw",covar=covar)
+[1] "affect ~ estress\nwithdraw ~  estress+affect"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("seekNameVars")
+> ### * seekNameVars
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: seekNameVars
+> ### Title: select names of variables from list var
+> ### Aliases: seekNameVars
+> 
+> ### ** Examples
+> 
+> vars=list(name=list(c("W","Z"),c("V","Q")),site=list(c("a","c"),c("b","c")))
+> vars=list(name=list(c("W","Z")),site=list(c("a","c")))
+> seekNameVars(vars,"a")
+[1] 1
+> seekNameVars(vars,"b")
+integer(0)
+> seekNameVars(vars,"c")
+[1] 1
+> 
+> 
+> 
+> cleanEx()
+> nameEx("seekVar")
+> ### * seekVar
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: seekVar
+> ### Title: Seek var form covariates
+> ### Aliases: seekVar
+> 
+> ### ** Examples
+> 
+> covar=list(name=c("C1","C2","C3"),label=c("ese","sex","tenure"),site=list(c("M","Y"),"Y","Y"))
+> var="Y"
+> seekVar(covar,var,prefix="h")
+[1] "h1*C1" "h2*C2" "h3*C3"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("separateEq")
+> ### * separateEq
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: separateEq
+> ### Title: Separate equation
+> ### Aliases: separateEq
+> 
+> ### ** Examples
+> 
+> equation="( a1 + b1 * W )"
+> separateEq(equation)
+[1] "a1"   "b1*W"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("statisticalDiagram")
+> ### * statisticalDiagram
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: statisticalDiagram
+> ### Title: Draw statistical diagram
+> ### Aliases: statisticalDiagram
+> 
+> ### ** Examples
+> 
+> statisticalDiagram(no=1)
+> covar=list(name=c("posemot","ideology","sex"),site=list(c("Y"),c("Y"),c("Y")))
+> statisticalDiagram(no=1,covar=covar)
+> covar=list(name=c("posemot","ideology","sex"),site=list(c("M","Y"),c("Mi","Y"),c("Mi","Y")))
+> covar=list(name=c("C1","C2"),site=list(c("M","Y"),"Y"))
+> statisticalDiagram(no=4,covar=covar)
+> statisticalDiagram(no=8,covar=covar)
+> labels=list(X="wintense",Mi="cogapp",Y="emotion")
+> nodeslabels=list(X="Work\nIntensity",Mi="Cognitive\nAppraisal",Y="Emotional\nExhaustion")
+> statisticalDiagram(4,labels=labels)
+> statisticalDiagram(4,labels=nodeslabels)
+> statisticalDiagram(4,labels=labels,nodeslabels=nodeslabels)
+> labels=list(X="GDP\nper inhabitant",M="Illiteracy Rate",Y="Mean Life\nExpectation")
+> statisticalDiagram(4,labels=labels)
+> statisticalDiagram(4,labels=labels,arrowslabels=c("e","f","g"),whatLabel="label")
+> 
+> 
+> 
+> cleanEx()
+> nameEx("str_detect2")
+> ### * str_detect2
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: str_detect2
+> ### Title: Extension of str_detect to list
+> ### Aliases: str_detect2
+> 
+> ### ** Examples
+> 
+> site=list(c("a","c"),c("a","b","c"))
+> str_detect2(site,"b")
+[1] FALSE  TRUE
+> 
+> 
+> 
+> cleanEx()
+> nameEx("treatInteraction")
+> ### * treatInteraction
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: treatInteraction
+> ### Title: unfold interaction
+> ### Aliases: treatInteraction
+> 
+> ### ** Examples
+> 
+> var="X*M"
+> treatInteraction(var)
+[1] "X"   "M"   "X:M"
+> var="X*M*W"
+> treatInteraction(var)
+[1] "X"     "M"     "W"     "X:M"   "X:W"   "M:W"   "X:M:W"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("treatModerator")
+> ### * treatModerator
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: treatModerator
+> ### Title: Treat moderator name with mean value
+> ### Aliases: treatModerator
+> 
+> ### ** Examples
+> 
+> ind="(a1+a4*sex+a5*age)*(b1)"
+> moderatorNames=c("age","sex")
+> treatModerator(ind,moderatorNames)
+[[1]]
+[1] "(a1+a4*sex.mean+a5*age.mean)*(b1)"
+
+[[2]]
+[1] "(a1+a4*(sex.mean-sqrt(sex.var))+a5*(age.mean-sqrt(age.var)))*(b1)"
+
+[[3]]
+[1] "(a1+a4*(sex.mean+sqrt(sex.var))+a5*(age.mean+sqrt(age.var)))*(b1)"
+
+> ind="c1+c3*hp"
+> moderatorNames="hp"
+> treatModerator(ind,moderatorNames)
+[[1]]
+[1] "c1+c3*hp.mean"
+
+[[2]]
+[1] "c1+c3*(hp.mean-sqrt(hp.var))"
+
+[[3]]
+[1] "c1+c3*(hp.mean+sqrt(hp.var))"
+
+> 
+> 
+> 
+> cleanEx()
+> nameEx("tripleEquation")
+> ### * tripleEquation
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: tripleEquation
+> ### Title: Make equation with triple interaction
+> ### Aliases: tripleEquation
+> 
+> ### ** Examples
+> 
+> X="negemot";M="ideology";Y="govact";suffix=0
+> cat(tripleEquation(X=X,M=M,Y=Y))
+ideology~a*negemot
+govact~c*negemot+b*ideology
+indirect :=(a)*(b)
+direct :=c
+total := direct + indirect
+prop.mediated := indirect / total
+> vars=list(name=list(c("sex","age")),site=list(c("a","c")))
+> vars=list(name=list(c("W","Z"),c("V","Q")),site=list(c("a","b","c"),c("a","b","c")))
+> X="negemot";Y="govact";suffix=0
+> moderator=list(name=c("W"),site=list(c("b","c")))
+> cat(tripleEquation(X=X,Y=Y,moderator=moderator))
+govact~c1*negemot+c2*W+c3*negemot:W
+W ~ W.mean*1
+W ~~ W.var*W
+direct :=c1+c3*W.mean
+direct.below:=c1+c3*(W.mean-sqrt(W.var))
+direct.above:=c1+c3*(W.mean+sqrt(W.var))
+> covar=list(name=c("C1","C2","C3"),site=list(c("M","Y"),c("Mi","Y"),"Y"))
+> labels=list(X="negemot",M="ideology",Y="govact")
+> cat(tripleEquation(labels=labels,moderator=moderator,covar=covar))
+ideology ~ a*negemot + f1*C1 + f2*C2
+govact ~ c1*negemot+c2*W+c3*negemot:W+b1*ideology+b2*ideology:W + g1*C1 + g2*C2 + g3*C3
+W ~ W.mean*1
+W ~~ W.var*W
+CE.MonY :=b1+b2*W.mean
+indirect :=(a)*(b1+b2*W.mean)
+index.mod.med :=a*b2
+direct :=c1+c3*W.mean
+total := direct + indirect
+prop.mediated := indirect / total
+CE.MonY.below :=b1+b2*(W.mean-sqrt(W.var))
+indirect.below :=(a)*(b1+b2*(W.mean-sqrt(W.var)))
+CE.MonY.above :=b1+b2*(W.mean+sqrt(W.var))
+indirect.above :=(a)*(b1+b2*(W.mean+sqrt(W.var)))
+direct.below:=c1+c3*(W.mean-sqrt(W.var))
+direct.above:=c1+c3*(W.mean+sqrt(W.var))
+total.below := direct.below + indirect.below
+total.above := direct.above + indirect.above
+prop.mediated.below := indirect.below / total.below
+prop.mediated.above := indirect.above / total.above
+> cat(tripleEquation(X=X,M=M,Y=Y,moderator=moderator,covar=covar,mode=1))
+ideology ~ negemot + C1 + C2
+govact ~ negemot+W+negemot:W+ideology+ideology:W + C1 + C2 + C3
+> cat(tripleEquation(X=X,M=M,Y=Y,vars=vars))
+ideology~a1*negemot+a2*W+a3*Z+a4*negemot:W+a5*negemot:Z+a6*W:Z+a7*interaction0+a8*V+a9*Q+a10*negemot:V+a11*negemot:Q+a12*V:Q+a13*interaction1
+govact~c1*negemot+c2*W+c3*Z+c4*negemot:W+c5*negemot:Z+c6*W:Z+c7*interaction0+c8*V+c9*Q+c10*negemot:V+c11*negemot:Q+c12*V:Q+c13*interaction2+b1*ideology+b2*W+b3*Z+b4*ideology:W+b5*ideology:Z+b6*W:Z+b7*interaction2+b8*V+b9*Q+b10*ideology:V+b11*ideology:Q+b12*V:Q+b13*interaction3
+W ~ W.mean*1
+W ~~ W.var*W
+Z ~ Z.mean*1
+Z ~~ Z.var*Z
+V ~ V.mean*1
+V ~~ V.var*V
+Q ~ Q.mean*1
+Q ~~ Q.var*Q
+CE.XonM :=a1+a4*W.mean+a5*Z.mean+a10*V.mean+a11*Q.mean
+CE.MonY :=b1+b4*W.mean+b5*Z.mean+b10*V.mean+b11*Q.mean
+indirect :=(a1+a4*W.mean+a5*Z.mean+a10*V.mean+a11*Q.mean)*(b1+b4*W.mean+b5*Z.mean+b10*V.mean+b11*Q.mean)
+direct :=c1+c4*W.mean+c5*Z.mean+c10*V.mean+c11*Q.mean
+total := direct + indirect
+prop.mediated := indirect / total
+CE.XonM.below :=a1+a4*(W.mean-sqrt(W.var))+a5*(Z.mean-sqrt(Z.var))+a10*(V.mean-sqrt(V.var))+a11*(Q.mean-sqrt(Q.var))
+CE.MonY.below :=b1+b4*(W.mean-sqrt(W.var))+b5*(Z.mean-sqrt(Z.var))+b10*(V.mean-sqrt(V.var))+b11*(Q.mean-sqrt(Q.var))
+indirect.below :=(a1+a4*(W.mean-sqrt(W.var))+a5*(Z.mean-sqrt(Z.var))+a10*(V.mean-sqrt(V.var))+a11*(Q.mean-sqrt(Q.var)))*(b1+b4*(W.mean-sqrt(W.var))+b5*(Z.mean-sqrt(Z.var))+b10*(V.mean-sqrt(V.var))+b11*(Q.mean-sqrt(Q.var)))
+CE.XonM.above :=a1+a4*(W.mean+sqrt(W.var))+a5*(Z.mean+sqrt(Z.var))+a10*(V.mean+sqrt(V.var))+a11*(Q.mean+sqrt(Q.var))
+CE.MonY.above :=b1+b4*(W.mean+sqrt(W.var))+b5*(Z.mean+sqrt(Z.var))+b10*(V.mean+sqrt(V.var))+b11*(Q.mean+sqrt(Q.var))
+indirect.above :=(a1+a4*(W.mean+sqrt(W.var))+a5*(Z.mean+sqrt(Z.var))+a10*(V.mean+sqrt(V.var))+a11*(Q.mean+sqrt(Q.var)))*(b1+b4*(W.mean+sqrt(W.var))+b5*(Z.mean+sqrt(Z.var))+b10*(V.mean+sqrt(V.var))+b11*(Q.mean+sqrt(Q.var)))
+direct.below:=c1+c4*(W.mean-sqrt(W.var))+c5*(Z.mean-sqrt(Z.var))+c10*(V.mean-sqrt(V.var))+c11*(Q.mean-sqrt(Q.var))
+direct.above:=c1+c4*(W.mean+sqrt(W.var))+c5*(Z.mean+sqrt(Z.var))+c10*(V.mean+sqrt(V.var))+c11*(Q.mean+sqrt(Q.var))
+total.below := direct.below + indirect.below
+total.above := direct.above + indirect.above
+prop.mediated.below := indirect.below / total.below
+prop.mediated.above := indirect.above / total.above
+> cat(tripleEquation(X=X,M=M,Y=Y,vars=vars,moderator=moderator,covar=covar))
+ideology ~ a1*negemot+a2*W+a3*Z+a4*negemot:W+a5*negemot:Z+a6*W:Z+a7*interaction0+a8*V+a9*Q+a10*negemot:V+a11*negemot:Q+a12*V:Q+a13*interaction1 + f1*C1 + f2*C2
+govact ~ c1*negemot+c2*W+c3*Z+c4*negemot:W+c5*negemot:Z+c6*W:Z+c7*interaction0+c8*V+c9*Q+c10*negemot:V+c11*negemot:Q+c12*V:Q+c13*interaction2+b1*ideology+b2*W+b3*Z+b4*ideology:W+b5*ideology:Z+b6*W:Z+b7*interaction2+b8*V+b9*Q+b10*ideology:V+b11*ideology:Q+b12*V:Q+b13*interaction3 + g1*C1 + g2*C2 + g3*C3
+W ~ W.mean*1
+W ~~ W.var*W
+Z ~ Z.mean*1
+Z ~~ Z.var*Z
+V ~ V.mean*1
+V ~~ V.var*V
+Q ~ Q.mean*1
+Q ~~ Q.var*Q
+CE.XonM :=a1+a4*W.mean+a5*Z.mean+a10*V.mean+a11*Q.mean
+CE.MonY :=b1+b4*W.mean+b5*Z.mean+b10*V.mean+b11*Q.mean
+indirect :=(a1+a4*W.mean+a5*Z.mean+a10*V.mean+a11*Q.mean)*(b1+b4*W.mean+b5*Z.mean+b10*V.mean+b11*Q.mean)
+direct :=c1+c4*W.mean+c5*Z.mean+c10*V.mean+c11*Q.mean
+total := direct + indirect
+prop.mediated := indirect / total
+CE.XonM.below :=a1+a4*(W.mean-sqrt(W.var))+a5*(Z.mean-sqrt(Z.var))+a10*(V.mean-sqrt(V.var))+a11*(Q.mean-sqrt(Q.var))
+CE.MonY.below :=b1+b4*(W.mean-sqrt(W.var))+b5*(Z.mean-sqrt(Z.var))+b10*(V.mean-sqrt(V.var))+b11*(Q.mean-sqrt(Q.var))
+indirect.below :=(a1+a4*(W.mean-sqrt(W.var))+a5*(Z.mean-sqrt(Z.var))+a10*(V.mean-sqrt(V.var))+a11*(Q.mean-sqrt(Q.var)))*(b1+b4*(W.mean-sqrt(W.var))+b5*(Z.mean-sqrt(Z.var))+b10*(V.mean-sqrt(V.var))+b11*(Q.mean-sqrt(Q.var)))
+CE.XonM.above :=a1+a4*(W.mean+sqrt(W.var))+a5*(Z.mean+sqrt(Z.var))+a10*(V.mean+sqrt(V.var))+a11*(Q.mean+sqrt(Q.var))
+CE.MonY.above :=b1+b4*(W.mean+sqrt(W.var))+b5*(Z.mean+sqrt(Z.var))+b10*(V.mean+sqrt(V.var))+b11*(Q.mean+sqrt(Q.var))
+indirect.above :=(a1+a4*(W.mean+sqrt(W.var))+a5*(Z.mean+sqrt(Z.var))+a10*(V.mean+sqrt(V.var))+a11*(Q.mean+sqrt(Q.var)))*(b1+b4*(W.mean+sqrt(W.var))+b5*(Z.mean+sqrt(Z.var))+b10*(V.mean+sqrt(V.var))+b11*(Q.mean+sqrt(Q.var)))
+direct.below:=c1+c4*(W.mean-sqrt(W.var))+c5*(Z.mean-sqrt(Z.var))+c10*(V.mean-sqrt(V.var))+c11*(Q.mean-sqrt(Q.var))
+direct.above:=c1+c4*(W.mean+sqrt(W.var))+c5*(Z.mean+sqrt(Z.var))+c10*(V.mean+sqrt(V.var))+c11*(Q.mean+sqrt(Q.var))
+total.below := direct.below + indirect.below
+total.above := direct.above + indirect.above
+prop.mediated.below := indirect.below / total.below
+prop.mediated.above := indirect.above / total.above
+> cat(tripleEquation(X=X,M=M,Y=Y,vars=vars,mode=1))
+ideology~negemot*W*Z+negemot*V*Q+negemot
+govact~negemot*W*Z+negemot*V*Q+negemot+ideology*W*Z+ideology*V*Q+ideology
+> cat(tripleEquation(X=X,M=M,Y=Y,vars=vars,covar=covar,mode=1))
+ideology ~ negemot*W*Z+negemot*V*Q+negemot + C1 + C2
+govact ~ negemot*W*Z+negemot*V*Q+negemot+ideology*W*Z+ideology*V*Q+ideology + C1 + C2 + C3
+> X="negemot";Y="govact";suffix=0
+> vars=list(name=list(c("sex","age")),site=list(c("c")))
+> cat(tripleEquation(X=X,Y=Y,vars=vars))
+govact~c1*negemot+c2*sex+c3*age+c4*negemot:sex+c5*negemot:age+c6*sex:age+c7*interaction0
+sex ~ sex.mean*1
+sex ~~ sex.var*sex
+age ~ age.mean*1
+age ~~ age.var*age
+direct :=c1+c4*sex.mean+c5*age.mean
+direct.below:=c1+c4*(sex.mean-sqrt(sex.var))+c5*(age.mean-sqrt(age.var))
+direct.above:=c1+c4*(sex.mean+sqrt(sex.var))+c5*(age.mean+sqrt(age.var))
+> 
+> 
+> 
+> cleanEx()
+> nameEx("tripleInteraction")
+> ### * tripleInteraction
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: tripleInteraction
+> ### Title: Make triple interaction equation
+> ### Aliases: tripleInteraction
+> 
+> ### ** Examples
+> 
+> vars=c("negemot","sex","age")
+> tripleInteraction(vars)
+[1] "c1*negemot"      "c2*sex"          "c3*age"          "c4*negemot:sex" 
+[5] "c5*negemot:age"  "c6*sex:age"      "c7*interaction0"
+> tripleInteraction(vars,mode=1)
+[1] "negemot*sex*age"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("unfold")
+> ### * unfold
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: unfold
+> ### Title: Unfold equations
+> ### Aliases: unfold
+> 
+> ### ** Examples
+> 
+> string=c("(a1+b1*W)*(a2+b2*W)*(a3+b3*W)","a1+b1*W")
+> unfold(string)
+[1] "a1*a2*a3+(a1*a2*b3+a1*b2*a3+b1*a2*a3)*W+(a1*b2*b3+b1*a2*b3+b1*b2*a3)*W^2+b1*b2*b3*W^3"
+[2] "a1+b1*W"                                                                              
+> 
+> 
+> 
+> cleanEx()
+> nameEx("vars2df")
+> ### * vars2df
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: vars2df
+> ### Title: Make data.frame from a list of vars
+> ### Aliases: vars2df
+> 
+> ### ** Examples
+> 
+> vars=list(name=list(c("tenure","age")),site=list(c("a","b")))
+> vars2df(vars)
+    name label xpos  ypos
+1 tenure     W  0.0 0.950
+2    age     Z -0.1 0.725
+> vars=list(name=list(c("milk","hair")),matrix=list(c(1,0,0,0,0,0,1,0,0,0)),pos=5)
+> vars2df(vars)
+  name label xpos ypos
+1 milk     W  0.5  0.2
+2 hair     Z  0.3  0.3
+> 
+> 
+> 
+> cleanEx()
+> nameEx("ztable.compareMC")
+> ### * ztable.compareMC
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: ztable.compareMC
+> ### Title: S3 method for class compareMC
+> ### Aliases: ztable.compareMC
+> 
+> ### ** Examples
+> 
+> 
+> 
+> 
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  5.325 0.292 5.791 0.005 0.007 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')
