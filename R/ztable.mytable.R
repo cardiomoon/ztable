@@ -90,8 +90,10 @@ trim.ztable=function(z){
 #'require(moonBook)
 #'require(ztable)
 #'require(magrittr)
-#'mytable(sex~.,data=acs,show.total=TRUE) %>% ztable %>% totalLeft
+#'mytable(sex~.,data=acs,show.total=TRUE) %>% ztable() %>% totalLeft()
+#'\dontrun{
 #'mytable(sex+Dx~.,data=acs,show.total=TRUE) %>% ztable %>% totalLeft
+#'}
 #'@export
 totalLeft=function(z){
 

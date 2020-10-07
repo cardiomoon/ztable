@@ -97,11 +97,13 @@ addColColor=function(z,cols=NULL,bg=NULL,color=NULL){
 #' @param condition Logical expression to select rows
 #' @export
 #' @examples
+#' \dontrun{
 #' z=ztable(head(iris))
 #' z=addRowColor(z,c(1,3),color="platinum")
-#' z=addColColor(z,2,color="syan")
+#' z=addColColor(z,2,color="cyan")
 #' z=addCellColor(z,cols=c(5,4),rows=5,color="red")
 #' z
+#' }
 addCellColor=function(z,rows=NULL,cols=NULL,bg=NULL,color=NULL,condition=NULL){
     selected=NULL
     selected <- if (!missing(condition)) {

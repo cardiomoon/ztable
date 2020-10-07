@@ -109,11 +109,7 @@ roundDf=function(df,digits=2){
 #' @importFrom officer fp_border
 #' @export
 #' @examples
-#' require(magrittr)
-#' z=ztable(head(mtcars)) %>%
-#'    addRowColor(rows=1:7,palette2colors("Paired"))
 #' z=ztable(head(mtcars))
-#' z
 #' ztable2flextable(z)
 ztable2flextable=function(z){
     df=data2table(z)

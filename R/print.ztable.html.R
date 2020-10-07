@@ -836,9 +836,11 @@ ztable2html=function(z,xdata){
     cat("</table>\n")
 }
 
-#' Print an object of ztable via RStudio::viewer
+#' Print an object of ztable via rstudioapi::viewer
 #'
 #' @param z An object of ztable
+#' @importFrom rstudioapi viewer
+#' @importFrom utils browseURL
 ztable2viewer=function(z){
     temp.f=tempfile(fileext=".html")
     sink(temp.f)
@@ -854,11 +856,11 @@ ztable2viewer=function(z){
     sink()
 
     viewer <- getOption("viewer")
-    if (!is.null(viewer) &&
-            is.function(viewer)){
+    if (!is.null(viewer)){
         # (code to write some content to the file)
-        viewer(temp.f)
-    }else{
-        utils::browseURL(temp.f)
+        rstudioapi::viewer(temp.f)
+    } else{
+        if(is.character(temp.f)) utils::browseURL(temp.f)
     }
+
 }

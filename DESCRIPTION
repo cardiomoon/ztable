@@ -18,6 +18,7 @@ Imports:
     RColorBrewer,
     flextable,
     officer,
+    rstudioapi,
     scales
 Suggests:
     MASS,

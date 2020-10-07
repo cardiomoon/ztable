@@ -165,6 +165,7 @@ ztable.data.frame=function(x,digits=NULL,...){
 #' require(ztable)
 #' x=head(iris)
 #' ztable(x)
+#' \dontrun{
 #' ztable(x,size=3,caption="Table 1. ztable Test")
 #' ztable(x,size=7,caption="Table 1. ztable Test",caption.position="l")
 #' ztable(x,size=7,caption="Table 1. ztable Test",caption.placement="bottom",
@@ -185,6 +186,7 @@ ztable.data.frame=function(x,digits=NULL,...){
 #' ztable(out1)
 #' ztable(head(mtcars),zebra=1)
 #' ztable(head(mtcars),zebra=1,zebra.type=2)
+#' }
 ztable_sub=function(x,
                     family=NULL,
                     size=5, # normal size, range 1-10

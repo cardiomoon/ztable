@@ -238,6 +238,7 @@ Exporting "data.frame" to an object of class "ztable"
 require(ztable)
 x=head(iris)
 ztable(x)
+\dontrun{
 ztable(x,size=3,caption="Table 1. ztable Test")
 ztable(x,size=7,caption="Table 1. ztable Test",caption.position="l")
 ztable(x,size=7,caption="Table 1. ztable Test",caption.placement="bottom",
@@ -258,4 +259,5 @@ out1=coxph(TS~rx+obstruct+adhere+differ+extent+surg+node4,data=colon)
 ztable(out1)
 ztable(head(mtcars),zebra=1)
 ztable(head(mtcars),zebra=1,zebra.type=2)
+}
 }

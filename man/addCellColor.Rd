@@ -30,9 +30,11 @@ addCellColor(
 Add column colors of an object of ztable
 }
 \examples{
+\dontrun{
 z=ztable(head(iris))
 z=addRowColor(z,c(1,3),color="platinum")
-z=addColColor(z,2,color="syan")
+z=addColColor(z,2,color="cyan")
 z=addCellColor(z,cols=c(5,4),rows=5,color="red")
 z
+}
 }

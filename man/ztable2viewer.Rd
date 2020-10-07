@@ -2,7 +2,7 @@
 % Please edit documentation in R/print.ztable.html.R
 \name{ztable2viewer}
 \alias{ztable2viewer}
-\title{Print an object of ztable via RStudio::viewer}
+\title{Print an object of ztable via rstudioapi::viewer}
 \usage{
 ztable2viewer(z)
 }
@@ -10,5 +10,5 @@ ztable2viewer(z)
 \item{z}{An object of ztable}
 }
 \description{
-Print an object of ztable via RStudio::viewer
+Print an object of ztable via rstudioapi::viewer
 }
