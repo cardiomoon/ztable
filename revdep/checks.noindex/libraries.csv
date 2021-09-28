@@ -1,2 +1,9 @@
 package,old,new,delta
-ztable,0.2.0,0.2.2,*
+ztable,0.2.2,0.2.3,*
+cpp11,NA,0.4.0,*
+data.table,NA,1.14.2,*
+flextable,NA,0.6.8,*
+htmltools,NA,0.5.2,*
+officer,NA,0.4.0,*
+rmarkdown,NA,2.11,*
+tinytex,NA,0.33,*

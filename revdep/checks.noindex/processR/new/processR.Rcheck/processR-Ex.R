@@ -283,7 +283,12 @@ flush(stderr()); flush(stdout())
 ### ** Examples
 
 fit=lm(govact~negemot*sex*age+posemot+ideology,data=glbwarm)
-condPlot2(fit)
+## Not run: 
+##D condPlot2(fit)
+##D condPlot2(fit,mod2.values = c(30,50,70))
+##D fit1=lm(govact~negemot*age*sex+posemot+ideology,data=glbwarm)
+##D condPlot2(fit1,pred="negemot",modx="sex",mod2="age",mod2.values = c(30,50,70),xvar="W")
+## End(Not run)
 
 
 
@@ -1313,6 +1318,18 @@ labels=list(X="frame",W="skeptic",M="justify",Y="donate")
 moderator=list(name='skeptic',site=list(c("a")))
 model=tripleEquation(labels=labels,moderator=moderator,data=disaster,rangemode=2)
 cat(model)
+## Not run: 
+##D semfit=sem(model=model,data=disaster,se="boot",bootstrap=100)
+##D modSummary(semfit)
+##D modSummaryTable(semfit)
+##D labels=list(X="dysfunc",M="negtone",Y="perform",W="negexp")
+##D moderator=list(name="negexp",site=list("b"))
+##D model=tripleEquation(labels=labels,moderator=moderator,data=teams,rangemode=2)
+##D cat(model)
+##D semfit=sem(model,data=teams,se="boot",bootstrap=100)
+##D modmedSummary(semfit)
+##D modSummaryTable(semfit)
+## End(Not run)
 
 
 

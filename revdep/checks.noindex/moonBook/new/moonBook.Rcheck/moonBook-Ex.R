@@ -22,8 +22,11 @@ attach(colon)
 colon$TS=Surv(time,status==1)
 out=mycph(TS~.,data=colon)
 out
-HRplot(out,type=1,pch=2,col=c("blue","red"))
-HRplot(out,type=2,show.CI=TRUE,pch=2,cex=2,main="Hazard ratios of all individual variables")
+HRplot(out)
+## Not run: 
+##D HRplot(out,type=1,pch=2,col=c("blue","red"))
+##D HRplot(out,type=2,show.CI=TRUE,pch=2,cex=2,main="Hazard ratios of all individual variables")
+## End(Not run)
 
 
 
@@ -66,13 +69,14 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
-require(stringr)
-require(ztable)
-require(magrittr)
-require(ggplot2)
-mytable(cut~.,data=diamonds) %>% addComma
-x=mytable(Dx~sex,data=acs)
-addComma(x)
+## Not run: 
+##D require(stringr)
+##D require(magrittr)
+##D require(ggplot2)
+##D mytable(cut~.,data=diamonds) %>% addComma
+##D x=mytable(Dx~sex,data=acs)
+##D addComma(x)
+## End(Not run)
 
 
 
@@ -90,12 +94,14 @@ flush(stderr()); flush(stdout())
 ### ** Examples
 
 require(stringr)
-require(ztable)
 require(magrittr)
 mytable(acs) %>% compress
 mytable(Dx~.,data=acs) %>% compress
-mytable(Dx~.,data=acs) %>% compress %>% ztable
-mytable(Dx+sex~.,data=acs) %>% compress
+## Not run: 
+##D require(ztable)
+##D mytable(Dx~.,data=acs) %>% compress %>% ztable
+##D mytable(Dx+sex~.,data=acs) %>% compress
+## End(Not run)
 
 
 
@@ -170,10 +176,12 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
-require(moonBook)
-res=mytable(sex~age+DM,data=acs)
-mycsv(res,file="test.csv")
-mycsv(summary(res),file="testsummary.csv")
+## Not run: 
+##D require(moonBook)
+##D res=mytable(sex~age+DM,data=acs)
+##D mycsv(res,file="test.csv")
+##D mycsv(summary(res),file="testsummary.csv")
+## End(Not run)
 
 
 
@@ -189,10 +197,12 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
-require(moonBook)
-res1=mytable(sex+Dx~age+DM,data=acs)
-mycsv(res1,file="test1.csv")
-mycsv(summary(res1),file="testsummary1.csv")
+## Not run: 
+##D require(moonBook)
+##D res1=mytable(sex+Dx~age+DM,data=acs)
+##D mycsv(res1,file="test1.csv")
+##D mycsv(summary(res1),file="testsummary1.csv")
+## End(Not run)
 
 
 
@@ -208,11 +218,13 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
-require(moonBook)
-res=mytable(sex~age+DM,data=acs)
-mycsv(res,file="test.csv")
-mycsv(summary(res),file="testsummary.csv")
-mycsv=function(x,row.names=FALSE) UseMethod("mycsv")
+## Not run: 
+##D require(moonBook)
+##D res=mytable(sex~age+DM,data=acs)
+##D mycsv(res,file="test.csv")
+##D mycsv(summary(res),file="testsummary.csv")
+##D mycsv=function(x,row.names=FALSE) UseMethod("mycsv")
+## End(Not run)
 
 
 
@@ -280,8 +292,10 @@ mytable(am+cyl~.,data=mtcars)
 out=mytable(sex~.,data=acs)
 out
 summary(out)
-require(ztable)
-ztable(out)
+## Not run: 
+##D require(ztable)
+##D ztable(out)
+## End(Not run)
 mytable(acs)
 
 

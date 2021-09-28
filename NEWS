@@ -1,9 +1,14 @@
+ztable 0.2.3
+=============
+(28-Sep-2021)
+
+* changed function color2hex() to meet changes in R-devel(svn rev 80946)
+
 ztable 0.2.2
 =============
 (6-Oct-2020)
 
 * Bug-fixed(Replace return with return() according to CRAN pollicy)
-
 
 
 ztable 0.2.1

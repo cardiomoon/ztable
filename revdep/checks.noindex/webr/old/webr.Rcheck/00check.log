@@ -1,5 +1,5 @@
 * using log directory ‘/Users/cardiomoon/Documents/ownCloud/Documents/ztable/revdep/checks.noindex/webr/old/webr.Rcheck’
-* using R version 4.0.2 (2020-06-22)
+* using R version 4.1.1 (2021-08-10)
 * using platform: x86_64-apple-darwin17.0 (64-bit)
 * using session charset: UTF-8
 * using options ‘--no-manual --no-build-vignettes’
@@ -47,6 +47,8 @@ Namespaces in Imports field not imported from:
 * checking Rd \usage sections ... OK
 * checking Rd contents ... OK
 * checking for unstated dependencies in examples ... OK
+* checking LazyData ... NOTE
+  'LazyData' is specified without a 'data' directory
 * checking R/sysdata.rda ... OK
 * checking installed files from ‘inst/doc’ ... OK
 * checking files in ‘vignettes’ ... OK
@@ -58,4 +60,4 @@ Namespaces in Imports field not imported from:
   ‘plot-htest.Rmd’ using ‘UTF-8’... OK
 * checking re-building of vignette outputs ... SKIPPED
 * DONE
-Status: 1 NOTE
+Status: 2 NOTEs

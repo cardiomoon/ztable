@@ -1,6 +1,6 @@
 
-R version 4.0.2 (2020-06-22) -- "Taking Off Again"
-Copyright (C) 2020 The R Foundation for Statistical Computing
+R version 4.1.1 (2021-08-10) -- "Kick Things"
+Copyright (C) 2021 The R Foundation for Statistical Computing
 Platform: x86_64-apple-darwin17.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -76,16 +76,18 @@ Loading required package: ggplot2
 > require(ggiraph)
 Loading required package: ggiraph
 > ggAncova(radial,aes(age,NTAV,color=sex),interactive=TRUE)
+Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 > fit=lm(NTAV~age+HBP,data=radial)
 > ggAncova(fit,interactive=TRUE)
+Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 > ggAncova(NTAV~age+DM,data=radial)
+Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 > 
 > 
 > 
 > cleanEx()
 
-detaching ‘package:gdtools’, ‘package:ggiraph’, ‘package:ggplot2’,
-  ‘package:moonBook’
+detaching ‘package:ggiraph’, ‘package:ggplot2’, ‘package:moonBook’
 
 > nameEx("ggArea")
 > ### * ggArea
@@ -172,7 +174,7 @@ Loading required package: reshape2
 > ggBoxplot(mtcars,aes(x=c(mpg,cyl,disp,hp,drat),color=am),rescale=TRUE)
 Warning: Using `as.character()` on a quosure is deprecated as of rlang 0.3.0.
 Please use `as_label()` or `as_name()` instead.
-[90mThis warning is displayed once per session.[39m
+This warning is displayed once per session.
 > ggBoxplot(mtcars,aes(x=c(mpg,cyl,disp,hp,drat)),rescale=TRUE)
 > ggBoxplot(mtcars,rescale=TRUE,interactive=TRUE)
 > ggBoxplot(mtcars,horizontal=TRUE,interactive=TRUE)
@@ -306,8 +308,8 @@ Loading required package: MASS
 > 
 > cleanEx()
 
-detaching ‘package:gdtools’, ‘package:ppcor’, ‘package:MASS’,
-  ‘package:ggiraph’, ‘package:ggplot2’, ‘package:mycor’
+detaching ‘package:ppcor’, ‘package:MASS’, ‘package:ggiraph’,
+  ‘package:ggplot2’, ‘package:mycor’
 
 > nameEx("ggDensity")
 > ### * ggDensity
@@ -484,6 +486,7 @@ Loading required package: ggplot2
 > require(ggiraph)
 Loading required package: ggiraph
 > ggErrorBar(mpg,aes(x=drv,y=cty))
+Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 > ggErrorBar(mpg,aes(x=drv,y=hwy,color=cyl),mode=1,interactive=TRUE,errorbar="sd")
 Warning in qt(conf.interval/2 + 0.5, datac$n - 1) : NaNs produced
 > 
@@ -519,7 +522,9 @@ List of 1
  - attr(*, "conf.level")= num 0.95
  - attr(*, "ordered")= logi TRUE
 > ggHSD(result)
+Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 > ggHSD(result,interactive=TRUE)
+Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 > 
 > 
 > 
@@ -613,12 +618,15 @@ The following objects are masked from ‘package:ggiraphExtra’:
     addLabelDf, getMapping
 
 > ggPair(iris,rescale=TRUE,horizontal=TRUE)
+Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 > ggPair(acs,aes(colour=smoking),horizontal=TRUE,rescale=TRUE)
 Warning: Removed 496 rows containing missing values (geom_interactive_point).
 > ggPair(radial,aes(color=male),horizontal=TRUE,rescale=TRUE)
 Warning: Removed 18 rows containing missing values (geom_interactive_point).
 > ggPair(mtcars,horizontal=TRUE,rescale=TRUE)
+Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 > ggPair(iris,rescale=TRUE,horizontal=TRUE,interactive=TRUE)
+Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 > ggPair(iris,aes(color=Species),rescale=TRUE,interactive=TRUE)
 > ggPair(iris,aes(x=c(Sepal.Length,Sepal.Width),color=Species),horizontal=TRUE,interactive=TRUE)
 > 
@@ -895,17 +903,26 @@ The following objects are masked from ‘package:ggiraphExtra’:
 Loading required package: ggplot2
 > acs$Dx=factor(acs$Dx,levels=c("Unstable Angina","NSTEMI","STEMI"))
 > ggSpine(data=acs,aes(x=age,fill=Dx,facet=sex),palette="Reds")
+Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=age,fill=Dx,facet=sex),facetbycol=FALSE,minlabelgroup=0.02)
 > ggSpine(data=acs,aes(x=age,fill=Dx),palette="Reds")
+Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=smoking,fill=Dx),palette="Reds")
+Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=DM,fill=Dx,facet=sex),palette="Reds")
+Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=Dx,fill=smoking,facet=sex),palette="Reds")
+Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=DM,facet=smoking,fill=Dx),sec.y.axis=TRUE)
+Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=DM,facet=smoking,fill=Dx),facetbycol=FALSE)
 > ggSpine(mtcars,aes(x=gear,fill=carb),interactive=TRUE)
+Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(mtcars,aes(x=gear,fill=carb,facet=am))
+Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=Dx,fill=smoking),position="dodge")
 > ggSpine(data=acs,aes(x=Dx,fill=smoking),position="stack")
+Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > 
 > 
 > 
@@ -945,7 +962,7 @@ detaching ‘package:reshape2’, ‘package:ggiraph’, ‘package:ggplot2’
 
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  15.147 0.623 16.131 0.001 0.002 
+Time elapsed:  18.207 0.795 19.45 0.002 0.003 
 > grDevices::dev.off()
 null device 
           1 

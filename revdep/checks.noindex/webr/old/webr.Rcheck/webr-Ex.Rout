@@ -1,6 +1,6 @@
 
-R version 4.0.2 (2020-06-22) -- "Taking Off Again"
-Copyright (C) 2020 The R Foundation for Statistical Computing
+R version 4.1.1 (2021-08-10) -- "Kick Things"
+Copyright (C) 2021 The R Foundation for Statistical Computing
 Platform: x86_64-apple-darwin17.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -44,6 +44,7 @@ Loading required package: ggplot2
 > share=c(50,21.9,10.8,6.5,1.8)
 > df=data.frame(browser,share)
 > PieDonut(df,aes(browser,count=share),r0=0.7,start=3*pi/2,labelpositionThreshold=0.1)
+Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 > 
 > 
 > 
@@ -175,103 +176,103 @@ Register inputHandler for chooserInput
 > require(tibble)
 Loading required package: tibble
 > numSummary(acs)
-[90m# A tibble: 9 x 13[39m
-  vars      n  mean    sd median trimmed   mad   min   max range   skew kurtosis
-  [3m[90m<chr>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m    [3m[90m<dbl>[39m[23m
-[90m1[39m age     857  63.3 11.7    64      63.6 13.3   28    91    63   -[31m0[39m[31m.[39m[31m175[39m  -[31m0[39m[31m.[39m[31m566[39m 
-[90m2[39m EF      723  55.8  9.62   58.1    56.8  7.86  18    79    61   -[31m0[39m[31m.[39m[31m978[39m   1.11  
-[90m3[39m heig…   764 163.   9.08  165     164.   7.41 130   185    55   -[31m0[39m[31m.[39m[31m440[39m  -[31m0[39m[31m.[39m[31m0[39m[31m14[4m5[24m[39m
-[90m4[39m weig…   766  64.8 11.4    65      64.5 10.4   30   112    82    0.336   0.444 
-[90m5[39m BMI     764  24.3  3.35   24.2    24.2  3.01  15.6  41.4  25.8  0.668   2.12  
-[90m6[39m TC      834 185.  47.8   183     184.  43.0   25   493   468    0.737   3.77  
-[90m7[39m LDLC    833 117.  41.1   114     115.  40.0   15   366   351    0.787   2.33  
-[90m8[39m HDLC    834  38.2 11.1    38      38.0 10.4    4    89    85    0.366   1.46  
-[90m9[39m TG      842 125.  90.9   106.    111.  60.0   11   877   866    3.02   14.9   
-[90m# … with 1 more variable: se [3m[90m<dbl>[90m[23m[39m
+# A tibble: 9 × 13
+  vars       n  mean    sd median trimmed   mad   min   max range   skew kurtosis
+  <chr>  <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl>
+1 age      857  63.3 11.7    64      63.6 13.3   28    91    63   -0.175  -0.566 
+2 EF       723  55.8  9.62   58.1    56.8  7.86  18    79    61   -0.978   1.11  
+3 height   764 163.   9.08  165     164.   7.41 130   185    55   -0.440  -0.0145
+4 weight   766  64.8 11.4    65      64.5 10.4   30   112    82    0.336   0.444 
+5 BMI      764  24.3  3.35   24.2    24.2  3.01  15.6  41.4  25.8  0.668   2.12  
+6 TC       834 185.  47.8   183     184.  43.0   25   493   468    0.737   3.77  
+7 LDLC     833 117.  41.1   114     115.  40.0   15   366   351    0.787   2.33  
+8 HDLC     834  38.2 11.1    38      38.0 10.4    4    89    85    0.366   1.46  
+9 TG       842 125.  90.9   106.    111.  60.0   11   877   866    3.02   14.9   
+# … with 1 more variable: se <dbl>
 > numSummary(acs$age)
-[90m# A tibble: 1 x 12[39m
+# A tibble: 1 × 12
       n  mean    sd median trimmed   mad   min   max range   skew kurtosis    se
-  [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m    [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m
-[90m1[39m   857  63.3  11.7     64    63.6  13.3    28    91    63 -[31m0[39m[31m.[39m[31m175[39m   -[31m0[39m[31m.[39m[31m566[39m 0.400
+  <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl> <dbl>
+1   857  63.3  11.7     64    63.6  13.3    28    91    63 -0.175   -0.566 0.400
 > numSummary(acs,age,EF)
-[90m# A tibble: 2 x 13[39m
+# A tibble: 2 × 13
   vars      n  mean    sd median trimmed   mad   min   max range   skew kurtosis
-  [3m[90m<chr>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m    [3m[90m<dbl>[39m[23m
-[90m1[39m age     857  63.3 11.7    64      63.6 13.3     28    91    63 -[31m0[39m[31m.[39m[31m175[39m   -[31m0[39m[31m.[39m[31m566[39m
-[90m2[39m EF      723  55.8  9.62   58.1    56.8  7.86    18    79    61 -[31m0[39m[31m.[39m[31m978[39m    1.11 
-[90m# … with 1 more variable: se [3m[90m<dbl>[90m[23m[39m
+  <chr> <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl>
+1 age     857  63.3 11.7    64      63.6 13.3     28    91    63 -0.175   -0.566
+2 EF      723  55.8  9.62   58.1    56.8  7.86    18    79    61 -0.978    1.11 
+# … with 1 more variable: se <dbl>
 > acs %>% group_by(sex) %>% numSummary(age,BMI)
 Warning: `cols` is now required when using unnest().
 Please use `cols = c(summary)`
-[90m# A tibble: 4 x 14[39m
-[90m# Groups:   sex [2][39m
-  sex   vars      n  mean    sd median trimmed   mad   min   max range    skew
-  [3m[90m<chr>[39m[23m [3m[90m<chr>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m
-[90m1[39m Male  age     570  60.6 11.2    61      60.6 11.9   28    91    63   -[31m0[39m[31m.[39m[31m0[39m[31m14[4m8[24m[39m
-[90m2[39m Male  BMI     509  24.3  3.24   24.2    24.2  2.98  16.3  41.4  25.1  0.616 
-[90m3[39m Fema… age     287  68.7 10.7    70      69.4 10.4   39    90    51   -[31m0[39m[31m.[39m[31m593[39m 
-[90m4[39m Fema… BMI     255  24.2  3.56   24.0    24.1  3.13  15.6  41.2  25.6  0.751 
-[90m# … with 2 more variables: kurtosis [3m[90m<dbl>[90m[23m, se [3m[90m<dbl>[90m[23m[39m
+# A tibble: 4 × 14
+# Groups:   sex [2]
+  sex    vars      n  mean    sd median trimmed   mad   min   max range    skew
+  <chr>  <chr> <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
+1 Male   age     570  60.6 11.2    61      60.6 11.9   28    91    63   -0.0148
+2 Male   BMI     509  24.3  3.24   24.2    24.2  2.98  16.3  41.4  25.1  0.616 
+3 Female age     287  68.7 10.7    70      69.4 10.4   39    90    51   -0.593 
+4 Female BMI     255  24.2  3.56   24.0    24.1  3.13  15.6  41.2  25.6  0.751 
+# … with 2 more variables: kurtosis <dbl>, se <dbl>
 > acs %>% group_by(sex) %>% select(age) %>% numSummary
 Adding missing grouping variables: `sex`
 Warning: `cols` is now required when using unnest().
 Please use `cols = c(summary)`
-[90m# A tibble: 2 x 13[39m
-[90m# Groups:   sex [2][39m
-  sex       n  mean    sd median trimmed   mad   min   max range    skew
-  [3m[90m<chr>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m
-[90m1[39m Male    570  60.6  11.2     61    60.6  11.9    28    91    63 -[31m0[39m[31m.[39m[31m0[39m[31m14[4m8[24m[39m
-[90m2[39m Fema…   287  68.7  10.7     70    69.4  10.4    39    90    51 -[31m0[39m[31m.[39m[31m593[39m 
-[90m# … with 2 more variables: kurtosis [3m[90m<dbl>[90m[23m, se [3m[90m<dbl>[90m[23m[39m
+# A tibble: 2 × 13
+# Groups:   sex [2]
+  sex        n  mean    sd median trimmed   mad   min   max range    skew
+  <chr>  <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
+1 Male     570  60.6  11.2     61    60.6  11.9    28    91    63 -0.0148
+2 Female   287  68.7  10.7     70    69.4  10.4    39    90    51 -0.593 
+# … with 2 more variables: kurtosis <dbl>, se <dbl>
 > acs %>% group_by(sex) %>% select(age,EF) %>% numSummary
 Adding missing grouping variables: `sex`
 Warning: `cols` is now required when using unnest().
 Please use `cols = c(summary)`
-[90m# A tibble: 4 x 14[39m
-[90m# Groups:   sex [2][39m
-  sex   vars      n  mean    sd median trimmed   mad   min   max range    skew
-  [3m[90m<chr>[39m[23m [3m[90m<chr>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m
-[90m1[39m Male  age     570  60.6 11.2    61      60.6 11.9   28      91  63   -[31m0[39m[31m.[39m[31m0[39m[31m14[4m8[24m[39m
-[90m2[39m Male  EF      483  55.6  9.40   57.3    56.4  8.01  18      79  61   -[31m0[39m[31m.[39m[31m789[39m 
-[90m3[39m Fema… age     287  68.7 10.7    70      69.4 10.4   39      90  51   -[31m0[39m[31m.[39m[31m593[39m 
-[90m4[39m Fema… EF      240  56.3 10.1    59.2    57.6  7.19  18.4    75  56.6 -[31m1[39m[31m.[39m[31m30[39m  
-[90m# … with 2 more variables: kurtosis [3m[90m<dbl>[90m[23m, se [3m[90m<dbl>[90m[23m[39m
+# A tibble: 4 × 14
+# Groups:   sex [2]
+  sex    vars      n  mean    sd median trimmed   mad   min   max range    skew
+  <chr>  <chr> <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
+1 Male   age     570  60.6 11.2    61      60.6 11.9   28      91  63   -0.0148
+2 Male   EF      483  55.6  9.40   57.3    56.4  8.01  18      79  61   -0.789 
+3 Female age     287  68.7 10.7    70      69.4 10.4   39      90  51   -0.593 
+4 Female EF      240  56.3 10.1    59.2    57.6  7.19  18.4    75  56.6 -1.30  
+# … with 2 more variables: kurtosis <dbl>, se <dbl>
 > acs %>% group_by(sex,Dx) %>% select(age,EF) %>% numSummary
 Adding missing grouping variables: `sex`, `Dx`
 Warning: `cols` is now required when using unnest().
 Please use `cols = c(summary)`
-[90m# A tibble: 12 x 15[39m
-[90m# Groups:   sex, Dx [6][39m
-   sex   Dx    vars      n  mean    sd median trimmed   mad   min   max range
-   [3m[90m<chr>[39m[23m [3m[90m<chr>[39m[23m [3m[90m<chr>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m
-[90m 1[39m Male  STEMI age     220  59.4 11.7    59.5    59.4 11.1   30    86    56  
-[90m 2[39m Male  STEMI EF      195  52.4  8.90   54      52.9  8.45  18    73.6  55.6
-[90m 3[39m Fema… STEMI age      84  69.1 10.4    70      70.0 10.4   42    89    47  
-[90m 4[39m Fema… STEMI EF       77  52.3 10.9    55.7    53.7  9.04  18.4  67.1  48.7
-[90m 5[39m Male  NSTE… age     103  61.1 11.6    59      61.3 13.3   28    85    57  
-[90m 6[39m Male  NSTE… EF       94  55.1  9.42   58      55.9  7.12  21.8  74    52.2
-[90m 7[39m Fema… Unst… age     153  67.7 10.7    70      68.3  8.90  39    90    51  
-[90m 8[39m Fema… Unst… EF      118  59.4  8.76   61.1    60.8  5.49  22    71.9  49.9
-[90m 9[39m Male  Unst… age     247  61.4 10.6    61      61.4 10.4   35    91    56  
-[90m10[39m Male  Unst… EF      194  59.1  8.67   60      60.2  5.93  24.7  79    54.3
-[90m11[39m Fema… NSTE… age      50  70.9 11.4    74.5    71.9  8.90  42    88    46  
-[90m12[39m Fema… NSTE… EF       45  54.8  9.10   57      55.3  9.79  36.8  75    38.2
-[90m# … with 3 more variables: skew [3m[90m<dbl>[90m[23m, kurtosis [3m[90m<dbl>[90m[23m, se [3m[90m<dbl>[90m[23m[39m
+# A tibble: 12 × 15
+# Groups:   sex, Dx [6]
+   sex    Dx      vars      n  mean    sd median trimmed   mad   min   max range
+   <chr>  <chr>   <chr> <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>
+ 1 Male   STEMI   age     220  59.4 11.7    59.5    59.4 11.1   30    86    56  
+ 2 Male   STEMI   EF      195  52.4  8.90   54      52.9  8.45  18    73.6  55.6
+ 3 Female STEMI   age      84  69.1 10.4    70      70.0 10.4   42    89    47  
+ 4 Female STEMI   EF       77  52.3 10.9    55.7    53.7  9.04  18.4  67.1  48.7
+ 5 Male   NSTEMI  age     103  61.1 11.6    59      61.3 13.3   28    85    57  
+ 6 Male   NSTEMI  EF       94  55.1  9.42   58      55.9  7.12  21.8  74    52.2
+ 7 Female Unstab… age     153  67.7 10.7    70      68.3  8.90  39    90    51  
+ 8 Female Unstab… EF      118  59.4  8.76   61.1    60.8  5.49  22    71.9  49.9
+ 9 Male   Unstab… age     247  61.4 10.6    61      61.4 10.4   35    91    56  
+10 Male   Unstab… EF      194  59.1  8.67   60      60.2  5.93  24.7  79    54.3
+11 Female NSTEMI  age      50  70.9 11.4    74.5    71.9  8.90  42    88    46  
+12 Female NSTEMI  EF       45  54.8  9.10   57      55.3  9.79  36.8  75    38.2
+# … with 3 more variables: skew <dbl>, kurtosis <dbl>, se <dbl>
 > acs %>% group_by(sex,Dx) %>% select(age) %>% numSummary
 Adding missing grouping variables: `sex`, `Dx`
 Warning: `cols` is now required when using unnest().
 Please use `cols = c(summary)`
-[90m# A tibble: 6 x 14[39m
-[90m# Groups:   sex, Dx [6][39m
-  sex   Dx        n  mean    sd median trimmed   mad   min   max range     skew
-  [3m[90m<chr>[39m[23m [3m[90m<chr>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m   [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m [3m[90m<dbl>[39m[23m    [3m[90m<dbl>[39m[23m
-[90m1[39m Male  STEMI   220  59.4  11.7   59.5    59.4 11.1     30    86    56  0.004[4m3[24m[4m3[24m
-[90m2[39m Fema… STEMI    84  69.1  10.4   70      70.0 10.4     42    89    47 -[31m0[39m[31m.[39m[31m654[39m  
-[90m3[39m Male  NSTE…   103  61.1  11.6   59      61.3 13.3     28    85    57 -[31m0[39m[31m.[39m[31m110[39m  
-[90m4[39m Fema… Unst…   153  67.7  10.7   70      68.3  8.90    39    90    51 -[31m0[39m[31m.[39m[31m540[39m  
-[90m5[39m Male  Unst…   247  61.4  10.6   61      61.4 10.4     35    91    56  0.071[4m0[24m 
-[90m6[39m Fema… NSTE…    50  70.9  11.4   74.5    71.9  8.90    42    88    46 -[31m0[39m[31m.[39m[31m721[39m  
-[90m# … with 2 more variables: kurtosis [3m[90m<dbl>[90m[23m, se [3m[90m<dbl>[90m[23m[39m
+# A tibble: 6 × 14
+# Groups:   sex, Dx [6]
+  sex    Dx        n  mean    sd median trimmed   mad   min   max range     skew
+  <chr>  <chr> <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>    <dbl>
+1 Male   STEMI   220  59.4  11.7   59.5    59.4 11.1     30    86    56  0.00433
+2 Female STEMI    84  69.1  10.4   70      70.0 10.4     42    89    47 -0.654  
+3 Male   NSTE…   103  61.1  11.6   59      61.3 13.3     28    85    57 -0.110  
+4 Female Unst…   153  67.7  10.7   70      68.3  8.90    39    90    51 -0.540  
+5 Male   Unst…   247  61.4  10.6   61      61.4 10.4     35    91    56  0.0710 
+6 Female NSTE…    50  70.9  11.4   74.5    71.9  8.90    42    88    46 -0.721  
+# … with 2 more variables: kurtosis <dbl>, se <dbl>
 > #acs %>% group_by(sex,Dx) %>% numSummary(age,EF,lang="kor")
 > 
 > 
@@ -536,7 +537,7 @@ detaching ‘package:moonBook’
 
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  2.95 0.183 3.578 0.002 0.002 
+Time elapsed:  2.738 0.126 2.982 0.001 0.002 
 > grDevices::dev.off()
 null device 
           1 

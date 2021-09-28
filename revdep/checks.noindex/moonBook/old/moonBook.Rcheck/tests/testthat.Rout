@@ -1,6 +1,6 @@
 
-R version 4.0.2 (2020-06-22) -- "Taking Off Again"
-Copyright (C) 2020 The R Foundation for Statistical Computing
+R version 4.1.1 (2021-08-10) -- "Kick Things"
+Copyright (C) 2021 The R Foundation for Statistical Computing
 Platform: x86_64-apple-darwin17.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -105,9 +105,8 @@ smoking          &  &  &  & 0.002 &  &  &  &  & 0.184 \\
 \end{tabular}
 \end{normalsize}
 \end{table}
-══ testthat results  ═══════════════════════════════════════════════════════════
-[ OK: 0 | SKIPPED: 0 | WARNINGS: 0 | FAILED: 0 ]
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ]
 > 
 > proc.time()
    user  system elapsed 
-  0.922   0.065   1.726 
+  0.681   0.077   0.842 

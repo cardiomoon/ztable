@@ -1,6 +1,6 @@
 
-R version 4.0.2 (2020-06-22) -- "Taking Off Again"
-Copyright (C) 2020 The R Foundation for Statistical Computing
+R version 4.1.1 (2021-08-10) -- "Kick Things"
+Copyright (C) 2021 The R Foundation for Statistical Computing
 Platform: x86_64-apple-darwin17.0 (64-bit)
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -542,7 +542,7 @@ detaching ‘package:officer’, ‘package:magrittr’
 > 
 > library(moonBook)
 > library(ztable)
-Welcome to package ztable ver 0.2.2
+Welcome to package ztable ver 0.2.3
 
 Attaching package: ‘ztable’
 
@@ -785,6 +785,13 @@ detaching ‘package:ggplot2’
 > library(shiny)
 > library(ggplot2)
 > library(editData)
+
+Attaching package: ‘editData’
+
+The following object is masked from ‘package:rrtable’:
+
+    pickerInput3
+
 > library(moonBook)
 > library(readr)
 > if(interactive()){
@@ -1095,7 +1102,7 @@ Volvo 142E          2.00
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  3.358 0.319 3.819 0.001 0.002 
+Time elapsed:  4.035 0.511 5.53 0.001 0.002 
 > grDevices::dev.off()
 null device 
           1 

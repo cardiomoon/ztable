@@ -7,21 +7,21 @@
 #' @examples
 #' color2hex("green")
 #' color2hex("red")
-color2hex=function(color){
-    result=color
-    if(!str_detect(color,"#")){
-
-        temp=ztable::zcolors$rgb[ztable::zcolors$name==tolower(color)]
+color2hex <- function(color) {
+    ## return (directly):
+    if(str_detect(color,"#")) {
+        color
+    } else {
+        temp <- ztable::zcolors$rgb[ztable::zcolors$name == tolower(color)]
         if(length(temp)==1) {
-            result<-paste0("#",temp)
-        } else{
-            res=col2rgb(color)
-            x=sprintf("%02s",as.hexmode(res))
-            result=paste0("#",str_flatten(x))
+            paste0("#",temp)
+        } else { # not found in zcolors, assume base R color:
+            res <- col2rgb(color)
+            paste0("#", paste(sprintf("%02x", res), collapse=""))
         }
     }
-    result
 }
+
 
 #' Extract hexadecimal colors from a color palette
 #' @param name The name of color palette from RColorBrewer package

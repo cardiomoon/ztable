@@ -1,11 +1,11 @@
 * using log directory ‘/Users/cardiomoon/Documents/ownCloud/Documents/ztable/revdep/checks.noindex/processR/old/processR.Rcheck’
-* using R version 4.0.2 (2020-06-22)
+* using R version 4.1.1 (2021-08-10)
 * using platform: x86_64-apple-darwin17.0 (64-bit)
 * using session charset: UTF-8
 * using options ‘--no-manual --no-build-vignettes’
 * checking for file ‘processR/DESCRIPTION’ ... OK
 * checking extension type ... Package
-* this is package ‘processR’ version ‘0.2.3’
+* this is package ‘processR’ version ‘0.2.6’
 * package encoding: UTF-8
 * checking package namespace information ... OK
 * checking package dependencies ... OK
@@ -31,6 +31,7 @@
 * checking whether the package can be unloaded cleanly ... OK
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
 * checking dependencies in R code ... OK
 * checking S3 generic/method consistency ... OK
 * checking replacement functions ... OK
@@ -46,6 +47,7 @@
 * checking for unstated dependencies in examples ... OK
 * checking contents of ‘data’ directory ... OK
 * checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
 * checking data for ASCII and uncompressed saves ... OK
 * checking installed files from ‘inst/doc’ ... OK
 * checking files in ‘vignettes’ ... OK

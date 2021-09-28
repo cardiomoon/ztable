@@ -1,3 +1,4 @@
+.onAttach	dot-onAttach
 addCellColor	addCellColor
 addcgroup	addcgroup
 addColColor	addColColor

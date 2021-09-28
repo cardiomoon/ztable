@@ -1,3 +1,4 @@
+.onAttach               Hooks for Namespace Events
 addCellColor            Add column colors of an object of ztable
 addColColor             Add column colors of an object of ztable
 addFrontColor           Add column colors of an object of ztable
@@ -90,6 +91,7 @@ ztable2flextable        Convert an object of ztable into an object of
 ztable2html             Print an object of class "ztable" to html table
 ztable2latex            Print an object of class "ztable" to Latex
                         table
-ztable2viewer           Print an object of ztable via rstudio::viewer
+ztable2viewer           Print an object of ztable via
+                        rstudioapi::viewer
 ztable_sub              Exporting "data.frame" to an object of class
                         "ztable"

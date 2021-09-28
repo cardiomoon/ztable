@@ -1,8 +1,9 @@
 This is update of package 'ztable'. 
 
 ## Test environments
-* local OS X install, R 4.0.2
+* local OS X install, R 4.1.1
 * win-builder (devel, old-release and release)
+* rhub
 
 ## R CMD check results
 There were no ERRORs or WARNINGs.
