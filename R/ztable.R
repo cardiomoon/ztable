@@ -67,8 +67,9 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'@param caption.bold whether or not use bold font for caption
 #'@param align Character vector : nchar equal to the number of columns of the
 #'       resulting table indicating the alignment of the corresponding columns.
-#'@param digits Numeric vector of length equal to one (in which case it will be
-#'       replicated as necessary) or to the number of columns of the resulting table
+#'@param digits A single value (in which case it will be replicated as necessary),
+#'       a numeric vector of length equal to the number of columns of the resulting
+#'       table or a matrix of the same size as the resulting table.
 #'@param display Character vector of length equal to the number of columns of the
 #'       resulting table indicating the format for the corresponding columns.
 #'       Since the row names are printed in the first column, the length of display
@@ -256,8 +257,11 @@ ztable_sub=function(x,
         if(include.rownames) for(i in 1:length(y)) align=paste(align,y[i],sep="")
         else for(i in 2:length(y)) align=paste(align,y[i],sep="")
     }
-    if(is.null(digits)) digits=c(0,rep(2,ncol(x)))
-    if(length(digits)==1) digits=rep(digits,ncount+1)
+    
+    if(is.null(digits)) digits=cbind(0, matrix(2, ncol=ncol(x), nrow=nrow(x)))
+    if(length(digits)==1) digits=cbind(0, matrix(digits, ncol=ncol(x), nrow=nrow(x)))
+    if(is.vector(digits) & length(digits)>1) digits=cbind(0, matrix(digits, ncol=length(digits), nrow=nrow(x), byrow=T))
+
     if (is.null(display)) {
         display <- rep("f", ncol(x))
         display[ints] <- "d"
@@ -538,8 +542,9 @@ repColor=function(x,color){
 #'@param caption.bold whether or not use bold font for caption
 #'@param align Character vector : nchar equal to the number of columns of the
 #'       resulting table indicating the alignment of the corresponding columns.
-#'@param digits Numeric vector of length equal to one (in which case it will be
-#'       replicated as necessary) or to the number of columns of the resulting table
+#'@param digits A single value (in which case it will be replicated as necessary),
+#'       a numeric vector of length equal to the number of columns of the resulting
+#'       table or a matrix of the same size as the resulting table.
 #'@param display Character vector of length equal to the number of columns of the
 #'       resulting table indicating the format for the corresponding columns.
 #'       Since the row names are printed in the first column, the length of display
@@ -675,8 +680,9 @@ update_ztable=function(z,
      if(!is.null(caption.bold)) z$caption.bold=caption.bold
      if(!is.null(align)) z$align=align
      if(!is.null(digits)) {
-         if(is.null(digits)) digits=c(0,rep(2,ncol(z$x)))
-         if(length(digits)==1) digits=rep(digits,ncol(z$x)+1)
+         if(is.null(digits)) digits=cbind(0, matrix(2, ncol=ncol(x), nrow=nrow(x)))
+         if(length(digits)==1) digits=cbind(0, matrix(digits, ncol=ncol(x), nrow=nrow(x)))
+         if(is.vector(digits) & length(digits)>1) digits=cbind(0, matrix(digits, ncol=length(digits), nrow=nrow(x), byrow=T))
          z$digits=digits
      }
      if(!is.null(display)) z$display=display
@@ -801,7 +807,7 @@ data2table=function(z){
                 if(is.na(z$x[i,j])) {
                     temp<-""
                 } else{
-                    temp<-formatC(z$x[i,j],digits=z$digits[j+1],
+                    temp<-formatC(z$x[i,j],digits=z$digits[i, j+1],
                                  format=z$display[j+1])
                 }
 
