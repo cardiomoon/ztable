@@ -58,30 +58,30 @@ Exporting a R object to an object of class "ztable"
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{table}: Makes a ztable for class table
+\item \code{ztable(table)}: Makes a ztable for class table
 
-\item \code{default}: Default method of ztable
+\item \code{ztable(default)}: Default method of ztable
 
-\item \code{data.frame}: Makes a ztable for class 'data.frame'
+\item \code{ztable(data.frame)}: Makes a ztable for class 'data.frame'
 
-\item \code{matrix}: Makes a ztable for class matrix
+\item \code{ztable(matrix)}: Makes a ztable for class matrix
 
-\item \code{lm}: Makes a ztable for class 'lm'
+\item \code{ztable(lm)}: Makes a ztable for class 'lm'
 
-\item \code{fitdistr}: Makes a ztable for class 'fitdistr'
+\item \code{ztable(fitdistr)}: Makes a ztable for class 'fitdistr'
 
-\item \code{nls}: Makes a ztable for class 'nls'
+\item \code{ztable(nls)}: Makes a ztable for class 'nls'
 
-\item \code{aov}: Makes a ztable for class 'aov'
+\item \code{ztable(aov)}: Makes a ztable for class 'aov'
 
-\item \code{anova}: Makes a ztable for class 'anova'
+\item \code{ztable(anova)}: Makes a ztable for class 'anova'
 
-\item \code{glm}: Makes a ztable for class 'glm'
+\item \code{ztable(glm)}: Makes a ztable for class 'glm'
 
-\item \code{coxph}: Makes a ztable for class 'coxph'
+\item \code{ztable(coxph)}: Makes a ztable for class 'coxph'
 
-\item \code{prcomp}: Makes a ztable for class 'prcomp'
+\item \code{ztable(prcomp)}: Makes a ztable for class 'prcomp'
 
-\item \code{summary.prcomp}: Makes a ztable for class 'summary.prcomp'
+\item \code{ztable(summary.prcomp)}: Makes a ztable for class 'summary.prcomp'
+
 }}
-

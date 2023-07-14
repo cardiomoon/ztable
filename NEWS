@@ -1,3 +1,9 @@
+ztable 0.2.4
+=============
+(14-Jul-2023)
+
+* Bug-fixed(display factor levels in ztable.cbind.mytable)
+
 ztable 0.2.3
 =============
 (28-Sep-2021)

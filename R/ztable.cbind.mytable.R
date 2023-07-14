@@ -41,7 +41,12 @@ ztable.cbind.mytable=function(x,digits=NULL,...){
     z$include.rownames=FALSE
     #colnames(z$x)[1]=""
     #cgroup=c(toupper(attr(x,"group")[1]),attr(x,"caption"))
-    cgroup=c("",attr(x,"caption"))
+    if(is.factor(attr(x,"caption"))){
+        temp=attr(x,"caption")
+        cgroup=c("",levels(temp)[temp])
+    } else {
+        cgroup=c("",attr(x,"caption"))
+    }
     colnames(z$x)[1]=""
     n.cgroup=c(1,rep(count-1,length(x)))
     z=addcgroup(z,cgroup=cgroup,n.cgroup)
