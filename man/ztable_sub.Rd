@@ -75,7 +75,7 @@ Default value is "latex"}
 Default value is TRUE.}
 
 \item{placement}{The table will have placement given by placement where placement
-must be NULL or contain only elements of {"h","t","b","p","!","H"}.
+must be NULL or contain only elements of ("h","t","b","p","!","H").
 Default value is "!hbtp".}
 
 \item{position}{The table will be have placed at the center of the paper

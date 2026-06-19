@@ -20,7 +20,7 @@
 #' parallelTables(c(0.5,0.5),list(z1,z2))
 parallelTables=function(width,listTables,type="latex"){
     a=length(width)
-    if(class(listTables)!="list"){
+    if(inherits(listTables,"list")){
         cat("\nThe 2nd parameter listTables sholud be a list\n")
         return(invisible())
     }
@@ -47,8 +47,8 @@ parallelTablesLatex=function(width,listTables){
     for(i in 1:a){
         cat(paste("\\begin{minipage}{",width[i],"\\linewidth}\n\\centering\n",
                   sep=""))
-        if(class(listTables[[i]])=="ztable") print(listTables[[i]],type="latex")
-        else if(class(listTables[[i]])=="character") {
+        if(inherits(listTables[[i]],"ztable")) print(listTables[[i]],type="latex")
+        else if(inherits(listTables[[i]],"character")) {
             cat(paste("\\includegraphics[width=1\\linewidth]{",
                       listTables[[i]],"}\n",sep=""))
         }
@@ -74,8 +74,8 @@ parallelTablesHTML=function(width,listTables){
     cat("</colgroup>\n<tr>")
     for(i in 1 :a){
         cat("<td>")
-        if(class(listTables[[i]])=="ztable") print(listTables[[i]],type="html")
-        else if(class(listTables[[i]])=="character")
+        if(inherits(listTables[[i]],"ztable")) print(listTables[[i]],type="html")
+        else if(inherits(listTables[[i]],"character"))
             cat(paste("<img src=\"",listTables[[i]],"\">",sep=""))
         cat("</td>\n")
     }

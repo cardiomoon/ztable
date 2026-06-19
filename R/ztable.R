@@ -43,7 +43,7 @@ ztable.data.frame=function(x,digits=NULL,...){
 #'@param include.rownames A logical value whether or not include rownames in the table
 #'       Default value is TRUE.
 #'@param placement The table will have placement given by placement where placement
-#'       must be NULL or contain only elements of {"h","t","b","p","!","H"}.
+#'       must be NULL or contain only elements of ("h","t","b","p","!","H").
 #'       Default value is "!hbtp".
 #'@param position The table will be have placed at the center of the paper
 #'        if position is "center" or "c", and at the left side of the paper
@@ -518,7 +518,7 @@ repColor=function(x,color){
 #'@param type character indicating formats of ztable, either "html" or "latex".
 #'@param include.rownames A logical value whether or not include rownames in the table
 #'@param placement The table will have placement given by placement where placement
-#'       must be NULL or contain only elements of {"h","t","b","p","!","H"}.
+#'       must be NULL or contain only elements of ("h","t","b","p","!","H").
 #'@param position The table will be have placed at the center of the paper
 #'        if position is "center" or "c", and at the left side of the paper
 #'        if it equals "left" or "l", and at the right side of the paper

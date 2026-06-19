@@ -104,7 +104,7 @@ roundDf=function(df,digits=2){
 #' Convert an object of ztable into an object of flextable
 #' @param z An object of class ztable
 #' @return An object of class flextable
-#' @importFrom flextable regulartable delete_part bg color border align merge_at
+#' @importFrom flextable flextable delete_part bg color border align merge_at
 #' @importFrom flextable set_header_df merge_h padding hline_top hline border_remove
 #' @importFrom officer fp_border
 #' @export
@@ -132,7 +132,7 @@ ztable2flextable=function(z){
 
     big_border = fp_border(color="black", width = 2)
     std_border = fp_border(color="black", width = 1)
-    ft<-regulartable(df) %>% border_remove() %>%
+    ft<-flextable(df) %>% border_remove() %>%
         hline_top(border=big_border,part="header") %>%
         hline(border=std_border,part="header") %>%
         hline(border=std_border,i=nrow(df),part="body")

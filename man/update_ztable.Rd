@@ -72,7 +72,7 @@ Default value is 0.3.}
 \item{include.rownames}{A logical value whether or not include rownames in the table}
 
 \item{placement}{The table will have placement given by placement where placement
-must be NULL or contain only elements of {"h","t","b","p","!","H"}.}
+must be NULL or contain only elements of ("h","t","b","p","!","H").}
 
 \item{position}{The table will be have placed at the center of the paper
 if position is "center" or "c", and at the left side of the paper

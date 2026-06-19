@@ -103,7 +103,7 @@ You can use ztable for html and latex output. But it is impossible to use ztable
 require(officer)
 require(flextable)
 
-ft=regulartable(head(iris))
+ft=flextable(head(iris))
 ft
 ```
 
