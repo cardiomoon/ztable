@@ -124,6 +124,43 @@ flush(stderr()); flush(stdout())
 
 
 cleanEx()
+nameEx("extractHR")
+### * extractHR
+
+flush(stderr()); flush(stdout())
+
+### Name: extractHR
+### Title: Extract hazard ratio from a data.frame
+### Aliases: extractHR
+
+### ** Examples
+
+require(survival)
+data(cancer)
+fit=coxph(Surv(time,status)~age+sex+obstruct+perfor,data=colon)
+extractHR(fit)
+
+
+
+cleanEx()
+nameEx("extractOR")
+### * extractOR
+
+flush(stderr()); flush(stdout())
+
+### Name: extractOR
+### Title: Extract the odds ratios from a S3 object of glm
+### Aliases: extractOR
+
+### ** Examples
+
+data(cancer,package="survival")
+x=glm(status~rx+sex+age+obstruct+nodes,data=colon,family="binomial")
+extractOR(x)
+
+
+
+cleanEx()
 nameEx("getMapping")
 ### * getMapping
 
@@ -155,7 +192,7 @@ flush(stderr()); flush(stdout())
 ### ** Examples
 
 require(survival)
-data(colon)
+data(cancer)
 attach(colon)
 colon$TS=Surv(time,status==1)
 out=mycph(TS~.,data=colon)

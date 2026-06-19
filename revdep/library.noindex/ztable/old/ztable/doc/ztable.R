@@ -132,7 +132,7 @@ ztable(b,show.heading=FALSE)
 
 ## ----results='asis',warning=FALSE---------------------------------------------
 require(survival)
-data(colon)
+data(cancer)
 attach(colon)
 out <- glm(status ~ rx+obstruct+adhere+nodes+extent, data=colon, family=binomial)
 ztable(out)

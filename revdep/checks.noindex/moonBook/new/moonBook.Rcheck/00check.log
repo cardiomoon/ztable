@@ -1,10 +1,15 @@
-* using log directory ‘/Users/cardiomoon/Documents/ownCloud/Documents/ztable/revdep/checks.noindex/moonBook/new/moonBook.Rcheck’
-* using R version 4.1.1 (2021-08-10)
-* using platform: x86_64-apple-darwin17.0 (64-bit)
+* using log directory ‘/Users/keon-woongmoon/Documents/GitHub/ztable/revdep/checks.noindex/moonBook/new/moonBook.Rcheck’
+* using R version 4.6.0 (2026-04-24)
+* using platform: aarch64-apple-darwin23
+* R was compiled by
+    Apple clang version 17.0.0 (clang-1700.3.19.1)
+    GNU Fortran (GCC) 14.2.0
+* running under: macOS Tahoe 26.3.1
 * using session charset: UTF-8
+* current time: 2026-06-19 14:48:46 UTC
 * using options ‘--no-manual --no-build-vignettes’
 * checking for file ‘moonBook/DESCRIPTION’ ... OK
-* this is package ‘moonBook’ version ‘0.2.4’
+* this is package ‘moonBook’ version ‘0.3.1’
 * package encoding: UTF-8
 * checking package namespace information ... OK
 * checking package dependencies ... OK
@@ -23,16 +28,14 @@
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
-* checking R files for non-ASCII characters ... OK
+* checking code files for non-ASCII characters ... OK
 * checking R files for syntax errors ... OK
 * checking whether the package can be loaded ... OK
 * checking whether the package can be loaded with stated dependencies ... OK
 * checking whether the package can be unloaded cleanly ... OK
 * checking whether the namespace can be loaded with stated dependencies ... OK
 * checking whether the namespace can be unloaded cleanly ... OK
-* checking dependencies in R code ... NOTE
-Namespace in Imports field not imported from: ‘ztable’
-  All declared Imports should be used.
+* checking dependencies in R code ... OK
 * checking S3 generic/method consistency ... OK
 * checking replacement functions ... OK
 * checking foreign function calls ... OK
@@ -56,10 +59,10 @@ Namespace in Imports field not imported from: ‘ztable’
 * checking tests ... OK
   Running ‘testthat.R’
 * checking for unstated dependencies in vignettes ... OK
-* checking package vignettes in ‘inst/doc’ ... OK
-* checking running R code from vignettes ... NONE
+* checking package vignettes ... OK
+* checking running R code from vignettes ... OK
   ‘moonBook.Rmd’ using ‘UTF-8’... OK
   ‘moonBook_update.Rmd’ using ‘UTF-8’... OK
 * checking re-building of vignette outputs ... SKIPPED
 * DONE
-Status: 1 NOTE
+Status: OK

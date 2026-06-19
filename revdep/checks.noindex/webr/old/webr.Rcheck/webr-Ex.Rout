@@ -1,7 +1,7 @@
 
-R version 4.1.1 (2021-08-10) -- "Kick Things"
-Copyright (C) 2021 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin17.0 (64-bit)
+R version 4.6.0 (2026-04-24) -- "Because it was There"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin23
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -44,7 +44,19 @@ Loading required package: ggplot2
 > share=c(50,21.9,10.8,6.5,1.8)
 > df=data.frame(browser,share)
 > PieDonut(df,aes(browser,count=share),r0=0.7,start=3*pi/2,labelpositionThreshold=0.1)
-Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
+Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+ℹ Please use tidy evaluation idioms with `aes()`.
+ℹ See also `vignette("ggplot2-in-packages")` for more information.
+ℹ The deprecated feature was likely used in the webr package.
+  Please report the issue at <https://github.com/cardiomoon/webr/issues>.
+Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead.
+ℹ The deprecated feature was likely used in the webr package.
+  Please report the issue at <https://github.com/cardiomoon/webr/issues>.
+Warning: The `<scale>` argument of `guides()` cannot be `FALSE`. Use "none" instead as
+of ggplot2 3.3.4.
+ℹ The deprecated feature was likely used in the webr package.
+  Please report the issue at <https://github.com/cardiomoon/webr/issues>.
 > 
 > 
 > 
@@ -122,16 +134,20 @@ detaching ‘package:moonBook’
 > require(moonBook)
 Loading required package: moonBook
 > freqTable(acs$Dx)
+Warning in regulartable(df) : 'regulartable' is deprecated.
+Use 'flextable' instead.
+See help("Deprecated")
 a flextable object.
 col_keys: `rowname`, `Count`, `Percent`, `Valid Percent`, `Cum Percent` 
 header has 1 row(s) 
 body has 4 row(s) 
 original dataset sample: 
-                        rowname Count Percent Valid Percent Cum Percent
-NSTEMI                   NSTEMI   153    17.9          17.9        17.9
-STEMI                     STEMI   304    35.5          35.5        53.3
-Unstable Angina Unstable Angina   400    46.7          46.7       100.0
-Sum                         Sum   857   100.0         100.0            
+'data.frame':	4 obs. of  5 variables:
+ $ rowname      : chr  "NSTEMI" "STEMI" "Unstable Angina" "Sum"
+ $ Count        : chr  "153" "304" "400" "857"
+ $ Percent      : chr  "17.9" "35.5" "46.7" "100.0"
+ $ Valid Percent: chr  "17.9" "35.5" "46.7" "100.0"
+ $ Cum Percent  : chr  "17.9" "53.3" "100.0" ""
 > #freqTable(acs$smoking,lang="kor",vanilla=TRUE,fontsize=12)
 > 
 > 
@@ -177,18 +193,18 @@ Register inputHandler for chooserInput
 Loading required package: tibble
 > numSummary(acs)
 # A tibble: 9 × 13
-  vars       n  mean    sd median trimmed   mad   min   max range   skew kurtosis
-  <chr>  <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl>
-1 age      857  63.3 11.7    64      63.6 13.3   28    91    63   -0.175  -0.566 
-2 EF       723  55.8  9.62   58.1    56.8  7.86  18    79    61   -0.978   1.11  
-3 height   764 163.   9.08  165     164.   7.41 130   185    55   -0.440  -0.0145
-4 weight   766  64.8 11.4    65      64.5 10.4   30   112    82    0.336   0.444 
-5 BMI      764  24.3  3.35   24.2    24.2  3.01  15.6  41.4  25.8  0.668   2.12  
-6 TC       834 185.  47.8   183     184.  43.0   25   493   468    0.737   3.77  
-7 LDLC     833 117.  41.1   114     115.  40.0   15   366   351    0.787   2.33  
-8 HDLC     834  38.2 11.1    38      38.0 10.4    4    89    85    0.366   1.46  
-9 TG       842 125.  90.9   106.    111.  60.0   11   877   866    3.02   14.9   
-# … with 1 more variable: se <dbl>
+  vars      n  mean    sd median trimmed   mad   min   max range   skew kurtosis
+  <chr> <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl>
+1 age     857  63.3 11.7    64      63.6 13.3   28    91    63   -0.175  -0.566 
+2 EF      723  55.8  9.62   58.1    56.8  7.86  18    79    61   -0.978   1.11  
+3 heig…   764 163.   9.08  165     164.   7.41 130   185    55   -0.440  -0.0145
+4 weig…   766  64.8 11.4    65      64.5 10.4   30   112    82    0.336   0.444 
+5 BMI     764  24.3  3.35   24.2    24.2  3.01  15.6  41.4  25.8  0.668   2.12  
+6 TC      834 185.  47.8   183     184.  43.0   25   493   468    0.737   3.77  
+7 LDLC    833 117.  41.1   114     115.  40.0   15   366   351    0.787   2.33  
+8 HDLC    834  38.2 11.1    38      38.0 10.4    4    89    85    0.366   1.46  
+9 TG      842 125.  90.9   106.    111.  60.0   11   877   866    3.02   14.9   
+# ℹ 1 more variable: se <dbl>
 > numSummary(acs$age)
 # A tibble: 1 × 12
       n  mean    sd median trimmed   mad   min   max range   skew kurtosis    se
@@ -200,10 +216,10 @@ Loading required package: tibble
   <chr> <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>  <dbl>    <dbl>
 1 age     857  63.3 11.7    64      63.6 13.3     28    91    63 -0.175   -0.566
 2 EF      723  55.8  9.62   58.1    56.8  7.86    18    79    61 -0.978    1.11 
-# … with 1 more variable: se <dbl>
+# ℹ 1 more variable: se <dbl>
 > acs %>% group_by(sex) %>% numSummary(age,BMI)
-Warning: `cols` is now required when using unnest().
-Please use `cols = c(summary)`
+Warning: `cols` is now required when using `unnest()`.
+ℹ Please use `cols = c(summary)`.
 # A tibble: 4 × 14
 # Groups:   sex [2]
   sex    vars      n  mean    sd median trimmed   mad   min   max range    skew
@@ -212,22 +228,22 @@ Please use `cols = c(summary)`
 2 Male   BMI     509  24.3  3.24   24.2    24.2  2.98  16.3  41.4  25.1  0.616 
 3 Female age     287  68.7 10.7    70      69.4 10.4   39    90    51   -0.593 
 4 Female BMI     255  24.2  3.56   24.0    24.1  3.13  15.6  41.2  25.6  0.751 
-# … with 2 more variables: kurtosis <dbl>, se <dbl>
+# ℹ 2 more variables: kurtosis <dbl>, se <dbl>
 > acs %>% group_by(sex) %>% select(age) %>% numSummary
 Adding missing grouping variables: `sex`
-Warning: `cols` is now required when using unnest().
-Please use `cols = c(summary)`
+Warning: `cols` is now required when using `unnest()`.
+ℹ Please use `cols = c(summary)`.
 # A tibble: 2 × 13
 # Groups:   sex [2]
   sex        n  mean    sd median trimmed   mad   min   max range    skew
   <chr>  <dbl> <dbl> <dbl>  <dbl>   <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
 1 Male     570  60.6  11.2     61    60.6  11.9    28    91    63 -0.0148
 2 Female   287  68.7  10.7     70    69.4  10.4    39    90    51 -0.593 
-# … with 2 more variables: kurtosis <dbl>, se <dbl>
+# ℹ 2 more variables: kurtosis <dbl>, se <dbl>
 > acs %>% group_by(sex) %>% select(age,EF) %>% numSummary
 Adding missing grouping variables: `sex`
-Warning: `cols` is now required when using unnest().
-Please use `cols = c(summary)`
+Warning: `cols` is now required when using `unnest()`.
+ℹ Please use `cols = c(summary)`.
 # A tibble: 4 × 14
 # Groups:   sex [2]
   sex    vars      n  mean    sd median trimmed   mad   min   max range    skew
@@ -236,11 +252,11 @@ Please use `cols = c(summary)`
 2 Male   EF      483  55.6  9.40   57.3    56.4  8.01  18      79  61   -0.789 
 3 Female age     287  68.7 10.7    70      69.4 10.4   39      90  51   -0.593 
 4 Female EF      240  56.3 10.1    59.2    57.6  7.19  18.4    75  56.6 -1.30  
-# … with 2 more variables: kurtosis <dbl>, se <dbl>
+# ℹ 2 more variables: kurtosis <dbl>, se <dbl>
 > acs %>% group_by(sex,Dx) %>% select(age,EF) %>% numSummary
 Adding missing grouping variables: `sex`, `Dx`
-Warning: `cols` is now required when using unnest().
-Please use `cols = c(summary)`
+Warning: `cols` is now required when using `unnest()`.
+ℹ Please use `cols = c(summary)`.
 # A tibble: 12 × 15
 # Groups:   sex, Dx [6]
    sex    Dx      vars      n  mean    sd median trimmed   mad   min   max range
@@ -257,11 +273,11 @@ Please use `cols = c(summary)`
 10 Male   Unstab… EF      194  59.1  8.67   60      60.2  5.93  24.7  79    54.3
 11 Female NSTEMI  age      50  70.9 11.4    74.5    71.9  8.90  42    88    46  
 12 Female NSTEMI  EF       45  54.8  9.10   57      55.3  9.79  36.8  75    38.2
-# … with 3 more variables: skew <dbl>, kurtosis <dbl>, se <dbl>
+# ℹ 3 more variables: skew <dbl>, kurtosis <dbl>, se <dbl>
 > acs %>% group_by(sex,Dx) %>% select(age) %>% numSummary
 Adding missing grouping variables: `sex`, `Dx`
-Warning: `cols` is now required when using unnest().
-Please use `cols = c(summary)`
+Warning: `cols` is now required when using `unnest()`.
+ℹ Please use `cols = c(summary)`.
 # A tibble: 6 × 14
 # Groups:   sex, Dx [6]
   sex    Dx        n  mean    sd median trimmed   mad   min   max range     skew
@@ -272,7 +288,7 @@ Please use `cols = c(summary)`
 4 Female Unst…   153  67.7  10.7   70      68.3  8.90    39    90    51 -0.540  
 5 Male   Unst…   247  61.4  10.6   61      61.4 10.4     35    91    56  0.0710 
 6 Female NSTE…    50  70.9  11.4   74.5    71.9  8.90    42    88    46 -0.721  
-# … with 2 more variables: kurtosis <dbl>, se <dbl>
+# ℹ 2 more variables: kurtosis <dbl>, se <dbl>
 > #acs %>% group_by(sex,Dx) %>% numSummary(age,EF,lang="kor")
 > 
 > 
@@ -309,106 +325,159 @@ The following objects are masked from ‘package:base’:
     intersect, setdiff, setequal, union
 
 > numSummaryTable(acs)
+Warning in regulartable(df) : 'regulartable' is deprecated.
+Use 'flextable' instead.
+See help("Deprecated")
 a flextable object.
 col_keys: `rowname`, `vars`, `n`, `mean`, `sd`, `median`, `trimmed`, `mad`, `min`, `max`, `range`, `skew`, `kurtosis`, `se` 
 header has 1 row(s) 
 body has 9 row(s) 
 original dataset sample: 
-  rowname   vars      n   mean    sd median trimmed   mad    min    max range
-1       1    age 857.00  63.31 11.70  64.00   63.56 13.34  28.00  91.00 63.00
-2       2     EF 723.00  55.83  9.62  58.10   56.77  7.86  18.00  79.00 61.00
-3       3 height 764.00 163.18  9.08 165.00  163.52  7.41 130.00 185.00 55.00
-4       4 weight 766.00  64.84 11.36  65.00   64.55 10.38  30.00 112.00 82.00
-5       5    BMI 764.00  24.28  3.35  24.16   24.16  3.01  15.62  41.42 25.80
-   skew kurtosis   se
-1 -0.18    -0.57 0.40
-2 -0.98     1.11 0.36
-3 -0.44    -0.01 0.33
-4  0.34     0.44 0.41
-5  0.67     2.12 0.12
+'data.frame':	9 obs. of  14 variables:
+ $ rowname : chr  "1" "2" "3" "4" ...
+ $ vars    : chr  "age" "EF" "height" "weight" ...
+ $ n       : chr  "857.00" "723.00" "764.00" "766.00" ...
+ $ mean    : chr  "63.31" "55.83" "163.18" "64.84" ...
+ $ sd      : chr  "11.70" "9.62" "9.08" "11.36" ...
+ $ median  : chr  "64.00" "58.10" "165.00" "65.00" ...
+ $ trimmed : chr  "63.56" "56.77" "163.52" "64.55" ...
+ $ mad     : chr  "13.34" "7.86" "7.41" "10.38" ...
+ $ min     : chr  "28.00" "18.00" "130.00" "30.00" ...
+ $ max     : chr  "91.00" "79.00" "185.00" "112.00" ...
+ $ range   : chr  "63.00" "61.00" "55.00" "82.00" ...
+ $ skew    : chr  "-0.18" "-0.98" "-0.44" "0.34" ...
+ $ kurtosis: chr  "-0.57" "1.11" "-0.01" "0.44" ...
+ $ se      : chr  "0.40" "0.36" "0.33" "0.41" ...
 > numSummaryTable(acs$age)
+Warning in regulartable(df) : 'regulartable' is deprecated.
+Use 'flextable' instead.
+See help("Deprecated")
 a flextable object.
 col_keys: `n`, `mean`, `sd`, `median`, `trimmed`, `mad`, `min`, `max`, `range`, `skew`, `kurtosis`, `se` 
 header has 1 row(s) 
 body has 1 row(s) 
 original dataset sample: 
-       n  mean    sd median trimmed   mad   min   max range  skew kurtosis   se
-1 857.00 63.31 11.70  64.00   63.56 13.34 28.00 91.00 63.00 -0.18    -0.57 0.40
+'data.frame':	1 obs. of  12 variables:
+ $ n       : chr "857.00"
+ $ mean    : chr "63.31"
+ $ sd      : chr "11.70"
+ $ median  : chr "64.00"
+ $ trimmed : chr "63.56"
+ $ mad     : chr "13.34"
+ $ min     : chr "28.00"
+ $ max     : chr "91.00"
+ $ range   : chr "63.00"
+ $ skew    : chr "-0.18"
+ $ kurtosis: chr "-0.57"
+ $ se      : chr "0.40"
 > acs %>% group_by(sex) %>% select(age) %>% numSummaryTable
 Adding missing grouping variables: `sex`
-Warning: `cols` is now required when using unnest().
-Please use `cols = c(summary)`
+Warning: `cols` is now required when using `unnest()`.
+ℹ Please use `cols = c(summary)`.
+Warning in regulartable(df) : 'regulartable' is deprecated.
+Use 'flextable' instead.
+See help("Deprecated")
 a flextable object.
 col_keys: `sex`, `n`, `mean`, `sd`, `median`, `trimmed`, `mad`, `min`, `max`, `range`, `skew`, `kurtosis`, `se` 
 header has 1 row(s) 
 body has 2 row(s) 
 original dataset sample: 
-     sex      n  mean    sd median trimmed   mad   min   max range  skew
-1   Male 570.00 60.61 11.23  61.00   60.65 11.86 28.00 91.00 63.00 -0.01
-2 Female 287.00 68.68 10.73  70.00   69.43 10.38 39.00 90.00 51.00 -0.59
-  kurtosis   se
-1    -0.36 0.47
-2    -0.26 0.63
+'data.frame':	2 obs. of  13 variables:
+ $ sex     : chr  "Male" "Female"
+ $ n       : chr  "570.00" "287.00"
+ $ mean    : chr  "60.61" "68.68"
+ $ sd      : chr  "11.23" "10.73"
+ $ median  : chr  "61.00" "70.00"
+ $ trimmed : chr  "60.65" "69.43"
+ $ mad     : chr  "11.86" "10.38"
+ $ min     : chr  "28.00" "39.00"
+ $ max     : chr  "91.00" "90.00"
+ $ range   : chr  "63.00" "51.00"
+ $ skew    : chr  "-0.01" "-0.59"
+ $ kurtosis: chr  "-0.36" "-0.26"
+ $ se      : chr  "0.47" "0.63"
 > acs %>% group_by(sex) %>% select(age,EF) %>% numSummaryTable
 Adding missing grouping variables: `sex`
-Warning: `cols` is now required when using unnest().
-Please use `cols = c(summary)`
+Warning: `cols` is now required when using `unnest()`.
+ℹ Please use `cols = c(summary)`.
+Warning in regulartable(df) : 'regulartable' is deprecated.
+Use 'flextable' instead.
+See help("Deprecated")
 a flextable object.
 col_keys: `sex`, `vars`, `n`, `mean`, `sd`, `median`, `trimmed`, `mad`, `min`, `max`, `range`, `skew`, `kurtosis`, `se` 
 header has 1 row(s) 
 body has 4 row(s) 
 original dataset sample: 
-     sex vars      n  mean    sd median trimmed   mad   min   max range  skew
-1   Male  age 570.00 60.61 11.23  61.00   60.65 11.86 28.00 91.00 63.00 -0.01
-2   Male   EF 483.00 55.62  9.40  57.30   56.38  8.01 18.00 79.00 61.00 -0.79
-3 Female  age 287.00 68.68 10.73  70.00   69.43 10.38 39.00 90.00 51.00 -0.59
-4 Female   EF 240.00 56.27 10.06  59.25   57.57  7.19 18.40 75.00 56.60 -1.30
-  kurtosis   se
-1    -0.36 0.47
-2     0.76 0.43
-3    -0.26 0.63
-4     1.70 0.65
+'data.frame':	4 obs. of  14 variables:
+ $ sex     : chr  "Male" "Male" "Female" "Female"
+ $ vars    : chr  "age" "EF" "age" "EF"
+ $ n       : chr  "570.00" "483.00" "287.00" "240.00"
+ $ mean    : chr  "60.61" "55.62" "68.68" "56.27"
+ $ sd      : chr  "11.23" "9.40" "10.73" "10.06"
+ $ median  : chr  "61.00" "57.30" "70.00" "59.25"
+ $ trimmed : chr  "60.65" "56.38" "69.43" "57.57"
+ $ mad     : chr  "11.86" "8.01" "10.38" "7.19"
+ $ min     : chr  "28.00" "18.00" "39.00" "18.40"
+ $ max     : chr  "91.00" "79.00" "90.00" "75.00"
+ $ range   : chr  "63.00" "61.00" "51.00" "56.60"
+ $ skew    : chr  "-0.01" "-0.79" "-0.59" "-1.30"
+ $ kurtosis: chr  "-0.36" "0.76" "-0.26" "1.70"
+ $ se      : chr  "0.47" "0.43" "0.63" "0.65"
 > acs %>% group_by(sex,Dx) %>% select(age,EF) %>% numSummaryTable(vanilla=FALSE)
 Adding missing grouping variables: `sex`, `Dx`
-Warning: `cols` is now required when using unnest().
-Please use `cols = c(summary)`
+Warning: `cols` is now required when using `unnest()`.
+ℹ Please use `cols = c(summary)`.
+Warning in regulartable(df) : 'regulartable' is deprecated.
+Use 'flextable' instead.
+See help("Deprecated")
 a flextable object.
 col_keys: `sex`, `Dx`, `vars`, `n`, `mean`, `sd`, `median`, `trimmed`, `mad`, `min`, `max`, `range`, `skew`, `kurtosis`, `se` 
 header has 1 row(s) 
 body has 12 row(s) 
 original dataset sample: 
-     sex     Dx vars      n  mean    sd median trimmed   mad   min   max range
-1   Male  STEMI  age 220.00 59.43 11.72  59.50   59.43 11.12 30.00 86.00 56.00
-2   Male  STEMI   EF 195.00 52.37  8.90  54.00   52.88  8.45 18.00 73.60 55.60
-3 Female  STEMI  age  84.00 69.11 10.36  70.00   70.04 10.38 42.00 89.00 47.00
-4 Female  STEMI   EF  77.00 52.32 10.94  55.70   53.72  9.04 18.40 67.10 48.70
-5   Male NSTEMI  age 103.00 61.15 11.57  59.00   61.28 13.34 28.00 85.00 57.00
-   skew kurtosis   se
-1  0.00    -0.55 0.79
-2 -0.62     0.53 0.64
-3 -0.65    -0.09 1.13
-4 -1.17     1.01 1.25
-5 -0.11    -0.53 1.14
+'data.frame':	12 obs. of  15 variables:
+ $ sex     : chr  "Male" "Male" "Female" "Female" ...
+ $ Dx      : chr  "STEMI" "STEMI" "STEMI" "STEMI" ...
+ $ vars    : chr  "age" "EF" "age" "EF" ...
+ $ n       : chr  "220.00" "195.00" "84.00" "77.00" ...
+ $ mean    : chr  "59.43" "52.37" "69.11" "52.32" ...
+ $ sd      : chr  "11.72" "8.90" "10.36" "10.94" ...
+ $ median  : chr  "59.50" "54.00" "70.00" "55.70" ...
+ $ trimmed : chr  "59.43" "52.88" "70.04" "53.72" ...
+ $ mad     : chr  "11.12" "8.45" "10.38" "9.04" ...
+ $ min     : chr  "30.00" "18.00" "42.00" "18.40" ...
+ $ max     : chr  "86.00" "73.60" "89.00" "67.10" ...
+ $ range   : chr  "56.00" "55.60" "47.00" "48.70" ...
+ $ skew    : chr  "0.00" "-0.62" "-0.65" "-1.17" ...
+ $ kurtosis: chr  "-0.55" "0.53" "-0.09" "1.01" ...
+ $ se      : chr  "0.79" "0.64" "1.13" "1.25" ...
 > acs %>% group_by(sex,Dx) %>% numSummaryTable(age,EF,add.rownames=FALSE)
-Warning: `cols` is now required when using unnest().
-Please use `cols = c(summary)`
+Warning: `cols` is now required when using `unnest()`.
+ℹ Please use `cols = c(summary)`.
+Warning in regulartable(df) : 'regulartable' is deprecated.
+Use 'flextable' instead.
+See help("Deprecated")
 a flextable object.
 col_keys: `sex`, `Dx`, `vars`, `n`, `mean`, `sd`, `median`, `trimmed`, `mad`, `min`, `max`, `range`, `skew`, `kurtosis`, `se` 
 header has 1 row(s) 
 body has 12 row(s) 
 original dataset sample: 
-     sex     Dx vars      n  mean    sd median trimmed   mad   min   max range
-1   Male  STEMI  age 220.00 59.43 11.72  59.50   59.43 11.12 30.00 86.00 56.00
-2   Male  STEMI   EF 195.00 52.37  8.90  54.00   52.88  8.45 18.00 73.60 55.60
-3 Female  STEMI  age  84.00 69.11 10.36  70.00   70.04 10.38 42.00 89.00 47.00
-4 Female  STEMI   EF  77.00 52.32 10.94  55.70   53.72  9.04 18.40 67.10 48.70
-5   Male NSTEMI  age 103.00 61.15 11.57  59.00   61.28 13.34 28.00 85.00 57.00
-   skew kurtosis   se
-1  0.00    -0.55 0.79
-2 -0.62     0.53 0.64
-3 -0.65    -0.09 1.13
-4 -1.17     1.01 1.25
-5 -0.11    -0.53 1.14
+'data.frame':	12 obs. of  15 variables:
+ $ sex     : chr  "Male" "Male" "Female" "Female" ...
+ $ Dx      : chr  "STEMI" "STEMI" "STEMI" "STEMI" ...
+ $ vars    : chr  "age" "EF" "age" "EF" ...
+ $ n       : chr  "220.00" "195.00" "84.00" "77.00" ...
+ $ mean    : chr  "59.43" "52.37" "69.11" "52.32" ...
+ $ sd      : chr  "11.72" "8.90" "10.36" "10.94" ...
+ $ median  : chr  "59.50" "54.00" "70.00" "55.70" ...
+ $ trimmed : chr  "59.43" "52.88" "70.04" "53.72" ...
+ $ mad     : chr  "11.12" "8.45" "10.38" "9.04" ...
+ $ min     : chr  "30.00" "18.00" "42.00" "18.40" ...
+ $ max     : chr  "86.00" "73.60" "89.00" "67.10" ...
+ $ range   : chr  "56.00" "55.60" "47.00" "48.70" ...
+ $ skew    : chr  "0.00" "-0.62" "-0.65" "-1.17" ...
+ $ kurtosis: chr  "-0.55" "0.53" "-0.09" "1.01" ...
+ $ se      : chr  "0.79" "0.64" "1.13" "1.25" ...
 > 
 > 
 > 
@@ -492,15 +561,19 @@ Standardized Runs Statistic = 0.76376, p-value = 0.7775
 > require(moonBook)
 Loading required package: moonBook
 > x2Table(acs,sex,DM)
+Warning in regulartable(df) : 'regulartable' is deprecated.
+Use 'flextable' instead.
+See help("Deprecated")
 a flextable object.
 col_keys: `rowname`, `No`, `Yes`, `Total` 
 header has 1 row(s) 
 body has 3 row(s) 
 original dataset sample: 
-       rowname           No          Yes        Total
-Female  Female 173\n(60.3%) 114\n(39.7%) 287\n(100 %)
-Male      Male 380\n(66.7%) 190\n(33.3%) 570\n(100 %)
-Total    Total 553\n(64.5%) 304\n(35.5%) 857\n(100 %)
+'data.frame':	3 obs. of  4 variables:
+ $ rowname: chr  "Female" "Male" "Total"
+ $ No     : chr  "173\n(60.3%)" "380\n(66.7%)" "553\n(64.5%)"
+ $ Yes    : chr  "114\n(39.7%)" "190\n(33.3%)" "304\n(35.5%)"
+ $ Total  : chr  "287\n(100 %)" "570\n(100 %)" "857\n(100 %)"
 > 
 > 
 > 
@@ -537,7 +610,7 @@ detaching ‘package:moonBook’
 
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  2.738 0.126 2.982 0.001 0.002 
+Time elapsed:  2.255 0.124 2.774 0.002 0.002 
 > grDevices::dev.off()
 null device 
           1 

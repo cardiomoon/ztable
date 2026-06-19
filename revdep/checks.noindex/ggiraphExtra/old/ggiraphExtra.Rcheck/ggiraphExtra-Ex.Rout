@@ -1,7 +1,7 @@
 
-R version 4.1.1 (2021-08-10) -- "Kick Things"
-Copyright (C) 2021 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin17.0 (64-bit)
+R version 4.6.0 (2026-04-24) -- "Because it was There"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin23
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -76,12 +76,24 @@ Loading required package: ggplot2
 > require(ggiraph)
 Loading required package: ggiraph
 > ggAncova(radial,aes(age,NTAV,color=sex),interactive=TRUE)
-Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
+Warning: `aes_string()` was deprecated in ggplot2 3.0.0.
+ℹ Please use tidy evaluation idioms with `aes()`.
+ℹ See also `vignette("ggplot2-in-packages")` for more information.
+ℹ The deprecated feature was likely used in the ggiraphExtra package.
+  Please report the issue to the authors.
+Warning: The `<scale>` argument of `guides()` cannot be `FALSE`. Use "none" instead as
+of ggplot2 3.3.4.
+ℹ The deprecated feature was likely used in the ggiraphExtra package.
+  Please report the issue to the authors.
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > fit=lm(NTAV~age+HBP,data=radial)
 > ggAncova(fit,interactive=TRUE)
-Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > ggAncova(NTAV~age+DM,data=radial)
-Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > 
 > 
 > 
@@ -105,6 +117,10 @@ Loading required package: gcookbook
 > require(ggplot2)
 Loading required package: ggplot2
 > ggArea(uspopage,aes(x=Year,y=Thousands,fill=AgeGroup))
+Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+ℹ The deprecated feature was likely used in the ggiraphExtra package.
+  Please report the issue to the authors.
 > ggArea(uspopage,aes(x=Year,y=Thousands,fill=AgeGroup),position="fill")
 > 
 > 
@@ -140,11 +156,15 @@ Loading required package: ggiraph
 > require(plyr)
 Loading required package: plyr
 > ggBar(acs,aes(x=Dx,fill=smoking),interactive=TRUE,width=1,colour="white",size=0.2,polar=TRUE)
+Warning in (function (mapping = NULL, data = NULL, stat = "count", position = "stack",  :
+  Ignoring unknown parameters: `size`
 > ggBar(acs,aes(x=Dx,fill=smoking),position="fill",addlabel=TRUE,horizontal=TRUE,width=0.5)
 > ggBar(acs,aes(x=Dx,fill=smoking),position="dodge",interactive=TRUE,addlabel=TRUE)
 > ggBar(acs,aes(x=Dx,fill=smoking),position="fill",addlabel=TRUE)
 > ggBar(rose,aes(x=Month,fill=group,y=value),stat="identity",polar=TRUE,palette="Reds",width=1,
 +       color="black",size=0.1,reverse=TRUE,interactive=TRUE)
+Warning in (function (mapping = NULL, data = NULL, stat = "count", position = "stack",  :
+  Ignoring unknown parameters: `size`
 > 
 > 
 > 
@@ -172,9 +192,9 @@ Loading required package: ggiraph
 Loading required package: reshape2
 > ggBoxplot(mtcars,rescale=TRUE)
 > ggBoxplot(mtcars,aes(x=c(mpg,cyl,disp,hp,drat),color=am),rescale=TRUE)
-Warning: Using `as.character()` on a quosure is deprecated as of rlang 0.3.0.
-Please use `as_label()` or `as_name()` instead.
-This warning is displayed once per session.
+Warning: Using `as.character()` on a quosure is deprecated as of rlang 0.3.0. Please use
+`as_label()` or `as_name()` instead.
+This warning is displayed once every 8 hours.
 > ggBoxplot(mtcars,aes(x=c(mpg,cyl,disp,hp,drat)),rescale=TRUE)
 > ggBoxplot(mtcars,rescale=TRUE,interactive=TRUE)
 > ggBoxplot(mtcars,horizontal=TRUE,interactive=TRUE)
@@ -242,8 +262,8 @@ Loading required package: ggplot2
 > ggCatepillar(acs,aes(c(Dx,sex),age,color=HBP),interactive=TRUE,flip=TRUE,use.labels=FALSE)
 > ggCatepillar(acs,aes(age,height,color=sex),errorbar=FALSE,interactive=TRUE)
 Warning in qt(conf.interval/2 + 0.5, datac$n - 1) : NaNs produced
-Warning: position_dodge requires non-overlapping x intervals
-Warning: position_dodge requires non-overlapping x intervals
+Warning: `position_dodge()` requires non-overlapping x intervals.
+Warning: `position_dodge()` requires non-overlapping x intervals.
 > 
 > 
 > 
@@ -334,13 +354,17 @@ The following objects are masked from ‘package:ggiraphExtra’:
     addLabelDf, getMapping
 
 > ggDensity(acs,aes(x=age))
-`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+ℹ Please use `after_stat(density)` instead.
+ℹ The deprecated feature was likely used in the ggiraphExtra package.
+  Please report the issue to the authors.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
 > ggDensity(acs,aes(x=age,color=sex,fill=sex),addhist=FALSE)
 > ggDensity(acs,aes(x=age,color=sex,fill=sex))
-`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
 > ggDensity(acs,aes(x=age,fill=sex),addhist=FALSE)
 > ggDensity(acs,aes(x=age,color=sex))
-`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+`stat_bin()` using `bins = 30`. Pick better value `binwidth`.
 > 
 > 
 > 
@@ -394,8 +418,8 @@ Loading required package: ggplot2
 +  ggDot(heightweight,aes(x=heightIn,fill=sex))
 + }
 Loading required package: gcookbook
-Scale for 'x' is already present. Adding another scale for 'x', which will
-replace the existing scale.
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
 > require(moonBook) #for use data radial
 Loading required package: moonBook
 
@@ -406,16 +430,18 @@ The following objects are masked from ‘package:ggiraphExtra’:
     addLabelDf, getMapping
 
 > ggDot(radial,aes(x=sex,y=height,fill=sex),boxfill="white",position=0,binwidth=1,boxwidth=1)
-Warning: Removed 1 rows containing non-finite values (stat_boxplot).
-Warning: Removed 1 rows containing non-finite values (stat_bindot).
+Warning: Removed 1 row containing non-finite outside the scale range (`stat_boxplot()`).
+Warning: Removed 1 row containing missing values or values outside the scale range
+(`stat_bindot()`).
 > ggDot(radial,aes(x=height,fill=sex),binwidth=1)
-Warning: Removed 1 rows containing non-finite values (stat_bindot).
+Warning: Removed 1 row containing missing values or values outside the scale range
+(`stat_bindot()`).
 > ggDot(acs,aes(x=sex,y=age,color=sex))
-Scale for 'x' is already present. Adding another scale for 'x', which will
-replace the existing scale.
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
 > ggDot(acs,aes(x=Dx,y=age,color=Dx))
-Scale for 'x' is already present. Adding another scale for 'x', which will
-replace the existing scale.
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
 > 
 > 
 > 
@@ -440,7 +466,11 @@ Loading required package: ggplot2
 > require(ggiraph)
 Loading required package: ggiraph
 > ggEffect(mtcars,aes(x=wt,y=mpg,color=hp))
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > ggEffect(mtcars,aes(x=wt,y=mpg,color=hp),interactive=TRUE)
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > require(moonBook)
 Loading required package: moonBook
 
@@ -451,18 +481,28 @@ The following objects are masked from ‘package:ggiraphExtra’:
     addLabelDf, getMapping
 
 > ggEffect(acs,aes(x=height,y=weight,color=smoking))
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > ggEffect(acs,aes(x=height,y=weight,color=smoking),interactive=TRUE)
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > require(ggplot2)
 > require(ggiraph)
 > require(moonBook)
 > ggEffect(NTAV~age*smoking,data=radial)
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > require(moonBook)
 > require(ggplot2)
 > require(ggiraph)
 > fit=lm(age~sex*smoking,data=acs)
 > ggEffect(fit,interactive=TRUE)
 > ggEffect(radial,aes(x=age,y=NTAV,color=smoking))
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > ggEffect(radial,aes(x=age,y=NTAV,color=smoking),interactive=TRUE)
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > 
 > 
 > 
@@ -486,7 +526,6 @@ Loading required package: ggplot2
 > require(ggiraph)
 Loading required package: ggiraph
 > ggErrorBar(mpg,aes(x=drv,y=cty))
-Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
 > ggErrorBar(mpg,aes(x=drv,y=hwy,color=cyl),mode=1,interactive=TRUE,errorbar="sd")
 Warning in qt(conf.interval/2 + 0.5, datac$n - 1) : NaNs produced
 > 
@@ -522,9 +561,11 @@ List of 1
  - attr(*, "conf.level")= num 0.95
  - attr(*, "ordered")= logi TRUE
 > ggHSD(result)
-Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > ggHSD(result,interactive=TRUE)
-Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > 
 > 
 > 
@@ -559,30 +600,30 @@ Loading required package: ggiraph
 > require(sjmisc)
 Loading required package: sjmisc
 > ggHeatmap(acs,aes(x=Dx,y=smoking),addlabel=TRUE,interactive=TRUE)
-Scale for 'x' is already present. Adding another scale for 'x', which will
-replace the existing scale.
-Scale for 'y' is already present. Adding another scale for 'y', which will
-replace the existing scale.
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
 > ggHeatmap(acs,aes(x=sex,y=Dx,fill=age),addlabel=TRUE,interactive=TRUE)
-Scale for 'x' is already present. Adding another scale for 'x', which will
-replace the existing scale.
-Scale for 'y' is already present. Adding another scale for 'y', which will
-replace the existing scale.
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
 > ggHeatmap(rose,aes(x=Month,y=group,fill=value),stat="identity",addlabel=TRUE)
-Scale for 'x' is already present. Adding another scale for 'x', which will
-replace the existing scale.
-Scale for 'y' is already present. Adding another scale for 'y', which will
-replace the existing scale.
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
 > ggHeatmap(rose,aes(x=Month,y=group,fill=value),addlabel=TRUE)
-Scale for 'x' is already present. Adding another scale for 'x', which will
-replace the existing scale.
-Scale for 'y' is already present. Adding another scale for 'y', which will
-replace the existing scale.
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
 > ggHeatmap(taco,aes(x=AgeGroup,y=Filling,fill=Rating,facet=ShellType),color="grey50",stat="identity")
-Scale for 'x' is already present. Adding another scale for 'x', which will
-replace the existing scale.
-Scale for 'y' is already present. Adding another scale for 'y', which will
-replace the existing scale.
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+Scale for y is already present.
+Adding another scale for y, which will replace the existing scale.
 > 
 > 
 > 
@@ -618,17 +659,30 @@ The following objects are masked from ‘package:ggiraphExtra’:
     addLabelDf, getMapping
 
 > ggPair(iris,rescale=TRUE,horizontal=TRUE)
-Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > ggPair(acs,aes(colour=smoking),horizontal=TRUE,rescale=TRUE)
-Warning: Removed 496 rows containing missing values (geom_interactive_point).
+Warning: Removed 496 rows containing missing values or values outside the scale range
+(`geom_interactive_point()`).
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > ggPair(radial,aes(color=male),horizontal=TRUE,rescale=TRUE)
-Warning: Removed 18 rows containing missing values (geom_interactive_point).
+Warning: Removed 18 rows containing missing values or values outside the scale range
+(`geom_interactive_point()`).
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > ggPair(mtcars,horizontal=TRUE,rescale=TRUE)
-Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > ggPair(iris,rescale=TRUE,horizontal=TRUE,interactive=TRUE)
-Warning: `guides(<scale> = FALSE)` is deprecated. Please use `guides(<scale> = "none")` instead.
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > ggPair(iris,aes(color=Species),rescale=TRUE,interactive=TRUE)
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > ggPair(iris,aes(x=c(Sepal.Length,Sepal.Width),color=Species),horizontal=TRUE,interactive=TRUE)
+`geom_path()`: Each group consists of only one observation.
+ℹ Do you need to adjust the group aesthetic?
 > 
 > 
 > 
@@ -870,7 +924,11 @@ Loading required package: ggiraph
 > require(plyr)
 Loading required package: plyr
 > ggRose(rose,aes(x=Month,fill=group,y=value),stat="identity",interactive=TRUE)
+Warning in (function (mapping = NULL, data = NULL, stat = "count", position = "stack",  :
+  Ignoring unknown parameters: `size`
 > ggRose(acs,aes(x=Dx,fill=smoking),interactive=TRUE)
+Warning in (function (mapping = NULL, data = NULL, stat = "count", position = "stack",  :
+  Ignoring unknown parameters: `size`
 > 
 > 
 > 
@@ -903,26 +961,22 @@ The following objects are masked from ‘package:ggiraphExtra’:
 Loading required package: ggplot2
 > acs$Dx=factor(acs$Dx,levels=c("Unstable Angina","NSTEMI","STEMI"))
 > ggSpine(data=acs,aes(x=age,fill=Dx,facet=sex),palette="Reds")
-Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
+Warning: The `guide` argument in `scale_*()` cannot be `FALSE`. This was deprecated in
+ggplot2 3.3.4.
+ℹ Please use "none" instead.
+ℹ The deprecated feature was likely used in the ggiraphExtra package.
+  Please report the issue to the authors.
 > ggSpine(data=acs,aes(x=age,fill=Dx,facet=sex),facetbycol=FALSE,minlabelgroup=0.02)
 > ggSpine(data=acs,aes(x=age,fill=Dx),palette="Reds")
-Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=smoking,fill=Dx),palette="Reds")
-Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=DM,fill=Dx,facet=sex),palette="Reds")
-Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=Dx,fill=smoking,facet=sex),palette="Reds")
-Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=DM,facet=smoking,fill=Dx),sec.y.axis=TRUE)
-Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=DM,facet=smoking,fill=Dx),facetbycol=FALSE)
 > ggSpine(mtcars,aes(x=gear,fill=carb),interactive=TRUE)
-Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(mtcars,aes(x=gear,fill=carb,facet=am))
-Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > ggSpine(data=acs,aes(x=Dx,fill=smoking),position="dodge")
 > ggSpine(data=acs,aes(x=Dx,fill=smoking),position="stack")
-Warning: It is deprecated to specify `guide = FALSE` to remove a guide. Please use `guide = "none"` instead.
 > 
 > 
 > 
@@ -948,9 +1002,57 @@ Loading required package: ggiraph
 > require(reshape2)
 Loading required package: reshape2
 > ggViolin(iris)
+Warning: The following aesthetics were dropped during statistical transformation:
+data_id.
+ℹ This can happen when ggplot fails to infer the correct grouping structure in
+  the data.
+ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+  variable into a factor?
+Warning: The following aesthetics were dropped during statistical transformation:
+data_id.
+ℹ This can happen when ggplot fails to infer the correct grouping structure in
+  the data.
+ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+  variable into a factor?
 > ggViolin(iris,aes(fill=Species),rescale=TRUE)
+Warning: The following aesthetics were dropped during statistical transformation:
+data_id.
+ℹ This can happen when ggplot fails to infer the correct grouping structure in
+  the data.
+ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+  variable into a factor?
+Warning: The following aesthetics were dropped during statistical transformation:
+data_id.
+ℹ This can happen when ggplot fails to infer the correct grouping structure in
+  the data.
+ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+  variable into a factor?
 > ggViolin(mtcars,aes(x=c(mpg,cyl,disp,hp,drat),color=am),rescale=TRUE)
+Warning: The following aesthetics were dropped during statistical transformation:
+data_id.
+ℹ This can happen when ggplot fails to infer the correct grouping structure in
+  the data.
+ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+  variable into a factor?
+Warning: The following aesthetics were dropped during statistical transformation:
+data_id.
+ℹ This can happen when ggplot fails to infer the correct grouping structure in
+  the data.
+ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+  variable into a factor?
 > ggViolin(mtcars,aes(x=c(mpg,cyl,disp,hp,drat)),rescale=TRUE)
+Warning: The following aesthetics were dropped during statistical transformation:
+data_id.
+ℹ This can happen when ggplot fails to infer the correct grouping structure in
+  the data.
+ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+  variable into a factor?
+Warning: The following aesthetics were dropped during statistical transformation:
+data_id.
+ℹ This can happen when ggplot fails to infer the correct grouping structure in
+  the data.
+ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
+  variable into a factor?
 > 
 > 
 > 
@@ -962,7 +1064,7 @@ detaching ‘package:reshape2’, ‘package:ggiraph’, ‘package:ggplot2’
 
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  18.341 0.945 21.098 0.002 0.002 
+Time elapsed:  33.715 4.24 38.999 0 0 
 > grDevices::dev.off()
 null device 
           1 

@@ -1,7 +1,7 @@
 
-R version 4.1.1 (2021-08-10) -- "Kick Things"
-Copyright (C) 2021 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin17.0 (64-bit)
+R version 4.6.0 (2026-04-24) -- "Because it was There"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin23
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -38,6 +38,10 @@ Register inputHandler for chooserInput
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D code="summary(lm(mpg~hp+wt,data=mtcars))"
+> ##D Rcode2docx(code=code,title="R code to Word")
+> ## End(Not run)
 > 
 > 
 > 
@@ -59,12 +63,9 @@ col_keys: `no`, `code`
 header has 0 row(s) 
 body has 2 row(s) 
 original dataset sample: 
-  no
-1  1
-2  2
-                                                                                          code
-1 str(mtcars)                                                                                 
-2 summary(mtcars)                                                                             
+'data.frame':	2 obs. of  2 variables:
+ $ no  : int  1 2
+ $ code: chr  "str(mtcars)                                                                                 " "summary(mtcars)                                                                             "
 > 
 > 
 > 
@@ -80,6 +81,10 @@ original dataset sample:
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D code="summary(lm(mpg~hp+wt,data=mtcars))"
+> ##D Rcode2office(code=code)
+> ## End(Not run)
 > 
 > 
 > 
@@ -95,6 +100,10 @@ original dataset sample:
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D code="summary(lm(mpg~hp+wt,data=mtcars))"
+> ##D Rcode2pptx(code=code,title="R code to pptx")
+> ## End(Not run)
 > 
 > 
 > 
@@ -110,6 +119,20 @@ original dataset sample:
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(rrtable)
+> ##D require(officer)
+> ##D require(magrittr)
+> ##D title="Two Tables"
+> ##D ft1=df2flextable(head(iris[1:4]))
+> ##D ft2=df2flextable(tail(iris[1:4]))
+> ##D doc=read_docx()
+> ##D doc %>% add_text(title=title) %>%
+> ##D         add_2flextables(ft1,ft2)
+> ##D doc=read_pptx()
+> ##D doc %>% add_text(title=title) %>%
+> ##D         add_2flextables(ft1,ft2)
+> ## End(Not run)
 > 
 > 
 > 
@@ -125,6 +148,16 @@ original dataset sample:
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(ggplot2)
+> ##D require(magrittr)
+> ##D require(officer)
+> ##D require(rvg)
+> ##D plot1 <- "ggplot(data = iris, aes(Sepal.Length, Petal.Length)) + geom_point()"
+> ##D plot2 <- "ggplot(data = iris, aes(Sepal.Length, Petal.Length, color = Species)) + geom_point()"
+> ##D read_pptx() %>% add_text(title="Two ggplots") %>% add_2ggplots(plot1=plot1,plot2=plot2)
+> ##D read_docx() %>% add_text(title="Two ggplots") %>% add_2ggplots(plot1=plot1,plot2=plot2)
+> ## End(Not run)
 > 
 > 
 > 
@@ -146,11 +179,18 @@ Loading required package: magrittr
 Loading required package: officer
 > require(ggplot2)
 Loading required package: ggplot2
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:rrtable’:
+
+    is_ggplot
+
 > plotstring1="plot(iris)"
 > plotstring2="ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width))+geom_point()"
 > read_pptx() %>% add_text(title="Two plots") %>% add_2plots(plotstring1,plotstring2)
-pptx document with 1 slide(s)
-Available layouts and their associated master(s) are:
+pptx document with 1 slide
+Available layouts and their associated master(s):
              layout       master
 1       Title Slide Office Theme
 2 Title and Content Office Theme
@@ -179,17 +219,12 @@ rdocx document with 8 element(s)
            "paragraph"            "paragraph"            "character" 
           reference_id          graphic title            table title 
            "character"            "paragraph"            "paragraph" 
-
-* Content at cursor location:
-  level num_id text style_name content_type
-1    NA     NA  "/>         NA    paragraph
 > 
 > 
 > 
 > cleanEx()
 
-detaching ‘package:gdtools’, ‘package:ggplot2’, ‘package:officer’,
-  ‘package:magrittr’
+detaching ‘package:ggplot2’, ‘package:officer’, ‘package:magrittr’
 
 > nameEx("add_Rcode")
 > ### * add_Rcode
@@ -208,8 +243,8 @@ detaching ‘package:gdtools’, ‘package:ggplot2’, ‘package:officer’,
 > code="summary(lm(mpg~hp+wt,data=mtcars))"
 > read_pptx() %>% add_text(title="Regression Analysis") %>%
 +    add_Rcode(code)
-pptx document with 1 slide(s)
-Available layouts and their associated master(s) are:
+pptx document with 1 slide
+Available layouts and their associated master(s):
              layout       master
 1       Title Slide Office Theme
 2 Title and Content Office Theme
@@ -236,6 +271,21 @@ detaching ‘package:officer’, ‘package:magrittr’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(rrtable)
+> ##D require(moonBook)
+> ##D require(officer)
+> ##D require(magrittr)
+> ##D ftable=mytable(Dx~.,data=acs)
+> ##D title="mytable Example"
+> ##D ft=df2flextable(head(iris))
+> ##D title2="df2flextable Example"
+> ##D doc=read_docx()
+> ##D doc %>% add_text(title=title) %>%
+> ##D         add_flextable(ftable) %>%
+> ##D         add_text(title=title2) %>%
+> ##D         add_flextable(ft)
+> ## End(Not run)
 > 
 > 
 > 
@@ -254,14 +304,21 @@ detaching ‘package:officer’, ‘package:magrittr’
 > require(rrtable)
 > require(ggplot2)
 Loading required package: ggplot2
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:rrtable’:
+
+    is_ggplot
+
 > require(officer)
 Loading required package: officer
 > require(magrittr)
 Loading required package: magrittr
 > code <- "ggplot(mtcars, aes(x = mpg , y = wt)) + geom_point()"
 > read_pptx() %>% add_text(title="ggplot") %>% add_ggplot(code=code)
-pptx document with 1 slide(s)
-Available layouts and their associated master(s) are:
+pptx document with 1 slide
+Available layouts and their associated master(s):
              layout       master
 1       Title Slide Office Theme
 2 Title and Content Office Theme
@@ -290,10 +347,6 @@ rdocx document with 5 element(s)
            "paragraph"            "paragraph"            "character" 
           reference_id          graphic title            table title 
            "character"            "paragraph"            "paragraph" 
-
-* Content at cursor location:
-  level num_id text style_name content_type
-1    NA     NA          Normal    paragraph
 > 
 > 
 > 
@@ -319,9 +372,16 @@ Loading required package: officer
 Loading required package: magrittr
 > require(ggplot2)
 Loading required package: ggplot2
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:rrtable’:
+
+    is_ggplot
+
 > read_pptx() %>% add_text(title="Add image") %>% add_image("plot(iris)")
-pptx document with 1 slide(s)
-Available layouts and their associated master(s) are:
+pptx document with 1 slide
+Available layouts and their associated master(s):
              layout       master
 1       Title Slide Office Theme
 2 Title and Content Office Theme
@@ -350,10 +410,6 @@ rdocx document with 5 element(s)
            "paragraph"            "paragraph"            "character" 
           reference_id          graphic title            table title 
            "character"            "paragraph"            "paragraph" 
-
-* Content at cursor location:
-  level num_id text style_name content_type
-1    NA     NA          Normal    paragraph
 > 
 > 
 > 
@@ -380,8 +436,8 @@ Loading required package: rvg
 > require(magrittr)
 Loading required package: magrittr
 > read_pptx() %>% add_text(title="Plot") %>% add_plot("plot(iris)")
-pptx document with 1 slide(s)
-Available layouts and their associated master(s) are:
+pptx document with 1 slide
+Available layouts and their associated master(s):
              layout       master
 1       Title Slide Office Theme
 2 Title and Content Office Theme
@@ -410,10 +466,6 @@ rdocx document with 5 element(s)
            "paragraph"            "paragraph"            "character" 
           reference_id          graphic title            table title 
            "character"            "paragraph"            "paragraph" 
-
-* Content at cursor location:
-  level num_id text style_name content_type
-1    NA     NA          Normal    paragraph
 > 
 > 
 > 
@@ -437,8 +489,8 @@ Loading required package: magrittr
 > require(officer)
 Loading required package: officer
 > read_pptx() %>% add_title_slide(title="Web-based analysis with R")
-pptx document with 1 slide(s)
-Available layouts and their associated master(s) are:
+pptx document with 1 slide
+Available layouts and their associated master(s):
              layout       master
 1       Title Slide Office Theme
 2 Title and Content Office Theme
@@ -454,6 +506,26 @@ Available layouts and their associated master(s) are:
 
 detaching ‘package:officer’, ‘package:magrittr’
 
+> nameEx("as.mynumeric")
+> ### * as.mynumeric
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: as.mynumeric
+> ### Title: coerce an object of type "numeric"
+> ### Aliases: as.mynumeric
+> 
+> ### ** Examples
+> 
+> x=c("1,200","2","3.5")
+> x=factor(3:1)
+> x=c(1:3,"tt")
+> as.mynumeric(x)
+[1] "1"  "2"  "3"  "tt"
+> 
+> 
+> 
+> cleanEx()
 > nameEx("code2docx")
 > ### * code2docx
 > 
@@ -465,6 +537,12 @@ detaching ‘package:officer’, ‘package:magrittr’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D code2docx(plot(iris))
+> ##D require(ggplot2)
+> ##D gg=ggplot(data=mtcars,aes(x=wt,y=mpg))+geom_point()
+> ##D code2docx(ggobj=gg)
+> ## End(Not run)
 > 
 > 
 > 
@@ -480,6 +558,12 @@ detaching ‘package:officer’, ‘package:magrittr’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D code2office(plot(iris))
+> ##D require(ggplot2)
+> ##D gg=ggplot(data=mtcars,aes(x=wt,y=mpg))+geom_point()
+> ##D code2office(ggobj=gg)
+> ## End(Not run)
 > 
 > 
 > 
@@ -495,6 +579,12 @@ detaching ‘package:officer’, ‘package:magrittr’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D code2pptx(plot(iris))
+> ##D require(ggplot2)
+> ##D gg=ggplot(data=mtcars,aes(x=wt,y=mpg))+geom_point()
+> ##D code2pptx(ggobj=gg)
+> ## End(Not run)
 > 
 > 
 > 
@@ -510,6 +600,12 @@ detaching ‘package:officer’, ‘package:magrittr’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D library(moonBook)
+> ##D library(rrtable)
+> ##D library(ggplot2)
+> ##D data2HTML(sampleData2)
+> ## End(Not run)
 > 
 > 
 > 
@@ -525,6 +621,12 @@ detaching ‘package:officer’, ‘package:magrittr’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D library(rrtable)
+> ##D library(moonBook)
+> ##D library(ggplot2)
+> ##D data2docx(sampleData2,echo=TRUE)
+> ## End(Not run)
 > 
 > 
 > 
@@ -542,7 +644,7 @@ detaching ‘package:officer’, ‘package:magrittr’
 > 
 > library(moonBook)
 > library(ztable)
-Welcome to package ztable ver 0.2.2
+Welcome to package ztable ver 0.2.3
 
 Attaching package: ‘ztable’
 
@@ -551,6 +653,16 @@ The following objects are masked from ‘package:rrtable’:
     roundDf, ztable2flextable
 
 > library(ggplot2)
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:rrtable’:
+
+    is_ggplot
+
+> ## Not run: 
+> ##D data2pdf(sampleData2)
+> ## End(Not run)
 > 
 > 
 > 
@@ -569,6 +681,13 @@ detaching ‘package:ggplot2’, ‘package:ztable’, ‘package:moonBook’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D library(moonBook)
+> ##D library(ztable)
+> ##D library(rrtable)
+> ##D library(ggplot2)
+> ##D data2plotzip(sampleData2,path="tmp")
+> ## End(Not run)
 > 
 > 
 > 
@@ -584,6 +703,12 @@ detaching ‘package:ggplot2’, ‘package:ztable’, ‘package:moonBook’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D library(rrtable)
+> ##D library(moonBook)
+> ##D library(ggplot2)
+> ##D data2pptx(sampleData2,echo=TRUE)
+> ## End(Not run)
 > 
 > 
 > 
@@ -604,17 +729,26 @@ Loading required package: flextable
 > require(officer)
 Loading required package: officer
 > df2flextable(head(iris),vanilla=TRUE,colorheader=TRUE)
+Warning in regulartable(df) : 'regulartable' is deprecated.
+Use 'flextable' instead.
+See help("Deprecated")
 a flextable object.
 col_keys: `Sepal.Length`, `Sepal.Width`, `Petal.Length`, `Petal.Width`, `Species` 
 header has 1 row(s) 
 body has 6 row(s) 
 original dataset sample: 
-  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-1         5.10        3.50         1.40        0.20  setosa
-2         4.90        3.00         1.40        0.20  setosa
-3         4.70        3.20         1.30        0.20  setosa
-4         4.60        3.10         1.50        0.20  setosa
-5         5.00        3.60         1.40        0.20  setosa
+'data.frame':	6 obs. of  5 variables:
+ $ Sepal.Length: chr  "5.10" "4.90" "4.70" "4.60" ...
+ $ Sepal.Width : chr  "3.50" "3.00" "3.20" "3.10" ...
+ $ Petal.Length: chr  "1.40" "1.40" "1.30" "1.50" ...
+ $ Petal.Width : chr  "0.20" "0.20" "0.20" "0.20" ...
+ $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1
+> ## Not run: 
+> ##D df2flextable(head(iris),vanilla=TRUE,digits=c(1,2,3,4))
+> ##D df2flextable(head(iris),vanilla=FALSE)
+> ##D df2flextable(head(iris),vanilla=FALSE,vlines=FALSE,fontsize=14)
+> ##D df2flextable(head(mtcars/2000),digits=3,pcol=8,digitp=4,add.rownames=TRUE)
+> ## End(Not run)
 > 
 > 
 > 
@@ -633,6 +767,14 @@ detaching ‘package:officer’, ‘package:flextable’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(ggplot2)
+> ##D x<-ggplot(iris,aes(x=Sepal.Length))+geom_histogram()
+> ##D image2docx(x)
+> ##D image2docx(x="plot(iris)",title="A ggplot",append=TRUE)
+> ##D p2="ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width))+geom_point()"
+> ##D image2docx(p2,append=TRUE)
+> ## End(Not run)
 > 
 > 
 > 
@@ -648,6 +790,10 @@ detaching ‘package:officer’, ‘package:flextable’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(ggplot2)
+> ##D image2pptx("ggplot(data=iris,aes(x=Sepal.Length))+geom_density()")
+> ## End(Not run)
 > 
 > 
 > 
@@ -663,6 +809,15 @@ detaching ‘package:officer’, ‘package:flextable’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(ggplot2)
+> ##D x<-ggplot(iris,aes(x=Sepal.Length))+geom_histogram()
+> ##D image2pptx(x)
+> ##D x="plot(iris)"
+> ##D image2pptx(x,title="A plot",append=TRUE)
+> ##D p2="ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width))+geom_point()"
+> ##D image2pptx(p2,append=TRUE)
+> ## End(Not run)
 > 
 > 
 > 
@@ -680,10 +835,17 @@ detaching ‘package:officer’, ‘package:flextable’
 > 
 > require(ggplot2)
 Loading required package: ggplot2
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:rrtable’:
+
+    is_ggplot
+
 > is_ggplot("plot(iris)")
 [1] FALSE
 > is_ggplot("ggplot(iris,aes(x=Sepal.Length))+geom_histogram()")
-[1] TRUE
+[1] FALSE
 > 
 > 
 > 
@@ -702,6 +864,17 @@ detaching ‘package:ggplot2’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(moonBook)
+> ##D require(flextable)
+> ##D require(officer)
+> ##D result=mytable(smoking+Dx~.,data=acs)
+> ##D mytable2flextable(result)
+> ##D mytable2flextable(result,vanilla=FALSE)
+> ##D result=mytable(Dx~.,data=acs)
+> ##D mytable2flextable(result)
+> ##D mytable2flextable(result,vanilla=FALSE)
+> ## End(Not run)
 > 
 > 
 > 
@@ -737,6 +910,16 @@ detaching ‘package:ggplot2’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(ggplot2)
+> ##D x<-ggplot(iris,aes(x=Sepal.Length))+geom_histogram()
+> ##D plot2docx(x)
+> ##D plot2docx(x,title="A ggplot",append=TRUE)
+> ##D p2=ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width))+geom_point()
+> ##D plot2docx(p2,append=TRUE)
+> ##D plot2docx(x="plot(iris)",append=TRUE,title="plot(iris)")
+> ##D plot2docx(x="ggplot(iris,aes(x=Sepal.Length))+geom_histogram()",append=TRUE)
+> ## End(Not run)
 > 
 > 
 > 
@@ -752,6 +935,13 @@ detaching ‘package:ggplot2’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(ggplot2)
+> ##D x=c("plot(iris)","ggplot(mtcars,aes(x=hp,y=mpg))+geom_point()")
+> ##D plot2office(x,title="2 plots",parallel=TRUE)
+> ##D plot2office(x,title="2 plots",parallel=TRUE,echo=TRUE,append=TRUE)
+> ##D plot2office(x,parallel=TRUE,echo=TRUE,append=TRUE)
+> ## End(Not run)
 > 
 > 
 > 
@@ -767,6 +957,16 @@ detaching ‘package:ggplot2’
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(ggplot2)
+> ##D x<-ggplot(iris,aes(x=Sepal.Length))+geom_histogram()
+> ##D plot2pptx(x)
+> ##D plot2pptx(x,title="A ggplot",append=TRUE)
+> ##D p2=ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width))+geom_point()
+> ##D plot2pptx(p2,append=TRUE)
+> ##D plot2pptx(x=c("plot(iris)","ggplot(iris,aes(x=Sepal.Length))+geom_histogram()"),
+> ##D     append=TRUE,title=c("plot","ggplot"),echo=TRUE)
+> ## End(Not run)
 > 
 > 
 > 
@@ -784,6 +984,13 @@ detaching ‘package:ggplot2’
 > 
 > library(shiny)
 > library(ggplot2)
+
+Attaching package: ‘ggplot2’
+
+The following object is masked from ‘package:rrtable’:
+
+    is_ggplot
+
 > library(editData)
 
 Attaching package: ‘editData’
@@ -1078,6 +1285,16 @@ Volvo 142E          2.00
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(moonBook)
+> ##D x=mytable(Dx~.,data=acs)
+> ##D table2docx(x)
+> ##D table2docx(head(iris),title="head(iris)",append=TRUE,vanilla=FALSE)
+> ##D fit=lm(mpg~wt*hp,data=mtcars)
+> ##D table2docx(fit,title="Linear regression",append=TRUE,vanilla=TRUE)
+> ##D fit2=aov(yield ~ block + N * P + K, data = npk)
+> ##D table2docx(fit2,title="Linear regression",append=TRUE,vanilla=TRUE)
+> ## End(Not run)
 > 
 > 
 > 
@@ -1094,6 +1311,16 @@ Volvo 142E          2.00
 > 
 > ### ** Examples
 > 
+> ## Not run: 
+> ##D require(moonBook)
+> ##D x="mytable(Dx~.,data=acs)"
+> ##D table2pptx(x,title="mytable object",echo=TRUE)
+> ##D table2pptx("head(iris)",title="data.Frame",append=TRUE,vanilla=FALSE,echo=TRUE)
+> ##D x="fit<-lm(mpg~wt*hp,data=mtcars);fit"
+> ##D table2pptx(x,title="Linear regression",append=TRUE,vanilla=TRUE,echo=TRUE)
+> ##D fit2="aov(yield ~ block + N * P + K, data = npk)"
+> ##D table2pptx(fit2,title="ANOVA",append=TRUE,vanilla=TRUE,echo=TRUE)
+> ## End(Not run)
 > 
 > 
 > 
@@ -1102,7 +1329,7 @@ Volvo 142E          2.00
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  4.036 0.515 5.599 0.002 0.003 
+Time elapsed:  3.281 0.388 3.751 0.002 0.003 
 > grDevices::dev.off()
 null device 
           1 

@@ -1,6 +1,6 @@
 Package: ztable
 Title: Zebra-Striped Tables in LaTeX and HTML Formats
-Version: 0.2.3
+Version: 0.2.5
 Authors@R: person("Keon-Woong","Moon", email="cardiomoon@gmail.com",
     role=c("aut", "cre"))
 Description: Makes zebra-striped tables (tables with alternating row colors)
@@ -15,11 +15,11 @@ Imports: stringr, magrittr, RColorBrewer, flextable, officer,
         rstudioapi, scales
 Suggests: MASS, moonBook, survival, testthat, knitr, rmarkdown
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+Config/roxygen2/version: 8.0.0
 RemoteType: local
-RemoteUrl: /Users/cardiomoon/Documents/ownCloud/Documents/ztable
+RemoteUrl: /Users/keon-woongmoon/Documents/GitHub/ztable
 NeedsCompilation: no
-Packaged: 2021-09-28 00:19:24 UTC; cardiomoon
+Packaged: 2026-06-19 14:48:31 UTC; keon-woongmoon
 Author: Keon-Woong Moon [aut, cre]
 Maintainer: Keon-Woong Moon <cardiomoon@gmail.com>
-Built: R 4.1.1; ; 2021-09-28 00:19:24 UTC; unix
+Built: R 4.6.0; ; 2026-06-19 14:48:32 UTC; unix

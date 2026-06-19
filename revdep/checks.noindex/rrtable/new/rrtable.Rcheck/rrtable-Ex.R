@@ -17,6 +17,10 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D code="summary(lm(mpg~hp+wt,data=mtcars))"
+##D Rcode2docx(code=code,title="R code to Word")
+## End(Not run)
 
 
 
@@ -48,6 +52,10 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D code="summary(lm(mpg~hp+wt,data=mtcars))"
+##D Rcode2office(code=code)
+## End(Not run)
 
 
 
@@ -63,6 +71,10 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D code="summary(lm(mpg~hp+wt,data=mtcars))"
+##D Rcode2pptx(code=code,title="R code to pptx")
+## End(Not run)
 
 
 
@@ -78,6 +90,20 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(rrtable)
+##D require(officer)
+##D require(magrittr)
+##D title="Two Tables"
+##D ft1=df2flextable(head(iris[1:4]))
+##D ft2=df2flextable(tail(iris[1:4]))
+##D doc=read_docx()
+##D doc %>% add_text(title=title) %>%
+##D         add_2flextables(ft1,ft2)
+##D doc=read_pptx()
+##D doc %>% add_text(title=title) %>%
+##D         add_2flextables(ft1,ft2)
+## End(Not run)
 
 
 
@@ -93,6 +119,16 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(ggplot2)
+##D require(magrittr)
+##D require(officer)
+##D require(rvg)
+##D plot1 <- "ggplot(data = iris, aes(Sepal.Length, Petal.Length)) + geom_point()"
+##D plot2 <- "ggplot(data = iris, aes(Sepal.Length, Petal.Length, color = Species)) + geom_point()"
+##D read_pptx() %>% add_text(title="Two ggplots") %>% add_2ggplots(plot1=plot1,plot2=plot2)
+##D read_docx() %>% add_text(title="Two ggplots") %>% add_2ggplots(plot1=plot1,plot2=plot2)
+## End(Not run)
 
 
 
@@ -151,6 +187,21 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(rrtable)
+##D require(moonBook)
+##D require(officer)
+##D require(magrittr)
+##D ftable=mytable(Dx~.,data=acs)
+##D title="mytable Example"
+##D ft=df2flextable(head(iris))
+##D title2="df2flextable Example"
+##D doc=read_docx()
+##D doc %>% add_text(title=title) %>%
+##D         add_flextable(ftable) %>%
+##D         add_text(title=title2) %>%
+##D         add_flextable(ft)
+## End(Not run)
 
 
 
@@ -237,6 +288,25 @@ read_pptx() %>% add_title_slide(title="Web-based analysis with R")
 
 
 cleanEx()
+nameEx("as.mynumeric")
+### * as.mynumeric
+
+flush(stderr()); flush(stdout())
+
+### Name: as.mynumeric
+### Title: coerce an object of type "numeric"
+### Aliases: as.mynumeric
+
+### ** Examples
+
+x=c("1,200","2","3.5")
+x=factor(3:1)
+x=c(1:3,"tt")
+as.mynumeric(x)
+
+
+
+cleanEx()
 nameEx("code2docx")
 ### * code2docx
 
@@ -248,6 +318,12 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D code2docx(plot(iris))
+##D require(ggplot2)
+##D gg=ggplot(data=mtcars,aes(x=wt,y=mpg))+geom_point()
+##D code2docx(ggobj=gg)
+## End(Not run)
 
 
 
@@ -263,6 +339,12 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D code2office(plot(iris))
+##D require(ggplot2)
+##D gg=ggplot(data=mtcars,aes(x=wt,y=mpg))+geom_point()
+##D code2office(ggobj=gg)
+## End(Not run)
 
 
 
@@ -278,6 +360,12 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D code2pptx(plot(iris))
+##D require(ggplot2)
+##D gg=ggplot(data=mtcars,aes(x=wt,y=mpg))+geom_point()
+##D code2pptx(ggobj=gg)
+## End(Not run)
 
 
 
@@ -293,6 +381,12 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D library(moonBook)
+##D library(rrtable)
+##D library(ggplot2)
+##D data2HTML(sampleData2)
+## End(Not run)
 
 
 
@@ -308,6 +402,12 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D library(rrtable)
+##D library(moonBook)
+##D library(ggplot2)
+##D data2docx(sampleData2,echo=TRUE)
+## End(Not run)
 
 
 
@@ -326,6 +426,9 @@ flush(stderr()); flush(stdout())
 library(moonBook)
 library(ztable)
 library(ggplot2)
+## Not run: 
+##D data2pdf(sampleData2)
+## End(Not run)
 
 
 
@@ -341,6 +444,13 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D library(moonBook)
+##D library(ztable)
+##D library(rrtable)
+##D library(ggplot2)
+##D data2plotzip(sampleData2,path="tmp")
+## End(Not run)
 
 
 
@@ -356,6 +466,12 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D library(rrtable)
+##D library(moonBook)
+##D library(ggplot2)
+##D data2pptx(sampleData2,echo=TRUE)
+## End(Not run)
 
 
 
@@ -374,6 +490,12 @@ flush(stderr()); flush(stdout())
 require(flextable)
 require(officer)
 df2flextable(head(iris),vanilla=TRUE,colorheader=TRUE)
+## Not run: 
+##D df2flextable(head(iris),vanilla=TRUE,digits=c(1,2,3,4))
+##D df2flextable(head(iris),vanilla=FALSE)
+##D df2flextable(head(iris),vanilla=FALSE,vlines=FALSE,fontsize=14)
+##D df2flextable(head(mtcars/2000),digits=3,pcol=8,digitp=4,add.rownames=TRUE)
+## End(Not run)
 
 
 
@@ -389,6 +511,14 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(ggplot2)
+##D x<-ggplot(iris,aes(x=Sepal.Length))+geom_histogram()
+##D image2docx(x)
+##D image2docx(x="plot(iris)",title="A ggplot",append=TRUE)
+##D p2="ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width))+geom_point()"
+##D image2docx(p2,append=TRUE)
+## End(Not run)
 
 
 
@@ -404,6 +534,10 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(ggplot2)
+##D image2pptx("ggplot(data=iris,aes(x=Sepal.Length))+geom_density()")
+## End(Not run)
 
 
 
@@ -419,6 +553,15 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(ggplot2)
+##D x<-ggplot(iris,aes(x=Sepal.Length))+geom_histogram()
+##D image2pptx(x)
+##D x="plot(iris)"
+##D image2pptx(x,title="A plot",append=TRUE)
+##D p2="ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width))+geom_point()"
+##D image2pptx(p2,append=TRUE)
+## End(Not run)
 
 
 
@@ -452,6 +595,17 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(moonBook)
+##D require(flextable)
+##D require(officer)
+##D result=mytable(smoking+Dx~.,data=acs)
+##D mytable2flextable(result)
+##D mytable2flextable(result,vanilla=FALSE)
+##D result=mytable(Dx~.,data=acs)
+##D mytable2flextable(result)
+##D mytable2flextable(result,vanilla=FALSE)
+## End(Not run)
 
 
 
@@ -485,6 +639,16 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(ggplot2)
+##D x<-ggplot(iris,aes(x=Sepal.Length))+geom_histogram()
+##D plot2docx(x)
+##D plot2docx(x,title="A ggplot",append=TRUE)
+##D p2=ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width))+geom_point()
+##D plot2docx(p2,append=TRUE)
+##D plot2docx(x="plot(iris)",append=TRUE,title="plot(iris)")
+##D plot2docx(x="ggplot(iris,aes(x=Sepal.Length))+geom_histogram()",append=TRUE)
+## End(Not run)
 
 
 
@@ -500,6 +664,13 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(ggplot2)
+##D x=c("plot(iris)","ggplot(mtcars,aes(x=hp,y=mpg))+geom_point()")
+##D plot2office(x,title="2 plots",parallel=TRUE)
+##D plot2office(x,title="2 plots",parallel=TRUE,echo=TRUE,append=TRUE)
+##D plot2office(x,parallel=TRUE,echo=TRUE,append=TRUE)
+## End(Not run)
 
 
 
@@ -515,6 +686,16 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(ggplot2)
+##D x<-ggplot(iris,aes(x=Sepal.Length))+geom_histogram()
+##D plot2pptx(x)
+##D plot2pptx(x,title="A ggplot",append=TRUE)
+##D p2=ggplot(iris,aes(x=Sepal.Length,y=Sepal.Width))+geom_point()
+##D plot2pptx(p2,append=TRUE)
+##D plot2pptx(x=c("plot(iris)","ggplot(iris,aes(x=Sepal.Length))+geom_histogram()"),
+##D     append=TRUE,title=c("plot","ggplot"),echo=TRUE)
+## End(Not run)
 
 
 
@@ -597,6 +778,16 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(moonBook)
+##D x=mytable(Dx~.,data=acs)
+##D table2docx(x)
+##D table2docx(head(iris),title="head(iris)",append=TRUE,vanilla=FALSE)
+##D fit=lm(mpg~wt*hp,data=mtcars)
+##D table2docx(fit,title="Linear regression",append=TRUE,vanilla=TRUE)
+##D fit2=aov(yield ~ block + N * P + K, data = npk)
+##D table2docx(fit2,title="Linear regression",append=TRUE,vanilla=TRUE)
+## End(Not run)
 
 
 
@@ -613,6 +804,16 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
+## Not run: 
+##D require(moonBook)
+##D x="mytable(Dx~.,data=acs)"
+##D table2pptx(x,title="mytable object",echo=TRUE)
+##D table2pptx("head(iris)",title="data.Frame",append=TRUE,vanilla=FALSE,echo=TRUE)
+##D x="fit<-lm(mpg~wt*hp,data=mtcars);fit"
+##D table2pptx(x,title="Linear regression",append=TRUE,vanilla=TRUE,echo=TRUE)
+##D fit2="aov(yield ~ block + N * P + K, data = npk)"
+##D table2pptx(fit2,title="ANOVA",append=TRUE,vanilla=TRUE,echo=TRUE)
+## End(Not run)
 
 
 

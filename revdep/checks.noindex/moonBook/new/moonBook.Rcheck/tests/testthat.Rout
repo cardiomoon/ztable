@@ -1,7 +1,7 @@
 
-R version 4.1.1 (2021-08-10) -- "Kick Things"
-Copyright (C) 2021 The R Foundation for Statistical Computing
-Platform: x86_64-apple-darwin17.0 (64-bit)
+R version 4.6.0 (2026-04-24) -- "Because it was There"
+Copyright (C) 2026 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin23
 
 R is free software and comes with ABSOLUTELY NO WARRANTY.
 You are welcome to redistribute it under certain conditions.
@@ -105,8 +105,13 @@ smoking          &  &  &  & 0.002 &  &  &  &  & 0.184 \\
 \end{tabular}
 \end{normalsize}
 \end{table}
-[ FAIL 0 | WARN 0 | SKIP 0 | PASS 0 ]
+[ FAIL 0 | WARN 0 | SKIP 1 | PASS 0 ]
+
+══ Skipped tests (1) ═══════════════════════════════════════════════════════════
+• empty test (1):
+
+[ FAIL 0 | WARN 0 | SKIP 1 | PASS 0 ]
 > 
 > proc.time()
    user  system elapsed 
-  0.666   0.071   0.730 
+  0.425   0.054   2.028 
